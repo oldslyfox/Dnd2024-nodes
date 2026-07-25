@@ -83,7 +83,7 @@ class PathEngine:
             if source in self.adjacency and target in self.adjacency:
                 self.adjacency[source].add(target)
                 self.adjacency[target].add(source)
-        self.hit_die_by_zone = graph["meta"].get("hit_die_by_zone", {})
+        self.chassis_by_zone = graph["meta"].get("chassis_by_zone", {})
         self._cache_key = None
         self._dist: dict[str, int] = {}
         self._prev: dict[str, str | None] = {}
@@ -109,9 +109,28 @@ class PathEngine:
             return 0
         return int(node.get("point_cost") or 0)
 
+    def chassis(self, state: PlayerState) -> dict | None:
+        """Task 2c - everything the starting zone locks in at creation.
+
+        Hit die, the two saving throw proficiencies, and starting weapon
+        proficiencies. All read from the zone the character began in; none of it
+        moves when they path into another zone, exactly as RAW keeps hit die and
+        starting proficiencies tied to your original class after multiclassing.
+        """
+        return self.chassis_by_zone.get(state.home_zone)
+
     def hit_die(self, state: PlayerState) -> dict | None:
         """Task 2c - hit die is looked up from the starting zone, nothing else."""
-        return self.hit_die_by_zone.get(state.home_zone)
+        entry = self.chassis_by_zone.get(state.home_zone)
+        return entry["hit_die"] if entry else None
+
+    def saving_throw_proficiencies(self, state: PlayerState) -> list[str]:
+        entry = self.chassis_by_zone.get(state.home_zone) or {}
+        return list(entry.get("saving_throw_proficiencies") or [])
+
+    def weapon_proficiencies(self, state: PlayerState) -> dict:
+        entry = self.chassis_by_zone.get(state.home_zone) or {}
+        return dict(entry.get("weapon_proficiencies") or {})
 
     # -- search ----------------------------------------------------------
 

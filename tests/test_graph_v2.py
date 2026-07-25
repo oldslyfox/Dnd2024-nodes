@@ -82,7 +82,7 @@ def test_slot_spine_shapes(graph):
     slots = [node for node in graph["nodes"] if node["type"] == "spell_slot"]
     by_zone = {}
     for node in slots:
-        if node.get("chassis") in ("full", "half", "third"):
+        if node.get("caster_chassis") in ("full", "half", "third"):
             by_zone.setdefault((node["zone"], node.get("subregion")), []).append(node)
 
     for zone in config.FULL_CASTERS:
@@ -100,14 +100,14 @@ def test_slot_spine_shapes(graph):
 
 
 def test_warlock_is_not_a_slot_count_spine(graph):
-    pact = [n for n in graph["nodes"] if n.get("chassis") == "pact"]
+    pact = [n for n in graph["nodes"] if n.get("caster_chassis") == "pact"]
     assert pact, "Warlock has no Pact Magic chain"
     assert all(n["zone"] == "Warlock" for n in pact)
     branches = {n["mechanical_data"].get("branch") for n in pact}
     assert branches == {None, "slot_level", "slot_count", "arcanum"}
     # and no full/half spine was generated for Warlock
     assert not [
-        n for n in graph["nodes"] if n["zone"] == "Warlock" and n.get("chassis") == "full"
+        n for n in graph["nodes"] if n["zone"] == "Warlock" and n.get("caster_chassis") == "full"
     ]
 
 
@@ -181,7 +181,33 @@ def test_empty_zones_are_labelled_not_silently_empty(graph):
     assert len([n for n in graph["nodes"] if n["zone"] == "Artificer" and n["type"] == "spell_slot"]) == 5
 
 
-def test_hit_die_table_is_present_for_every_zone(graph):
-    hit_dice = graph["meta"]["hit_die_by_zone"]
+def test_chassis_is_complete_for_every_zone(graph):
+    """Task 2c - the starting zone must fix everything RAW gives before play."""
+    chassis = graph["meta"]["chassis_by_zone"]
     for zone in config.ZONE_RING:
-        assert hit_dice[zone]["faces"] in (6, 8, 10, 12)
+        entry = chassis[zone]
+        assert entry["hit_die"]["faces"] in (6, 8, 10, 12), zone
+        assert len(entry["saving_throw_proficiencies"]) == 2, zone
+        assert entry["weapon_proficiencies"]["simple"] is True, zone
+        assert entry["weapon_proficiencies"]["summary"] != "none", zone
+
+
+def test_chassis_matches_classes_meta_exactly(graph):
+    """None of it is invented - it is a lookup, not a design decision."""
+    with open(GRAPH_PATH.parent.parent / "input" / "classes_meta.json") as handle:
+        classes_meta = json.load(handle)
+    for zone, entry in graph["meta"]["chassis_by_zone"].items():
+        source = classes_meta[zone]
+        assert entry["hit_die"] == source["hit_die"]
+        assert entry["saving_throw_proficiencies"] == source["saving_throw_proficiencies"]
+
+
+def test_chassis_is_not_duplicated_as_purchasable_nodes(graph):
+    """Saves and weapons are chassis; they must not also appear as tree nodes."""
+    generated = [n for n in graph["nodes"] if n.get("generated")]
+    assert not [
+        n
+        for n in generated
+        if "saving throw proficiency" in (n.get("effect_summary") or "").lower()
+    ]
+    assert not [n for n in generated if n["id"].startswith("conn_training_simple")]

@@ -112,6 +112,25 @@ def validate(graph: dict) -> dict:
         if f"gate_{zone.lower()}" not in by_id:
             errors.append(f"zone {zone} has no gate node")
 
+    # Task 2c - the starting zone has to fix a complete chassis, or a character
+    # built purely from the tree is missing things RAW gives away before play
+    chassis_table = graph["meta"].get("chassis_by_zone") or {}
+    for zone in config.ZONE_RING:
+        entry = chassis_table.get(zone)
+        if not entry:
+            errors.append(f"zone {zone} has no chassis entry")
+            continue
+        if not entry.get("hit_die"):
+            errors.append(f"zone {zone} chassis has no hit die")
+        if len(entry.get("saving_throw_proficiencies") or []) != 2:
+            errors.append(
+                f"zone {zone} chassis does not grant exactly two saving throws: "
+                f"{entry.get('saving_throw_proficiencies')}"
+            )
+        weapons = entry.get("weapon_proficiencies") or {}
+        if not weapons.get("simple"):
+            errors.append(f"zone {zone} chassis does not grant simple weapons")
+
     # -- reference edges must stay out of the traversable graph -----------
     cross_zone_references = 0
     for edge in graph["edges"]:
@@ -201,6 +220,21 @@ def validate(graph: dict) -> dict:
             "nodes": len(nodes),
             "edges": len(graph["edges"]),
             "by_type": graph["meta"]["node_counts_by_type"],
+        },
+        "chassis": {
+            "zones": len(chassis_table),
+            "complete": all(
+                chassis_table.get(zone)
+                and chassis_table[zone].get("hit_die")
+                and len(chassis_table[zone].get("saving_throw_proficiencies") or []) == 2
+                and (chassis_table[zone].get("weapon_proficiencies") or {}).get("simple")
+                for zone in config.ZONE_RING
+            ),
+            "fixed_at_creation_by_starting_zone": [
+                "hit_die",
+                "saving_throw_proficiencies",
+                "weapon_proficiencies",
+            ],
         },
         "depth_normalization": {
             "probe_rung_level": probe_level,

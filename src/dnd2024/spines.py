@@ -53,10 +53,10 @@ def _slot_node(
         "depth": depth,
         "point_cost": config.FLAT_POINT_COST,
         "tags": ["spell_slot", chassis],
-        "chassis": chassis,
+        "caster_chassis": chassis,
         "slot_tier": tier,
         "effect_summary": effect,
-        "mechanical_data": {"slot_tier": tier, "chassis": chassis},
+        "mechanical_data": {"slot_tier": tier, "caster_chassis": chassis},
         "prereqs_raw": [],
     }
 

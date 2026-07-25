@@ -9,7 +9,7 @@ asserts it.
 
 ```bash
 python3 scripts/build_all.py       # build -> validate -> flag, writes data/output
-python3 -m pytest                  # 47 tests, incl. the hand-checked path cases
+python3 -m pytest                  # 55 tests, incl. the hand-checked path cases
 python3 scripts/render_preview.py  # optional: an SVG of the layout, for eyeballing
 ```
 
@@ -65,6 +65,11 @@ thirteen.
 (computed per class from the extraction). At 1.75× that is **58 points** at
 level 20.
 
+**Chassis is not on the tree.** Hit die, your two saving throw proficiencies and
+your starting weapon proficiencies come from the zone you start in, locked at
+creation and unchanged by anything you buy later — the things RAW hands over
+before play starts are not purchases.
+
 ## Using the pathing engine
 
 ```python
@@ -80,7 +85,11 @@ engine.can_afford(state, "cf_fighter_extra_attack_5")
 #  'new_nodes': [...], 'points_remaining_after': 54, ...}
 
 engine.allocate(state, "cf_fighter_extra_attack_5")   # buys the whole path
-engine.hit_die(state)                                 # {'number': 1, 'faces': 6}
+
+engine.chassis(state)                    # everything the starting zone locked in
+engine.hit_die(state)                    # {'number': 1, 'faces': 6}
+engine.saving_throw_proficiencies(state) # ['int', 'wis']  - Wizard start, for good
+engine.weapon_proficiencies(state)       # {'simple': True, 'martial': False, ...}
 ```
 
 `path` is the full route so the UI can show "you'll also allocate these N
@@ -110,6 +119,13 @@ Recorded in `balance_flags.json` under `resolved_in_review`:
 4. **Invented armor training / drill ground connectors** — approved, with an
    audit of whether the same gap appears elsewhere (below).
 
+5. **The proficiency gap the audit found** — closed. Saving throw and weapon
+   proficiencies now derive from the starting zone alongside hit die
+   (`meta.chassis_by_zone`), so a character built purely from the tree is no
+   longer missing saves. The audit re-runs on every build and reports demand and
+   supply both clean; validation fails the build if any zone's chassis is
+   incomplete.
+
 **Artificer** stays a shell zone (gate, ladder, half-caster spine) and is now
 labelled in `meta.zone_status` as `"pending official 2024 content"` — not a
 broken extraction. A test holds that label.
@@ -120,12 +136,5 @@ broken extraction. A test holds that label.
   58-point career budget: Extra Attack stacking 41%, expertise pile 43%, two
   full-caster spines 34%, two capstones 34%. First item for a balance-tuning
   pass.
-- **The proficiency gap** (`data/output/proficiency_gap_audit.json`). No
-  prerequisite in the data is unsatisfiable, but two things a RAW class hands
-  over free have no home in the tree: **saving throw proficiencies** (all 13
-  classes grant two; the tree has one node that grants one — Resilient) and
-  **simple weapon proficiency**. Saves look like chassis in the same sense hit
-  die is, and `classes_meta` already carries them per class, so the natural fix
-  mirrors the Task 2c hit die rule. Not applied — future systemic pass.
 - **`layout_preview.svg` label crowding** around Rogue/Artificer/Wizard.
   Cosmetic; for whenever the real renderer work order starts.

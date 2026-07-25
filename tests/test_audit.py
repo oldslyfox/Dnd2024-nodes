@@ -30,11 +30,34 @@ def test_armor_prerequisites_resolve_to_the_training_connectors(report):
     assert "feat_heavily_armored_xphb" in dependants["conn_training_medium_armor"]
 
 
-def test_the_audit_finds_the_saving_throw_gap(report):
-    """The gap the reviewer suspected: saves came free with a class, and don't now."""
+def test_no_category_is_left_uncovered(report):
+    """The follow-up work order's close condition: demand and supply both clean."""
+    for finding in report["findings"]:
+        assert finding["status"].startswith("COVERED"), finding
+    assert "Supply is clean" in report["verdict"]
+    assert "Demand is clean" in report["verdict"]
+
+
+def test_saving_throws_are_covered_by_chassis(report):
+    """The gap the reviewer found, now closed the same way hit die was."""
     saves = next(f for f in report["findings"] if f["category"] == "saving_throws")
-    assert saves["status"].startswith("GAP")
-    assert saves["purchasable_sources"] == 1  # Resilient, and nothing else
+    assert saves["status"].startswith("COVERED - chassis")
+    assert saves["granted_by_starting_zone"] == 13
+    # still only one tree node grants a save; the chassis is what closed it
+    assert saves["purchasable_sources"] == 1
+
+
+def test_simple_weapons_are_covered_by_chassis(report):
+    weapons = next(f for f in report["findings"] if f["category"] == "weapons")
+    assert weapons["status"].startswith("COVERED - chassis")
+    assert weapons["granted_by_starting_zone"] == 13
+
+
+def test_chassis_coverage_is_reported(report):
+    coverage = report["chassis_coverage"]
+    assert coverage["zones_with_chassis"] == 13
+    assert coverage["zones_granting_two_saving_throws"] == 13
+    assert coverage["zones_granting_simple_weapons"] == 13
 
 
 def test_skills_and_tools_are_covered(report):

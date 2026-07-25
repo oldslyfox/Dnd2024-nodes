@@ -117,58 +117,240 @@
         "20": 56
       }
     },
-    "hit_die_by_zone": {
+    "chassis_by_zone": {
       "Artificer": {
-        "number": 1,
-        "faces": 8
+        "hit_die": {
+          "number": 1,
+          "faces": 8
+        },
+        "saving_throw_proficiencies": [
+          "con",
+          "int"
+        ],
+        "weapon_proficiencies": {
+          "simple": true,
+          "martial": false,
+          "martial_subset": null,
+          "summary": "Simple weapons"
+        },
+        "source": "EFA",
+        "note": "Locked at character creation by the starting zone, exactly as RAW fixes hit die and starting proficiencies to your original class. Pathing into other zones later does not change any of it."
       },
       "Barbarian": {
-        "number": 1,
-        "faces": 12
+        "hit_die": {
+          "number": 1,
+          "faces": 12
+        },
+        "saving_throw_proficiencies": [
+          "str",
+          "con"
+        ],
+        "weapon_proficiencies": {
+          "simple": true,
+          "martial": true,
+          "martial_subset": null,
+          "summary": "Simple weapons, Martial weapons"
+        },
+        "source": "XPHB",
+        "note": "Locked at character creation by the starting zone, exactly as RAW fixes hit die and starting proficiencies to your original class. Pathing into other zones later does not change any of it."
       },
       "Bard": {
-        "number": 1,
-        "faces": 8
+        "hit_die": {
+          "number": 1,
+          "faces": 8
+        },
+        "saving_throw_proficiencies": [
+          "dex",
+          "cha"
+        ],
+        "weapon_proficiencies": {
+          "simple": true,
+          "martial": false,
+          "martial_subset": null,
+          "summary": "Simple weapons"
+        },
+        "source": "XPHB",
+        "note": "Locked at character creation by the starting zone, exactly as RAW fixes hit die and starting proficiencies to your original class. Pathing into other zones later does not change any of it."
       },
       "Cleric": {
-        "number": 1,
-        "faces": 8
+        "hit_die": {
+          "number": 1,
+          "faces": 8
+        },
+        "saving_throw_proficiencies": [
+          "wis",
+          "cha"
+        ],
+        "weapon_proficiencies": {
+          "simple": true,
+          "martial": false,
+          "martial_subset": null,
+          "summary": "Simple weapons"
+        },
+        "source": "XPHB",
+        "note": "Locked at character creation by the starting zone, exactly as RAW fixes hit die and starting proficiencies to your original class. Pathing into other zones later does not change any of it."
       },
       "Druid": {
-        "number": 1,
-        "faces": 8
+        "hit_die": {
+          "number": 1,
+          "faces": 8
+        },
+        "saving_throw_proficiencies": [
+          "int",
+          "wis"
+        ],
+        "weapon_proficiencies": {
+          "simple": true,
+          "martial": false,
+          "martial_subset": null,
+          "summary": "Simple weapons"
+        },
+        "source": "XPHB",
+        "note": "Locked at character creation by the starting zone, exactly as RAW fixes hit die and starting proficiencies to your original class. Pathing into other zones later does not change any of it."
       },
       "Fighter": {
-        "number": 1,
-        "faces": 10
+        "hit_die": {
+          "number": 1,
+          "faces": 10
+        },
+        "saving_throw_proficiencies": [
+          "str",
+          "con"
+        ],
+        "weapon_proficiencies": {
+          "simple": true,
+          "martial": true,
+          "martial_subset": null,
+          "summary": "Simple weapons, Martial weapons"
+        },
+        "source": "XPHB",
+        "note": "Locked at character creation by the starting zone, exactly as RAW fixes hit die and starting proficiencies to your original class. Pathing into other zones later does not change any of it."
       },
       "Monk": {
-        "number": 1,
-        "faces": 8
+        "hit_die": {
+          "number": 1,
+          "faces": 8
+        },
+        "saving_throw_proficiencies": [
+          "str",
+          "dex"
+        ],
+        "weapon_proficiencies": {
+          "simple": true,
+          "martial": false,
+          "martial_subset": "Light",
+          "summary": "Simple weapons, Martial weapons with the Light property"
+        },
+        "source": "XPHB",
+        "note": "Locked at character creation by the starting zone, exactly as RAW fixes hit die and starting proficiencies to your original class. Pathing into other zones later does not change any of it."
       },
       "Paladin": {
-        "number": 1,
-        "faces": 10
+        "hit_die": {
+          "number": 1,
+          "faces": 10
+        },
+        "saving_throw_proficiencies": [
+          "wis",
+          "cha"
+        ],
+        "weapon_proficiencies": {
+          "simple": true,
+          "martial": true,
+          "martial_subset": null,
+          "summary": "Simple weapons, Martial weapons"
+        },
+        "source": "XPHB",
+        "note": "Locked at character creation by the starting zone, exactly as RAW fixes hit die and starting proficiencies to your original class. Pathing into other zones later does not change any of it."
       },
       "Ranger": {
-        "number": 1,
-        "faces": 10
+        "hit_die": {
+          "number": 1,
+          "faces": 10
+        },
+        "saving_throw_proficiencies": [
+          "str",
+          "dex"
+        ],
+        "weapon_proficiencies": {
+          "simple": true,
+          "martial": true,
+          "martial_subset": null,
+          "summary": "Simple weapons, Martial weapons"
+        },
+        "source": "XPHB",
+        "note": "Locked at character creation by the starting zone, exactly as RAW fixes hit die and starting proficiencies to your original class. Pathing into other zones later does not change any of it."
       },
       "Rogue": {
-        "number": 1,
-        "faces": 8
+        "hit_die": {
+          "number": 1,
+          "faces": 8
+        },
+        "saving_throw_proficiencies": [
+          "dex",
+          "int"
+        ],
+        "weapon_proficiencies": {
+          "simple": true,
+          "martial": false,
+          "martial_subset": "Finesse or Light",
+          "summary": "Simple weapons, Martial weapons with the Finesse or Light property"
+        },
+        "source": "XPHB",
+        "note": "Locked at character creation by the starting zone, exactly as RAW fixes hit die and starting proficiencies to your original class. Pathing into other zones later does not change any of it."
       },
       "Sorcerer": {
-        "number": 1,
-        "faces": 6
+        "hit_die": {
+          "number": 1,
+          "faces": 6
+        },
+        "saving_throw_proficiencies": [
+          "con",
+          "cha"
+        ],
+        "weapon_proficiencies": {
+          "simple": true,
+          "martial": false,
+          "martial_subset": null,
+          "summary": "Simple weapons"
+        },
+        "source": "XPHB",
+        "note": "Locked at character creation by the starting zone, exactly as RAW fixes hit die and starting proficiencies to your original class. Pathing into other zones later does not change any of it."
       },
       "Warlock": {
-        "number": 1,
-        "faces": 8
+        "hit_die": {
+          "number": 1,
+          "faces": 8
+        },
+        "saving_throw_proficiencies": [
+          "wis",
+          "cha"
+        ],
+        "weapon_proficiencies": {
+          "simple": true,
+          "martial": false,
+          "martial_subset": null,
+          "summary": "Simple weapons"
+        },
+        "source": "XPHB",
+        "note": "Locked at character creation by the starting zone, exactly as RAW fixes hit die and starting proficiencies to your original class. Pathing into other zones later does not change any of it."
       },
       "Wizard": {
-        "number": 1,
-        "faces": 6
+        "hit_die": {
+          "number": 1,
+          "faces": 6
+        },
+        "saving_throw_proficiencies": [
+          "int",
+          "wis"
+        ],
+        "weapon_proficiencies": {
+          "simple": true,
+          "martial": false,
+          "martial_subset": null,
+          "summary": "Simple weapons"
+        },
+        "source": "XPHB",
+        "note": "Locked at character creation by the starting zone, exactly as RAW fixes hit die and starting proficiencies to your original class. Pathing into other zones later does not change any of it."
       }
     },
     "zone_status": {
@@ -25994,8 +26176,8 @@
       "is_gate": false,
       "subregion": null,
       "boundary": [
-        "Ranger",
-        "Rogue"
+        "Artificer",
+        "Wizard"
       ],
       "role": "feat_epic_boon",
       "zone": "commons",
@@ -26011,9 +26193,9 @@
         "RAW level 19 -> 53 points spent"
       ],
       "position_x": -54.898,
-      "position_y": 28.813,
+      "position_y": -28.813,
       "polar": {
-        "angle_deg": 152.31,
+        "angle_deg": 207.69,
         "radius": 62.0
       }
     },
@@ -26104,8 +26286,8 @@
       "is_gate": false,
       "subregion": null,
       "boundary": [
-        "Monk",
-        "Barbarian"
+        "Barbarian",
+        "Fighter"
       ],
       "role": "feat_epic_boon",
       "zone": "commons",
@@ -26121,9 +26303,9 @@
         "RAW level 19 -> 53 points spent"
       ],
       "position_x": 60.198,
-      "position_y": -14.838,
+      "position_y": 14.838,
       "polar": {
-        "angle_deg": 346.15,
+        "angle_deg": 13.85,
         "radius": 62.0
       }
     },
@@ -26171,10 +26353,10 @@
       "prereq_notes": [
         "RAW level 19 -> 53 points spent"
       ],
-      "position_x": 60.281,
-      "position_y": -14.498,
+      "position_x": 60.198,
+      "position_y": -14.838,
       "polar": {
-        "angle_deg": 346.48,
+        "angle_deg": 346.15,
         "radius": 62.0
       }
     },
@@ -26210,8 +26392,8 @@
       "is_gate": false,
       "subregion": null,
       "boundary": [
-        "Warlock",
-        "Bard"
+        "Wizard",
+        "Sorcerer"
       ],
       "role": "feat_epic_boon",
       "zone": "commons",
@@ -26226,10 +26408,10 @@
       "prereq_notes": [
         "RAW level 19 -> 53 points spent"
       ],
-      "position_x": 21.986,
-      "position_y": -57.971,
+      "position_x": -35.22,
+      "position_y": -51.025,
       "polar": {
-        "angle_deg": 290.77,
+        "angle_deg": 235.38,
         "radius": 62.0
       }
     },
@@ -26320,8 +26502,8 @@
       "is_gate": false,
       "subregion": null,
       "boundary": [
-        "Sorcerer",
-        "Warlock"
+        "Bard",
+        "Monk"
       ],
       "role": "feat_epic_boon",
       "zone": "commons",
@@ -26336,10 +26518,10 @@
       "prereq_notes": [
         "RAW level 19 -> 53 points spent"
       ],
-      "position_x": -7.473,
-      "position_y": -61.548,
+      "position_x": 46.408,
+      "position_y": -41.114,
       "polar": {
-        "angle_deg": 263.08,
+        "angle_deg": 318.46,
         "radius": 62.0
       }
     },
@@ -26419,10 +26601,10 @@
       "prereq_notes": [
         "RAW level 19 -> 53 points spent"
       ],
-      "position_x": -7.126,
-      "position_y": -61.589,
+      "position_x": -7.473,
+      "position_y": -61.548,
       "polar": {
-        "angle_deg": 263.4,
+        "angle_deg": 263.08,
         "radius": 62.0
       }
     },
@@ -47061,12 +47243,12 @@
         "spell_slot",
         "half"
       ],
-      "chassis": "half",
+      "caster_chassis": "half",
       "slot_tier": 1,
       "effect_summary": "You gain the ability to prepare and cast spells of 1st level, along with cantrips, using this zone's spellcasting ability.",
       "mechanical_data": {
         "slot_tier": 1,
-        "chassis": "half"
+        "caster_chassis": "half"
       },
       "prereqs": {
         "logic": "AND",
@@ -47108,12 +47290,12 @@
         "spell_slot",
         "half"
       ],
-      "chassis": "half",
+      "caster_chassis": "half",
       "slot_tier": 2,
       "effect_summary": "You gain spell slots of 2nd level.",
       "mechanical_data": {
         "slot_tier": 2,
-        "chassis": "half"
+        "caster_chassis": "half"
       },
       "prereqs": {
         "logic": "AND",
@@ -47155,12 +47337,12 @@
         "spell_slot",
         "half"
       ],
-      "chassis": "half",
+      "caster_chassis": "half",
       "slot_tier": 3,
       "effect_summary": "You gain spell slots of 3rd level.",
       "mechanical_data": {
         "slot_tier": 3,
-        "chassis": "half"
+        "caster_chassis": "half"
       },
       "prereqs": {
         "logic": "AND",
@@ -47202,12 +47384,12 @@
         "spell_slot",
         "half"
       ],
-      "chassis": "half",
+      "caster_chassis": "half",
       "slot_tier": 4,
       "effect_summary": "You gain spell slots of 4th level.",
       "mechanical_data": {
         "slot_tier": 4,
-        "chassis": "half"
+        "caster_chassis": "half"
       },
       "prereqs": {
         "logic": "AND",
@@ -47249,12 +47431,12 @@
         "spell_slot",
         "half"
       ],
-      "chassis": "half",
+      "caster_chassis": "half",
       "slot_tier": 5,
       "effect_summary": "You gain spell slots of 5th level.",
       "mechanical_data": {
         "slot_tier": 5,
-        "chassis": "half"
+        "caster_chassis": "half"
       },
       "prereqs": {
         "logic": "AND",
@@ -47296,12 +47478,12 @@
         "spell_slot",
         "full"
       ],
-      "chassis": "full",
+      "caster_chassis": "full",
       "slot_tier": 1,
       "effect_summary": "You gain the ability to prepare and cast spells of 1st level, along with cantrips, using this zone's spellcasting ability.",
       "mechanical_data": {
         "slot_tier": 1,
-        "chassis": "full"
+        "caster_chassis": "full"
       },
       "prereqs": {
         "logic": "AND",
@@ -47343,12 +47525,12 @@
         "spell_slot",
         "full"
       ],
-      "chassis": "full",
+      "caster_chassis": "full",
       "slot_tier": 2,
       "effect_summary": "You gain spell slots of 2nd level.",
       "mechanical_data": {
         "slot_tier": 2,
-        "chassis": "full"
+        "caster_chassis": "full"
       },
       "prereqs": {
         "logic": "AND",
@@ -47390,12 +47572,12 @@
         "spell_slot",
         "full"
       ],
-      "chassis": "full",
+      "caster_chassis": "full",
       "slot_tier": 3,
       "effect_summary": "You gain spell slots of 3rd level.",
       "mechanical_data": {
         "slot_tier": 3,
-        "chassis": "full"
+        "caster_chassis": "full"
       },
       "prereqs": {
         "logic": "AND",
@@ -47437,12 +47619,12 @@
         "spell_slot",
         "full"
       ],
-      "chassis": "full",
+      "caster_chassis": "full",
       "slot_tier": 4,
       "effect_summary": "You gain spell slots of 4th level.",
       "mechanical_data": {
         "slot_tier": 4,
-        "chassis": "full"
+        "caster_chassis": "full"
       },
       "prereqs": {
         "logic": "AND",
@@ -47484,12 +47666,12 @@
         "spell_slot",
         "full"
       ],
-      "chassis": "full",
+      "caster_chassis": "full",
       "slot_tier": 5,
       "effect_summary": "You gain spell slots of 5th level.",
       "mechanical_data": {
         "slot_tier": 5,
-        "chassis": "full"
+        "caster_chassis": "full"
       },
       "prereqs": {
         "logic": "AND",
@@ -47531,12 +47713,12 @@
         "spell_slot",
         "full"
       ],
-      "chassis": "full",
+      "caster_chassis": "full",
       "slot_tier": 6,
       "effect_summary": "You gain spell slots of 6th level.",
       "mechanical_data": {
         "slot_tier": 6,
-        "chassis": "full"
+        "caster_chassis": "full"
       },
       "prereqs": {
         "logic": "AND",
@@ -47578,12 +47760,12 @@
         "spell_slot",
         "full"
       ],
-      "chassis": "full",
+      "caster_chassis": "full",
       "slot_tier": 7,
       "effect_summary": "You gain spell slots of 7th level.",
       "mechanical_data": {
         "slot_tier": 7,
-        "chassis": "full"
+        "caster_chassis": "full"
       },
       "prereqs": {
         "logic": "AND",
@@ -47625,12 +47807,12 @@
         "spell_slot",
         "full"
       ],
-      "chassis": "full",
+      "caster_chassis": "full",
       "slot_tier": 8,
       "effect_summary": "You gain spell slots of 8th level.",
       "mechanical_data": {
         "slot_tier": 8,
-        "chassis": "full"
+        "caster_chassis": "full"
       },
       "prereqs": {
         "logic": "AND",
@@ -47672,12 +47854,12 @@
         "spell_slot",
         "full"
       ],
-      "chassis": "full",
+      "caster_chassis": "full",
       "slot_tier": 9,
       "effect_summary": "You gain spell slots of 9th level.",
       "mechanical_data": {
         "slot_tier": 9,
-        "chassis": "full"
+        "caster_chassis": "full"
       },
       "prereqs": {
         "logic": "AND",
@@ -47719,12 +47901,12 @@
         "spell_slot",
         "full"
       ],
-      "chassis": "full",
+      "caster_chassis": "full",
       "slot_tier": 1,
       "effect_summary": "You gain the ability to prepare and cast spells of 1st level, along with cantrips, using this zone's spellcasting ability.",
       "mechanical_data": {
         "slot_tier": 1,
-        "chassis": "full"
+        "caster_chassis": "full"
       },
       "prereqs": {
         "logic": "AND",
@@ -47766,12 +47948,12 @@
         "spell_slot",
         "full"
       ],
-      "chassis": "full",
+      "caster_chassis": "full",
       "slot_tier": 2,
       "effect_summary": "You gain spell slots of 2nd level.",
       "mechanical_data": {
         "slot_tier": 2,
-        "chassis": "full"
+        "caster_chassis": "full"
       },
       "prereqs": {
         "logic": "AND",
@@ -47813,12 +47995,12 @@
         "spell_slot",
         "full"
       ],
-      "chassis": "full",
+      "caster_chassis": "full",
       "slot_tier": 3,
       "effect_summary": "You gain spell slots of 3rd level.",
       "mechanical_data": {
         "slot_tier": 3,
-        "chassis": "full"
+        "caster_chassis": "full"
       },
       "prereqs": {
         "logic": "AND",
@@ -47860,12 +48042,12 @@
         "spell_slot",
         "full"
       ],
-      "chassis": "full",
+      "caster_chassis": "full",
       "slot_tier": 4,
       "effect_summary": "You gain spell slots of 4th level.",
       "mechanical_data": {
         "slot_tier": 4,
-        "chassis": "full"
+        "caster_chassis": "full"
       },
       "prereqs": {
         "logic": "AND",
@@ -47907,12 +48089,12 @@
         "spell_slot",
         "full"
       ],
-      "chassis": "full",
+      "caster_chassis": "full",
       "slot_tier": 5,
       "effect_summary": "You gain spell slots of 5th level.",
       "mechanical_data": {
         "slot_tier": 5,
-        "chassis": "full"
+        "caster_chassis": "full"
       },
       "prereqs": {
         "logic": "AND",
@@ -47954,12 +48136,12 @@
         "spell_slot",
         "full"
       ],
-      "chassis": "full",
+      "caster_chassis": "full",
       "slot_tier": 6,
       "effect_summary": "You gain spell slots of 6th level.",
       "mechanical_data": {
         "slot_tier": 6,
-        "chassis": "full"
+        "caster_chassis": "full"
       },
       "prereqs": {
         "logic": "AND",
@@ -48001,12 +48183,12 @@
         "spell_slot",
         "full"
       ],
-      "chassis": "full",
+      "caster_chassis": "full",
       "slot_tier": 7,
       "effect_summary": "You gain spell slots of 7th level.",
       "mechanical_data": {
         "slot_tier": 7,
-        "chassis": "full"
+        "caster_chassis": "full"
       },
       "prereqs": {
         "logic": "AND",
@@ -48048,12 +48230,12 @@
         "spell_slot",
         "full"
       ],
-      "chassis": "full",
+      "caster_chassis": "full",
       "slot_tier": 8,
       "effect_summary": "You gain spell slots of 8th level.",
       "mechanical_data": {
         "slot_tier": 8,
-        "chassis": "full"
+        "caster_chassis": "full"
       },
       "prereqs": {
         "logic": "AND",
@@ -48095,12 +48277,12 @@
         "spell_slot",
         "full"
       ],
-      "chassis": "full",
+      "caster_chassis": "full",
       "slot_tier": 9,
       "effect_summary": "You gain spell slots of 9th level.",
       "mechanical_data": {
         "slot_tier": 9,
-        "chassis": "full"
+        "caster_chassis": "full"
       },
       "prereqs": {
         "logic": "AND",
@@ -48142,12 +48324,12 @@
         "spell_slot",
         "full"
       ],
-      "chassis": "full",
+      "caster_chassis": "full",
       "slot_tier": 1,
       "effect_summary": "You gain the ability to prepare and cast spells of 1st level, along with cantrips, using this zone's spellcasting ability.",
       "mechanical_data": {
         "slot_tier": 1,
-        "chassis": "full"
+        "caster_chassis": "full"
       },
       "prereqs": {
         "logic": "AND",
@@ -48189,12 +48371,12 @@
         "spell_slot",
         "full"
       ],
-      "chassis": "full",
+      "caster_chassis": "full",
       "slot_tier": 2,
       "effect_summary": "You gain spell slots of 2nd level.",
       "mechanical_data": {
         "slot_tier": 2,
-        "chassis": "full"
+        "caster_chassis": "full"
       },
       "prereqs": {
         "logic": "AND",
@@ -48236,12 +48418,12 @@
         "spell_slot",
         "full"
       ],
-      "chassis": "full",
+      "caster_chassis": "full",
       "slot_tier": 3,
       "effect_summary": "You gain spell slots of 3rd level.",
       "mechanical_data": {
         "slot_tier": 3,
-        "chassis": "full"
+        "caster_chassis": "full"
       },
       "prereqs": {
         "logic": "AND",
@@ -48283,12 +48465,12 @@
         "spell_slot",
         "full"
       ],
-      "chassis": "full",
+      "caster_chassis": "full",
       "slot_tier": 4,
       "effect_summary": "You gain spell slots of 4th level.",
       "mechanical_data": {
         "slot_tier": 4,
-        "chassis": "full"
+        "caster_chassis": "full"
       },
       "prereqs": {
         "logic": "AND",
@@ -48330,12 +48512,12 @@
         "spell_slot",
         "full"
       ],
-      "chassis": "full",
+      "caster_chassis": "full",
       "slot_tier": 5,
       "effect_summary": "You gain spell slots of 5th level.",
       "mechanical_data": {
         "slot_tier": 5,
-        "chassis": "full"
+        "caster_chassis": "full"
       },
       "prereqs": {
         "logic": "AND",
@@ -48377,12 +48559,12 @@
         "spell_slot",
         "full"
       ],
-      "chassis": "full",
+      "caster_chassis": "full",
       "slot_tier": 6,
       "effect_summary": "You gain spell slots of 6th level.",
       "mechanical_data": {
         "slot_tier": 6,
-        "chassis": "full"
+        "caster_chassis": "full"
       },
       "prereqs": {
         "logic": "AND",
@@ -48424,12 +48606,12 @@
         "spell_slot",
         "full"
       ],
-      "chassis": "full",
+      "caster_chassis": "full",
       "slot_tier": 7,
       "effect_summary": "You gain spell slots of 7th level.",
       "mechanical_data": {
         "slot_tier": 7,
-        "chassis": "full"
+        "caster_chassis": "full"
       },
       "prereqs": {
         "logic": "AND",
@@ -48471,12 +48653,12 @@
         "spell_slot",
         "full"
       ],
-      "chassis": "full",
+      "caster_chassis": "full",
       "slot_tier": 8,
       "effect_summary": "You gain spell slots of 8th level.",
       "mechanical_data": {
         "slot_tier": 8,
-        "chassis": "full"
+        "caster_chassis": "full"
       },
       "prereqs": {
         "logic": "AND",
@@ -48518,12 +48700,12 @@
         "spell_slot",
         "full"
       ],
-      "chassis": "full",
+      "caster_chassis": "full",
       "slot_tier": 9,
       "effect_summary": "You gain spell slots of 9th level.",
       "mechanical_data": {
         "slot_tier": 9,
-        "chassis": "full"
+        "caster_chassis": "full"
       },
       "prereqs": {
         "logic": "AND",
@@ -48565,12 +48747,12 @@
         "spell_slot",
         "third"
       ],
-      "chassis": "third",
+      "caster_chassis": "third",
       "slot_tier": 1,
       "effect_summary": "You gain the ability to prepare and cast spells of 1st level, along with cantrips, using this zone's spellcasting ability.",
       "mechanical_data": {
         "slot_tier": 1,
-        "chassis": "third"
+        "caster_chassis": "third"
       },
       "prereqs": {
         "logic": "AND",
@@ -48612,12 +48794,12 @@
         "spell_slot",
         "third"
       ],
-      "chassis": "third",
+      "caster_chassis": "third",
       "slot_tier": 2,
       "effect_summary": "You gain spell slots of 2nd level.",
       "mechanical_data": {
         "slot_tier": 2,
-        "chassis": "third"
+        "caster_chassis": "third"
       },
       "prereqs": {
         "logic": "AND",
@@ -48659,12 +48841,12 @@
         "spell_slot",
         "third"
       ],
-      "chassis": "third",
+      "caster_chassis": "third",
       "slot_tier": 3,
       "effect_summary": "You gain spell slots of 3rd level.",
       "mechanical_data": {
         "slot_tier": 3,
-        "chassis": "third"
+        "caster_chassis": "third"
       },
       "prereqs": {
         "logic": "AND",
@@ -48706,12 +48888,12 @@
         "spell_slot",
         "third"
       ],
-      "chassis": "third",
+      "caster_chassis": "third",
       "slot_tier": 4,
       "effect_summary": "You gain spell slots of 4th level.",
       "mechanical_data": {
         "slot_tier": 4,
-        "chassis": "third"
+        "caster_chassis": "third"
       },
       "prereqs": {
         "logic": "AND",
@@ -48753,12 +48935,12 @@
         "spell_slot",
         "half"
       ],
-      "chassis": "half",
+      "caster_chassis": "half",
       "slot_tier": 1,
       "effect_summary": "You gain the ability to prepare and cast spells of 1st level, along with cantrips, using this zone's spellcasting ability.",
       "mechanical_data": {
         "slot_tier": 1,
-        "chassis": "half"
+        "caster_chassis": "half"
       },
       "prereqs": {
         "logic": "AND",
@@ -48800,12 +48982,12 @@
         "spell_slot",
         "half"
       ],
-      "chassis": "half",
+      "caster_chassis": "half",
       "slot_tier": 2,
       "effect_summary": "You gain spell slots of 2nd level.",
       "mechanical_data": {
         "slot_tier": 2,
-        "chassis": "half"
+        "caster_chassis": "half"
       },
       "prereqs": {
         "logic": "AND",
@@ -48847,12 +49029,12 @@
         "spell_slot",
         "half"
       ],
-      "chassis": "half",
+      "caster_chassis": "half",
       "slot_tier": 3,
       "effect_summary": "You gain spell slots of 3rd level.",
       "mechanical_data": {
         "slot_tier": 3,
-        "chassis": "half"
+        "caster_chassis": "half"
       },
       "prereqs": {
         "logic": "AND",
@@ -48894,12 +49076,12 @@
         "spell_slot",
         "half"
       ],
-      "chassis": "half",
+      "caster_chassis": "half",
       "slot_tier": 4,
       "effect_summary": "You gain spell slots of 4th level.",
       "mechanical_data": {
         "slot_tier": 4,
-        "chassis": "half"
+        "caster_chassis": "half"
       },
       "prereqs": {
         "logic": "AND",
@@ -48941,12 +49123,12 @@
         "spell_slot",
         "half"
       ],
-      "chassis": "half",
+      "caster_chassis": "half",
       "slot_tier": 5,
       "effect_summary": "You gain spell slots of 5th level.",
       "mechanical_data": {
         "slot_tier": 5,
-        "chassis": "half"
+        "caster_chassis": "half"
       },
       "prereqs": {
         "logic": "AND",
@@ -48988,12 +49170,12 @@
         "spell_slot",
         "half"
       ],
-      "chassis": "half",
+      "caster_chassis": "half",
       "slot_tier": 1,
       "effect_summary": "You gain the ability to prepare and cast spells of 1st level, along with cantrips, using this zone's spellcasting ability.",
       "mechanical_data": {
         "slot_tier": 1,
-        "chassis": "half"
+        "caster_chassis": "half"
       },
       "prereqs": {
         "logic": "AND",
@@ -49035,12 +49217,12 @@
         "spell_slot",
         "half"
       ],
-      "chassis": "half",
+      "caster_chassis": "half",
       "slot_tier": 2,
       "effect_summary": "You gain spell slots of 2nd level.",
       "mechanical_data": {
         "slot_tier": 2,
-        "chassis": "half"
+        "caster_chassis": "half"
       },
       "prereqs": {
         "logic": "AND",
@@ -49082,12 +49264,12 @@
         "spell_slot",
         "half"
       ],
-      "chassis": "half",
+      "caster_chassis": "half",
       "slot_tier": 3,
       "effect_summary": "You gain spell slots of 3rd level.",
       "mechanical_data": {
         "slot_tier": 3,
-        "chassis": "half"
+        "caster_chassis": "half"
       },
       "prereqs": {
         "logic": "AND",
@@ -49129,12 +49311,12 @@
         "spell_slot",
         "half"
       ],
-      "chassis": "half",
+      "caster_chassis": "half",
       "slot_tier": 4,
       "effect_summary": "You gain spell slots of 4th level.",
       "mechanical_data": {
         "slot_tier": 4,
-        "chassis": "half"
+        "caster_chassis": "half"
       },
       "prereqs": {
         "logic": "AND",
@@ -49176,12 +49358,12 @@
         "spell_slot",
         "half"
       ],
-      "chassis": "half",
+      "caster_chassis": "half",
       "slot_tier": 5,
       "effect_summary": "You gain spell slots of 5th level.",
       "mechanical_data": {
         "slot_tier": 5,
-        "chassis": "half"
+        "caster_chassis": "half"
       },
       "prereqs": {
         "logic": "AND",
@@ -49223,12 +49405,12 @@
         "spell_slot",
         "third"
       ],
-      "chassis": "third",
+      "caster_chassis": "third",
       "slot_tier": 1,
       "effect_summary": "You gain the ability to prepare and cast spells of 1st level, along with cantrips, using this zone's spellcasting ability.",
       "mechanical_data": {
         "slot_tier": 1,
-        "chassis": "third"
+        "caster_chassis": "third"
       },
       "prereqs": {
         "logic": "AND",
@@ -49270,12 +49452,12 @@
         "spell_slot",
         "third"
       ],
-      "chassis": "third",
+      "caster_chassis": "third",
       "slot_tier": 2,
       "effect_summary": "You gain spell slots of 2nd level.",
       "mechanical_data": {
         "slot_tier": 2,
-        "chassis": "third"
+        "caster_chassis": "third"
       },
       "prereqs": {
         "logic": "AND",
@@ -49317,12 +49499,12 @@
         "spell_slot",
         "third"
       ],
-      "chassis": "third",
+      "caster_chassis": "third",
       "slot_tier": 3,
       "effect_summary": "You gain spell slots of 3rd level.",
       "mechanical_data": {
         "slot_tier": 3,
-        "chassis": "third"
+        "caster_chassis": "third"
       },
       "prereqs": {
         "logic": "AND",
@@ -49364,12 +49546,12 @@
         "spell_slot",
         "third"
       ],
-      "chassis": "third",
+      "caster_chassis": "third",
       "slot_tier": 4,
       "effect_summary": "You gain spell slots of 4th level.",
       "mechanical_data": {
         "slot_tier": 4,
-        "chassis": "third"
+        "caster_chassis": "third"
       },
       "prereqs": {
         "logic": "AND",
@@ -49411,12 +49593,12 @@
         "spell_slot",
         "full"
       ],
-      "chassis": "full",
+      "caster_chassis": "full",
       "slot_tier": 1,
       "effect_summary": "You gain the ability to prepare and cast spells of 1st level, along with cantrips, using this zone's spellcasting ability.",
       "mechanical_data": {
         "slot_tier": 1,
-        "chassis": "full"
+        "caster_chassis": "full"
       },
       "prereqs": {
         "logic": "AND",
@@ -49458,12 +49640,12 @@
         "spell_slot",
         "full"
       ],
-      "chassis": "full",
+      "caster_chassis": "full",
       "slot_tier": 2,
       "effect_summary": "You gain spell slots of 2nd level.",
       "mechanical_data": {
         "slot_tier": 2,
-        "chassis": "full"
+        "caster_chassis": "full"
       },
       "prereqs": {
         "logic": "AND",
@@ -49505,12 +49687,12 @@
         "spell_slot",
         "full"
       ],
-      "chassis": "full",
+      "caster_chassis": "full",
       "slot_tier": 3,
       "effect_summary": "You gain spell slots of 3rd level.",
       "mechanical_data": {
         "slot_tier": 3,
-        "chassis": "full"
+        "caster_chassis": "full"
       },
       "prereqs": {
         "logic": "AND",
@@ -49552,12 +49734,12 @@
         "spell_slot",
         "full"
       ],
-      "chassis": "full",
+      "caster_chassis": "full",
       "slot_tier": 4,
       "effect_summary": "You gain spell slots of 4th level.",
       "mechanical_data": {
         "slot_tier": 4,
-        "chassis": "full"
+        "caster_chassis": "full"
       },
       "prereqs": {
         "logic": "AND",
@@ -49599,12 +49781,12 @@
         "spell_slot",
         "full"
       ],
-      "chassis": "full",
+      "caster_chassis": "full",
       "slot_tier": 5,
       "effect_summary": "You gain spell slots of 5th level.",
       "mechanical_data": {
         "slot_tier": 5,
-        "chassis": "full"
+        "caster_chassis": "full"
       },
       "prereqs": {
         "logic": "AND",
@@ -49646,12 +49828,12 @@
         "spell_slot",
         "full"
       ],
-      "chassis": "full",
+      "caster_chassis": "full",
       "slot_tier": 6,
       "effect_summary": "You gain spell slots of 6th level.",
       "mechanical_data": {
         "slot_tier": 6,
-        "chassis": "full"
+        "caster_chassis": "full"
       },
       "prereqs": {
         "logic": "AND",
@@ -49693,12 +49875,12 @@
         "spell_slot",
         "full"
       ],
-      "chassis": "full",
+      "caster_chassis": "full",
       "slot_tier": 7,
       "effect_summary": "You gain spell slots of 7th level.",
       "mechanical_data": {
         "slot_tier": 7,
-        "chassis": "full"
+        "caster_chassis": "full"
       },
       "prereqs": {
         "logic": "AND",
@@ -49740,12 +49922,12 @@
         "spell_slot",
         "full"
       ],
-      "chassis": "full",
+      "caster_chassis": "full",
       "slot_tier": 8,
       "effect_summary": "You gain spell slots of 8th level.",
       "mechanical_data": {
         "slot_tier": 8,
-        "chassis": "full"
+        "caster_chassis": "full"
       },
       "prereqs": {
         "logic": "AND",
@@ -49787,12 +49969,12 @@
         "spell_slot",
         "full"
       ],
-      "chassis": "full",
+      "caster_chassis": "full",
       "slot_tier": 9,
       "effect_summary": "You gain spell slots of 9th level.",
       "mechanical_data": {
         "slot_tier": 9,
-        "chassis": "full"
+        "caster_chassis": "full"
       },
       "prereqs": {
         "logic": "AND",
@@ -49834,12 +50016,12 @@
         "spell_slot",
         "pact"
       ],
-      "chassis": "pact",
+      "caster_chassis": "pact",
       "slot_tier": 6,
       "effect_summary": "You gain one 6th-level spell that you can cast once without a slot, regained on a Long Rest.",
       "mechanical_data": {
         "slot_tier": 6,
-        "chassis": "pact",
+        "caster_chassis": "pact",
         "branch": "arcanum"
       },
       "prereqs": {
@@ -49882,12 +50064,12 @@
         "spell_slot",
         "pact"
       ],
-      "chassis": "pact",
+      "caster_chassis": "pact",
       "slot_tier": 7,
       "effect_summary": "You gain one 7th-level spell that you can cast once without a slot, regained on a Long Rest.",
       "mechanical_data": {
         "slot_tier": 7,
-        "chassis": "pact",
+        "caster_chassis": "pact",
         "branch": "arcanum"
       },
       "prereqs": {
@@ -49930,12 +50112,12 @@
         "spell_slot",
         "pact"
       ],
-      "chassis": "pact",
+      "caster_chassis": "pact",
       "slot_tier": 8,
       "effect_summary": "You gain one 8th-level spell that you can cast once without a slot, regained on a Long Rest.",
       "mechanical_data": {
         "slot_tier": 8,
-        "chassis": "pact",
+        "caster_chassis": "pact",
         "branch": "arcanum"
       },
       "prereqs": {
@@ -49978,12 +50160,12 @@
         "spell_slot",
         "pact"
       ],
-      "chassis": "pact",
+      "caster_chassis": "pact",
       "slot_tier": 9,
       "effect_summary": "You gain one 9th-level spell that you can cast once without a slot, regained on a Long Rest.",
       "mechanical_data": {
         "slot_tier": 9,
-        "chassis": "pact",
+        "caster_chassis": "pact",
         "branch": "arcanum"
       },
       "prereqs": {
@@ -50026,12 +50208,12 @@
         "spell_slot",
         "pact"
       ],
-      "chassis": "pact",
+      "caster_chassis": "pact",
       "slot_tier": 0,
       "effect_summary": "You have 2 Pact Magic slots, regained on a Short Rest.",
       "mechanical_data": {
         "slot_tier": 0,
-        "chassis": "pact",
+        "caster_chassis": "pact",
         "branch": "slot_count",
         "slot_count": 2
       },
@@ -50075,12 +50257,12 @@
         "spell_slot",
         "pact"
       ],
-      "chassis": "pact",
+      "caster_chassis": "pact",
       "slot_tier": 0,
       "effect_summary": "You have 3 Pact Magic slots, regained on a Short Rest.",
       "mechanical_data": {
         "slot_tier": 0,
-        "chassis": "pact",
+        "caster_chassis": "pact",
         "branch": "slot_count",
         "slot_count": 3
       },
@@ -50124,12 +50306,12 @@
         "spell_slot",
         "pact"
       ],
-      "chassis": "pact",
+      "caster_chassis": "pact",
       "slot_tier": 0,
       "effect_summary": "You have 4 Pact Magic slots, regained on a Short Rest.",
       "mechanical_data": {
         "slot_tier": 0,
-        "chassis": "pact",
+        "caster_chassis": "pact",
         "branch": "slot_count",
         "slot_count": 4
       },
@@ -50173,12 +50355,12 @@
         "spell_slot",
         "pact"
       ],
-      "chassis": "pact",
+      "caster_chassis": "pact",
       "slot_tier": 1,
       "effect_summary": "Your Pact Magic slots are 1st-level slots.",
       "mechanical_data": {
         "slot_tier": 1,
-        "chassis": "pact",
+        "caster_chassis": "pact",
         "branch": "slot_level"
       },
       "prereqs": {
@@ -50221,12 +50403,12 @@
         "spell_slot",
         "pact"
       ],
-      "chassis": "pact",
+      "caster_chassis": "pact",
       "slot_tier": 2,
       "effect_summary": "Your Pact Magic slots are 2nd-level slots.",
       "mechanical_data": {
         "slot_tier": 2,
-        "chassis": "pact",
+        "caster_chassis": "pact",
         "branch": "slot_level"
       },
       "prereqs": {
@@ -50269,12 +50451,12 @@
         "spell_slot",
         "pact"
       ],
-      "chassis": "pact",
+      "caster_chassis": "pact",
       "slot_tier": 3,
       "effect_summary": "Your Pact Magic slots are 3rd-level slots.",
       "mechanical_data": {
         "slot_tier": 3,
-        "chassis": "pact",
+        "caster_chassis": "pact",
         "branch": "slot_level"
       },
       "prereqs": {
@@ -50317,12 +50499,12 @@
         "spell_slot",
         "pact"
       ],
-      "chassis": "pact",
+      "caster_chassis": "pact",
       "slot_tier": 4,
       "effect_summary": "Your Pact Magic slots are 4th-level slots.",
       "mechanical_data": {
         "slot_tier": 4,
-        "chassis": "pact",
+        "caster_chassis": "pact",
         "branch": "slot_level"
       },
       "prereqs": {
@@ -50365,12 +50547,12 @@
         "spell_slot",
         "pact"
       ],
-      "chassis": "pact",
+      "caster_chassis": "pact",
       "slot_tier": 5,
       "effect_summary": "Your Pact Magic slots are 5th-level slots.",
       "mechanical_data": {
         "slot_tier": 5,
-        "chassis": "pact",
+        "caster_chassis": "pact",
         "branch": "slot_level"
       },
       "prereqs": {
@@ -50413,12 +50595,12 @@
         "spell_slot",
         "pact"
       ],
-      "chassis": "pact",
+      "caster_chassis": "pact",
       "slot_tier": 0,
       "effect_summary": "You gain Pact Magic: a small number of spell slots that all sit at the same level and that you regain on a Short Rest.",
       "mechanical_data": {
         "slot_tier": 0,
-        "chassis": "pact"
+        "caster_chassis": "pact"
       },
       "prereqs": {
         "logic": "AND",
@@ -50460,12 +50642,12 @@
         "spell_slot",
         "full"
       ],
-      "chassis": "full",
+      "caster_chassis": "full",
       "slot_tier": 1,
       "effect_summary": "You gain the ability to prepare and cast spells of 1st level, along with cantrips, using this zone's spellcasting ability.",
       "mechanical_data": {
         "slot_tier": 1,
-        "chassis": "full"
+        "caster_chassis": "full"
       },
       "prereqs": {
         "logic": "AND",
@@ -50507,12 +50689,12 @@
         "spell_slot",
         "full"
       ],
-      "chassis": "full",
+      "caster_chassis": "full",
       "slot_tier": 2,
       "effect_summary": "You gain spell slots of 2nd level.",
       "mechanical_data": {
         "slot_tier": 2,
-        "chassis": "full"
+        "caster_chassis": "full"
       },
       "prereqs": {
         "logic": "AND",
@@ -50554,12 +50736,12 @@
         "spell_slot",
         "full"
       ],
-      "chassis": "full",
+      "caster_chassis": "full",
       "slot_tier": 3,
       "effect_summary": "You gain spell slots of 3rd level.",
       "mechanical_data": {
         "slot_tier": 3,
-        "chassis": "full"
+        "caster_chassis": "full"
       },
       "prereqs": {
         "logic": "AND",
@@ -50601,12 +50783,12 @@
         "spell_slot",
         "full"
       ],
-      "chassis": "full",
+      "caster_chassis": "full",
       "slot_tier": 4,
       "effect_summary": "You gain spell slots of 4th level.",
       "mechanical_data": {
         "slot_tier": 4,
-        "chassis": "full"
+        "caster_chassis": "full"
       },
       "prereqs": {
         "logic": "AND",
@@ -50648,12 +50830,12 @@
         "spell_slot",
         "full"
       ],
-      "chassis": "full",
+      "caster_chassis": "full",
       "slot_tier": 5,
       "effect_summary": "You gain spell slots of 5th level.",
       "mechanical_data": {
         "slot_tier": 5,
-        "chassis": "full"
+        "caster_chassis": "full"
       },
       "prereqs": {
         "logic": "AND",
@@ -50695,12 +50877,12 @@
         "spell_slot",
         "full"
       ],
-      "chassis": "full",
+      "caster_chassis": "full",
       "slot_tier": 6,
       "effect_summary": "You gain spell slots of 6th level.",
       "mechanical_data": {
         "slot_tier": 6,
-        "chassis": "full"
+        "caster_chassis": "full"
       },
       "prereqs": {
         "logic": "AND",
@@ -50742,12 +50924,12 @@
         "spell_slot",
         "full"
       ],
-      "chassis": "full",
+      "caster_chassis": "full",
       "slot_tier": 7,
       "effect_summary": "You gain spell slots of 7th level.",
       "mechanical_data": {
         "slot_tier": 7,
-        "chassis": "full"
+        "caster_chassis": "full"
       },
       "prereqs": {
         "logic": "AND",
@@ -50789,12 +50971,12 @@
         "spell_slot",
         "full"
       ],
-      "chassis": "full",
+      "caster_chassis": "full",
       "slot_tier": 8,
       "effect_summary": "You gain spell slots of 8th level.",
       "mechanical_data": {
         "slot_tier": 8,
-        "chassis": "full"
+        "caster_chassis": "full"
       },
       "prereqs": {
         "logic": "AND",
@@ -50836,12 +51018,12 @@
         "spell_slot",
         "full"
       ],
-      "chassis": "full",
+      "caster_chassis": "full",
       "slot_tier": 9,
       "effect_summary": "You gain spell slots of 9th level.",
       "mechanical_data": {
         "slot_tier": 9,
-        "chassis": "full"
+        "caster_chassis": "full"
       },
       "prereqs": {
         "logic": "AND",
@@ -57793,13 +57975,13 @@
       "traversable": true
     },
     {
-      "from": "conn_ranger_rung_19",
+      "from": "conn_artificer_rung_19",
       "to": "feat_boon_of_energy_resistance_xphb",
       "relation": "overlap",
       "traversable": true
     },
     {
-      "from": "conn_rogue_rung_19",
+      "from": "conn_wizard_rung_19",
       "to": "feat_boon_of_energy_resistance_xphb",
       "relation": "overlap",
       "traversable": true
@@ -57817,13 +57999,13 @@
       "traversable": true
     },
     {
-      "from": "conn_monk_rung_19",
+      "from": "conn_barbarian_rung_19",
       "to": "feat_boon_of_fortitude_xphb",
       "relation": "overlap",
       "traversable": true
     },
     {
-      "from": "conn_barbarian_rung_19",
+      "from": "conn_fighter_rung_19",
       "to": "feat_boon_of_fortitude_xphb",
       "relation": "overlap",
       "traversable": true
@@ -57841,13 +58023,13 @@
       "traversable": true
     },
     {
-      "from": "conn_warlock_rung_19",
+      "from": "conn_wizard_rung_19",
       "to": "feat_boon_of_recovery_xphb",
       "relation": "overlap",
       "traversable": true
     },
     {
-      "from": "conn_bard_rung_19",
+      "from": "conn_sorcerer_rung_19",
       "to": "feat_boon_of_recovery_xphb",
       "relation": "overlap",
       "traversable": true
@@ -57865,13 +58047,13 @@
       "traversable": true
     },
     {
-      "from": "conn_sorcerer_rung_19",
+      "from": "conn_bard_rung_19",
       "to": "feat_boon_of_speed_xphb",
       "relation": "overlap",
       "traversable": true
     },
     {
-      "from": "conn_warlock_rung_19",
+      "from": "conn_monk_rung_19",
       "to": "feat_boon_of_speed_xphb",
       "relation": "overlap",
       "traversable": true

@@ -30,7 +30,7 @@ acceptance criteria check.
 | `effect_summary` | string | |
 | `level` | int | extracted content only; **positioning metadata, not a runtime gate** |
 | `repeat_index`, `repeat_chain` | int, string | repeatable feats |
-| `chassis`, `slot_tier` | string, int | `spell_slot` nodes (`full`/`half`/`third`/`pact`) |
+| `caster_chassis`, `slot_tier` | string, int | `spell_slot` nodes (`full`/`half`/`third`/`pact`) — named to avoid confusion with `meta.chassis_by_zone`, which is the creation lock |
 
 ### `prereqs`
 
@@ -84,9 +84,32 @@ Edges are undirected. `traversable: false` means the edge is metadata only —
 ## Meta
 
 `meta.point_economy` is the whole derived economy (baseline per class, the
-level → points curve, the level → threshold table). `meta.hit_die_by_zone` is
-the Task 2c lookup: hit die is fixed by the zone a character starts in, read
-straight from `classes_meta.json`, locked once at creation.
+level → points curve, the level → threshold table).
+
+`meta.chassis_by_zone` is the Task 2c lookup — everything the starting zone
+fixes at character creation, read straight from `classes_meta.json` and locked
+once. Pathing into other zones never changes it.
+
+```json
+"Rogue": {
+  "hit_die": {"number": 1, "faces": 8},
+  "saving_throw_proficiencies": ["dex", "int"],
+  "weapon_proficiencies": {
+    "simple": true,
+    "martial": false,
+    "martial_subset": "Finesse or Light",
+    "summary": "Simple weapons, Martial weapons with the Finesse or Light property"
+  }
+}
+```
+
+Armor is **not** here: it stays purchasable in the tree (the training
+connectors), because armor is a build choice several nodes sell and five feats
+gate on, whereas saves and starting weapons are not choices in RAW at all.
+`PathEngine` exposes the lock as `chassis(state)`, `hit_die(state)`,
+`saving_throw_proficiencies(state)` and `weapon_proficiencies(state)`.
+(`meta.hit_die_by_zone` from the first v2 cut is gone — `chassis_by_zone`
+supersedes it.)
 
 `meta.zone_status` marks zones that are structurally complete but hold no book
 content, so an empty board is never mistaken for a broken extraction:

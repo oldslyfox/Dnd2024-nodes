@@ -15,6 +15,15 @@
       "weapon_mastery": 8
     }
   },
+  "chassis": {
+    "zones": 13,
+    "complete": true,
+    "fixed_at_creation_by_starting_zone": [
+      "hit_die",
+      "saving_throw_proficiencies",
+      "weapon_proficiencies"
+    ]
+  },
   "depth_normalization": {
     "probe_rung_level": 10,
     "hops_from_hub": {
@@ -60,7 +69,7 @@
     },
     "cross_zone": {
       "sampled_pairs": 400,
-      "mean_connectors_crossed": 6.55,
+      "mean_connectors_crossed": 6.57,
       "target": "meaningfully more than same-zone (Task 1)"
     }
   },

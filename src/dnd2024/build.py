@@ -11,7 +11,7 @@ import math
 from collections import Counter, defaultdict
 from pathlib import Path
 
-from . import config, connectors, prereqs, spines
+from . import chassis, config, connectors, prereqs, spines
 from .layout import Layout
 from .point_economy import compute_economy
 
@@ -596,9 +596,7 @@ class GraphBuilder:
                 "zones": [config.CORE_ZONE, COMMONS_ZONE] + list(config.ZONE_RING),
                 "flat_point_cost": config.FLAT_POINT_COST,
                 "point_economy": self.economy.to_dict(),
-                "hit_die_by_zone": {
-                    name: meta["hit_die"] for name, meta in self.classes_meta.items()
-                },
+                "chassis_by_zone": chassis.build_table(self.classes_meta),
                 "zone_status": self._zone_status(nodes),
                 "notes": self.notes,
             },

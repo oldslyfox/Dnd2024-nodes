@@ -157,7 +157,7 @@ def detect(engine: PathEngine) -> list[dict]:
     full_spines = sorted(
         n["id"]
         for n in nodes.values()
-        if n["type"] == "spell_slot" and n.get("chassis") == "full" and n.get("slot_tier") == 9
+        if n["type"] == "spell_slot" and n.get("caster_chassis") == "full" and n.get("slot_tier") == 9
     )
     flags.append(
         _flag(

@@ -87,6 +87,29 @@ def audit(graph: dict, classes_meta: dict) -> dict:
             "saving_throws": meta.get("saving_throw_proficiencies") or [],
         }
 
+    # -- what the starting zone locks in at creation (Task 2c chassis) ----
+    chassis_table = graph["meta"].get("chassis_by_zone") or {}
+    chassis_coverage = {
+        "zones_with_chassis": len(chassis_table),
+        "zones_granting_two_saving_throws": sum(
+            1
+            for entry in chassis_table.values()
+            if len(entry.get("saving_throw_proficiencies") or []) == 2
+        ),
+        "zones_granting_simple_weapons": sum(
+            1
+            for entry in chassis_table.values()
+            if (entry.get("weapon_proficiencies") or {}).get("simple")
+        ),
+        "example": {
+            zone: {
+                "saving_throws": entry["saving_throw_proficiencies"],
+                "weapons": entry["weapon_proficiencies"]["summary"],
+            }
+            for zone, entry in list(chassis_table.items())[:3]
+        },
+    }
+
     findings = []
     for category, sources in supply.items():
         findings.append(
@@ -95,12 +118,13 @@ def audit(graph: dict, classes_meta: dict) -> dict:
                 "label": CATEGORY_LABELS[category],
                 "purchasable_sources": len(sources),
                 "example_sources": sources[:5],
-                "granted_free_by_every_raw_class": category in ("saving_throws",),
-                "status": _status(category, sources, raw_creation_grants),
+                "granted_by_starting_zone": _chassis_grants(category, chassis_table),
+                "status": _status(category, sources, raw_creation_grants, chassis_table),
             }
         )
 
     return {
+        "chassis_coverage": chassis_coverage,
         "question": (
             "Does the class-decoupling gap that forced armor training connectors "
             "appear anywhere else in the proficiency system?"
@@ -117,22 +141,58 @@ def audit(graph: dict, classes_meta: dict) -> dict:
     }
 
 
-def _status(category: str, sources: list[str], raw_grants: dict) -> str:
+def _chassis_grants(category: str, chassis_table: dict) -> int:
+    """How many zones hand this category over at creation, free."""
+    if not chassis_table:
+        return 0
     if category == "saving_throws":
-        classes_granting_two = sum(1 for g in raw_grants.values() if len(g["saving_throws"]) == 2)
-        return (
-            f"GAP - every RAW class grants two saving throw proficiencies at creation "
-            f"({classes_granting_two}/{len(raw_grants)} classes in classes_meta), and the "
-            f"tree has {len(sources)} node(s) that can grant one. A character built purely "
-            f"from the tree has no save proficiencies unless they buy Resilient."
+        return sum(
+            1
+            for entry in chassis_table.values()
+            if len(entry.get("saving_throw_proficiencies") or []) == 2
         )
     if category == "weapons":
-        return (
-            f"THIN - {len(sources)} purchasable source(s). RAW hands simple and often "
-            f"martial weapon proficiency out with the class; the tree covers martial "
-            f"weapons (Martial Weapon Training) but nothing grants simple weapons, which "
-            f"every class gets for free."
+        return sum(
+            1
+            for entry in chassis_table.values()
+            if (entry.get("weapon_proficiencies") or {}).get("simple")
         )
+    return 0
+
+
+def _status(
+    category: str, sources: list[str], raw_grants: dict, chassis_table: dict
+) -> str:
+    zones = _chassis_grants(category, chassis_table)
+    total_zones = len(chassis_table)
+
+    if category == "saving_throws":
+        if zones == total_zones and total_zones:
+            return (
+                f"COVERED - chassis. All {zones} zones grant two saving throw "
+                f"proficiencies at creation, derived from the starting zone exactly "
+                f"like hit die (Task 2c). {len(sources)} tree node(s) can grant a "
+                f"further one."
+            )
+        return (
+            f"GAP - every RAW class grants two saving throw proficiencies at creation "
+            f"({sum(1 for g in raw_grants.values() if len(g['saving_throws']) == 2)}/"
+            f"{len(raw_grants)} classes in classes_meta), and the tree has "
+            f"{len(sources)} node(s) that can grant one."
+        )
+
+    if category == "weapons":
+        if zones == total_zones and total_zones:
+            return (
+                f"COVERED - chassis. All {zones} zones grant their RAW starting weapon "
+                f"proficiencies at creation (simple everywhere, martial or a martial "
+                f"subset in the martial zones). {len(sources)} tree node(s) extend it."
+            )
+        return (
+            f"THIN - {len(sources)} purchasable source(s); nothing grants simple "
+            f"weapons, which every RAW class gets free."
+        )
+
     if not sources:
         return "GAP - nothing in the tree grants this"
     return f"COVERED - {len(sources)} purchasable source(s)"
@@ -144,20 +204,27 @@ def _verdict(findings: list[dict], unresolved: list[dict]) -> str:
     parts = []
     if not unresolved:
         parts.append(
-            "No prerequisite in the current data is unsatisfiable: the only "
-            "proficiency prerequisites the extraction contains are armor ones, and "
-            "the training connectors resolve all of them."
+            "Demand is clean: the only proficiency prerequisites the extraction "
+            "contains are armor ones, and the training connectors resolve all of them."
         )
     else:
         parts.append(f"{len(unresolved)} prerequisite(s) cannot be satisfied by any node.")
+
+    if not gaps and not thin:
+        parts.append(
+            "Supply is clean: everything a RAW class hands over at creation is either "
+            "purchasable in the tree (armor, shields, skills, tools) or derived from "
+            "the starting zone as chassis (hit die, saving throws, weapons)."
+        )
+        return " ".join(parts)
+
     if gaps:
-        parts.append("Same decoupling gap, unaddressed: " + ", ".join(gaps) + ".")
+        parts.append("Decoupling gap, unaddressed: " + ", ".join(gaps) + ".")
     if thin:
         parts.append("Partially covered: " + ", ".join(thin) + ".")
     parts.append(
-        "Neither is blocking - nothing in the tree references them - but a character "
-        "built entirely from the tree is missing chassis a RAW class would have given "
-        "them at creation. Same shape of fix as the armor connectors."
+        "A character built entirely from the tree is missing chassis a RAW class "
+        "would have given them at creation."
     )
     return " ".join(parts)
 

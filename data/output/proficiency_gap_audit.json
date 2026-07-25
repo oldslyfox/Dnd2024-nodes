@@ -1,6 +1,34 @@
 {
+  "chassis_coverage": {
+    "zones_with_chassis": 13,
+    "zones_granting_two_saving_throws": 13,
+    "zones_granting_simple_weapons": 13,
+    "example": {
+      "Artificer": {
+        "saving_throws": [
+          "con",
+          "int"
+        ],
+        "weapons": "Simple weapons"
+      },
+      "Barbarian": {
+        "saving_throws": [
+          "str",
+          "con"
+        ],
+        "weapons": "Simple weapons, Martial weapons"
+      },
+      "Bard": {
+        "saving_throws": [
+          "dex",
+          "cha"
+        ],
+        "weapons": "Simple weapons"
+      }
+    }
+  },
   "question": "Does the class-decoupling gap that forced armor training connectors appear anywhere else in the proficiency system?",
-  "verdict": "No prerequisite in the current data is unsatisfiable: the only proficiency prerequisites the extraction contains are armor ones, and the training connectors resolve all of them. Same decoupling gap, unaddressed: Saving throw proficiency. Partially covered: Weapon proficiency. Neither is blocking - nothing in the tree references them - but a character built entirely from the tree is missing chassis a RAW class would have given them at creation. Same shape of fix as the armor connectors.",
+  "verdict": "Demand is clean: the only proficiency prerequisites the extraction contains are armor ones, and the training connectors resolve all of them. Supply is clean: everything a RAW class hands over at creation is either purchasable in the tree (armor, shields, skills, tools) or derived from the starting zone as chassis (hit die, saving throws, weapons).",
   "prerequisite_demand": {
     "unresolvable_proficiency_prerequisites": [],
     "nodes_depending_on_training_connectors": {
@@ -31,7 +59,7 @@
         "conn_training_light_armor",
         "conn_training_medium_armor"
       ],
-      "granted_free_by_every_raw_class": false,
+      "granted_by_starting_zone": 0,
       "status": "COVERED - 9 purchasable source(s)"
     },
     {
@@ -43,7 +71,7 @@
         "feat_interception_xphb",
         "feat_shield_master_xphb"
       ],
-      "granted_free_by_every_raw_class": false,
+      "granted_by_starting_zone": 0,
       "status": "COVERED - 3 purchasable source(s)"
     },
     {
@@ -56,8 +84,8 @@
         "conn_fighter_rung_4",
         "feat_martial_weapon_training_xphb"
       ],
-      "granted_free_by_every_raw_class": false,
-      "status": "THIN - 4 purchasable source(s). RAW hands simple and often martial weapon proficiency out with the class; the tree covers martial weapons (Martial Weapon Training) but nothing grants simple weapons, which every class gets for free."
+      "granted_by_starting_zone": 13,
+      "status": "COVERED - chassis. All 13 zones grant their RAW starting weapon proficiencies at creation (simple everywhere, martial or a martial subset in the martial zones). 4 tree node(s) extend it."
     },
     {
       "category": "tools",
@@ -70,7 +98,7 @@
         "conn_artificer_rung_1",
         "conn_artificer_rung_19"
       ],
-      "granted_free_by_every_raw_class": false,
+      "granted_by_starting_zone": 0,
       "status": "COVERED - 19 purchasable source(s)"
     },
     {
@@ -84,7 +112,7 @@
         "conn_barbarian_berserker_rung_6",
         "conn_barbarian_rung_7"
       ],
-      "granted_free_by_every_raw_class": false,
+      "granted_by_starting_zone": 0,
       "status": "COVERED - 64 purchasable source(s)"
     },
     {
@@ -94,8 +122,8 @@
       "example_sources": [
         "feat_resilient_xphb"
       ],
-      "granted_free_by_every_raw_class": true,
-      "status": "GAP - every RAW class grants two saving throw proficiencies at creation (13/13 classes in classes_meta), and the tree has 1 node(s) that can grant one. A character built purely from the tree has no save proficiencies unless they buy Resilient."
+      "granted_by_starting_zone": 13,
+      "status": "COVERED - chassis. All 13 zones grant two saving throw proficiencies at creation, derived from the starting zone exactly like hit die (Task 2c). 1 tree node(s) can grant a further one."
     }
   ],
   "raw_creation_grants_by_class": {

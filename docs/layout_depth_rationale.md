@@ -295,30 +295,59 @@ sharpened the cross-zone premium: cross-zone paths now cross nearly twice as
 many connectors as same-zone ones, where before the wormholes had made the two
 almost equal.
 
-## 10. The proficiency gap, audited
+## 10. The chassis, and the proficiency audit that produced it
 
 Review item 4 asked whether the class-decoupling gap that forced the armor
 training connectors shows up anywhere else. `src/dnd2024/audit.py` checks it from
-both sides and writes `data/output/proficiency_gap_audit.json`.
+both sides and writes `data/output/proficiency_gap_audit.json`. It found one real
+gap and one thin spot, and the follow-up work order closed both.
 
 **Demand — clean.** The only proficiency prerequisites anywhere in the extraction
 are armor ones (medium ×2, heavy, light, shield), and the training connectors
 resolve all of them. No node in the graph is unbuyable for want of a proficiency.
 
-**Supply — one real gap and one thin spot.**
+**Supply — what the audit found.** Every RAW class grants two saving throw
+proficiencies and at least simple weapons before play starts. Nothing in the tree
+could sell either: the whole graph contained exactly one node granting a save
+(Resilient) and none granting simple weapons. A character built purely from nodes
+had no saving throw proficiencies at all — not a balance question, a correctness
+one.
+
+**The fix: extend the Task 2c chassis.** Hit die was already derived from the
+starting zone and locked at creation. Saving throws and weapon proficiencies now
+work identically — read from `classes_meta.json` for the zone the character
+started in, fixed once, unchanged by pathing anywhere else afterwards. `meta.chassis_by_zone`
+carries all three:
+
+```json
+"Monk": {
+  "hit_die": {"number": 1, "faces": 8},
+  "saving_throw_proficiencies": ["str", "dex"],
+  "weapon_proficiencies": {
+    "simple": true, "martial": false, "martial_subset": "Light",
+    "summary": "Simple weapons, Martial weapons with the Light property"
+  }
+}
+```
+
+The martial subsets for Monk and Rogue are parsed out of the RAW filter strings
+in `classes_meta`, so a Rogue start gets "Martial weapons with the Finesse or
+Light property" rather than a flattened "martial". Nothing here is invented — it
+is a lookup, and a test asserts every value matches `classes_meta` exactly.
+
+**Where the line sits.** Armor deliberately stayed *purchasable* rather than
+joining the chassis. Armor is a build choice the tree already sells from several
+sources, and five extracted feats gate on it; saves and simple weapons are not
+choices in RAW at all, they are what you start holding. Validation now fails the
+build if any zone's chassis lacks a hit die, exactly two saves, or simple
+weapons, and the audit re-runs on every build:
 
 | category | verdict |
 |---|---|
 | Armor, shields | covered — 9 and 3 purchasable sources |
-| Skills | covered — 69 sources |
-| Tools | covered — 22 sources |
-| Weapons | **thin** — Martial Weapon Training covers martial, nothing grants *simple* weapons, which every RAW class gives away free |
-| Saving throws | **gap** — all 13 classes grant two save proficiencies at creation; the tree has exactly one node that grants one (Resilient) |
+| Skills | covered — 64 sources |
+| Tools | covered — 19 sources |
+| Weapons | covered — chassis, all 13 zones; 4 tree nodes extend it |
+| Saving throws | covered — chassis, all 13 zones; 1 tree node grants a further one |
 
-Nothing references either, so nothing is blocked — but a character built purely
-from the tree has no saving throw proficiencies and no simple weapon training,
-both of which a RAW class hands over before play starts. Saves in particular look
-like chassis in the same sense hit die is (Task 2c), and `classes_meta` already
-carries `saving_throw_proficiencies` per class, so the natural fix mirrors the
-hit die rule: derive them from the starting zone. Not done here — the review
-marked this a future systemic pass, not blocking.
+Demand and supply both clean.

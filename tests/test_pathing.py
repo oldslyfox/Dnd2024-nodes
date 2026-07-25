@@ -204,6 +204,49 @@ def test_hit_die_comes_from_the_starting_zone(engine, budget):
     assert engine.hit_die(state) == {"number": 1, "faces": 6}
 
 
+def test_saving_throws_come_from_the_starting_zone(engine, budget):
+    """Same Task 2c pattern: saves are chassis, not a purchasable node."""
+    assert engine.saving_throw_proficiencies(engine.start_state("Wizard", budget)) == [
+        "int",
+        "wis",
+    ]
+    assert engine.saving_throw_proficiencies(engine.start_state("Barbarian", budget)) == [
+        "str",
+        "con",
+    ]
+    # every zone grants exactly two, and no zone grants none
+    for zone in engine.graph["meta"]["chassis_by_zone"]:
+        state = engine.start_state(zone, budget)
+        assert len(engine.saving_throw_proficiencies(state)) == 2, zone
+
+
+def test_weapon_proficiencies_come_from_the_starting_zone(engine, budget):
+    wizard = engine.weapon_proficiencies(engine.start_state("Wizard", budget))
+    assert wizard["simple"] is True and wizard["martial"] is False
+
+    fighter = engine.weapon_proficiencies(engine.start_state("Fighter", budget))
+    assert fighter["simple"] is True and fighter["martial"] is True
+
+    # Monk and Rogue get a subset, parsed out of the RAW filter string
+    monk = engine.weapon_proficiencies(engine.start_state("Monk", budget))
+    assert monk["martial"] is False
+    assert monk["martial_subset"] == "Light"
+    assert "Light" in monk["summary"]
+
+
+def test_the_whole_chassis_is_locked_at_creation(engine, budget):
+    """Walking into another zone changes nothing about what you started with."""
+    state = engine.start_state("Wizard", budget)
+    before = engine.chassis(state)
+
+    engine.allocate(state, "cf_barbarian_rage_1")
+    engine.allocate(state, "cf_fighter_extra_attack_5")
+
+    assert engine.chassis(state) == before
+    assert engine.saving_throw_proficiencies(state) == ["int", "wis"]
+    assert engine.weapon_proficiencies(state)["martial"] is False
+
+
 def test_unknown_node_is_reported_not_raised(engine, budget):
     result = engine.can_afford(engine.start_state("Bard", budget), "nope")
     assert result == {
