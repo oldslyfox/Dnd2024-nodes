@@ -115,7 +115,7 @@
             "needs 14 points spent (has 8)"
           ],
           "feat_boon_of_speed_xphb": [
-            "needs 53 points spent (has 8)"
+            "needs 53 points spent (has 15)"
           ]
         },
         "career_budget": 58,
@@ -258,7 +258,7 @@
         ],
         "not_ownable_from_this_start": {
           "feat_boon_of_skill_xphb": [
-            "needs 53 points spent (has 26)"
+            "needs 53 points spent (has 31)"
           ]
         },
         "career_budget": 58,

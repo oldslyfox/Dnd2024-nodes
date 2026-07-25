@@ -39,6 +39,7 @@ const dom = {
   searchMobile: el('search-mobile'),
   searchCountMobile: el('search-count-mobile'),
   searchResults: el('search-results'),
+  searchResultsDesktop: el('search-results-desktop'),
   references: el('toggle-references'),
   referencesMobile: el('toggle-references-mobile'),
   fit: el('btn-fit'),
@@ -342,6 +343,39 @@ function openTab(name) {
 
 // -- search ---------------------------------------------------------------
 
+/**
+ * Work Order 5, Task 2: a search result is a selection.
+ *
+ * Reveal the node on canvas *and* open its detail panel, so a character can be
+ * built end to end from the result list without ever tapping the graph. Both
+ * result lists - the desktop dropdown and the phone sheet - go through here.
+ */
+function revealNode(node, { openSheet = false } = {}) {
+  app.camera.centreOn(
+    node.position_x,
+    node.position_y,
+    Math.max(app.camera.scale, app.camera.lodNear || 11),
+  );
+  select(node, { openSheet });
+}
+
+function renderResults(container, hits, { openSheet }) {
+  if (!container) return;
+  container.innerHTML = '';
+  for (const node of hits.slice(0, 40)) {
+    const item = document.createElement('li');
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.innerHTML = `<span>${node.name}</span><span class="result-meta">${typeLabel(
+      node,
+    )} · ${node.zone}</span>`;
+    button.addEventListener('click', () => revealNode(node, { openSheet }));
+    item.appendChild(button);
+    container.appendChild(item);
+  }
+  container.hidden = hits.length === 0;
+}
+
 function runSearch(query, { list = false } = {}) {
   const hits = app.index.search(query);
   app.renderer.searchHits = new Set(hits.map((node) => node.id));
@@ -349,26 +383,10 @@ function runSearch(query, { list = false } = {}) {
   dom.searchCount.textContent = label;
   dom.searchCountMobile.textContent = label;
 
-  if (list) {
-    dom.searchResults.innerHTML = '';
-    for (const node of hits.slice(0, 40)) {
-      const item = document.createElement('li');
-      const button = document.createElement('button');
-      button.type = 'button';
-      button.innerHTML = `<span>${node.name}</span><span class="result-meta">${typeLabel(
-        node,
-      )} · ${node.zone}</span>`;
-      button.addEventListener('click', () => {
-        app.camera.centreOn(node.position_x, node.position_y, Math.max(app.camera.scale, 12));
-        select(node, { openSheet: true });
-      });
-      item.appendChild(button);
-      dom.searchResults.appendChild(item);
-    }
-  } else if (hits.length) {
-    const first = hits[0];
-    app.camera.centreOn(first.position_x, first.position_y, Math.max(app.camera.scale, 11));
-  }
+  renderResults(dom.searchResults, hits, { openSheet: true });
+  renderResults(dom.searchResultsDesktop, hits, { openSheet: false });
+
+  if (!list && hits.length) revealNode(hits[0]);
   markDirty();
 }
 

@@ -93,9 +93,30 @@ body {
 }
 
 .search-wrap {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+/* Desktop search results drop under the box; clicking one selects the node,
+   exactly as tapping a result in the phone sheet does. */
+.result-dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  width: 320px;
+  max-height: 46vh;
+  padding: 4px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+  z-index: 6;
+}
+
+.result-dropdown[hidden] {
+  display: none;
 }
 
 .points-pill {

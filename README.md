@@ -2,7 +2,8 @@
 
 Point economy, prerequisite normalization, zone layout and the pathing cost
 engine (Work Order 2), plus a static web renderer for the whole tree, desktop and
-mobile (Work Orders 3 & 4). Scope is D&D 2024 (XPHB/XDMG) only; there is no 2014 content
+mobile (Work Orders 3 & 4), on a layout rebuilt for legibility after playtesting
+(Work Order 5). Scope is D&D 2024 (XPHB/XDMG) only; there is no 2014 content
 anywhere in the output, and a test asserts it.
 
 - **`web/`** — the renderer. Static, client-side, no backend; `web/dist/index.html`
@@ -24,6 +25,7 @@ graph v2: 1133 nodes, 1701 edges
   class_feature 283   subclass_feature 309   connector 305
   spell_slot 81       feat 89                optional_feature 58   weapon_mastery 8
 validation: PASS
+layout: radius 12 + 12/depth, max radius 253.8, min node separation 1.799
 ```
 
 ## What is in here
@@ -44,7 +46,7 @@ validation: PASS
 | `docs/schema_v2.md` | node/edge schema |
 | `docs/work_order_02.md` | the work order this implements |
 | `src/dnd2024/` | the generator, the pathing engine, the validator |
-| `web/` | the visual tree renderer, desktop and mobile (Work Orders 3 & 4) — its own README |
+| `web/` | the visual tree renderer, desktop and mobile (Work Orders 3–5) — its own README |
 | `scripts/export_engine_fixtures.py` | records the Python engine's answers for the JS port to match |
 
 ## The model in one page

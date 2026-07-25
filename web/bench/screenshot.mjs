@@ -89,6 +89,18 @@ await page.evaluate(() => {
 await page.waitForTimeout(250);
 await page.screenshot({ path: join(outDir, '04-zoomed-in.png') });
 
+// the commons ring at a normal reading zoom - the Work Order 5 acceptance shot
+await page.evaluate(() => {
+  const tree = globalThis.__tree;
+  const node = tree.app.index.byId.get('feat_alert_xphb');
+  tree.app.renderer.showReferences = false;
+  tree.app.camera.centreOn(0, 0, tree.app.camera.lodNear * 1.15);
+  tree.select(node);
+  tree.markDirty();
+});
+await page.waitForTimeout(250);
+await page.screenshot({ path: join(outDir, '05-commons-reading-zoom.png') });
+
 await browser.close();
 server.close();
 console.log(`screenshots in ${outDir}`);

@@ -209,6 +209,122 @@ test('search matches names, zones and types', () => {
   assert.ok(index.search('zzzznotathing').length === 0);
 });
 
+// -- layout separation (Work Order 5) -------------------------------------
+
+/** Smallest gap the layout promises, in world units (config.MIN_NODE_SEPARATION). */
+const MIN_SEPARATION = 1.8;
+
+test('no two nodes are closer than the layout minimum', () => {
+  const index = new GraphIndex(graph);
+  let worst = Infinity;
+  let worstPair = null;
+
+  for (const node of graph.nodes) {
+    const near = index.nodesInRect(
+      node.position_x - MIN_SEPARATION,
+      node.position_y - MIN_SEPARATION,
+      node.position_x + MIN_SEPARATION,
+      node.position_y + MIN_SEPARATION,
+    );
+    for (const other of near) {
+      if (other === node) continue;
+      const gap = Math.hypot(
+        other.position_x - node.position_x,
+        other.position_y - node.position_y,
+      );
+      if (gap < worst) {
+        worst = gap;
+        worstPair = [node.id, other.id];
+      }
+    }
+  }
+
+  assert.ok(
+    worst >= MIN_SEPARATION - 0.01,
+    `closest pair ${worstPair} is ${worst.toFixed(3)} apart, under the ${MIN_SEPARATION} minimum`,
+  );
+});
+
+test('every shared node is individually pickable', () => {
+  // The crowding that blocked mobile playtesting was in the commons and core:
+  // shared content piled onto one ring per depth. Each must now resolve to
+  // itself when picked at its own centre, and have room around it.
+  const index = new GraphIndex(graph);
+  const shared = graph.nodes.filter((node) => node.zone === 'commons' || node.zone === 'core');
+  assert.ok(shared.length > 80, 'expected the shared rings to hold real content');
+
+  for (const node of shared) {
+    const hit = index.nodeAt(node.position_x, node.position_y, MIN_SEPARATION / 2, {
+      preferNotable: true,
+    });
+    assert.equal(hit && hit.id, node.id, `${node.id} is not pickable at its own centre`);
+  }
+});
+
+test('shared categories sit on their own sub-rings', () => {
+  // Task 3: General Feats, Fighting Styles, Epic Boons, ASI repeats and weapon
+  // masteries used to share one circle per depth. Each category should now own a
+  // distinct radius band at any depth where several of them coexist.
+  const byDepth = new Map();
+  for (const node of graph.nodes) {
+    if (node.zone !== 'commons' && node.zone !== 'core') continue;
+    if (node.id === 'conn_core_hub') continue;
+    const key = node.depth;
+    if (!byDepth.has(key)) byDepth.set(key, new Map());
+    const category = node.repeat_chain ? 'repeat_chain' : node.role || node.type;
+    const radius = Math.hypot(node.position_x, node.position_y);
+    const bucket = byDepth.get(key);
+    if (!bucket.has(category)) bucket.set(category, []);
+    bucket.get(category).push(radius);
+  }
+
+  let checked = 0;
+  for (const [depth, categories] of byDepth) {
+    if (categories.size < 2) continue;
+    const bands = [...categories.entries()]
+      .map(([category, radii]) => ({
+        category,
+        min: Math.min(...radii),
+        max: Math.max(...radii),
+      }))
+      .sort((a, b) => a.min - b.min);
+
+    for (let i = 1; i < bands.length; i += 1) {
+      assert.ok(
+        bands[i].min > bands[i - 1].min,
+        `at depth ${depth}, ${bands[i].category} shares a radius with ${bands[i - 1].category}`,
+      );
+      checked += 1;
+    }
+  }
+  assert.ok(checked >= 3, 'expected several depths to carry more than one shared category');
+});
+
+test('depth ordering survived the spacing fix', () => {
+  // Task 2d is the balance mechanism: a depth-4 node must still sit strictly
+  // inside every depth-5 node, whatever the packer did to make room.
+  const byDepth = new Map();
+  for (const node of graph.nodes) {
+    const radius = Math.hypot(node.position_x, node.position_y);
+    const bucket = byDepth.get(node.depth) || { min: Infinity, max: -Infinity };
+    bucket.min = Math.min(bucket.min, radius);
+    bucket.max = Math.max(bucket.max, radius);
+    byDepth.set(node.depth, bucket);
+  }
+
+  const depths = [...byDepth.keys()].sort((a, b) => a - b);
+  for (let i = 1; i < depths.length; i += 1) {
+    const inner = byDepth.get(depths[i - 1]);
+    const outer = byDepth.get(depths[i]);
+    assert.ok(
+      outer.min >= inner.max - 0.01,
+      `depth ${depths[i]} starts at ${outer.min.toFixed(1)}, inside depth ${
+        depths[i - 1]
+      } which reaches ${inner.max.toFixed(1)}`,
+    );
+  }
+});
+
 test('every class zone has a chassis the UI can render', () => {
   const index = new GraphIndex(graph);
   for (const zone of index.classZones()) {

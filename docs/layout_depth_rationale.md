@@ -351,3 +351,74 @@ weapons, and the audit re-runs on every build:
 | Saving throws | covered — chassis, all 13 zones; 1 tree node grants a further one |
 
 Demand and supply both clean.
+
+---
+
+## 11. Spacing: sub-rings and a guaranteed minimum separation
+
+Playtesting on a phone found the commons ring unusable — nodes on top of one
+another, impossible to tell apart or tap. Investigation showed it was not a
+commons problem but a global one: **802 node pairs sat closer than 0.8 units and
+the closest pair was 0.001 apart**, inside class wedges as well as in the
+commons. The old placer deduplicated only *exact* coordinates rounded to three
+decimals, so two nodes a thousandth of a unit apart looked distinct to it and
+identical to a player.
+
+Three things changed together.
+
+**Geometry grew to fit the content.** The inner radii simply had no
+circumference to spend: at `CORE_RADIUS = 2.0`, a depth-1 wedge had under two
+units of arc to seat three or four nodes. Growing the disc and the ring step is
+what makes a minimum separation achievable at all rather than merely asserted:
+
+| constant | was | now |
+|---|---|---|
+| `CORE_RADIUS` | 2.0 | 12.0 |
+| `RING_STEP` | 3.0 | 12.0 |
+| `MIN_NODE_SEPARATION` | — | 1.8 |
+| `COMMONS_MIN_SEPARATION` | — | 2.9 |
+| `RADIAL_SLACK` | — | 10.0 |
+
+`radius = 12.0 + depth * 12.0`, so level 20 capstones sit at radius 252 instead
+of 62. Nothing about the *ordering* moved: depth is still a linear function of
+level and still strictly nested, which `web/tests/core.test.mjs` now asserts
+permanently.
+
+**Placement became a deterministic packer instead of a nudging search.** Nodes
+at a depth are grouped into bands, and each band is packed across its arc by
+`pack_ring` (full circle, circular relaxation) or `pack_span` (bounded arc:
+forward pass, backward pass, then even distribution if the arc is too tight).
+The packer produces exact angles and the layout claims them directly
+(`claim_at`) rather than searching outward from a preferred spot and settling
+for a colliding fallback when candidates ran out — the actual mechanism of the
+0.001-unit pairs.
+
+Bands stack into **radial lanes**, one `MIN_NODE_SEPARATION` apart, because they
+overlap angularly:
+
+| lane order | band | span |
+|---|---|---|
+| innermost | one **wedge** per class zone | the zone's wedge, disjoint from every other |
+| above them | **seams** — boundary-anchored shared content | `slice_width * 1.6`, deliberately wider than the gutter |
+| outermost | **rings** — core and commons | the whole circle |
+
+The whole stack stays inside `RADIAL_SLACK` of the depth's own radius, so lanes
+never reach the next depth's ring.
+
+**The commons split into per-category sub-rings.** General feats, fighting
+styles, epic boons, ASI repeat chains and weapon masteries used to share one
+circle per depth while carrying more content than any single class zone's ring —
+which is why the crowding was worst exactly where the playtest hit it. Each
+category now gets its own sub-ring, in a fixed order so a player learns where to
+look:
+
+```
+core → training → origin feats → commons → weapon masteries →
+fighting styles → repeat chains → general feats → epic boons
+```
+
+**Measured result.** Minimum separation across all 1133 nodes is **1.799 units**
+— the designed 1.8 minimum, hit exactly rather than approached — and **zero**
+pairs are closer than 1.5. Four permanent guards in `web/tests/core.test.mjs`
+hold it: the separation minimum, individual pickability of every shared node,
+one sub-ring per shared category, and depth ordering.

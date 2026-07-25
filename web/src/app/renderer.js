@@ -160,7 +160,9 @@ export class Renderer {
    * it crosses an LOD boundary.
    */
   radiusWorld(node, lod) {
-    const base = nodeRadius(node) * 0.36;
+    // MIN_NODE_SEPARATION in the layout is 1.8 world units; sizing nodes as a
+    // fraction of that keeps them clearly separate however the layout scales.
+    const base = nodeRadius(node) * 0.40;
     if (lod === 'far') return base * 2.4;
     if (lod === 'mid') return base * (this.isCompact ? 1.7 : 1.25);
     return base;
@@ -486,11 +488,14 @@ export class Renderer {
    */
   _drawNodeLabels(ctx, visible) {
     const camera = this.camera;
-    if (camera.scale < 11) return;
-
     // Task 5: scale with zoom but never below the legibility floor, which is
     // raised on small screens where the device pixel ratio shrinks everything.
-    const size = Math.round(Math.min(16, Math.max(this.minFontPx, camera.scale * 0.62)));
+    // Sized relative to the "near" LOD threshold rather than an absolute zoom,
+    // so it survives the layout's world size changing (Work Order 5 quadrupled it).
+    const near = camera.lodNear || 9;
+    const size = Math.round(
+      Math.min(16, Math.max(this.minFontPx, (camera.scale / near) * 11)),
+    );
     ctx.save();
     ctx.font = `${size}px system-ui, sans-serif`;
     ctx.textAlign = 'center';
@@ -510,7 +515,7 @@ export class Renderer {
     };
 
     const candidates = visible
-      .filter((node) => node.type !== 'connector' || node.is_gate || camera.scale >= 22)
+      .filter((node) => node.type !== 'connector' || node.is_gate || camera.scale >= near * 2.4)
       .map((node) => {
         const point = camera.worldToScreen(node.position_x, node.position_y);
         return {
@@ -581,8 +586,12 @@ export class Renderer {
    */
   _drawZoneLabels(ctx) {
     const camera = this.camera;
-    if (camera.scale > 13) return;
-    const fade = camera.scale > 10 ? Math.max(0, (13 - camera.scale) / 3) : 1;
+    // Zone labels are orientation furniture: they fade out as node labels take
+    // over, again relative to the LOD thresholds rather than a fixed zoom.
+    const near = camera.lodNear || 9;
+    if (camera.scale > near * 1.25) return;
+    const fade =
+      camera.scale > near * 0.95 ? Math.max(0, (near * 1.25 - camera.scale) / (near * 0.3)) : 1;
 
     ctx.save();
     ctx.globalAlpha = fade;

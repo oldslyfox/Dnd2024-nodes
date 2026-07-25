@@ -97,6 +97,27 @@ await shoot('14-mobile-landscape', landscape, async (page) => {
   });
 });
 
+// the commons ring on a phone at reading zoom - Work Order 5's acceptance shot
+await shoot('15-mobile-commons', phone, async (page) => {
+  await page.tap('#zone-grid button:has-text("Fighter")');
+  await page.waitForTimeout(200);
+  await page.evaluate(() => {
+    const tree = globalThis.__tree;
+    tree.app.camera.centreOn(38, 6, tree.app.camera.lodNear * 1.1);
+    tree.select(tree.app.index.byId.get('feat_great_weapon_master_xphb'));
+    tree.markDirty();
+  });
+});
+
+// search-to-select, the Tier 1 unblock
+await shoot('16-mobile-search-select', phone, async (page) => {
+  await page.tap('#zone-grid button:has-text("Fighter")');
+  await page.waitForTimeout(150);
+  await page.tap('#tabbar button[data-tab="search"]');
+  await page.fill('#search-mobile', 'sentinel');
+  await page.waitForTimeout(200);
+});
+
 await browser.close();
 server.close();
 console.log(`mobile screenshots in ${outDir}`);

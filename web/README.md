@@ -10,7 +10,7 @@ the CSS inlined, and it runs from `file://` with **zero network requests**
 npm install
 npm run sync-data     # copy ../data/output/*.json into public/data
 npm run build         # -> dist/index.html (1.7 MB, self-contained)
-npm test              # 66 tests: engine cross-validation, core, desktop + touch UI
+npm test              # 70 tests: engine cross-validation, core, desktop + touch UI
 npm run bench         # desktop FPS  -> bench/bench_results.json
 npm run bench:mobile  # phone FPS + touch latency -> bench/bench_results_mobile.json
 npm run shots         # regenerate bench/shots/
@@ -94,6 +94,14 @@ outline), affordable now, reachable but too expensive, prerequisites unmet.
 nothing is hidden at any zoom. Level of detail changes what is *legible*: zone
 wedges when far out, plain shapes at mid zoom, full shapes plus labels close in.
 
+**Zoom goes as far as you need.** The maximum zoom used to be capped at 40×,
+which was an arbitrary number rather than a performance limit — inspecting a
+crowded ring ran out of magnification before it ran out of detail. The cap is now
+derived from the fit scale (`max(fitScale * 90, 120)`, currently ~400×), and the
+LOD thresholds are derived from it too rather than being absolute constants, so
+they survive the layout's world size changing. Fit view is deliberately *mid*
+detail — edges and connectors visible — not the sparse *far* view.
+
 **Reference edges** (the 24 cross-zone "see also" citations from Work Order 1,
 268 in total) render only behind the toggle, dashed, and never as a path. A test
 asserts they stay out of the pathing adjacency even while the overlay is on.
@@ -102,9 +110,19 @@ asserts they stay out of the pathing adjacency even while the overlay is on.
 clamp inside a safe rect so rim zones are not clipped by the panels, and run a
 separation pass along the ring — this is the fix for the Rogue/Artificer/Wizard
 crowding flagged in Work Order 2's review. They fade out above zoom 10 as node
-labels take over. Node labels are placed greedily against an occupancy grid,
-ranked hovered → search hit → owned → real content → connector, so they never
-pile up into mush.
+labels take over — above `lodNear * 1.25` they are gone entirely, fading from
+`lodNear * 0.95`, so on a phone they never compete with the node labels. Node
+labels are placed greedily against an occupancy grid, ranked hovered → search hit
+→ owned → real content → connector, so they never pile up into mush.
+
+**Node spacing.** Work Order 5 rebuilt the layout around a guaranteed minimum
+separation of 1.8 world units (2.9 in the commons) after playtesting found nodes
+sitting effectively on top of each other — the closest pair was 0.001 apart. Node
+radii are sized as a fraction of that minimum, so shapes stay visibly separate
+however the layout scales. Shared content is split into per-category sub-rings
+rather than sharing one crowded circle per depth. See
+`docs/layout_depth_rationale.md` §11; four tests in `tests/core.test.mjs` hold
+the separation, pickability, sub-ring and depth-ordering guarantees permanently.
 
 ## Interaction: select, then confirm
 
@@ -124,6 +142,7 @@ one behaviour to reason about.
 | pinch / wheel | zoom about the gesture midpoint or cursor |
 | tab bar (phone) | Character · Search · Node · Hide |
 | `/` | focus search; `Esc` clears search, then closes the sheet, then clears the selection |
+| search (either surface) | typing jumps to and **selects** the best match; the result list selects directly |
 | Respec | full reset to a fresh character in the same starting zone |
 | Save / Load | named builds in `localStorage` |
 
@@ -175,12 +194,12 @@ Headless Chromium at 1600×950, scripted camera, timing the renderer's own frame
 
 | motion | mean | p95 |
 |---|---|---|
-| pan at readable zoom | 1.60 ms | 2.0 ms |
-| pan at mid zoom | 0.18 ms | 0.3 ms |
-| zoom sweep, whole graph → one zone | 1.11 ms | 3.0 ms |
-| pan with the "see also" overlay on | 1.25 ms | 1.9 ms |
-| worst case: all 1,133 nodes in view | 0.31 ms | 0.4 ms |
-| worst case + overlay + labels | 1.08 ms | 1.7 ms |
+| pan at readable zoom | 1.35 ms | 1.4 ms |
+| pan at mid zoom | 1.15 ms | 1.8 ms |
+| zoom sweep, whole graph → one zone | 0.96 ms | 2.6 ms |
+| pan with the "see also" overlay on | 0.94 ms | 1.1 ms |
+| worst case: all 1,133 nodes in view | 0.34 ms | 0.5 ms |
+| worst case + overlay + labels | 0.93 ms | 1.3 ms |
 
 ### Phone (`npm run bench:mobile`)
 
@@ -192,10 +211,15 @@ that makes a drag feel attached to your finger.
 
 | motion (portrait / landscape) | frame p95 | touch→frame p95 |
 |---|---|---|
-| one-finger pan | 3.6 / 4.6 ms | 4.4 / 5.8 ms |
-| two-finger pinch zoom | 10.2 / 11.9 ms | 11.2 / 12.0 ms |
-| pan with the whole graph in view | 3.0 / 2.9 ms | 3.1 / 3.1 ms |
-| pan with the "see also" overlay on | 3.6 / 3.0 ms | 3.0 / 3.6 ms |
+| one-finger pan | 8.1 / 7.4 ms | 9.0 / 8.6 ms |
+| two-finger pinch zoom | 9.7 / 6.7 ms | 12.3 / 8.6 ms |
+| pan with the whole graph in view | 3.0 / 2.0 ms | 3.1 / 2.3 ms |
+| pan with the "see also" overlay on | 2.3 / 3.9 ms | 2.7 / 3.6 ms |
+
+These are re-measured against the Work Order 5 layout, which is four times larger
+in world units and puts more nodes in view at any given zoom. Frame cost moved
+within a millisecond or two either way and every motion still clears 60fps with
+room to spare.
 
 Every motion holds 60fps on a 4×-throttled phone in both orientations. **Canvas
 2D remains sufficient; no case for WebGL.**
@@ -224,8 +248,11 @@ canvas of flat shapes does not need 3× supersampling.
 
 ## Screenshots
 
-`bench/shots/` — regenerate with `npm run shots`. Desktop shots are `02`/`04`;
-phone shots are `10`–`14`, including landscape.
+`bench/shots/` — regenerate with `npm run shots` (desktop and phone in one go).
+Desktop shots are `01`–`05`; phone shots are `10`–`16`, including landscape.
+`05` and `15` are the Work Order 5 acceptance shots: the commons at a normal
+reading zoom on desktop and on a phone, where nodes must be individually
+distinguishable without zooming to the maximum. `16` is search-to-select.
 
 ## Known and deferred
 
@@ -234,7 +261,9 @@ phone shots are `10`–`14`, including landscape.
 - **Hover** on desktop now only highlights the node under the cursor; the tooltip
   it used to open is gone, because the detail panel replaced it. That is the
   select-then-confirm model applying uniformly, as Work Order 4 Task 3 asked.
-- **The commons rings.** Shared content (general feats, fighting styles, epic
-  boons, ASI repeats) fans along the arc at its depth, which reads as concentric
-  rings near the hub. That is the Work Order 2 layout being displayed faithfully,
-  not a rendering artefact — worth a look if the layout is ever revisited.
+- **The commons rings** — *fixed in Work Order 5, was worse than "cosmetic".*
+  Shared content sharing one circle per depth was not just visually busy: nodes
+  overlapped to the point of being untappable on a phone, which blocked character
+  creation. Each category now has its own sub-ring and every node is guaranteed
+  1.8 units of clearance. Flagging it as a display quirk in Work Orders 3 and 4
+  under-read it; a real device would have caught it immediately.

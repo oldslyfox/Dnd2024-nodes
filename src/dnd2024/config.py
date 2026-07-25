@@ -137,9 +137,35 @@ REPEATABLE_FEAT_CHAINS = {
 # --------------------------------------------------------------------------
 # Geometry
 # --------------------------------------------------------------------------
-CORE_RADIUS = 2.0  # radius of the shared core disc
-RING_STEP = 3.0  # graph units added per depth unit
+# The inner rings were the crowding: circumference is 2*pi*r, so at the old
+# CORE_RADIUS of 2 a depth-1 wedge had under 2 units of arc to hold three or four
+# level-1 features. Both constants are bigger now, which costs nothing on a
+# zoomable canvas and gives every depth enough room to separate.
+CORE_RADIUS = 12.0  # radius of the shared core disc
+RING_STEP = 12.0  # graph units added per depth unit
 ZONE_WEDGE_FILL = 0.78  # fraction of a zone's angular slice its own nodes may use
+
+# -- separation (Work Order 5) ---------------------------------------------
+# A node draws at roughly 0.6 world units across, so this is the distance at
+# which two nodes stop reading as one blob and become individually tappable.
+# Before Work Order 5 there was no minimum at all - only a "don't round to the
+# same coordinate" check - and 802 pairs ended up closer than 0.8 units.
+MIN_NODE_SEPARATION = 1.8
+
+# How far a node may be pushed outward to find room. Kept well under RING_STEP
+# so a node can never drift into the next depth's ring: depth ordering is the
+# balance mechanism (Task 2d) and must survive any spacing fix.
+RADIAL_SLACK = 10.0
+ROW_STEP = 0.85  # radial step when a lane fans into extra rows
+
+# Shared content (general feats, fighting styles, epic boons, ASI repeats,
+# weapon masteries) is packed into per-category sub-rings rather than piled onto
+# one circle per depth. Wider than MIN_NODE_SEPARATION because these are the
+# nodes a player actually hunts for by eye on a phone.
+COMMONS_MIN_SEPARATION = 2.9
+# Total radial spread a depth's sub-rings may use. Under RING_STEP by
+# construction, so category sub-rings never cross into the next depth.
+SUBRING_MAX_SPREAD = 2.6
 
 # --------------------------------------------------------------------------
 # Point economy (Task 0 / locked decision 2)

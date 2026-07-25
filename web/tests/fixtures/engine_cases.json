@@ -3030,7 +3030,7 @@
     "path": [],
     "reason": "unmet_prerequisites",
     "blocking_prereqs": [
-     "needs 53 points spent (has 9)"
+     "needs 53 points spent (has 1)"
     ]
    }
   },
@@ -21527,7 +21527,7 @@
     "path": [],
     "reason": "unmet_prerequisites",
     "blocking_prereqs": [
-     "needs 53 points spent (has 1)"
+     "needs 53 points spent (has 9)"
     ]
    }
   },
@@ -24607,7 +24607,7 @@
     "path": [],
     "reason": "unmet_prerequisites",
     "blocking_prereqs": [
-     "needs 53 points spent (has 1)"
+     "needs 53 points spent (has 9)"
     ]
    }
   },
@@ -40027,7 +40027,7 @@
     "path": [],
     "reason": "unmet_prerequisites",
     "blocking_prereqs": [
-     "needs 53 points spent (has 9)"
+     "needs 53 points spent (has 1)"
     ]
    }
   },

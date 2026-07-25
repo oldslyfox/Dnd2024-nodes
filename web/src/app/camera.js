@@ -12,7 +12,11 @@ export class Camera {
     this.y = 0;
     this.scale = 6;
     this.minScale = 2.2;
-    this.maxScale = 40;
+    // Work Order 5, Task 1: the old cap of 40 stopped before crowded nodes
+    // separated, so "zoom in until you can tap it" simply did not work. There
+    // is no reason for a hard ceiling on a spatial layout - this one only exists
+    // so a stray pinch cannot send the view somewhere it cannot recover from.
+    this.maxScale = 400;
     this.viewportWidth = 1;
     this.viewportHeight = 1;
   }
@@ -28,6 +32,16 @@ export class Camera {
     const height = Math.max(bounds.height, 1) * margin;
     this.scale = Math.min(this.viewportWidth / width, this.viewportHeight / height);
     this.minScale = this.scale * 0.7;
+    this.maxScale = Math.max(this.scale * 90, 120);
+    // Level of detail is relative to the fit: "far" is roughly the whole graph,
+    // "near" is close enough to read names. Deriving it from the fit scale keeps
+    // the thresholds correct when the layout's world size changes, which it did
+    // in Work Order 5.
+    // The fit view itself must be "mid": every node and edge drawn, no labels.
+    // "far" is for zooming out past the fit, where the ring silhouette is all
+    // that is legible anyway.
+    this.lodFar = this.scale * 0.99;
+    this.lodNear = this.scale * 2.8;
     this.x = (bounds.minX + bounds.maxX) / 2;
     this.y = (bounds.minY + bounds.maxY) / 2;
   }
@@ -85,8 +99,8 @@ export class Camera {
    *   near  - full shapes, outlines and labels
    */
   lod() {
-    if (this.scale < 4.2) return 'far';
-    if (this.scale < 9) return 'mid';
+    if (this.scale < (this.lodFar || 4.2)) return 'far';
+    if (this.scale < (this.lodNear || 9)) return 'mid';
     return 'near';
   }
 }

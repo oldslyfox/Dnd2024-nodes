@@ -33,11 +33,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -4.855,
-    "position_y": -1.197,
+    "position_x": -23.303,
+    "position_y": -5.744,
     "polar": {
       "angle_deg": 193.85,
-      "radius": 5.0
+      "radius": 24.0
     }
   },
   {
@@ -74,11 +74,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -31.07,
-    "position_y": -7.658,
+    "position_x": -128.164,
+    "position_y": -31.59,
     "polar": {
       "angle_deg": 193.85,
-      "radius": 32.0
+      "radius": 132.0
     }
   },
   {
@@ -115,11 +115,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -39.809,
-    "position_y": -9.812,
+    "position_x": -163.118,
+    "position_y": -40.205,
     "polar": {
       "angle_deg": 193.85,
-      "radius": 41.0
+      "radius": 168.0
     }
   },
   {
@@ -156,11 +156,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -48.547,
-    "position_y": -11.966,
+    "position_x": -198.072,
+    "position_y": -48.82,
     "polar": {
       "angle_deg": 193.85,
-      "radius": 50.0
+      "radius": 204.0
     }
   },
   {
@@ -197,11 +197,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -57.286,
-    "position_y": -14.12,
+    "position_x": -233.026,
+    "position_y": -57.436,
     "polar": {
       "angle_deg": 193.85,
-      "radius": 59.0
+      "radius": 240.0
     }
   },
   {
@@ -238,11 +238,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -13.593,
-    "position_y": -3.35,
+    "position_x": -58.257,
+    "position_y": -14.359,
     "polar": {
       "angle_deg": 193.85,
-      "radius": 14.0
+      "radius": 60.0
     }
   },
   {
@@ -279,11 +279,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -22.332,
-    "position_y": -5.504,
+    "position_x": -93.21,
+    "position_y": -22.974,
     "polar": {
       "angle_deg": 193.85,
-      "radius": 23.0
+      "radius": 96.0
     }
   },
   {
@@ -320,11 +320,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 31.433,
-    "position_y": -5.996,
+    "position_x": 129.662,
+    "position_y": -24.734,
     "polar": {
       "angle_deg": 349.2,
-      "radius": 32.0
+      "radius": 132.0
     }
   },
   {
@@ -361,11 +361,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 43.221,
-    "position_y": -8.245,
+    "position_x": 176.812,
+    "position_y": -33.729,
     "polar": {
       "angle_deg": 349.2,
-      "radius": 44.0
+      "radius": 180.0
     }
   },
   {
@@ -402,11 +402,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 10.805,
-    "position_y": -2.061,
+    "position_x": 47.15,
+    "position_y": -8.994,
     "polar": {
       "angle_deg": 349.2,
-      "radius": 11.0
+      "radius": 48.0
     }
   },
   {
@@ -443,11 +443,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 19.646,
-    "position_y": -3.748,
+    "position_x": 82.512,
+    "position_y": -15.74,
     "polar": {
       "angle_deg": 349.2,
-      "radius": 20.0
+      "radius": 84.0
     }
   },
   {
@@ -484,11 +484,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 4.679,
-    "position_y": 1.761,
+    "position_x": 23.846,
+    "position_y": 2.718,
     "polar": {
-      "angle_deg": 20.63,
-      "radius": 5.0
+      "angle_deg": 6.5,
+      "radius": 24.0
     }
   },
   {
@@ -525,11 +525,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 31.987,
-    "position_y": 0.9,
+    "position_x": 131.988,
+    "position_y": 1.8,
     "polar": {
-      "angle_deg": 1.61,
-      "radius": 32.0
+      "angle_deg": 0.78,
+      "radius": 132.0
     }
   },
   {
@@ -566,11 +566,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 40.99,
-    "position_y": 0.9,
+    "position_x": 167.99,
+    "position_y": 1.8,
     "polar": {
-      "angle_deg": 1.26,
-      "radius": 41.0
+      "angle_deg": 0.61,
+      "radius": 168.0
     }
   },
   {
@@ -607,11 +607,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 49.992,
-    "position_y": 0.9,
+    "position_x": 203.992,
+    "position_y": 1.8,
     "polar": {
-      "angle_deg": 1.03,
-      "radius": 50.0
+      "angle_deg": 0.51,
+      "radius": 204.0
     }
   },
   {
@@ -648,11 +648,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 58.993,
-    "position_y": 0.9,
+    "position_x": 239.993,
+    "position_y": 1.8,
     "polar": {
-      "angle_deg": 0.87,
-      "radius": 59.0
+      "angle_deg": 0.43,
+      "radius": 240.0
     }
   },
   {
@@ -689,11 +689,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 13.971,
-    "position_y": 0.899,
+    "position_x": 59.973,
+    "position_y": 1.8,
     "polar": {
-      "angle_deg": 3.68,
-      "radius": 14.0
+      "angle_deg": 1.72,
+      "radius": 60.0
     }
   },
   {
@@ -730,11 +730,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 22.982,
-    "position_y": -0.9,
+    "position_x": 95.933,
+    "position_y": 3.599,
     "polar": {
-      "angle_deg": 357.76,
-      "radius": 23.0
+      "angle_deg": 2.15,
+      "radius": 96.0
     }
   },
   {
@@ -771,11 +771,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 31.828,
-    "position_y": -3.312,
+    "position_x": 131.291,
+    "position_y": -13.66,
     "polar": {
       "angle_deg": 354.06,
-      "radius": 32.0
+      "radius": 132.0
     }
   },
   {
@@ -812,11 +812,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 43.764,
-    "position_y": -4.553,
+    "position_x": 179.034,
+    "position_y": -18.628,
     "polar": {
       "angle_deg": 354.06,
-      "radius": 44.0
+      "radius": 180.0
     }
   },
   {
@@ -853,11 +853,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 10.941,
-    "position_y": -1.138,
+    "position_x": 49.533,
+    "position_y": -5.154,
     "polar": {
       "angle_deg": 354.06,
-      "radius": 11.0
+      "radius": 49.8
     }
   },
   {
@@ -894,11 +894,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 19.893,
-    "position_y": -2.07,
+    "position_x": 83.549,
+    "position_y": -8.693,
     "polar": {
       "angle_deg": 354.06,
-      "radius": 20.0
+      "radius": 84.0
     }
   },
   {
@@ -935,11 +935,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 31.828,
-    "position_y": 3.312,
+    "position_x": 131.291,
+    "position_y": 13.66,
     "polar": {
       "angle_deg": 5.94,
-      "radius": 32.0
+      "radius": 132.0
     }
   },
   {
@@ -976,11 +976,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 43.764,
-    "position_y": 4.553,
+    "position_x": 179.034,
+    "position_y": 18.628,
     "polar": {
       "angle_deg": 5.94,
-      "radius": 44.0
+      "radius": 180.0
     }
   },
   {
@@ -1017,11 +1017,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 10.941,
-    "position_y": 1.138,
+    "position_x": 49.64,
+    "position_y": 3.983,
     "polar": {
-      "angle_deg": 5.94,
-      "radius": 11.0
+      "angle_deg": 4.59,
+      "radius": 49.8
     }
   },
   {
@@ -1058,11 +1058,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 19.893,
-    "position_y": 2.07,
+    "position_x": 83.549,
+    "position_y": 8.693,
     "polar": {
       "angle_deg": 5.94,
-      "radius": 20.0
+      "radius": 84.0
     }
   },
   {
@@ -1099,11 +1099,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 31.433,
-    "position_y": 5.996,
+    "position_x": 129.987,
+    "position_y": 22.964,
     "polar": {
-      "angle_deg": 10.8,
-      "radius": 32.0
+      "angle_deg": 10.02,
+      "radius": 132.0
     }
   },
   {
@@ -1140,11 +1140,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 43.221,
-    "position_y": 8.245,
+    "position_x": 177.14,
+    "position_y": 31.959,
     "polar": {
-      "angle_deg": 10.8,
-      "radius": 44.0
+      "angle_deg": 10.23,
+      "radius": 180.0
     }
   },
   {
@@ -1181,11 +1181,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 10.805,
-    "position_y": 2.061,
+    "position_x": 47.454,
+    "position_y": 7.22,
     "polar": {
-      "angle_deg": 10.8,
-      "radius": 11.0
+      "angle_deg": 8.65,
+      "radius": 48.0
     }
   },
   {
@@ -1222,11 +1222,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 19.646,
-    "position_y": 3.748,
+    "position_x": 82.83,
+    "position_y": 13.968,
     "polar": {
-      "angle_deg": 10.8,
-      "radius": 20.0
+      "angle_deg": 9.57,
+      "radius": 84.0
     }
   },
   {
@@ -1263,11 +1263,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 17.767,
-    "position_y": -40.253,
+    "position_x": 72.682,
+    "position_y": -164.673,
     "polar": {
       "angle_deg": 293.82,
-      "radius": 44.0
+      "radius": 180.0
     }
   },
   {
@@ -1304,11 +1304,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 4.442,
-    "position_y": -10.063,
+    "position_x": 19.382,
+    "position_y": -43.913,
     "polar": {
       "angle_deg": 293.82,
-      "radius": 11.0
+      "radius": 48.0
     }
   },
   {
@@ -1345,11 +1345,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 8.076,
-    "position_y": -18.297,
+    "position_x": 33.918,
+    "position_y": -76.848,
     "polar": {
       "angle_deg": 293.82,
-      "radius": 20.0
+      "radius": 84.0
     }
   },
   {
@@ -1386,11 +1386,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 21.113,
-    "position_y": -38.604,
+    "position_x": 86.372,
+    "position_y": -157.923,
     "polar": {
       "angle_deg": 298.68,
-      "radius": 44.0
+      "radius": 180.0
     }
   },
   {
@@ -1427,11 +1427,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 5.278,
-    "position_y": -9.651,
+    "position_x": 23.896,
+    "position_y": -43.692,
     "polar": {
       "angle_deg": 298.68,
-      "radius": 11.0
+      "radius": 49.8
     }
   },
   {
@@ -1468,11 +1468,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 9.597,
-    "position_y": -17.547,
+    "position_x": 40.307,
+    "position_y": -73.698,
     "polar": {
       "angle_deg": 298.68,
-      "radius": 20.0
+      "radius": 84.0
     }
   },
   {
@@ -1509,11 +1509,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 28.608,
-    "position_y": -33.43,
+    "position_x": 117.033,
+    "position_y": -136.76,
     "polar": {
       "angle_deg": 310.56,
-      "radius": 44.0
+      "radius": 180.0
     }
   },
   {
@@ -1550,11 +1550,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 7.152,
-    "position_y": -8.358,
+    "position_x": 32.379,
+    "position_y": -37.837,
     "polar": {
       "angle_deg": 310.56,
-      "radius": 11.0
+      "radius": 49.8
     }
   },
   {
@@ -1591,11 +1591,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 13.004,
-    "position_y": -15.196,
+    "position_x": 54.615,
+    "position_y": -63.821,
     "polar": {
       "angle_deg": 310.56,
-      "radius": 20.0
+      "radius": 84.0
     }
   },
   {
@@ -1632,11 +1632,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 2.058,
-    "position_y": -4.557,
+    "position_x": 14.384,
+    "position_y": -19.212,
     "polar": {
-      "angle_deg": 294.3,
-      "radius": 5.0
+      "angle_deg": 306.82,
+      "radius": 24.0
     }
   },
   {
@@ -1673,11 +1673,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 18.911,
-    "position_y": -25.814,
+    "position_x": 76.459,
+    "position_y": -107.601,
     "polar": {
-      "angle_deg": 306.23,
-      "radius": 32.0
+      "angle_deg": 305.4,
+      "radius": 132.0
     }
   },
   {
@@ -1714,11 +1714,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 23.291,
-    "position_y": -33.742,
+    "position_x": 95.435,
+    "position_y": -138.261,
     "polar": {
       "angle_deg": 304.62,
-      "radius": 41.0
+      "radius": 168.0
     }
   },
   {
@@ -1755,11 +1755,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 29.139,
-    "position_y": -40.631,
+    "position_x": 117.362,
+    "position_y": -166.86,
     "polar": {
-      "angle_deg": 305.65,
-      "radius": 50.0
+      "angle_deg": 305.12,
+      "radius": 204.0
     }
   },
   {
@@ -1796,11 +1796,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 34.253,
-    "position_y": -48.039,
+    "position_x": 137.813,
+    "position_y": -196.488,
     "polar": {
-      "angle_deg": 305.49,
-      "radius": 59.0
+      "angle_deg": 305.05,
+      "radius": 240.0
     }
   },
   {
@@ -1837,11 +1837,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 8.677,
-    "position_y": -10.987,
+    "position_x": 35.55,
+    "position_y": -48.334,
     "polar": {
-      "angle_deg": 308.3,
-      "radius": 14.0
+      "angle_deg": 306.33,
+      "radius": 60.0
     }
   },
   {
@@ -1878,11 +1878,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 13.796,
-    "position_y": -18.403,
+    "position_x": 56.006,
+    "position_y": -77.97,
     "polar": {
-      "angle_deg": 306.86,
-      "radius": 23.0
+      "angle_deg": 305.69,
+      "radius": 96.0
     }
   },
   {
@@ -1919,11 +1919,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 31.337,
-    "position_y": -30.886,
+    "position_x": 126.929,
+    "position_y": -127.629,
     "polar": {
-      "angle_deg": 315.42,
-      "radius": 44.0
+      "angle_deg": 314.84,
+      "radius": 180.0
     }
   },
   {
@@ -1960,11 +1960,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 7.834,
-    "position_y": -7.722,
+    "position_x": 35.465,
+    "position_y": -37.481,
     "polar": {
-      "angle_deg": 315.42,
-      "radius": 11.0
+      "angle_deg": 313.42,
+      "radius": 51.6
     }
   },
   {
@@ -2001,11 +2001,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 14.244,
-    "position_y": -14.039,
+    "position_x": 58.549,
+    "position_y": -60.233,
     "polar": {
-      "angle_deg": 315.42,
-      "radius": 20.0
+      "angle_deg": 314.19,
+      "radius": 84.0
     }
   },
   {
@@ -2042,11 +2042,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 16.134,
-    "position_y": 50.485,
+    "position_x": 65.754,
+    "position_y": 205.748,
     "polar": {
       "angle_deg": 72.28,
-      "radius": 53.0
+      "radius": 216.0
     }
   },
   {
@@ -2083,11 +2083,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 3.349,
-    "position_y": 10.478,
+    "position_x": 14.612,
+    "position_y": 45.722,
     "polar": {
       "angle_deg": 72.28,
-      "radius": 11.0
+      "radius": 48.0
     }
   },
   {
@@ -2124,11 +2124,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 6.088,
-    "position_y": 19.051,
+    "position_x": 25.571,
+    "position_y": 80.013,
     "polar": {
       "angle_deg": 72.28,
-      "radius": 20.0
+      "radius": 84.0
     }
   },
   {
@@ -2165,11 +2165,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 11.799,
-    "position_y": 51.67,
+    "position_x": 48.086,
+    "position_y": 210.579,
     "polar": {
       "angle_deg": 77.14,
-      "radius": 53.0
+      "radius": 216.0
     }
   },
   {
@@ -2206,11 +2206,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 2.449,
-    "position_y": 10.724,
+    "position_x": 11.487,
+    "position_y": 50.305,
     "polar": {
       "angle_deg": 77.14,
-      "radius": 11.0
+      "radius": 51.6
     }
   },
   {
@@ -2247,11 +2247,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 4.452,
-    "position_y": 19.498,
+    "position_x": 18.7,
+    "position_y": 81.892,
     "polar": {
       "angle_deg": 77.14,
-      "radius": 20.0
+      "radius": 84.0
     }
   },
   {
@@ -2288,11 +2288,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 2.313,
-    "position_y": 4.433,
+    "position_x": 0.176,
+    "position_y": 23.999,
     "polar": {
-      "angle_deg": 62.45,
-      "radius": 5.0
+      "angle_deg": 89.58,
+      "radius": 24.0
     }
   },
   {
@@ -2329,11 +2329,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 2.962,
-    "position_y": 31.863,
+    "position_x": 14.123,
+    "position_y": 131.242,
     "polar": {
-      "angle_deg": 84.69,
-      "radius": 32.0
+      "angle_deg": 83.86,
+      "radius": 132.0
     }
   },
   {
@@ -2370,11 +2370,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 4.942,
-    "position_y": 40.701,
+    "position_x": 20.25,
+    "position_y": 166.775,
     "polar": {
       "angle_deg": 83.08,
-      "radius": 41.0
+      "radius": 168.0
     }
   },
   {
@@ -2411,11 +2411,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 5.132,
-    "position_y": 49.736,
+    "position_x": 22.802,
+    "position_y": 202.722,
     "polar": {
-      "angle_deg": 84.11,
-      "radius": 50.0
+      "angle_deg": 83.58,
+      "radius": 204.0
     }
   },
   {
@@ -2452,11 +2452,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 6.217,
-    "position_y": 58.671,
+    "position_x": 27.141,
+    "position_y": 238.46,
     "polar": {
-      "angle_deg": 83.95,
-      "radius": 59.0
+      "angle_deg": 83.51,
+      "radius": 240.0
     }
   },
   {
@@ -2493,11 +2493,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 0.791,
-    "position_y": 13.978,
+    "position_x": 5.442,
+    "position_y": 59.753,
     "polar": {
-      "angle_deg": 86.76,
-      "radius": 14.0
+      "angle_deg": 84.8,
+      "radius": 60.0
     }
   },
   {
@@ -2534,11 +2534,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 0.979,
-    "position_y": 22.979,
+    "position_x": 6.195,
+    "position_y": 95.8,
     "polar": {
-      "angle_deg": 87.56,
-      "radius": 23.0
+      "angle_deg": 86.3,
+      "radius": 96.0
     }
   },
   {
@@ -2575,11 +2575,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 0.909,
-    "position_y": 52.992,
+    "position_x": 3.706,
+    "position_y": 215.968,
     "polar": {
       "angle_deg": 89.02,
-      "radius": 53.0
+      "radius": 216.0
     }
   },
   {
@@ -2616,11 +2616,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 0.189,
-    "position_y": 10.998,
+    "position_x": 2.151,
+    "position_y": 47.952,
     "polar": {
-      "angle_deg": 89.02,
-      "radius": 11.0
+      "angle_deg": 87.43,
+      "radius": 48.0
     }
   },
   {
@@ -2657,11 +2657,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 0.343,
-    "position_y": 19.997,
+    "position_x": 1.441,
+    "position_y": 83.988,
     "polar": {
       "angle_deg": 89.02,
-      "radius": 20.0
+      "radius": 84.0
     }
   },
   {
@@ -2698,11 +2698,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -3.584,
-    "position_y": 52.879,
+    "position_x": -12.808,
+    "position_y": 215.62,
     "polar": {
-      "angle_deg": 93.88,
-      "radius": 53.0
+      "angle_deg": 93.4,
+      "radius": 216.0
     }
   },
   {
@@ -2739,11 +2739,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -0.744,
-    "position_y": 10.975,
+    "position_x": -1.691,
+    "position_y": 51.572,
     "polar": {
-      "angle_deg": 93.88,
-      "radius": 11.0
+      "angle_deg": 91.88,
+      "radius": 51.6
     }
   },
   {
@@ -2780,11 +2780,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -1.352,
-    "position_y": 19.954,
+    "position_x": -3.882,
+    "position_y": 83.91,
     "polar": {
-      "angle_deg": 93.88,
-      "radius": 20.0
+      "angle_deg": 92.65,
+      "radius": 84.0
     }
   },
   {
@@ -2816,11 +2816,11 @@
       "groups": []
     },
     "ability_prereqs": [],
-    "position_x": -7.993,
-    "position_y": 0.331,
+    "position_x": 40.197,
+    "position_y": 9.908,
     "polar": {
-      "angle_deg": 177.63,
-      "radius": 8.0
+      "angle_deg": 13.85,
+      "radius": 41.4
     }
   },
   {
@@ -2852,11 +2852,11 @@
       "groups": []
     },
     "ability_prereqs": [],
-    "position_x": 5.67,
-    "position_y": -5.643,
+    "position_x": 30.988,
+    "position_y": 27.453,
     "polar": {
-      "angle_deg": 315.14,
-      "radius": 8.0
+      "angle_deg": 41.54,
+      "radius": 41.4
     }
   },
   {
@@ -2888,11 +2888,11 @@
       "groups": []
     },
     "ability_prereqs": [],
-    "position_x": -0.369,
-    "position_y": 7.991,
+    "position_x": 40.197,
+    "position_y": -9.908,
     "polar": {
-      "angle_deg": 92.64,
-      "radius": 8.0
+      "angle_deg": 346.15,
+      "radius": 41.4
     }
   },
   {
@@ -2924,11 +2924,11 @@
       "groups": []
     },
     "ability_prereqs": [],
-    "position_x": -5.126,
-    "position_y": -6.142,
+    "position_x": -36.658,
+    "position_y": 19.24,
     "polar": {
-      "angle_deg": 230.15,
-      "radius": 8.0
+      "angle_deg": 152.31,
+      "radius": 41.4
     }
   },
   {
@@ -2956,11 +2956,11 @@
       "groups": []
     },
     "ability_prereqs": [],
-    "position_x": -3.687,
-    "position_y": 3.377,
+    "position_x": -2.716,
+    "position_y": -29.274,
     "polar": {
-      "angle_deg": 137.51,
-      "radius": 5.0
+      "angle_deg": 264.7,
+      "radius": 29.4
     }
   },
   {
@@ -2988,11 +2988,11 @@
       "groups": []
     },
     "ability_prereqs": [],
-    "position_x": 0.437,
-    "position_y": -4.981,
+    "position_x": 0.18,
+    "position_y": -29.399,
     "polar": {
-      "angle_deg": 275.02,
-      "radius": 5.0
+      "angle_deg": 270.35,
+      "radius": 29.4
     }
   },
   {
@@ -3020,11 +3020,11 @@
       "groups": []
     },
     "ability_prereqs": [],
-    "position_x": 3.042,
-    "position_y": 3.968,
+    "position_x": 3.075,
+    "position_y": -29.239,
     "polar": {
-      "angle_deg": 52.52,
-      "radius": 5.0
+      "angle_deg": 276.0,
+      "radius": 29.4
     }
   },
   {
@@ -3052,11 +3052,11 @@
       "groups": []
     },
     "ability_prereqs": [],
-    "position_x": -4.924,
-    "position_y": -0.871,
+    "position_x": 5.939,
+    "position_y": -28.794,
     "polar": {
-      "angle_deg": 190.03,
-      "radius": 5.0
+      "angle_deg": 281.65,
+      "radius": 29.4
     }
   },
   {
@@ -3125,11 +3125,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -5.54,
-    "position_y": 31.517,
+    "position_x": -22.852,
+    "position_y": 130.007,
     "polar": {
       "angle_deg": 99.97,
-      "radius": 32.0
+      "radius": 132.0
     }
   },
   {
@@ -3166,11 +3166,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -7.617,
-    "position_y": 43.336,
+    "position_x": -31.161,
+    "position_y": 177.282,
     "polar": {
       "angle_deg": 99.97,
-      "radius": 44.0
+      "radius": 180.0
     }
   },
   {
@@ -3207,11 +3207,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -1.904,
-    "position_y": 10.834,
+    "position_x": -8.31,
+    "position_y": 47.275,
     "polar": {
       "angle_deg": 99.97,
-      "radius": 11.0
+      "radius": 48.0
     }
   },
   {
@@ -3248,11 +3248,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -3.462,
-    "position_y": 19.698,
+    "position_x": -14.542,
+    "position_y": 82.732,
     "polar": {
       "angle_deg": 99.97,
-      "radius": 20.0
+      "radius": 84.0
     }
   },
   {
@@ -3289,11 +3289,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -8.19,
-    "position_y": 30.934,
+    "position_x": -33.784,
+    "position_y": 127.603,
     "polar": {
       "angle_deg": 104.83,
-      "radius": 32.0
+      "radius": 132.0
     }
   },
   {
@@ -3330,11 +3330,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -11.261,
-    "position_y": 42.534,
+    "position_x": -46.069,
+    "position_y": 174.005,
     "polar": {
       "angle_deg": 104.83,
-      "radius": 44.0
+      "radius": 180.0
     }
   },
   {
@@ -3371,11 +3371,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -2.815,
-    "position_y": 10.634,
+    "position_x": -12.746,
+    "position_y": 48.141,
     "polar": {
       "angle_deg": 104.83,
-      "radius": 11.0
+      "radius": 49.8
     }
   },
   {
@@ -3412,11 +3412,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -5.119,
-    "position_y": 19.334,
+    "position_x": -21.499,
+    "position_y": 81.202,
     "polar": {
       "angle_deg": 104.83,
-      "radius": 20.0
+      "radius": 84.0
     }
   },
   {
@@ -3453,11 +3453,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -3.924,
-    "position_y": 3.098,
+    "position_x": -11.942,
+    "position_y": 22.87,
     "polar": {
-      "angle_deg": 141.71,
-      "radius": 5.0
+      "angle_deg": 117.57,
+      "radius": 25.8
     }
   },
   {
@@ -3494,11 +3494,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -12.184,
-    "position_y": 29.59,
+    "position_x": -48.486,
+    "position_y": 122.772,
     "polar": {
-      "angle_deg": 112.38,
-      "radius": 32.0
+      "angle_deg": 111.55,
+      "radius": 132.0
     }
   },
   {
@@ -3535,11 +3535,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -14.539,
-    "position_y": 38.336,
+    "position_x": -59.574,
+    "position_y": 157.083,
     "polar": {
       "angle_deg": 110.77,
-      "radius": 41.0
+      "radius": 168.0
     }
   },
   {
@@ -3576,11 +3576,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -18.569,
-    "position_y": 46.424,
+    "position_x": -74.02,
+    "position_y": 190.098,
     "polar": {
-      "angle_deg": 111.8,
-      "radius": 50.0
+      "angle_deg": 111.27,
+      "radius": 204.0
     }
   },
   {
@@ -3617,11 +3617,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -21.761,
-    "position_y": 54.84,
+    "position_x": -86.786,
+    "position_y": 223.759,
     "polar": {
-      "angle_deg": 111.64,
-      "radius": 59.0
+      "angle_deg": 111.2,
+      "radius": 240.0
     }
   },
   {
@@ -3658,11 +3658,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -5.795,
-    "position_y": 12.744,
+    "position_x": -22.949,
+    "position_y": 55.438,
     "polar": {
-      "angle_deg": 114.45,
-      "radius": 14.0
+      "angle_deg": 112.49,
+      "radius": 60.0
     }
   },
   {
@@ -3699,11 +3699,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -9.812,
-    "position_y": 20.802,
+    "position_x": -39.035,
+    "position_y": 87.706,
     "polar": {
-      "angle_deg": 115.25,
-      "radius": 23.0
+      "angle_deg": 113.99,
+      "radius": 96.0
     }
   },
   {
@@ -3740,11 +3740,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -14.383,
-    "position_y": 28.586,
+    "position_x": -59.329,
+    "position_y": 117.915,
     "polar": {
       "angle_deg": 116.71,
-      "radius": 32.0
+      "radius": 132.0
     }
   },
   {
@@ -3781,11 +3781,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -19.776,
-    "position_y": 39.305,
+    "position_x": -80.903,
+    "position_y": 160.794,
     "polar": {
       "angle_deg": 116.71,
-      "radius": 44.0
+      "radius": 180.0
     }
   },
   {
@@ -3822,11 +3822,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -4.944,
-    "position_y": 9.826,
+    "position_x": -21.327,
+    "position_y": 45.002,
     "polar": {
-      "angle_deg": 116.71,
-      "radius": 11.0
+      "angle_deg": 115.36,
+      "radius": 49.8
     }
   },
   {
@@ -3863,11 +3863,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -8.989,
-    "position_y": 17.866,
+    "position_x": -37.755,
+    "position_y": 75.037,
     "polar": {
       "angle_deg": 116.71,
-      "radius": 20.0
+      "radius": 84.0
     }
   },
   {
@@ -3904,11 +3904,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -16.753,
-    "position_y": 27.264,
+    "position_x": -67.566,
+    "position_y": 113.397,
     "polar": {
-      "angle_deg": 121.57,
-      "radius": 32.0
+      "angle_deg": 120.79,
+      "radius": 132.0
     }
   },
   {
@@ -3945,11 +3945,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -23.035,
-    "position_y": 37.488,
+    "position_x": -92.697,
+    "position_y": 154.296,
     "polar": {
-      "angle_deg": 121.57,
-      "radius": 44.0
+      "angle_deg": 121.0,
+      "radius": 180.0
     }
   },
   {
@@ -3986,11 +3986,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -5.759,
-    "position_y": 9.372,
+    "position_x": -23.884,
+    "position_y": 45.74,
     "polar": {
-      "angle_deg": 121.57,
-      "radius": 11.0
+      "angle_deg": 117.57,
+      "radius": 51.6
     }
   },
   {
@@ -4027,11 +4027,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -10.471,
-    "position_y": 17.04,
+    "position_x": -42.433,
+    "position_y": 72.495,
     "polar": {
-      "angle_deg": 121.57,
-      "radius": 20.0
+      "angle_deg": 120.34,
+      "radius": 84.0
     }
   },
   {
@@ -4068,11 +4068,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 30.619,
-    "position_y": 9.298,
+    "position_x": 126.305,
+    "position_y": 38.356,
     "polar": {
       "angle_deg": 16.89,
-      "radius": 32.0
+      "radius": 132.0
     }
   },
   {
@@ -4109,11 +4109,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 44.972,
-    "position_y": 13.657,
+    "position_x": 183.716,
+    "position_y": 55.79,
     "polar": {
       "angle_deg": 16.89,
-      "radius": 47.0
+      "radius": 192.0
     }
   },
   {
@@ -4150,11 +4150,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 53.584,
-    "position_y": 16.272,
+    "position_x": 218.162,
+    "position_y": 66.251,
     "polar": {
       "angle_deg": 16.89,
-      "radius": 56.0
+      "radius": 228.0
     }
   },
   {
@@ -4191,11 +4191,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 10.525,
-    "position_y": 3.196,
+    "position_x": 45.929,
+    "position_y": 13.948,
     "polar": {
       "angle_deg": 16.89,
-      "radius": 11.0
+      "radius": 48.0
     }
   },
   {
@@ -4232,11 +4232,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 22.008,
-    "position_y": 6.683,
+    "position_x": 91.858,
+    "position_y": 27.895,
     "polar": {
       "angle_deg": 16.89,
-      "radius": 23.0
+      "radius": 96.0
     }
   },
   {
@@ -4273,11 +4273,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 29.721,
-    "position_y": 11.859,
+    "position_x": 122.601,
+    "position_y": 48.919,
     "polar": {
       "angle_deg": 21.75,
-      "radius": 32.0
+      "radius": 132.0
     }
   },
   {
@@ -4314,11 +4314,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 43.653,
-    "position_y": 17.418,
+    "position_x": 178.329,
+    "position_y": 71.154,
     "polar": {
       "angle_deg": 21.75,
-      "radius": 47.0
+      "radius": 192.0
     }
   },
   {
@@ -4355,11 +4355,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 52.012,
-    "position_y": 20.753,
+    "position_x": 211.765,
+    "position_y": 84.496,
     "polar": {
       "angle_deg": 21.75,
-      "radius": 56.0
+      "radius": 228.0
     }
   },
   {
@@ -4396,11 +4396,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 10.217,
-    "position_y": 4.077,
+    "position_x": 47.926,
+    "position_y": 19.123,
     "polar": {
       "angle_deg": 21.75,
-      "radius": 11.0
+      "radius": 51.6
     }
   },
   {
@@ -4437,11 +4437,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 21.362,
-    "position_y": 8.524,
+    "position_x": 89.164,
+    "position_y": 35.577,
     "polar": {
       "angle_deg": 21.75,
-      "radius": 23.0
+      "radius": 96.0
     }
   },
   {
@@ -4478,11 +4478,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 26.643,
-    "position_y": 17.724,
+    "position_x": 109.904,
+    "position_y": 73.11,
     "polar": {
       "angle_deg": 33.63,
-      "radius": 32.0
+      "radius": 132.0
     }
   },
   {
@@ -4519,11 +4519,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 39.133,
-    "position_y": 26.031,
+    "position_x": 159.861,
+    "position_y": 106.341,
     "polar": {
       "angle_deg": 33.63,
-      "radius": 47.0
+      "radius": 192.0
     }
   },
   {
@@ -4560,11 +4560,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 46.626,
-    "position_y": 31.016,
+    "position_x": 189.835,
+    "position_y": 126.28,
     "polar": {
       "angle_deg": 33.63,
-      "radius": 56.0
+      "radius": 228.0
     }
   },
   {
@@ -4601,11 +4601,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 9.159,
-    "position_y": 6.092,
+    "position_x": 42.104,
+    "position_y": 26.596,
     "polar": {
-      "angle_deg": 33.63,
-      "radius": 11.0
+      "angle_deg": 32.28,
+      "radius": 49.8
     }
   },
   {
@@ -4642,11 +4642,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 19.15,
-    "position_y": 12.739,
+    "position_x": 81.371,
+    "position_y": 50.938,
     "polar": {
-      "angle_deg": 33.63,
-      "radius": 23.0
+      "angle_deg": 32.05,
+      "radius": 96.0
     }
   },
   {
@@ -4683,11 +4683,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 25.046,
-    "position_y": 19.917,
+    "position_x": 104.426,
+    "position_y": 80.742,
     "polar": {
-      "angle_deg": 38.49,
-      "radius": 32.0
+      "angle_deg": 37.71,
+      "radius": 132.0
     }
   },
   {
@@ -4724,11 +4724,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 36.787,
-    "position_y": 29.253,
+    "position_x": 151.391,
+    "position_y": 118.089,
     "polar": {
-      "angle_deg": 38.49,
-      "radius": 47.0
+      "angle_deg": 37.96,
+      "radius": 192.0
     }
   },
   {
@@ -4765,11 +4765,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 43.831,
-    "position_y": 34.855,
+    "position_x": 179.568,
+    "position_y": 140.496,
     "polar": {
-      "angle_deg": 38.49,
-      "radius": 56.0
+      "angle_deg": 38.04,
+      "radius": 228.0
     }
   },
   {
@@ -4806,11 +4806,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 8.61,
-    "position_y": 6.847,
+    "position_x": 38.663,
+    "position_y": 28.446,
     "polar": {
-      "angle_deg": 38.49,
-      "radius": 11.0
+      "angle_deg": 36.34,
+      "radius": 48.0
     }
   },
   {
@@ -4847,11 +4847,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 18.002,
-    "position_y": 14.315,
+    "position_x": 78.379,
+    "position_y": 55.433,
     "polar": {
-      "angle_deg": 38.49,
-      "radius": 23.0
+      "angle_deg": 35.27,
+      "radius": 96.0
     }
   },
   {
@@ -4888,11 +4888,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 3.325,
-    "position_y": 3.734,
+    "position_x": 19.851,
+    "position_y": 13.488,
     "polar": {
-      "angle_deg": 48.32,
-      "radius": 5.0
+      "angle_deg": 34.2,
+      "radius": 24.0
     }
   },
   {
@@ -4929,11 +4929,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 27.905,
-    "position_y": 15.662,
+    "position_x": 116.033,
+    "position_y": 62.932,
     "polar": {
-      "angle_deg": 29.3,
-      "radius": 32.0
+      "angle_deg": 28.47,
+      "radius": 132.0
     }
   },
   {
@@ -4970,11 +4970,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 36.713,
-    "position_y": 18.252,
+    "position_x": 147.05,
+    "position_y": 81.243,
     "polar": {
-      "angle_deg": 26.43,
-      "radius": 41.0
+      "angle_deg": 28.92,
+      "radius": 168.0
     }
   },
   {
@@ -5011,11 +5011,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 43.847,
-    "position_y": 24.029,
+    "position_x": 179.79,
+    "position_y": 96.394,
     "polar": {
-      "angle_deg": 28.72,
-      "radius": 50.0
+      "angle_deg": 28.2,
+      "radius": 204.0
     }
   },
   {
@@ -5052,11 +5052,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 51.818,
-    "position_y": 28.212,
+    "position_x": 211.667,
+    "position_y": 113.124,
     "polar": {
-      "angle_deg": 28.57,
-      "radius": 59.0
+      "angle_deg": 28.12,
+      "radius": 240.0
     }
   },
   {
@@ -5093,11 +5093,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 11.953,
-    "position_y": 7.289,
+    "position_x": 52.267,
+    "position_y": 29.464,
     "polar": {
-      "angle_deg": 31.38,
-      "radius": 14.0
+      "angle_deg": 29.41,
+      "radius": 60.0
     }
   },
   {
@@ -5134,11 +5134,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 19.932,
-    "position_y": 11.477,
+    "position_x": 84.152,
+    "position_y": 46.199,
     "polar": {
-      "angle_deg": 29.93,
-      "radius": 23.0
+      "angle_deg": 28.77,
+      "radius": 96.0
     }
   },
   {
@@ -5175,11 +5175,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 27.394,
-    "position_y": -21.784,
+    "position_x": 112.708,
+    "position_y": -89.627,
     "polar": {
       "angle_deg": 321.51,
-      "radius": 35.0
+      "radius": 144.0
     }
   },
   {
@@ -5216,11 +5216,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 41.483,
-    "position_y": -32.988,
+    "position_x": 169.061,
+    "position_y": -134.44,
     "polar": {
       "angle_deg": 321.51,
-      "radius": 53.0
+      "radius": 216.0
     }
   },
   {
@@ -5257,11 +5257,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 8.61,
-    "position_y": -6.847,
+    "position_x": 37.569,
+    "position_y": -29.876,
     "polar": {
       "angle_deg": 321.51,
-      "radius": 11.0
+      "radius": 48.0
     }
   },
   {
@@ -5298,11 +5298,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 15.654,
-    "position_y": -12.448,
+    "position_x": 65.746,
+    "position_y": -52.282,
     "polar": {
       "angle_deg": 321.51,
-      "radius": 20.0
+      "radius": 84.0
     }
   },
   {
@@ -5339,11 +5339,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 29.141,
-    "position_y": -19.385,
+    "position_x": 119.896,
+    "position_y": -79.756,
     "polar": {
       "angle_deg": 326.37,
-      "radius": 35.0
+      "radius": 144.0
     }
   },
   {
@@ -5380,11 +5380,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 44.128,
-    "position_y": -29.355,
+    "position_x": 179.844,
+    "position_y": -119.634,
     "polar": {
       "angle_deg": 326.37,
-      "radius": 53.0
+      "radius": 216.0
     }
   },
   {
@@ -5421,11 +5421,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 9.159,
-    "position_y": -6.092,
+    "position_x": 39.965,
+    "position_y": -26.585,
     "polar": {
       "angle_deg": 326.37,
-      "radius": 11.0
+      "radius": 48.0
     }
   },
   {
@@ -5462,11 +5462,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 16.652,
-    "position_y": -11.077,
+    "position_x": 69.939,
+    "position_y": -46.524,
     "polar": {
       "angle_deg": 326.37,
-      "radius": 20.0
+      "radius": 84.0
     }
   },
   {
@@ -5503,11 +5503,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 32.508,
-    "position_y": -12.971,
+    "position_x": 133.746,
+    "position_y": -53.366,
     "polar": {
       "angle_deg": 338.25,
-      "radius": 35.0
+      "radius": 144.0
     }
   },
   {
@@ -5544,11 +5544,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 49.226,
-    "position_y": -19.642,
+    "position_x": 200.62,
+    "position_y": -80.048,
     "polar": {
       "angle_deg": 338.25,
-      "radius": 53.0
+      "radius": 216.0
     }
   },
   {
@@ -5585,11 +5585,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 10.217,
-    "position_y": -4.077,
+    "position_x": 45.069,
+    "position_y": -21.185,
     "polar": {
-      "angle_deg": 338.25,
-      "radius": 11.0
+      "angle_deg": 334.82,
+      "radius": 49.8
     }
   },
   {
@@ -5626,11 +5626,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 18.576,
-    "position_y": -7.412,
+    "position_x": 78.019,
+    "position_y": -31.13,
     "polar": {
       "angle_deg": 338.25,
-      "radius": 20.0
+      "radius": 84.0
     }
   },
   {
@@ -5667,11 +5667,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 4.992,
-    "position_y": 0.283,
+    "position_x": 24.29,
+    "position_y": -8.696,
     "polar": {
-      "angle_deg": 3.25,
-      "radius": 5.0
+      "angle_deg": 340.3,
+      "radius": 25.8
     }
   },
   {
@@ -5708,11 +5708,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 27.905,
-    "position_y": -15.662,
+    "position_x": 118.51,
+    "position_y": -58.133,
     "polar": {
-      "angle_deg": 330.7,
-      "radius": 32.0
+      "angle_deg": 333.87,
+      "radius": 132.0
     }
   },
   {
@@ -5749,11 +5749,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 36.713,
-    "position_y": -18.252,
+    "position_x": 149.585,
+    "position_y": -76.475,
     "polar": {
-      "angle_deg": 333.57,
-      "radius": 41.0
+      "angle_deg": 332.92,
+      "radius": 168.0
     }
   },
   {
@@ -5790,11 +5790,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 44.684,
-    "position_y": -22.436,
+    "position_x": 181.462,
+    "position_y": -93.206,
     "polar": {
-      "angle_deg": 333.34,
-      "radius": 50.0
+      "angle_deg": 332.81,
+      "radius": 204.0
     }
   },
   {
@@ -5831,11 +5831,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 52.654,
-    "position_y": -26.619,
+    "position_x": 213.34,
+    "position_y": -109.937,
     "polar": {
-      "angle_deg": 333.18,
-      "radius": 59.0
+      "angle_deg": 332.74,
+      "radius": 240.0
     }
   },
   {
@@ -5872,11 +5872,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 11.953,
-    "position_y": -7.289,
+    "position_x": 54.704,
+    "position_y": -24.647,
     "polar": {
-      "angle_deg": 328.62,
-      "radius": 14.0
+      "angle_deg": 335.75,
+      "radius": 60.0
     }
   },
   {
@@ -5913,11 +5913,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 20.768,
-    "position_y": -9.884,
+    "position_x": 85.825,
+    "position_y": -43.012,
     "polar": {
-      "angle_deg": 334.55,
-      "radius": 23.0
+      "angle_deg": 333.38,
+      "radius": 96.0
     }
   },
   {
@@ -5954,11 +5954,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 33.49,
-    "position_y": -10.17,
+    "position_x": 137.253,
+    "position_y": -43.562,
     "polar": {
-      "angle_deg": 343.11,
-      "radius": 35.0
+      "angle_deg": 342.39,
+      "radius": 144.0
     }
   },
   {
@@ -5995,11 +5995,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 50.713,
-    "position_y": -15.4,
+    "position_x": 206.15,
+    "position_y": -64.484,
     "polar": {
-      "angle_deg": 343.11,
-      "radius": 53.0
+      "angle_deg": 342.63,
+      "radius": 216.0
     }
   },
   {
@@ -6036,11 +6036,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 10.525,
-    "position_y": -3.196,
+    "position_x": 44.755,
+    "position_y": -17.35,
     "polar": {
-      "angle_deg": 343.11,
-      "radius": 11.0
+      "angle_deg": 338.81,
+      "radius": 48.0
     }
   },
   {
@@ -6077,11 +6077,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 19.137,
-    "position_y": -5.811,
+    "position_x": 79.834,
+    "position_y": -26.125,
     "polar": {
-      "angle_deg": 343.11,
-      "radius": 20.0
+      "angle_deg": 341.88,
+      "radius": 84.0
     }
   },
   {
@@ -6118,11 +6118,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 33.474,
-    "position_y": 32.992,
+    "position_x": 136.745,
+    "position_y": 134.777,
     "polar": {
       "angle_deg": 44.58,
-      "radius": 47.0
+      "radius": 192.0
     }
   },
   {
@@ -6159,11 +6159,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 44.157,
-    "position_y": 43.522,
+    "position_x": 179.478,
+    "position_y": 176.894,
     "polar": {
       "angle_deg": 44.58,
-      "radius": 62.0
+      "radius": 252.0
     }
   },
   {
@@ -6200,11 +6200,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 7.834,
-    "position_y": 7.722,
+    "position_x": 34.186,
+    "position_y": 33.694,
     "polar": {
       "angle_deg": 44.58,
-      "radius": 11.0
+      "radius": 48.0
     }
   },
   {
@@ -6241,11 +6241,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 16.381,
-    "position_y": 16.145,
+    "position_x": 68.373,
+    "position_y": 67.388,
     "polar": {
       "angle_deg": 44.58,
-      "radius": 23.0
+      "radius": 96.0
     }
   },
   {
@@ -6282,11 +6282,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 30.559,
-    "position_y": 35.71,
+    "position_x": 124.835,
+    "position_y": 145.877,
     "polar": {
       "angle_deg": 49.44,
-      "radius": 47.0
+      "radius": 192.0
     }
   },
   {
@@ -6323,11 +6323,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 40.311,
-    "position_y": 47.106,
+    "position_x": 163.846,
+    "position_y": 191.464,
     "polar": {
       "angle_deg": 49.44,
-      "radius": 62.0
+      "radius": 252.0
     }
   },
   {
@@ -6364,11 +6364,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 7.152,
-    "position_y": 8.358,
+    "position_x": 31.209,
+    "position_y": 36.469,
     "polar": {
       "angle_deg": 49.44,
-      "radius": 11.0
+      "radius": 48.0
     }
   },
   {
@@ -6405,11 +6405,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 14.954,
-    "position_y": 17.475,
+    "position_x": 62.418,
+    "position_y": 72.939,
     "polar": {
       "angle_deg": 49.44,
-      "radius": 23.0
+      "radius": 96.0
     }
   },
   {
@@ -6446,11 +6446,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 22.553,
-    "position_y": 41.236,
+    "position_x": 92.131,
+    "position_y": 168.452,
     "polar": {
       "angle_deg": 61.32,
-      "radius": 47.0
+      "radius": 192.0
     }
   },
   {
@@ -6487,11 +6487,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 29.75,
-    "position_y": 54.396,
+    "position_x": 120.921,
+    "position_y": 221.093,
     "polar": {
       "angle_deg": 61.32,
-      "radius": 62.0
+      "radius": 252.0
     }
   },
   {
@@ -6528,11 +6528,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 5.278,
-    "position_y": 9.651,
+    "position_x": 26.463,
+    "position_y": 42.187,
     "polar": {
-      "angle_deg": 61.32,
-      "radius": 11.0
+      "angle_deg": 57.9,
+      "radius": 49.8
     }
   },
   {
@@ -6569,11 +6569,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 11.036,
-    "position_y": 20.179,
+    "position_x": 46.065,
+    "position_y": 84.226,
     "polar": {
       "angle_deg": 61.32,
-      "radius": 23.0
+      "radius": 96.0
     }
   },
   {
@@ -6610,11 +6610,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 1.209,
-    "position_y": 4.852,
+    "position_x": 11.309,
+    "position_y": 21.169,
     "polar": {
-      "angle_deg": 76.01,
-      "radius": 5.0
+      "angle_deg": 61.89,
+      "radius": 24.0
     }
   },
   {
@@ -6651,11 +6651,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 17.43,
-    "position_y": 26.836,
+    "position_x": 73.496,
+    "position_y": 109.646,
     "polar": {
-      "angle_deg": 57.0,
-      "radius": 32.0
+      "angle_deg": 56.17,
+      "radius": 132.0
     }
   },
   {
@@ -6692,11 +6692,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 23.291,
-    "position_y": 33.742,
+    "position_x": 95.435,
+    "position_y": 138.261,
     "polar": {
       "angle_deg": 55.38,
-      "radius": 41.0
+      "radius": 168.0
     }
   },
   {
@@ -6733,11 +6733,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 27.658,
-    "position_y": 41.654,
+    "position_x": 114.399,
+    "position_y": 168.905,
     "polar": {
-      "angle_deg": 56.42,
-      "radius": 50.0
+      "angle_deg": 55.89,
+      "radius": 204.0
     }
   },
   {
@@ -6774,11 +6774,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 32.771,
-    "position_y": 49.062,
+    "position_x": 134.85,
+    "position_y": 198.533,
     "polar": {
-      "angle_deg": 56.26,
-      "radius": 59.0
+      "angle_deg": 55.81,
+      "radius": 240.0
     }
   },
   {
@@ -6815,11 +6815,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 7.196,
-    "position_y": 12.009,
+    "position_x": 32.587,
+    "position_y": 50.379,
     "polar": {
-      "angle_deg": 59.07,
-      "radius": 14.0
+      "angle_deg": 57.1,
+      "radius": 60.0
     }
   },
   {
@@ -6856,11 +6856,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 12.315,
-    "position_y": 19.425,
+    "position_x": 53.043,
+    "position_y": 80.015,
     "polar": {
-      "angle_deg": 57.63,
-      "radius": 23.0
+      "angle_deg": 56.46,
+      "radius": 96.0
     }
   },
   {
@@ -6897,11 +6897,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 18.978,
-    "position_y": 42.998,
+    "position_x": 79.171,
+    "position_y": 174.917,
     "polar": {
-      "angle_deg": 66.18,
-      "radius": 47.0
+      "angle_deg": 65.65,
+      "radius": 192.0
     }
   },
   {
@@ -6938,11 +6938,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 25.035,
-    "position_y": 56.721,
+    "position_x": 103.399,
+    "position_y": 229.81,
     "polar": {
-      "angle_deg": 66.18,
-      "radius": 62.0
+      "angle_deg": 65.78,
+      "radius": 252.0
     }
   },
   {
@@ -6979,11 +6979,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 4.442,
-    "position_y": 10.063,
+    "position_x": 21.015,
+    "position_y": 43.155,
     "polar": {
-      "angle_deg": 66.18,
-      "radius": 11.0
+      "angle_deg": 64.04,
+      "radius": 48.0
     }
   },
   {
@@ -7020,11 +7020,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 9.287,
-    "position_y": 21.042,
+    "position_x": 40.404,
+    "position_y": 87.084,
     "polar": {
-      "angle_deg": 66.18,
-      "radius": 23.0
+      "angle_deg": 65.11,
+      "radius": 96.0
     }
   },
   {
@@ -7061,11 +7061,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -21.385,
-    "position_y": 27.707,
+    "position_x": -87.983,
+    "position_y": 113.995,
     "polar": {
       "angle_deg": 127.66,
-      "radius": 35.0
+      "radius": 144.0
     }
   },
   {
@@ -7102,11 +7102,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -28.717,
-    "position_y": 37.207,
+    "position_x": -117.311,
+    "position_y": 151.994,
     "polar": {
       "angle_deg": 127.66,
-      "radius": 47.0
+      "radius": 192.0
     }
   },
   {
@@ -7143,11 +7143,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -6.721,
-    "position_y": 8.708,
+    "position_x": -29.328,
+    "position_y": 37.998,
     "polar": {
       "angle_deg": 127.66,
-      "radius": 11.0
+      "radius": 48.0
     }
   },
   {
@@ -7184,11 +7184,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -14.053,
-    "position_y": 18.208,
+    "position_x": -58.656,
+    "position_y": 75.997,
     "polar": {
       "angle_deg": 127.66,
-      "radius": 23.0
+      "radius": 96.0
     }
   },
   {
@@ -7225,11 +7225,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -23.655,
-    "position_y": 25.796,
+    "position_x": -97.325,
+    "position_y": 106.131,
     "polar": {
       "angle_deg": 132.52,
-      "radius": 35.0
+      "radius": 144.0
     }
   },
   {
@@ -7266,11 +7266,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -31.766,
-    "position_y": 34.64,
+    "position_x": -129.767,
+    "position_y": 141.508,
     "polar": {
       "angle_deg": 132.52,
-      "radius": 47.0
+      "radius": 192.0
     }
   },
   {
@@ -7307,11 +7307,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -7.435,
-    "position_y": 8.107,
+    "position_x": -33.658,
+    "position_y": 36.704,
     "polar": {
       "angle_deg": 132.52,
-      "radius": 11.0
+      "radius": 49.8
     }
   },
   {
@@ -7348,11 +7348,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -15.545,
-    "position_y": 16.952,
+    "position_x": -64.883,
+    "position_y": 70.754,
     "polar": {
       "angle_deg": 132.52,
-      "radius": 23.0
+      "radius": 96.0
     }
   },
   {
@@ -7389,11 +7389,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -28.459,
-    "position_y": 20.374,
+    "position_x": -117.089,
+    "position_y": 83.823,
     "polar": {
       "angle_deg": 144.4,
-      "radius": 35.0
+      "radius": 144.0
     }
   },
   {
@@ -7430,11 +7430,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -38.216,
-    "position_y": 27.359,
+    "position_x": -156.118,
+    "position_y": 111.763,
     "polar": {
       "angle_deg": 144.4,
-      "radius": 47.0
+      "radius": 192.0
     }
   },
   {
@@ -7471,11 +7471,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -8.944,
-    "position_y": 6.403,
+    "position_x": -38.69,
+    "position_y": 31.355,
     "polar": {
-      "angle_deg": 144.4,
-      "radius": 11.0
+      "angle_deg": 140.98,
+      "radius": 49.8
     }
   },
   {
@@ -7512,11 +7512,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -18.702,
-    "position_y": 13.388,
+    "position_x": -78.059,
+    "position_y": 55.882,
     "polar": {
       "angle_deg": 144.4,
-      "radius": 23.0
+      "radius": 96.0
     }
   },
   {
@@ -7553,11 +7553,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -30.083,
-    "position_y": 17.889,
+    "position_x": -122.84,
+    "position_y": 75.143,
     "polar": {
-      "angle_deg": 149.26,
-      "radius": 35.0
+      "angle_deg": 148.55,
+      "radius": 144.0
     }
   },
   {
@@ -7594,11 +7594,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -40.397,
-    "position_y": 24.023,
+    "position_x": -164.099,
+    "position_y": 99.678,
     "polar": {
-      "angle_deg": 149.26,
-      "radius": 47.0
+      "angle_deg": 148.72,
+      "radius": 192.0
     }
   },
   {
@@ -7635,11 +7635,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -9.455,
-    "position_y": 5.622,
+    "position_x": -40.308,
+    "position_y": 26.063,
     "polar": {
-      "angle_deg": 149.26,
-      "radius": 11.0
+      "angle_deg": 147.11,
+      "radius": 48.0
     }
   },
   {
@@ -7676,11 +7676,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -19.769,
-    "position_y": 11.756,
+    "position_x": -81.578,
+    "position_y": 50.606,
     "polar": {
-      "angle_deg": 149.26,
-      "radius": 23.0
+      "angle_deg": 148.19,
+      "radius": 96.0
     }
   },
   {
@@ -7717,11 +7717,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -4.671,
-    "position_y": 1.785,
+    "position_x": -19.651,
+    "position_y": 13.778,
     "polar": {
-      "angle_deg": 159.09,
-      "radius": 5.0
+      "angle_deg": 144.96,
+      "radius": 24.0
     }
   },
   {
@@ -7758,11 +7758,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -24.54,
-    "position_y": 20.538,
+    "position_x": -99.988,
+    "position_y": 86.177,
     "polar": {
-      "angle_deg": 140.07,
-      "radius": 32.0
+      "angle_deg": 139.24,
+      "radius": 132.0
     }
   },
   {
@@ -7799,11 +7799,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -31.278,
-    "position_y": 26.508,
+    "position_x": -126.936,
+    "position_y": 110.051,
     "polar": {
-      "angle_deg": 139.72,
-      "radius": 41.0
+      "angle_deg": 139.08,
+      "radius": 168.0
     }
   },
   {
@@ -7840,11 +7840,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -38.016,
-    "position_y": 32.477,
+    "position_x": -153.884,
+    "position_y": 133.924,
     "polar": {
-      "angle_deg": 139.49,
-      "radius": 50.0
+      "angle_deg": 138.97,
+      "radius": 204.0
     }
   },
   {
@@ -7881,11 +7881,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -44.754,
-    "position_y": 38.446,
+    "position_x": -180.831,
+    "position_y": 157.798,
     "polar": {
-      "angle_deg": 139.34,
-      "radius": 59.0
+      "angle_deg": 138.89,
+      "radius": 240.0
     }
   },
   {
@@ -7922,11 +7922,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -11.054,
-    "position_y": 8.591,
+    "position_x": -46.084,
+    "position_y": 38.422,
     "polar": {
-      "angle_deg": 142.14,
-      "radius": 14.0
+      "angle_deg": 140.18,
+      "radius": 60.0
     }
   },
   {
@@ -7963,11 +7963,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -17.799,
-    "position_y": 14.567,
+    "position_x": -73.038,
+    "position_y": 62.301,
     "polar": {
-      "angle_deg": 140.7,
-      "radius": 23.0
+      "angle_deg": 139.54,
+      "radius": 96.0
     }
   },
   {
@@ -8004,11 +8004,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -37.265,
-    "position_y": 17.098,
+    "position_x": -152.695,
+    "position_y": 70.058,
     "polar": {
       "angle_deg": 155.35,
-      "radius": 41.0
+      "radius": 168.0
     }
   },
   {
@@ -8045,11 +8045,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -48.172,
-    "position_y": 22.102,
+    "position_x": -196.323,
+    "position_y": 90.075,
     "polar": {
       "angle_deg": 155.35,
-      "radius": 53.0
+      "radius": 216.0
     }
   },
   {
@@ -8086,11 +8086,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -9.998,
-    "position_y": 4.587,
+    "position_x": -43.627,
+    "position_y": 20.017,
     "polar": {
       "angle_deg": 155.35,
-      "radius": 11.0
+      "radius": 48.0
     }
   },
   {
@@ -8127,11 +8127,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -26.358,
-    "position_y": 12.093,
+    "position_x": -109.068,
+    "position_y": 50.042,
     "polar": {
       "angle_deg": 155.35,
-      "radius": 29.0
+      "radius": 120.0
     }
   },
   {
@@ -8168,11 +8168,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -38.579,
-    "position_y": 13.879,
+    "position_x": -158.082,
+    "position_y": 56.87,
     "polar": {
       "angle_deg": 160.21,
-      "radius": 41.0
+      "radius": 168.0
     }
   },
   {
@@ -8209,11 +8209,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -49.871,
-    "position_y": 17.941,
+    "position_x": -203.248,
+    "position_y": 73.118,
     "polar": {
       "angle_deg": 160.21,
-      "radius": 53.0
+      "radius": 216.0
     }
   },
   {
@@ -8250,11 +8250,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -10.351,
-    "position_y": 3.724,
+    "position_x": -48.554,
+    "position_y": 17.467,
     "polar": {
       "angle_deg": 160.21,
-      "radius": 11.0
+      "radius": 51.6
     }
   },
   {
@@ -8291,11 +8291,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -27.288,
-    "position_y": 9.817,
+    "position_x": -112.916,
+    "position_y": 40.621,
     "polar": {
       "angle_deg": 160.21,
-      "radius": 29.0
+      "radius": 120.0
     }
   },
   {
@@ -8332,11 +8332,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -4.122,
-    "position_y": 2.83,
+    "position_x": -23.899,
+    "position_y": 2.197,
     "polar": {
-      "angle_deg": 145.53,
-      "radius": 5.0
+      "angle_deg": 174.75,
+      "radius": 24.0
     }
   },
   {
@@ -8373,11 +8373,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -31.273,
-    "position_y": 6.781,
+    "position_x": -128.583,
+    "position_y": 29.839,
     "polar": {
-      "angle_deg": 167.77,
-      "radius": 32.0
+      "angle_deg": 166.94,
+      "radius": 132.0
     }
   },
   {
@@ -8414,11 +8414,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -40.014,
-    "position_y": 8.936,
+    "position_x": -163.54,
+    "position_y": 38.455,
     "polar": {
-      "angle_deg": 167.41,
-      "radius": 41.0
+      "angle_deg": 166.77,
+      "radius": 168.0
     }
   },
   {
@@ -8455,11 +8455,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -48.755,
-    "position_y": 11.09,
+    "position_x": -198.495,
+    "position_y": 47.071,
     "polar": {
-      "angle_deg": 167.19,
-      "radius": 50.0
+      "angle_deg": 166.66,
+      "radius": 204.0
     }
   },
   {
@@ -8496,11 +8496,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -57.494,
-    "position_y": 13.244,
+    "position_x": -233.45,
+    "position_y": 55.686,
     "polar": {
-      "angle_deg": 167.03,
-      "radius": 59.0
+      "angle_deg": 166.58,
+      "radius": 240.0
     }
   },
   {
@@ -8537,11 +8537,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -13.78,
-    "position_y": 2.47,
+    "position_x": -58.661,
+    "position_y": 12.605,
     "polar": {
-      "angle_deg": 169.84,
-      "radius": 14.0
+      "angle_deg": 167.87,
+      "radius": 60.0
     }
   },
   {
@@ -8578,11 +8578,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -22.099,
-    "position_y": 6.374,
+    "position_x": -94.006,
+    "position_y": 19.464,
     "polar": {
-      "angle_deg": 163.91,
-      "radius": 23.0
+      "angle_deg": 168.3,
+      "radius": 96.0
     }
   },
   {
@@ -8619,11 +8619,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -40.61,
-    "position_y": 5.64,
+    "position_x": -166.403,
+    "position_y": 23.109,
     "polar": {
       "angle_deg": 172.09,
-      "radius": 41.0
+      "radius": 168.0
     }
   },
   {
@@ -8660,11 +8660,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -52.496,
-    "position_y": 7.29,
+    "position_x": -213.947,
+    "position_y": 29.711,
     "polar": {
       "angle_deg": 172.09,
-      "radius": 53.0
+      "radius": 216.0
     }
   },
   {
@@ -8701,11 +8701,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -10.895,
-    "position_y": 1.513,
+    "position_x": -50.959,
+    "position_y": 8.11,
     "polar": {
-      "angle_deg": 172.09,
-      "radius": 11.0
+      "angle_deg": 170.96,
+      "radius": 51.6
     }
   },
   {
@@ -8742,11 +8742,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -28.724,
-    "position_y": 3.989,
+    "position_x": -118.859,
+    "position_y": 16.506,
     "polar": {
       "angle_deg": 172.09,
-      "radius": 29.0
+      "radius": 120.0
     }
   },
   {
@@ -8783,11 +8783,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -40.942,
-    "position_y": 2.179,
+    "position_x": -167.657,
+    "position_y": 10.724,
     "polar": {
-      "angle_deg": 176.95,
-      "radius": 41.0
+      "angle_deg": 176.34,
+      "radius": 168.0
     }
   },
   {
@@ -8824,11 +8824,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -52.925,
-    "position_y": 2.816,
+    "position_x": -215.592,
+    "position_y": 13.275,
     "polar": {
-      "angle_deg": 176.95,
-      "radius": 53.0
+      "angle_deg": 176.48,
+      "radius": 216.0
     }
   },
   {
@@ -8865,11 +8865,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -10.984,
-    "position_y": 0.585,
+    "position_x": -51.4,
+    "position_y": 4.537,
     "polar": {
-      "angle_deg": 176.95,
-      "radius": 11.0
+      "angle_deg": 174.96,
+      "radius": 51.6
     }
   },
   {
@@ -8906,11 +8906,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -28.959,
-    "position_y": 1.541,
+    "position_x": -119.721,
+    "position_y": 8.174,
     "polar": {
-      "angle_deg": 176.95,
-      "radius": 29.0
+      "angle_deg": 176.09,
+      "radius": 120.0
     }
   },
   {
@@ -8947,11 +8947,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -23.035,
-    "position_y": -37.488,
+    "position_x": -94.235,
+    "position_y": -153.361,
     "polar": {
       "angle_deg": 238.43,
-      "radius": 44.0
+      "radius": 180.0
     }
   },
   {
@@ -8988,11 +8988,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -29.318,
-    "position_y": -47.712,
+    "position_x": -119.364,
+    "position_y": -194.258,
     "polar": {
       "angle_deg": 238.43,
-      "radius": 56.0
+      "radius": 228.0
     }
   },
   {
@@ -9029,11 +9029,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -5.759,
-    "position_y": -9.372,
+    "position_x": -25.129,
+    "position_y": -40.896,
     "polar": {
       "angle_deg": 238.43,
-      "radius": 11.0
+      "radius": 48.0
     }
   },
   {
@@ -9070,11 +9070,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -10.471,
-    "position_y": -17.04,
+    "position_x": -43.976,
+    "position_y": -71.569,
     "polar": {
       "angle_deg": 238.43,
-      "radius": 20.0
+      "radius": 84.0
     }
   },
   {
@@ -9111,11 +9111,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -19.776,
-    "position_y": -39.305,
+    "position_x": -80.903,
+    "position_y": -160.794,
     "polar": {
       "angle_deg": 243.29,
-      "radius": 44.0
+      "radius": 180.0
     }
   },
   {
@@ -9152,11 +9152,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -25.17,
-    "position_y": -50.025,
+    "position_x": -102.478,
+    "position_y": -203.672,
     "polar": {
       "angle_deg": 243.29,
-      "radius": 56.0
+      "radius": 228.0
     }
   },
   {
@@ -9193,11 +9193,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -4.944,
-    "position_y": -9.826,
+    "position_x": -21.574,
+    "position_y": -42.878,
     "polar": {
       "angle_deg": 243.29,
-      "radius": 11.0
+      "radius": 48.0
     }
   },
   {
@@ -9234,11 +9234,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -8.989,
-    "position_y": -17.866,
+    "position_x": -37.755,
+    "position_y": -75.037,
     "polar": {
       "angle_deg": 243.29,
-      "radius": 20.0
+      "radius": 84.0
     }
   },
   {
@@ -9275,11 +9275,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -11.261,
-    "position_y": -42.534,
+    "position_x": -46.069,
+    "position_y": -174.005,
     "polar": {
       "angle_deg": 255.17,
-      "radius": 44.0
+      "radius": 180.0
     }
   },
   {
@@ -9316,11 +9316,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -14.333,
-    "position_y": -54.135,
+    "position_x": -58.354,
+    "position_y": -220.406,
     "polar": {
       "angle_deg": 255.17,
-      "radius": 56.0
+      "radius": 228.0
     }
   },
   {
@@ -9357,11 +9357,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -2.815,
-    "position_y": -10.634,
+    "position_x": -13.564,
+    "position_y": -46.044,
     "polar": {
-      "angle_deg": 255.17,
-      "radius": 11.0
+      "angle_deg": 253.58,
+      "radius": 48.0
     }
   },
   {
@@ -9398,11 +9398,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -5.119,
-    "position_y": -19.334,
+    "position_x": -21.499,
+    "position_y": -81.202,
     "polar": {
       "angle_deg": 255.17,
-      "radius": 20.0
+      "radius": 84.0
     }
   },
   {
@@ -9439,11 +9439,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -2.581,
-    "position_y": -4.282,
+    "position_x": -7.641,
+    "position_y": -22.751,
     "polar": {
-      "angle_deg": 238.92,
-      "radius": 5.0
+      "angle_deg": 251.44,
+      "radius": 24.0
     }
   },
   {
@@ -9480,11 +9480,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -10.501,
-    "position_y": -30.228,
+    "position_x": -45.121,
+    "position_y": -124.049,
     "polar": {
-      "angle_deg": 250.84,
-      "radius": 32.0
+      "angle_deg": 250.01,
+      "radius": 132.0
     }
   },
   {
@@ -9521,11 +9521,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -14.539,
-    "position_y": -38.336,
+    "position_x": -59.574,
+    "position_y": -157.083,
     "polar": {
       "angle_deg": 249.23,
-      "radius": 41.0
+      "radius": 168.0
     }
   },
   {
@@ -9562,11 +9562,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -16.886,
-    "position_y": -47.062,
+    "position_x": -70.654,
+    "position_y": -191.374,
     "polar": {
-      "angle_deg": 250.26,
-      "radius": 50.0
+      "angle_deg": 249.74,
+      "radius": 204.0
     }
   },
   {
@@ -9603,11 +9603,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -20.078,
-    "position_y": -55.479,
+    "position_x": -83.42,
+    "position_y": -225.036,
     "polar": {
-      "angle_deg": 250.1,
-      "radius": 59.0
+      "angle_deg": 249.66,
+      "radius": 240.0
     }
   },
   {
@@ -9644,11 +9644,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -4.113,
-    "position_y": -13.382,
+    "position_x": -19.584,
+    "position_y": -56.714,
     "polar": {
-      "angle_deg": 252.91,
-      "radius": 14.0
+      "angle_deg": 250.95,
+      "radius": 60.0
     }
   },
   {
@@ -9685,11 +9685,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -7.308,
-    "position_y": -21.808,
+    "position_x": -32.353,
+    "position_y": -90.384,
     "polar": {
-      "angle_deg": 251.47,
-      "radius": 23.0
+      "angle_deg": 250.31,
+      "radius": 96.0
     }
   },
   {
@@ -9726,11 +9726,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -7.617,
-    "position_y": -43.336,
+    "position_x": -32.933,
+    "position_y": -176.962,
     "polar": {
-      "angle_deg": 260.03,
-      "radius": 44.0
+      "angle_deg": 259.46,
+      "radius": 180.0
     }
   },
   {
@@ -9767,11 +9767,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -9.695,
-    "position_y": -55.154,
+    "position_x": -41.243,
+    "position_y": -224.239,
     "polar": {
-      "angle_deg": 260.03,
-      "radius": 56.0
+      "angle_deg": 259.58,
+      "radius": 228.0
     }
   },
   {
@@ -9808,11 +9808,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -1.904,
-    "position_y": -10.834,
+    "position_x": -10.076,
+    "position_y": -46.93,
     "polar": {
-      "angle_deg": 260.03,
-      "radius": 11.0
+      "angle_deg": 257.88,
+      "radius": 48.0
     }
   },
   {
@@ -9849,11 +9849,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -3.462,
-    "position_y": -19.698,
+    "position_x": -16.311,
+    "position_y": -82.401,
     "polar": {
-      "angle_deg": 260.03,
-      "radius": 20.0
+      "angle_deg": 258.8,
+      "radius": 84.0
     }
   },
   {
@@ -9881,11 +9881,11 @@
       "groups": []
     },
     "ability_prereqs": [],
-    "position_x": -9.029,
-    "position_y": 6.283,
+    "position_x": -32.524,
+    "position_y": -44.601,
     "polar": {
-      "angle_deg": 145.17,
-      "radius": 11.0
+      "angle_deg": 233.9,
+      "radius": 55.2
     }
   },
   {
@@ -9913,11 +9913,11 @@
       "groups": []
     },
     "ability_prereqs": [],
-    "position_x": 4.219,
-    "position_y": -2.684,
+    "position_x": -23.259,
+    "position_y": -20.796,
     "polar": {
-      "angle_deg": 327.54,
-      "radius": 5.0
+      "angle_deg": 221.8,
+      "radius": 31.2
     }
   },
   {
@@ -9945,11 +9945,11 @@
       "groups": []
     },
     "ability_prereqs": [],
-    "position_x": 7.929,
-    "position_y": 1.066,
+    "position_x": -29.196,
+    "position_y": 26.753,
     "polar": {
-      "angle_deg": 7.66,
-      "radius": 8.0
+      "angle_deg": 137.5,
+      "radius": 39.6
     }
   },
   {
@@ -9977,11 +9977,11 @@
       "groups": []
     },
     "ability_prereqs": [],
-    "position_x": -1.298,
-    "position_y": 4.829,
+    "position_x": 9.848,
+    "position_y": -29.605,
     "polar": {
-      "angle_deg": 105.05,
-      "radius": 5.0
+      "angle_deg": 288.4,
+      "radius": 31.2
     }
   },
   {
@@ -10018,11 +10018,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -2.164,
-    "position_y": -31.927,
+    "position_x": -8.925,
+    "position_y": -131.698,
     "polar": {
       "angle_deg": 266.12,
-      "radius": 32.0
+      "radius": 132.0
     }
   },
   {
@@ -10059,11 +10059,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -2.975,
-    "position_y": -43.899,
+    "position_x": -12.17,
+    "position_y": -179.588,
     "polar": {
       "angle_deg": 266.12,
-      "radius": 44.0
+      "radius": 180.0
     }
   },
   {
@@ -10100,11 +10100,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -0.744,
-    "position_y": -10.975,
+    "position_x": -3.245,
+    "position_y": -47.89,
     "polar": {
       "angle_deg": 266.12,
-      "radius": 11.0
+      "radius": 48.0
     }
   },
   {
@@ -10141,11 +10141,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -1.352,
-    "position_y": -19.954,
+    "position_x": -5.68,
+    "position_y": -83.808,
     "polar": {
       "angle_deg": 266.12,
-      "radius": 20.0
+      "radius": 84.0
     }
   },
   {
@@ -10182,11 +10182,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 0.549,
-    "position_y": -31.995,
+    "position_x": 2.265,
+    "position_y": -131.981,
     "polar": {
       "angle_deg": 270.98,
-      "radius": 32.0
+      "radius": 132.0
     }
   },
   {
@@ -10223,11 +10223,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 0.755,
-    "position_y": -43.994,
+    "position_x": 3.088,
+    "position_y": -179.974,
     "polar": {
       "angle_deg": 270.98,
-      "radius": 44.0
+      "radius": 180.0
     }
   },
   {
@@ -10264,11 +10264,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 0.189,
-    "position_y": -10.998,
+    "position_x": 0.824,
+    "position_y": -47.993,
     "polar": {
       "angle_deg": 270.98,
-      "radius": 11.0
+      "radius": 48.0
     }
   },
   {
@@ -10305,11 +10305,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 0.343,
-    "position_y": -19.997,
+    "position_x": 1.441,
+    "position_y": -83.988,
     "polar": {
       "angle_deg": 270.98,
-      "radius": 20.0
+      "radius": 84.0
     }
   },
   {
@@ -10346,11 +10346,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 7.124,
-    "position_y": -31.197,
+    "position_x": 29.386,
+    "position_y": -128.687,
     "polar": {
       "angle_deg": 282.86,
-      "radius": 32.0
+      "radius": 132.0
     }
   },
   {
@@ -10387,11 +10387,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 9.795,
-    "position_y": -42.896,
+    "position_x": 40.072,
+    "position_y": -175.483,
     "polar": {
       "angle_deg": 282.86,
-      "radius": 44.0
+      "radius": 180.0
     }
   },
   {
@@ -10428,11 +10428,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 2.449,
-    "position_y": -10.724,
+    "position_x": 7.615,
+    "position_y": -47.392,
     "polar": {
-      "angle_deg": 282.86,
-      "radius": 11.0
+      "angle_deg": 279.13,
+      "radius": 48.0
     }
   },
   {
@@ -10469,11 +10469,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 4.452,
-    "position_y": -19.498,
+    "position_x": 18.7,
+    "position_y": -81.892,
     "polar": {
       "angle_deg": 282.86,
-      "radius": 20.0
+      "radius": 84.0
     }
   },
   {
@@ -10510,11 +10510,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 9.741,
-    "position_y": -30.481,
+    "position_x": 36.739,
+    "position_y": -126.784,
     "polar": {
-      "angle_deg": 287.72,
-      "radius": 32.0
+      "angle_deg": 286.16,
+      "radius": 132.0
     }
   },
   {
@@ -10551,11 +10551,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 13.394,
-    "position_y": -41.912,
+    "position_x": 53.078,
+    "position_y": -171.996,
     "polar": {
-      "angle_deg": 287.72,
-      "radius": 44.0
+      "angle_deg": 287.15,
+      "radius": 180.0
     }
   },
   {
@@ -10592,11 +10592,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 3.349,
-    "position_y": -10.478,
+    "position_x": 11.145,
+    "position_y": -46.688,
     "polar": {
-      "angle_deg": 287.72,
-      "radius": 11.0
+      "angle_deg": 283.43,
+      "radius": 48.0
     }
   },
   {
@@ -10633,11 +10633,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 6.088,
-    "position_y": -19.051,
+    "position_x": 23.851,
+    "position_y": -80.543,
     "polar": {
-      "angle_deg": 287.72,
-      "radius": 20.0
+      "angle_deg": 286.5,
+      "radius": 84.0
     }
   },
   {
@@ -10674,11 +10674,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 2.313,
-    "position_y": -4.433,
+    "position_x": 4.888,
+    "position_y": -25.333,
     "polar": {
-      "angle_deg": 297.55,
-      "radius": 5.0
+      "angle_deg": 280.92,
+      "radius": 25.8
     }
   },
   {
@@ -10715,11 +10715,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 4.749,
-    "position_y": -31.646,
+    "position_x": 17.696,
+    "position_y": -130.808,
     "polar": {
-      "angle_deg": 278.53,
-      "radius": 32.0
+      "angle_deg": 277.7,
+      "radius": 132.0
     }
   },
   {
@@ -10756,11 +10756,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 5.834,
-    "position_y": -40.583,
+    "position_x": 22.036,
+    "position_y": -166.549,
     "polar": {
-      "angle_deg": 278.18,
-      "radius": 41.0
+      "angle_deg": 277.54,
+      "radius": 168.0
     }
   },
   {
@@ -10797,11 +10797,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 6.919,
-    "position_y": -49.519,
+    "position_x": 26.375,
+    "position_y": -202.288,
     "polar": {
-      "angle_deg": 277.95,
-      "radius": 50.0
+      "angle_deg": 277.43,
+      "radius": 204.0
     }
   },
   {
@@ -10838,11 +10838,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 8.004,
-    "position_y": -58.455,
+    "position_x": 30.715,
+    "position_y": -238.026,
     "polar": {
-      "angle_deg": 277.8,
-      "radius": 59.0
+      "angle_deg": 277.35,
+      "radius": 240.0
     }
   },
   {
@@ -10879,11 +10879,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 2.577,
-    "position_y": -13.761,
+    "position_x": 9.016,
+    "position_y": -59.319,
     "polar": {
-      "angle_deg": 280.61,
-      "radius": 14.0
+      "angle_deg": 278.64,
+      "radius": 60.0
     }
   },
   {
@@ -10920,11 +10920,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 2.772,
-    "position_y": -22.832,
+    "position_x": 11.572,
+    "position_y": -95.3,
     "polar": {
       "angle_deg": 276.92,
-      "radius": 23.0
+      "radius": 96.0
     }
   },
   {
@@ -10961,11 +10961,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -27.504,
-    "position_y": -16.356,
+    "position_x": -113.455,
+    "position_y": -67.468,
     "polar": {
       "angle_deg": 210.74,
-      "radius": 32.0
+      "radius": 132.0
     }
   },
   {
@@ -11002,11 +11002,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -37.818,
-    "position_y": -22.489,
+    "position_x": -154.712,
+    "position_y": -92.002,
     "polar": {
       "angle_deg": 210.74,
-      "radius": 44.0
+      "radius": 180.0
     }
   },
   {
@@ -11043,11 +11043,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -9.455,
-    "position_y": -5.622,
+    "position_x": -41.256,
+    "position_y": -24.534,
     "polar": {
       "angle_deg": 210.74,
-      "radius": 11.0
+      "radius": 48.0
     }
   },
   {
@@ -11084,11 +11084,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -17.19,
-    "position_y": -10.222,
+    "position_x": -72.199,
+    "position_y": -42.934,
     "polar": {
       "angle_deg": 210.74,
-      "radius": 20.0
+      "radius": 84.0
     }
   },
   {
@@ -11125,11 +11125,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -26.02,
-    "position_y": -18.627,
+    "position_x": -107.331,
+    "position_y": -76.837,
     "polar": {
       "angle_deg": 215.6,
-      "radius": 32.0
+      "radius": 132.0
     }
   },
   {
@@ -11166,11 +11166,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -35.777,
-    "position_y": -25.612,
+    "position_x": -146.361,
+    "position_y": -104.778,
     "polar": {
       "angle_deg": 215.6,
-      "radius": 44.0
+      "radius": 180.0
     }
   },
   {
@@ -11207,11 +11207,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -8.944,
-    "position_y": -6.403,
+    "position_x": -39.03,
+    "position_y": -27.941,
     "polar": {
       "angle_deg": 215.6,
-      "radius": 11.0
+      "radius": 48.0
     }
   },
   {
@@ -11248,11 +11248,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -16.262,
-    "position_y": -11.642,
+    "position_x": -68.302,
+    "position_y": -48.896,
     "polar": {
       "angle_deg": 215.6,
-      "radius": 20.0
+      "radius": 84.0
     }
   },
   {
@@ -11289,11 +11289,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -21.628,
-    "position_y": -23.585,
+    "position_x": -89.214,
+    "position_y": -97.287,
     "polar": {
       "angle_deg": 227.48,
-      "radius": 32.0
+      "radius": 132.0
     }
   },
   {
@@ -11330,11 +11330,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -29.738,
-    "position_y": -32.429,
+    "position_x": -121.656,
+    "position_y": -132.664,
     "polar": {
       "angle_deg": 227.48,
-      "radius": 44.0
+      "radius": 180.0
     }
   },
   {
@@ -11371,11 +11371,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -7.435,
-    "position_y": -8.107,
+    "position_x": -33.408,
+    "position_y": -34.466,
     "polar": {
-      "angle_deg": 227.48,
-      "radius": 11.0
+      "angle_deg": 225.89,
+      "radius": 48.0
     }
   },
   {
@@ -11412,11 +11412,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -13.517,
-    "position_y": -14.74,
+    "position_x": -56.773,
+    "position_y": -61.91,
     "polar": {
       "angle_deg": 227.48,
-      "radius": 20.0
+      "radius": 84.0
     }
   },
   {
@@ -11453,11 +11453,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -19.552,
-    "position_y": -25.332,
+    "position_x": -82.069,
+    "position_y": -103.386,
     "polar": {
-      "angle_deg": 232.34,
-      "radius": 32.0
+      "angle_deg": 231.56,
+      "radius": 132.0
     }
   },
   {
@@ -11494,11 +11494,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -26.884,
-    "position_y": -34.832,
+    "position_x": -111.399,
+    "position_y": -141.387,
     "polar": {
-      "angle_deg": 232.34,
-      "radius": 44.0
+      "angle_deg": 231.77,
+      "radius": 180.0
     }
   },
   {
@@ -11535,11 +11535,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -6.721,
-    "position_y": -8.708,
+    "position_x": -30.732,
+    "position_y": -36.872,
     "polar": {
-      "angle_deg": 232.34,
-      "radius": 11.0
+      "angle_deg": 230.19,
+      "radius": 48.0
     }
   },
   {
@@ -11576,11 +11576,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -12.22,
-    "position_y": -15.833,
+    "position_x": -52.737,
+    "position_y": -65.382,
     "polar": {
-      "angle_deg": 232.34,
-      "radius": 20.0
+      "angle_deg": 231.11,
+      "radius": 84.0
     }
   },
   {
@@ -11617,11 +11617,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -2.335,
-    "position_y": -4.421,
+    "position_x": -18.072,
+    "position_y": -18.413,
     "polar": {
-      "angle_deg": 242.16,
-      "radius": 5.0
+      "angle_deg": 225.54,
+      "radius": 25.8
     }
   },
   {
@@ -11658,11 +11658,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -23.346,
-    "position_y": -21.885,
+    "position_x": -97.601,
+    "position_y": -88.871,
     "polar": {
-      "angle_deg": 223.15,
-      "radius": 32.0
+      "angle_deg": 222.32,
+      "radius": 132.0
     }
   },
   {
@@ -11699,11 +11699,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -30.689,
-    "position_y": -27.188,
+    "position_x": -125.75,
+    "position_y": -111.405,
     "polar": {
       "angle_deg": 221.54,
-      "radius": 41.0
+      "radius": 168.0
     }
   },
   {
@@ -11740,11 +11740,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -36.823,
-    "position_y": -33.824,
+    "position_x": -151.497,
+    "position_y": -136.619,
     "polar": {
-      "angle_deg": 222.57,
-      "radius": 50.0
+      "angle_deg": 222.04,
+      "radius": 204.0
     }
   },
   {
@@ -11781,11 +11781,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -43.56,
-    "position_y": -39.793,
+    "position_x": -178.444,
+    "position_y": -160.492,
     "polar": {
-      "angle_deg": 222.41,
-      "radius": 59.0
+      "angle_deg": 221.97,
+      "radius": 240.0
     }
   },
   {
@@ -11822,11 +11822,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -9.861,
-    "position_y": -9.938,
+    "position_x": -43.697,
+    "position_y": -41.117,
     "polar": {
-      "angle_deg": 225.22,
-      "radius": 14.0
+      "angle_deg": 223.26,
+      "radius": 60.0
     }
   },
   {
@@ -11863,11 +11863,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -17.216,
-    "position_y": -15.252,
+    "position_x": -71.857,
+    "position_y": -63.66,
     "polar": {
       "angle_deg": 221.54,
-      "radius": 23.0
+      "radius": 96.0
     }
   },
   {
@@ -11896,11 +11896,11 @@
       "groups": []
     },
     "ability_prereqs": [],
-    "position_x": -4.562,
-    "position_y": -2.046,
+    "position_x": -22.807,
+    "position_y": -7.473,
     "polar": {
-      "angle_deg": 204.16,
-      "radius": 5.0
+      "angle_deg": 198.14,
+      "radius": 24.0
     }
   },
   {
@@ -11929,11 +11929,11 @@
       "groups": []
     },
     "ability_prereqs": [],
-    "position_x": 4.679,
-    "position_y": -1.761,
+    "position_x": 23.575,
+    "position_y": 4.497,
     "polar": {
-      "angle_deg": 339.37,
-      "radius": 5.0
+      "angle_deg": 10.8,
+      "radius": 24.0
     }
   },
   {
@@ -11962,11 +11962,11 @@
       "groups": []
     },
     "ability_prereqs": [],
-    "position_x": 4.108,
-    "position_y": -2.851,
+    "position_x": 15.783,
+    "position_y": -18.081,
     "polar": {
-      "angle_deg": 325.24,
-      "radius": 5.0
+      "angle_deg": 311.12,
+      "radius": 24.0
     }
   },
   {
@@ -11995,11 +11995,11 @@
       "groups": []
     },
     "ability_prereqs": [],
-    "position_x": -2.035,
-    "position_y": 4.567,
+    "position_x": -0.483,
+    "position_y": 25.795,
     "polar": {
-      "angle_deg": 114.02,
-      "radius": 5.0
+      "angle_deg": 91.07,
+      "radius": 25.8
     }
   },
   {
@@ -12028,11 +12028,11 @@
       "groups": []
     },
     "ability_prereqs": [],
-    "position_x": 0.883,
-    "position_y": 4.921,
+    "position_x": -12.565,
+    "position_y": 20.448,
     "polar": {
-      "angle_deg": 79.83,
-      "radius": 5.0
+      "angle_deg": 121.57,
+      "radius": 24.0
     }
   },
   {
@@ -12061,11 +12061,11 @@
       "groups": []
     },
     "ability_prereqs": [],
-    "position_x": 4.962,
-    "position_y": 0.615,
+    "position_x": 18.785,
+    "position_y": 14.938,
     "polar": {
-      "angle_deg": 7.07,
-      "radius": 5.0
+      "angle_deg": 38.49,
+      "radius": 24.0
     }
   },
   {
@@ -12094,11 +12094,11 @@
       "groups": []
     },
     "ability_prereqs": [],
-    "position_x": 2.603,
-    "position_y": -4.269,
+    "position_x": 22.964,
+    "position_y": -6.974,
     "polar": {
-      "angle_deg": 301.37,
-      "radius": 5.0
+      "angle_deg": 343.11,
+      "radius": 24.0
     }
   },
   {
@@ -12127,11 +12127,11 @@
       "groups": []
     },
     "ability_prereqs": [],
-    "position_x": 4.108,
-    "position_y": 2.851,
+    "position_x": 9.691,
+    "position_y": 21.956,
     "polar": {
-      "angle_deg": 34.76,
-      "radius": 5.0
+      "angle_deg": 66.18,
+      "radius": 24.0
     }
   },
   {
@@ -12160,11 +12160,11 @@
       "groups": []
     },
     "ability_prereqs": [],
-    "position_x": -2.335,
-    "position_y": 4.421,
+    "position_x": -20.628,
+    "position_y": 12.267,
     "polar": {
-      "angle_deg": 117.84,
-      "radius": 5.0
+      "angle_deg": 149.26,
+      "radius": 24.0
     }
   },
   {
@@ -12193,11 +12193,11 @@
       "groups": []
     },
     "ability_prereqs": [],
-    "position_x": -4.779,
-    "position_y": -1.47,
+    "position_x": -25.666,
+    "position_y": 2.63,
     "polar": {
-      "angle_deg": 197.09,
-      "radius": 5.0
+      "angle_deg": 174.15,
+      "radius": 25.8
     }
   },
   {
@@ -12226,11 +12226,11 @@
       "groups": []
     },
     "ability_prereqs": [],
-    "position_x": -0.012,
-    "position_y": -5.0,
+    "position_x": -5.914,
+    "position_y": -23.26,
     "polar": {
-      "angle_deg": 269.86,
-      "radius": 5.0
+      "angle_deg": 255.73,
+      "radius": 24.0
     }
   },
   {
@@ -12259,11 +12259,11 @@
       "groups": []
     },
     "ability_prereqs": [],
-    "position_x": -1.184,
-    "position_y": -4.858,
+    "position_x": 5.573,
+    "position_y": -23.344,
     "polar": {
-      "angle_deg": 256.3,
-      "radius": 5.0
+      "angle_deg": 283.43,
+      "radius": 24.0
     }
   },
   {
@@ -12292,11 +12292,11 @@
       "groups": []
     },
     "ability_prereqs": [],
-    "position_x": -4.671,
-    "position_y": -1.785,
+    "position_x": -15.384,
+    "position_y": -18.421,
     "polar": {
-      "angle_deg": 200.91,
-      "radius": 5.0
+      "angle_deg": 230.13,
+      "radius": 24.0
     }
   }
 ]

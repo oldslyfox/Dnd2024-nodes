@@ -69,7 +69,7 @@
     },
     "cross_zone": {
       "sampled_pairs": 400,
-      "mean_connectors_crossed": 6.57,
+      "mean_connectors_crossed": 6.61,
       "target": "meaningfully more than same-zone (Task 1)"
     }
   },

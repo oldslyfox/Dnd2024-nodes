@@ -11,7 +11,7 @@ import math
 from collections import Counter, defaultdict
 from pathlib import Path
 
-from . import chassis, config, connectors, prereqs, spines
+from . import chassis, config, connectors, layout as layout_module, prereqs, spines
 from .layout import Layout
 from .point_economy import compute_economy
 
@@ -74,6 +74,8 @@ class GraphBuilder:
         self.sub_rung: dict[tuple[str, str, int], str] = {}
         self.subclass_levels: dict[tuple[str, str], list[int]] = {}
         self.notes: list[str] = []
+        self._subclass_order: dict[str, list[str]] = {}
+        self._ring_offset_cache: dict[tuple[float, str], float] | None = None
 
     # -- helpers ---------------------------------------------------------
 
@@ -506,6 +508,31 @@ class GraphBuilder:
     # -- positions -------------------------------------------------------
 
     def assign_positions(self) -> None:
+        """Place every node, one depth band at a time (Work Order 5).
+
+        Placement used to be greedy: each node asked for a spot and got nudged
+        along the arc if something was already there. In dense cells the nudging
+        ran out of candidates and gave up, which is how 802 pairs ended up closer
+        than 0.8 world units, some exactly coincident - one unreadable, untappable
+        blob near the hub.
+
+        Now every node belongs to a *band*, and each band is packed
+        deterministically. Within a depth there are three kinds of band, and they
+        are stacked into radial lanes because they overlap angularly:
+
+            wedge  one per class zone, angularly disjoint from each other, so
+                   every zone's wedge can share the innermost lanes
+            seam   shared content anchored to a zone boundary (maneuvers,
+                   metamagic, invocations) - overlaps the wedges either side of
+                   it, so it starts above the deepest wedge row
+            ring   core and commons content, spread over the whole circle, so it
+                   starts above the seams
+
+        Every lane is one `MIN_NODE_SEPARATION` from the next, so nodes in
+        different lanes cannot collide whatever their angles, and the whole stack
+        stays inside `RADIAL_SLACK` of the depth's own radius - the level-derived
+        depth ordering from Task 2d is untouched.
+        """
         subclass_order: dict[str, list[str]] = defaultdict(list)
         for node in self.nodes.values():
             if node["type"] == "subclass_feature":
@@ -513,38 +540,161 @@ class GraphBuilder:
                     subclass_order[node["zone"]].append(node["subregion"])
         for zone in subclass_order:
             subclass_order[zone].sort()
+        self._subclass_order = subclass_order
 
-        core_index = 0
+        bands: dict[float, dict[tuple, list[dict]]] = defaultdict(lambda: defaultdict(list))
         for node in sorted(self.nodes.values(), key=lambda n: (n["depth"], n["id"])):
-            zone = node["zone"]
-            depth = float(node["depth"])
-
-            if zone == config.CORE_ZONE:
-                node.update(self.layout.place_core(core_index, depth))
-                core_index += 1
+            if node["id"] == "conn_core_hub":
+                node.update(self.layout.place_core(0, 0.0))  # the origin, by definition
                 continue
+            bands[float(node["depth"])][self._band_key(node)].append(node)
 
-            if zone == COMMONS_ZONE or node.get("boundary"):
-                pair = node.get("boundary") or [zone, self.ring_neighbour(zone)]
-                angle = self.layout.boundary_angle(pair[0], pair[1])
-                key = f"boundary:{pair[0]}|{pair[1]}"
-                node.update(self.layout.place(angle, depth, spread_key=key))
+        for depth in sorted(bands):
+            self._place_depth(depth, bands[depth])
+
+    def _band_key(self, node: dict) -> tuple:
+        """(kind, identity, category) - one packed group per key."""
+        if node["zone"] in (config.CORE_ZONE, COMMONS_ZONE):
+            return ("ring", "", self._ring_category(node))
+        if node.get("boundary"):
+            pair = node["boundary"]
+            return ("seam", f"{pair[0]}|{pair[1]}", self._ring_category(node))
+        return ("wedge", node["zone"], "")
+
+    def _place_depth(self, depth: float, groups: dict[tuple, list[dict]]) -> None:
+        base_radius = self.layout.radius(depth)
+        separation = config.MIN_NODE_SEPARATION
+        lane = 0  # radial lane index, in units of `separation`
+
+        wedges = {key: members for key, members in groups.items() if key[0] == "wedge"}
+        seams = {key: members for key, members in groups.items() if key[0] == "seam"}
+        rings = {key: members for key, members in groups.items() if key[0] == "ring"}
+
+        used = 0
+        for key, members in sorted(wedges.items()):
+            span = 2 * self.layout.wedge_half
+            centre = self.layout.zone_angle(key[1])
+            used = max(used, self._pack(members, base_radius, lane, span, centre, separation))
+        lane += used
+
+        used = 0
+        for key, members in sorted(seams.items()):
+            zone_a, zone_b = key[1].split("|")
+            centre = self.layout.boundary_angle(zone_a, zone_b)
+            # A seam may spread wider than the gutter between its two wedges:
+            # it sits in its own radial lane, so overlapping them angularly
+            # cannot collide with anything.
+            span = self.layout.slice_width * 1.6
+            used = max(used, self._pack(members, base_radius, lane, span, centre, separation))
+        lane += used
+
+        for key in sorted(rings, key=lambda k: self._ring_category_order(k[2])):
+            lane += self._pack(
+                rings[key],
+                base_radius,
+                lane,
+                2 * math.pi,
+                0.0,
+                config.COMMONS_MIN_SEPARATION,
+            )
+
+    def _pack(
+        self,
+        members: list[dict],
+        base_radius: float,
+        lane: int,
+        span: float,
+        centre: float,
+        separation: float,
+    ) -> int:
+        """Lay a group out across `span`, in as many radial rows as it needs.
+
+        Returns how many radial lanes it consumed, so the caller can stack the
+        next group clear of it.
+        """
+        radius0 = base_radius + min(lane * config.MIN_NODE_SEPARATION, config.RADIAL_SLACK)
+        preferred = [self._preferred_angle(node, centre) for node in members]
+        order = sorted(range(len(members)), key=lambda i: (preferred[i], members[i]["id"]))
+
+        per_row = max(1, int((radius0 * span) // separation))
+        rows = max(1, math.ceil(len(members) / per_row))
+        # never push a group out of its own depth band
+        max_rows = max(1, int(config.RADIAL_SLACK // config.MIN_NODE_SEPARATION) + 1 - lane)
+        rows = min(rows, max_rows)
+
+        for row_index in range(rows):
+            row = [order[i] for i in range(row_index, len(order), rows)]
+            if not row:
                 continue
-
-            subregion = node.get("subregion")
-            if subregion:
-                order = subclass_order.get(zone, [])
-                lane_index = order.index(subregion) if subregion in order else 0
-                lane = self.layout.subclass_lane(lane_index)
-                key = f"{zone}:{subregion}"
-            elif node["type"] == "spell_slot":
-                lane = 0.30
-                key = f"{zone}:slots"
+            radius = min(
+                radius0 + row_index * config.MIN_NODE_SEPARATION,
+                base_radius + config.RADIAL_SLACK,
+            )
+            gap = separation / max(radius, 1.0)
+            prefs = [preferred[i] for i in row]
+            if span >= 2 * math.pi - 1e-6:
+                angles = layout_module.pack_ring(prefs, gap)
             else:
-                lane = 0.0
-                key = f"{zone}:core"
-            angle = self.layout.lane_angle(zone, lane)
-            node.update(self.layout.place(angle, depth, spread_key=key))
+                angles = layout_module.pack_span(
+                    prefs, gap, centre - span / 2, centre + span / 2
+                )
+            for index, angle in zip(row, angles):
+                members[index].update(self.layout.claim_at(angle, radius))
+        return rows
+
+    @staticmethod
+    def _ring_category(node: dict) -> str:
+        """Which sub-ring a shared node belongs on."""
+        if node.get("repeat_chain"):
+            return "repeat_chain"
+        return node.get("role") or node["type"]
+
+    @staticmethod
+    def _ring_category_order(category: str) -> tuple[int, str]:
+        """Inner-to-outer order of the sub-rings at a given depth (Task 3).
+
+        General Feats, Fighting Styles, Epic Boons, ASI repeats and weapon
+        masteries used to share one circle per depth, carrying more content than
+        any single class zone's ring at the same depth because they are shared by
+        all thirteen zones. Each now gets its own sub-ring.
+        """
+        order = [
+            "core",
+            "training",
+            "feat_origin",
+            "commons",
+            "weapon_mastery",
+            "feat_fighting_style",
+            "repeat_chain",
+            "feat_general",
+            "feat_epic_boon",
+        ]
+        return (order.index(category) if category in order else len(order), category)
+
+    def _preferred_angle(self, node: dict, centre: float) -> float:
+        """Where a node would like to sit within its band, before spacing."""
+        zone = node["zone"]
+        if zone in (config.CORE_ZONE, COMMONS_ZONE):
+            boundary = node.get("boundary")
+            if boundary:
+                return self.layout.boundary_angle(boundary[0], boundary[1]) % (2 * math.pi)
+            # core content has no boundary: spread it by a stable hash of its id
+            # so the ring fills evenly and the order never wobbles between builds
+            digest = sum((index + 1) * ord(char) for index, char in enumerate(node["id"]))
+            return (digest % 3600) / 3600 * 2 * math.pi
+        if node.get("boundary"):
+            return centre
+
+        subregion = node.get("subregion")
+        if subregion:
+            order = self._subclass_order.get(zone, [])
+            lane_index = order.index(subregion) if subregion in order else 0
+            lane = self.layout.subclass_lane(lane_index)
+        elif node["type"] == "spell_slot":
+            lane = 0.30
+        else:
+            lane = 0.0
+        return self.layout.lane_angle(zone, lane)
 
     # -- assembly --------------------------------------------------------
 
