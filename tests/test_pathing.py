@@ -73,9 +73,10 @@ def test_cross_zone_pays_the_gate_and_the_foreign_connectors(engine, budget):
     """Wizard start -> Fighter's Extra Attack (level 5).
 
     Hand trace: hub (owned, free) -> gate_fighter (1, foreign gate) -> Fighter
-    ladder rungs 1, 3 and 5 (1 each, foreign spine) -> Extra Attack (1). Five
-    points, and the Fighter gate has to be on the path because every node inside
-    a zone requires it.
+    ladder rungs 1 and 4 (1 each, foreign spine; the ladder carries a rung every
+    three levels, and a level 5 feature hangs off rung 4) -> Extra Attack (1).
+    Four points, and the Fighter gate has to be on the path because every node
+    inside a zone requires it.
     """
     state = engine.start_state("Wizard", budget)
     result = engine.can_afford(state, "cf_fighter_extra_attack_5")
@@ -85,11 +86,10 @@ def test_cross_zone_pays_the_gate_and_the_foreign_connectors(engine, budget):
         "conn_core_hub",
         "gate_fighter",
         "conn_fighter_rung_1",
-        "conn_fighter_rung_3",
-        "conn_fighter_rung_5",
+        "conn_fighter_rung_4",
         "cf_fighter_extra_attack_5",
     ]
-    assert result["total_cost"] == 5
+    assert result["total_cost"] == 4
     assert result["total_cost"] > 1  # strictly worse than the same trip at home
 
     home = engine.start_state("Fighter", budget)

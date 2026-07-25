@@ -14,7 +14,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
-from dnd2024 import balance, build, validate  # noqa: E402
+from dnd2024 import audit, balance, build, validate  # noqa: E402
 from dnd2024.pathing import PathEngine  # noqa: E402
 
 
@@ -53,6 +53,12 @@ def main() -> int:
         share = flag["measured"].get("share_of_career_budget")
         suffix = f" ({share:.0%} of the career budget)" if share is not None else ""
         print(f"  [{flag['severity']:>6}] {flag['id']}{suffix}")
+
+    proficiency = audit.write_audit()
+    print("\nproficiency / class-decoupling audit:")
+    for finding in proficiency["findings"]:
+        state = finding["status"].split(" -")[0]
+        print(f"  {finding['label']:<28} {state}")
 
     return 0 if report["ok"] else 1
 

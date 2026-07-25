@@ -41,8 +41,8 @@
     }
   },
   {
-    "id": "conn_artificer_rung_11",
-    "name": "Artificer Path: Workbench Memory",
+    "id": "conn_artificer_rung_10",
+    "name": "Artificer Path: Safety Catch",
     "type": "connector",
     "role": "zone_ladder",
     "source_book": null,
@@ -51,12 +51,12 @@
     "is_gate": false,
     "zone": "Artificer",
     "subregion": null,
-    "depth": 11.0,
+    "depth": 10.0,
     "point_cost": 1,
     "tags": [
       "connector"
     ],
-    "effect_summary": "You gain proficiency in Investigation, or a +1 bonus to it if you already have it.",
+    "effect_summary": "You have a +1 bonus to saving throws against effects caused by your own devices or by traps.",
     "mechanical_data": {},
     "prereqs": {
       "logic": "AND",
@@ -74,16 +74,16 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -33.983,
-    "position_y": -8.376,
+    "position_x": -31.07,
+    "position_y": -7.658,
     "polar": {
       "angle_deg": 193.85,
-      "radius": 35.0
+      "radius": 32.0
     }
   },
   {
     "id": "conn_artificer_rung_13",
-    "name": "Artificer Path: Tinker's Habit 2",
+    "name": "Artificer Path: Lamp Rig",
     "type": "connector",
     "role": "zone_ladder",
     "source_book": null,
@@ -97,7 +97,7 @@
     "tags": [
       "connector"
     ],
-    "effect_summary": "You gain proficiency with one type of Artisan's Tools of your choice.",
+    "effect_summary": "You can cause a held object to shed Bright Light in a 10-foot radius at will.",
     "mechanical_data": {},
     "prereqs": {
       "logic": "AND",
@@ -123,8 +123,8 @@
     }
   },
   {
-    "id": "conn_artificer_rung_15",
-    "name": "Artificer Path: Spare Parts 2",
+    "id": "conn_artificer_rung_16",
+    "name": "Artificer Path: Workbench Memory",
     "type": "connector",
     "role": "zone_ladder",
     "source_book": null,
@@ -133,12 +133,12 @@
     "is_gate": false,
     "zone": "Artificer",
     "subregion": null,
-    "depth": 15.0,
+    "depth": 16.0,
     "point_cost": 1,
     "tags": [
       "connector"
     ],
-    "effect_summary": "Once per Long Rest, you can repair a broken nonmagical object of Small size or less over 10 minutes.",
+    "effect_summary": "You gain proficiency in Investigation, or a +1 bonus to it if you already have it.",
     "mechanical_data": {},
     "prereqs": {
       "logic": "AND",
@@ -156,57 +156,16 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -45.634,
-    "position_y": -11.248,
+    "position_x": -48.547,
+    "position_y": -11.966,
     "polar": {
       "angle_deg": 193.85,
-      "radius": 47.0
-    }
-  },
-  {
-    "id": "conn_artificer_rung_17",
-    "name": "Artificer Path: Measured Eye 2",
-    "type": "connector",
-    "role": "zone_ladder",
-    "source_book": null,
-    "generated": true,
-    "is_spine": true,
-    "is_gate": false,
-    "zone": "Artificer",
-    "subregion": null,
-    "depth": 17.0,
-    "point_cost": 1,
-    "tags": [
-      "connector"
-    ],
-    "effect_summary": "You have a +1 bonus to Intelligence checks made to appraise or identify an object.",
-    "mechanical_data": {},
-    "prereqs": {
-      "logic": "AND",
-      "nodes": [
-        "gate_artificer"
-      ],
-      "threshold_count": null,
-      "groups": [
-        {
-          "logic": "AND",
-          "nodes": [
-            "gate_artificer"
-          ]
-        }
-      ]
-    },
-    "ability_prereqs": [],
-    "position_x": -51.46,
-    "position_y": -12.684,
-    "polar": {
-      "angle_deg": 193.85,
-      "radius": 53.0
+      "radius": 50.0
     }
   },
   {
     "id": "conn_artificer_rung_19",
-    "name": "Artificer Path: Safety Catch 2",
+    "name": "Artificer Path: Tinker's Habit 2",
     "type": "connector",
     "role": "zone_ladder",
     "source_book": null,
@@ -220,7 +179,7 @@
     "tags": [
       "connector"
     ],
-    "effect_summary": "You have a +1 bonus to saving throws against effects caused by your own devices or by traps.",
+    "effect_summary": "You gain proficiency with one type of Artisan's Tools of your choice.",
     "mechanical_data": {},
     "prereqs": {
       "logic": "AND",
@@ -246,7 +205,7 @@
     }
   },
   {
-    "id": "conn_artificer_rung_3",
+    "id": "conn_artificer_rung_4",
     "name": "Artificer Path: Spare Parts",
     "type": "connector",
     "role": "zone_ladder",
@@ -256,7 +215,7 @@
     "is_gate": false,
     "zone": "Artificer",
     "subregion": null,
-    "depth": 3.0,
+    "depth": 4.0,
     "point_cost": 1,
     "tags": [
       "connector"
@@ -279,15 +238,15 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -10.68,
-    "position_y": -2.632,
+    "position_x": -13.593,
+    "position_y": -3.35,
     "polar": {
       "angle_deg": 193.85,
-      "radius": 11.0
+      "radius": 14.0
     }
   },
   {
-    "id": "conn_artificer_rung_5",
+    "id": "conn_artificer_rung_7",
     "name": "Artificer Path: Measured Eye",
     "type": "connector",
     "role": "zone_ladder",
@@ -297,7 +256,7 @@
     "is_gate": false,
     "zone": "Artificer",
     "subregion": null,
-    "depth": 5.0,
+    "depth": 7.0,
     "point_cost": 1,
     "tags": [
       "connector"
@@ -320,93 +279,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -16.506,
-    "position_y": -4.068,
-    "polar": {
-      "angle_deg": 193.85,
-      "radius": 17.0
-    }
-  },
-  {
-    "id": "conn_artificer_rung_7",
-    "name": "Artificer Path: Safety Catch",
-    "type": "connector",
-    "role": "zone_ladder",
-    "source_book": null,
-    "generated": true,
-    "is_spine": true,
-    "is_gate": false,
-    "zone": "Artificer",
-    "subregion": null,
-    "depth": 7.0,
-    "point_cost": 1,
-    "tags": [
-      "connector"
-    ],
-    "effect_summary": "You have a +1 bonus to saving throws against effects caused by your own devices or by traps.",
-    "mechanical_data": {},
-    "prereqs": {
-      "logic": "AND",
-      "nodes": [
-        "gate_artificer"
-      ],
-      "threshold_count": null,
-      "groups": [
-        {
-          "logic": "AND",
-          "nodes": [
-            "gate_artificer"
-          ]
-        }
-      ]
-    },
-    "ability_prereqs": [],
     "position_x": -22.332,
     "position_y": -5.504,
     "polar": {
       "angle_deg": 193.85,
       "radius": 23.0
-    }
-  },
-  {
-    "id": "conn_artificer_rung_9",
-    "name": "Artificer Path: Lamp Rig",
-    "type": "connector",
-    "role": "zone_ladder",
-    "source_book": null,
-    "generated": true,
-    "is_spine": true,
-    "is_gate": false,
-    "zone": "Artificer",
-    "subregion": null,
-    "depth": 9.0,
-    "point_cost": 1,
-    "tags": [
-      "connector"
-    ],
-    "effect_summary": "You can cause a held object to shed Bright Light in a 10-foot radius at will.",
-    "mechanical_data": {},
-    "prereqs": {
-      "logic": "AND",
-      "nodes": [
-        "gate_artificer"
-      ],
-      "threshold_count": null,
-      "groups": [
-        {
-          "logic": "AND",
-          "nodes": [
-            "gate_artificer"
-          ]
-        }
-      ]
-    },
-    "ability_prereqs": [],
-    "position_x": -28.157,
-    "position_y": -6.94,
-    "polar": {
-      "angle_deg": 193.85,
-      "radius": 29.0
     }
   },
   {
@@ -615,8 +492,8 @@
     }
   },
   {
-    "id": "conn_barbarian_rung_11",
-    "name": "Barbarian Path: Thunder in the Chest",
+    "id": "conn_barbarian_rung_10",
+    "name": "Barbarian Path: Unflinching",
     "type": "connector",
     "role": "zone_ladder",
     "source_book": null,
@@ -625,12 +502,12 @@
     "is_gate": false,
     "zone": "Barbarian",
     "subregion": null,
-    "depth": 11.0,
+    "depth": 10.0,
     "point_cost": 1,
     "tags": [
       "connector"
     ],
-    "effect_summary": "Once per Long Rest, you can shout as a Bonus Action; one creature within 30 feet has Disadvantage on its next attack roll against you.",
+    "effect_summary": "Once per Short Rest, you can reroll a saving throw against being Frightened.",
     "mechanical_data": {},
     "prereqs": {
       "logic": "AND",
@@ -648,16 +525,16 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 34.988,
+    "position_x": 31.987,
     "position_y": 0.9,
     "polar": {
-      "angle_deg": 1.47,
-      "radius": 35.0
+      "angle_deg": 1.61,
+      "radius": 32.0
     }
   },
   {
     "id": "conn_barbarian_rung_13",
-    "name": "Barbarian Path: Hardened Sinew 2",
+    "name": "Barbarian Path: Wide Stance",
     "type": "connector",
     "role": "zone_ladder",
     "source_book": null,
@@ -671,7 +548,7 @@
     "tags": [
       "connector"
     ],
-    "effect_summary": "You have a +1 bonus to Strength (Athletics) checks.",
+    "effect_summary": "Difficult Terrain costs you no extra movement for the first 10 feet you move each turn.",
     "mechanical_data": {},
     "prereqs": {
       "logic": "AND",
@@ -697,8 +574,8 @@
     }
   },
   {
-    "id": "conn_barbarian_rung_15",
-    "name": "Barbarian Path: Blood Memory 2",
+    "id": "conn_barbarian_rung_16",
+    "name": "Barbarian Path: Thunder in the Chest",
     "type": "connector",
     "role": "zone_ladder",
     "source_book": null,
@@ -707,12 +584,12 @@
     "is_gate": false,
     "zone": "Barbarian",
     "subregion": null,
-    "depth": 15.0,
+    "depth": 16.0,
     "point_cost": 1,
     "tags": [
       "connector"
     ],
-    "effect_summary": "You have a +1 bonus to Constitution saving throws made to keep going below half your Hit Points maximum.",
+    "effect_summary": "Once per Long Rest, you can shout as a Bonus Action; one creature within 30 feet has Disadvantage on its next attack roll against you.",
     "mechanical_data": {},
     "prereqs": {
       "logic": "AND",
@@ -730,57 +607,16 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 46.991,
+    "position_x": 49.992,
     "position_y": 0.9,
     "polar": {
-      "angle_deg": 1.1,
-      "radius": 47.0
-    }
-  },
-  {
-    "id": "conn_barbarian_rung_17",
-    "name": "Barbarian Path: Wolfscent 2",
-    "type": "connector",
-    "role": "zone_ladder",
-    "source_book": null,
-    "generated": true,
-    "is_spine": true,
-    "is_gate": false,
-    "zone": "Barbarian",
-    "subregion": null,
-    "depth": 17.0,
-    "point_cost": 1,
-    "tags": [
-      "connector"
-    ],
-    "effect_summary": "You gain proficiency in Survival, or a +1 bonus to it if you already have it.",
-    "mechanical_data": {},
-    "prereqs": {
-      "logic": "AND",
-      "nodes": [
-        "gate_barbarian"
-      ],
-      "threshold_count": null,
-      "groups": [
-        {
-          "logic": "AND",
-          "nodes": [
-            "gate_barbarian"
-          ]
-        }
-      ]
-    },
-    "ability_prereqs": [],
-    "position_x": 52.992,
-    "position_y": 0.9,
-    "polar": {
-      "angle_deg": 0.97,
-      "radius": 53.0
+      "angle_deg": 1.03,
+      "radius": 50.0
     }
   },
   {
     "id": "conn_barbarian_rung_19",
-    "name": "Barbarian Path: Unflinching 2",
+    "name": "Barbarian Path: Hardened Sinew 2",
     "type": "connector",
     "role": "zone_ladder",
     "source_book": null,
@@ -794,7 +630,7 @@
     "tags": [
       "connector"
     ],
-    "effect_summary": "Once per Short Rest, you can reroll a saving throw against being Frightened.",
+    "effect_summary": "You have a +1 bonus to Strength (Athletics) checks.",
     "mechanical_data": {},
     "prereqs": {
       "logic": "AND",
@@ -820,7 +656,7 @@
     }
   },
   {
-    "id": "conn_barbarian_rung_3",
+    "id": "conn_barbarian_rung_4",
     "name": "Barbarian Path: Blood Memory",
     "type": "connector",
     "role": "zone_ladder",
@@ -830,7 +666,7 @@
     "is_gate": false,
     "zone": "Barbarian",
     "subregion": null,
-    "depth": 3.0,
+    "depth": 4.0,
     "point_cost": 1,
     "tags": [
       "connector"
@@ -853,15 +689,15 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 10.963,
-    "position_y": -0.899,
+    "position_x": 13.971,
+    "position_y": 0.899,
     "polar": {
-      "angle_deg": 355.31,
-      "radius": 11.0
+      "angle_deg": 3.68,
+      "radius": 14.0
     }
   },
   {
-    "id": "conn_barbarian_rung_5",
+    "id": "conn_barbarian_rung_7",
     "name": "Barbarian Path: Wolfscent",
     "type": "connector",
     "role": "zone_ladder",
@@ -871,7 +707,7 @@
     "is_gate": false,
     "zone": "Barbarian",
     "subregion": null,
-    "depth": 5.0,
+    "depth": 7.0,
     "point_cost": 1,
     "tags": [
       "connector"
@@ -894,93 +730,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 16.976,
-    "position_y": -0.9,
-    "polar": {
-      "angle_deg": 356.97,
-      "radius": 17.0
-    }
-  },
-  {
-    "id": "conn_barbarian_rung_7",
-    "name": "Barbarian Path: Unflinching",
-    "type": "connector",
-    "role": "zone_ladder",
-    "source_book": null,
-    "generated": true,
-    "is_spine": true,
-    "is_gate": false,
-    "zone": "Barbarian",
-    "subregion": null,
-    "depth": 7.0,
-    "point_cost": 1,
-    "tags": [
-      "connector"
-    ],
-    "effect_summary": "Once per Short Rest, you can reroll a saving throw against being Frightened.",
-    "mechanical_data": {},
-    "prereqs": {
-      "logic": "AND",
-      "nodes": [
-        "gate_barbarian"
-      ],
-      "threshold_count": null,
-      "groups": [
-        {
-          "logic": "AND",
-          "nodes": [
-            "gate_barbarian"
-          ]
-        }
-      ]
-    },
-    "ability_prereqs": [],
     "position_x": 22.982,
     "position_y": -0.9,
     "polar": {
       "angle_deg": 357.76,
       "radius": 23.0
-    }
-  },
-  {
-    "id": "conn_barbarian_rung_9",
-    "name": "Barbarian Path: Wide Stance",
-    "type": "connector",
-    "role": "zone_ladder",
-    "source_book": null,
-    "generated": true,
-    "is_spine": true,
-    "is_gate": false,
-    "zone": "Barbarian",
-    "subregion": null,
-    "depth": 9.0,
-    "point_cost": 1,
-    "tags": [
-      "connector"
-    ],
-    "effect_summary": "Difficult Terrain costs you no extra movement for the first 10 feet you move each turn.",
-    "mechanical_data": {},
-    "prereqs": {
-      "logic": "AND",
-      "nodes": [
-        "gate_barbarian"
-      ],
-      "threshold_count": null,
-      "groups": [
-        {
-          "logic": "AND",
-          "nodes": [
-            "gate_barbarian"
-          ]
-        }
-      ]
-    },
-    "ability_prereqs": [],
-    "position_x": 28.986,
-    "position_y": 0.9,
-    "polar": {
-      "angle_deg": 1.78,
-      "radius": 29.0
     }
   },
   {
@@ -1886,8 +1640,8 @@
     }
   },
   {
-    "id": "conn_bard_rung_11",
-    "name": "Bard Path: Stagecraft",
+    "id": "conn_bard_rung_10",
+    "name": "Bard Path: Traveling Repertoire",
     "type": "connector",
     "role": "zone_ladder",
     "source_book": null,
@@ -1896,12 +1650,12 @@
     "is_gate": false,
     "zone": "Bard",
     "subregion": null,
-    "depth": 11.0,
+    "depth": 10.0,
     "point_cost": 1,
     "tags": [
       "connector"
     ],
-    "effect_summary": "You can produce a harmless sound or illusory flourish no larger than 1 foot at will.",
+    "effect_summary": "You know one additional language of your choice.",
     "mechanical_data": {},
     "prereqs": {
       "logic": "AND",
@@ -1919,16 +1673,16 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 19.882,
-    "position_y": -28.804,
+    "position_x": 18.911,
+    "position_y": -25.814,
     "polar": {
-      "angle_deg": 304.62,
-      "radius": 35.0
+      "angle_deg": 306.23,
+      "radius": 32.0
     }
   },
   {
     "id": "conn_bard_rung_13",
-    "name": "Bard Path: Perfect Pitch 2",
+    "name": "Bard Path: Cue",
     "type": "connector",
     "role": "zone_ladder",
     "source_book": null,
@@ -1942,7 +1696,7 @@
     "tags": [
       "connector"
     ],
-    "effect_summary": "You gain proficiency with one Musical Instrument of your choice.",
+    "effect_summary": "Once per Short Rest, you can give one ally within 30 feet a +1 bonus to one ability check.",
     "mechanical_data": {},
     "prereqs": {
       "logic": "AND",
@@ -1968,8 +1722,8 @@
     }
   },
   {
-    "id": "conn_bard_rung_15",
-    "name": "Bard Path: Crowd Sense 2",
+    "id": "conn_bard_rung_16",
+    "name": "Bard Path: Stagecraft",
     "type": "connector",
     "role": "zone_ladder",
     "source_book": null,
@@ -1978,12 +1732,12 @@
     "is_gate": false,
     "zone": "Bard",
     "subregion": null,
-    "depth": 15.0,
+    "depth": 16.0,
     "point_cost": 1,
     "tags": [
       "connector"
     ],
-    "effect_summary": "You have a +1 bonus to Wisdom (Insight) checks made in a group of five or more creatures.",
+    "effect_summary": "You can produce a harmless sound or illusory flourish no larger than 1 foot at will.",
     "mechanical_data": {},
     "prereqs": {
       "logic": "AND",
@@ -2001,57 +1755,16 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 26.699,
-    "position_y": -38.68,
+    "position_x": 29.139,
+    "position_y": -40.631,
     "polar": {
-      "angle_deg": 304.62,
-      "radius": 47.0
-    }
-  },
-  {
-    "id": "conn_bard_rung_17",
-    "name": "Bard Path: Turn of Phrase 2",
-    "type": "connector",
-    "role": "zone_ladder",
-    "source_book": null,
-    "generated": true,
-    "is_spine": true,
-    "is_gate": false,
-    "zone": "Bard",
-    "subregion": null,
-    "depth": 17.0,
-    "point_cost": 1,
-    "tags": [
-      "connector"
-    ],
-    "effect_summary": "You have a +1 bonus to Charisma (Persuasion) checks.",
-    "mechanical_data": {},
-    "prereqs": {
-      "logic": "AND",
-      "nodes": [
-        "gate_bard"
-      ],
-      "threshold_count": null,
-      "groups": [
-        {
-          "logic": "AND",
-          "nodes": [
-            "gate_bard"
-          ]
-        }
-      ]
-    },
-    "ability_prereqs": [],
-    "position_x": 30.107,
-    "position_y": -43.618,
-    "polar": {
-      "angle_deg": 304.62,
-      "radius": 53.0
+      "angle_deg": 305.65,
+      "radius": 50.0
     }
   },
   {
     "id": "conn_bard_rung_19",
-    "name": "Bard Path: Traveling Repertoire 2",
+    "name": "Bard Path: Perfect Pitch 2",
     "type": "connector",
     "role": "zone_ladder",
     "source_book": null,
@@ -2065,7 +1778,7 @@
     "tags": [
       "connector"
     ],
-    "effect_summary": "You know one additional language of your choice.",
+    "effect_summary": "You gain proficiency with one Musical Instrument of your choice.",
     "mechanical_data": {},
     "prereqs": {
       "logic": "AND",
@@ -2091,7 +1804,7 @@
     }
   },
   {
-    "id": "conn_bard_rung_3",
+    "id": "conn_bard_rung_4",
     "name": "Bard Path: Crowd Sense",
     "type": "connector",
     "role": "zone_ladder",
@@ -2101,7 +1814,7 @@
     "is_gate": false,
     "zone": "Bard",
     "subregion": null,
-    "depth": 3.0,
+    "depth": 4.0,
     "point_cost": 1,
     "tags": [
       "connector"
@@ -2124,15 +1837,15 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 6.968,
-    "position_y": -8.512,
+    "position_x": 8.677,
+    "position_y": -10.987,
     "polar": {
-      "angle_deg": 309.3,
-      "radius": 11.0
+      "angle_deg": 308.3,
+      "radius": 14.0
     }
   },
   {
-    "id": "conn_bard_rung_5",
+    "id": "conn_bard_rung_7",
     "name": "Bard Path: Turn of Phrase",
     "type": "connector",
     "role": "zone_ladder",
@@ -2142,7 +1855,7 @@
     "is_gate": false,
     "zone": "Bard",
     "subregion": null,
-    "depth": 5.0,
+    "depth": 7.0,
     "point_cost": 1,
     "tags": [
       "connector"
@@ -2165,93 +1878,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 10.384,
-    "position_y": -13.46,
-    "polar": {
-      "angle_deg": 307.65,
-      "radius": 17.0
-    }
-  },
-  {
-    "id": "conn_bard_rung_7",
-    "name": "Bard Path: Traveling Repertoire",
-    "type": "connector",
-    "role": "zone_ladder",
-    "source_book": null,
-    "generated": true,
-    "is_spine": true,
-    "is_gate": false,
-    "zone": "Bard",
-    "subregion": null,
-    "depth": 7.0,
-    "point_cost": 1,
-    "tags": [
-      "connector"
-    ],
-    "effect_summary": "You know one additional language of your choice.",
-    "mechanical_data": {},
-    "prereqs": {
-      "logic": "AND",
-      "nodes": [
-        "gate_bard"
-      ],
-      "threshold_count": null,
-      "groups": [
-        {
-          "logic": "AND",
-          "nodes": [
-            "gate_bard"
-          ]
-        }
-      ]
-    },
-    "ability_prereqs": [],
     "position_x": 13.796,
     "position_y": -18.403,
     "polar": {
       "angle_deg": 306.86,
       "radius": 23.0
-    }
-  },
-  {
-    "id": "conn_bard_rung_9",
-    "name": "Bard Path: Cue",
-    "type": "connector",
-    "role": "zone_ladder",
-    "source_book": null,
-    "generated": true,
-    "is_spine": true,
-    "is_gate": false,
-    "zone": "Bard",
-    "subregion": null,
-    "depth": 9.0,
-    "point_cost": 1,
-    "tags": [
-      "connector"
-    ],
-    "effect_summary": "Once per Short Rest, you can give one ally within 30 feet a +1 bonus to one ability check.",
-    "mechanical_data": {},
-    "prereqs": {
-      "logic": "AND",
-      "nodes": [
-        "gate_bard"
-      ],
-      "threshold_count": null,
-      "groups": [
-        {
-          "logic": "AND",
-          "nodes": [
-            "gate_bard"
-          ]
-        }
-      ]
-    },
-    "ability_prereqs": [],
-    "position_x": 17.207,
-    "position_y": -23.344,
-    "polar": {
-      "angle_deg": 306.39,
-      "radius": 29.0
     }
   },
   {
@@ -2665,8 +2296,8 @@
     }
   },
   {
-    "id": "conn_cleric_rung_11",
-    "name": "Cleric Path: Censer Light",
+    "id": "conn_cleric_rung_10",
+    "name": "Cleric Path: Temple Bearing",
     "type": "connector",
     "role": "zone_ladder",
     "source_book": null,
@@ -2675,12 +2306,12 @@
     "is_gate": false,
     "zone": "Cleric",
     "subregion": null,
-    "depth": 11.0,
+    "depth": 10.0,
     "point_cost": 1,
     "tags": [
       "connector"
     ],
-    "effect_summary": "You can produce a floating mote of light within 20 feet at will; it sheds Dim Light in a 10-foot radius.",
+    "effect_summary": "You have a +1 bonus to Charisma (Persuasion) checks made with members of a faith you know.",
     "mechanical_data": {},
     "prereqs": {
       "logic": "AND",
@@ -2698,16 +2329,16 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 4.219,
-    "position_y": 34.745,
+    "position_x": 2.962,
+    "position_y": 31.863,
     "polar": {
-      "angle_deg": 83.08,
-      "radius": 35.0
+      "angle_deg": 84.69,
+      "radius": 32.0
     }
   },
   {
     "id": "conn_cleric_rung_13",
-    "name": "Cleric Path: Steady Prayer 2",
+    "name": "Cleric Path: Warding Word",
     "type": "connector",
     "role": "zone_ladder",
     "source_book": null,
@@ -2721,7 +2352,7 @@
     "tags": [
       "connector"
     ],
-    "effect_summary": "You have a +1 bonus to Wisdom (Insight) checks.",
+    "effect_summary": "Once per Short Rest, a creature within 30 feet gains a +1 bonus to one saving throw.",
     "mechanical_data": {},
     "prereqs": {
       "logic": "AND",
@@ -2747,8 +2378,8 @@
     }
   },
   {
-    "id": "conn_cleric_rung_15",
-    "name": "Cleric Path: Consecrated Hands 2",
+    "id": "conn_cleric_rung_16",
+    "name": "Cleric Path: Censer Light",
     "type": "connector",
     "role": "zone_ladder",
     "source_book": null,
@@ -2757,12 +2388,12 @@
     "is_gate": false,
     "zone": "Cleric",
     "subregion": null,
-    "depth": 15.0,
+    "depth": 16.0,
     "point_cost": 1,
     "tags": [
       "connector"
     ],
-    "effect_summary": "Once per Long Rest, you can stabilize a creature at 0 Hit Points as a Bonus Action from 15 feet away.",
+    "effect_summary": "You can produce a floating mote of light within 20 feet at will; it sheds Dim Light in a 10-foot radius.",
     "mechanical_data": {},
     "prereqs": {
       "logic": "AND",
@@ -2780,57 +2411,16 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 5.665,
-    "position_y": 46.657,
+    "position_x": 5.132,
+    "position_y": 49.736,
     "polar": {
-      "angle_deg": 83.08,
-      "radius": 47.0
-    }
-  },
-  {
-    "id": "conn_cleric_rung_17",
-    "name": "Cleric Path: Liturgical Memory 2",
-    "type": "connector",
-    "role": "zone_ladder",
-    "source_book": null,
-    "generated": true,
-    "is_spine": true,
-    "is_gate": false,
-    "zone": "Cleric",
-    "subregion": null,
-    "depth": 17.0,
-    "point_cost": 1,
-    "tags": [
-      "connector"
-    ],
-    "effect_summary": "You gain proficiency in History or Religion of your choice.",
-    "mechanical_data": {},
-    "prereqs": {
-      "logic": "AND",
-      "nodes": [
-        "gate_cleric"
-      ],
-      "threshold_count": null,
-      "groups": [
-        {
-          "logic": "AND",
-          "nodes": [
-            "gate_cleric"
-          ]
-        }
-      ]
-    },
-    "ability_prereqs": [],
-    "position_x": 5.494,
-    "position_y": 52.714,
-    "polar": {
-      "angle_deg": 84.05,
-      "radius": 53.0
+      "angle_deg": 84.11,
+      "radius": 50.0
     }
   },
   {
     "id": "conn_cleric_rung_19",
-    "name": "Cleric Path: Temple Bearing 2",
+    "name": "Cleric Path: Steady Prayer 2",
     "type": "connector",
     "role": "zone_ladder",
     "source_book": null,
@@ -2844,7 +2434,7 @@
     "tags": [
       "connector"
     ],
-    "effect_summary": "You have a +1 bonus to Charisma (Persuasion) checks made with members of a faith you know.",
+    "effect_summary": "You have a +1 bonus to Wisdom (Insight) checks.",
     "mechanical_data": {},
     "prereqs": {
       "logic": "AND",
@@ -2870,7 +2460,7 @@
     }
   },
   {
-    "id": "conn_cleric_rung_3",
+    "id": "conn_cleric_rung_4",
     "name": "Cleric Path: Consecrated Hands",
     "type": "connector",
     "role": "zone_ladder",
@@ -2880,7 +2470,7 @@
     "is_gate": false,
     "zone": "Cleric",
     "subregion": null,
-    "depth": 3.0,
+    "depth": 4.0,
     "point_cost": 1,
     "tags": [
       "connector"
@@ -2903,15 +2493,15 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 0.429,
-    "position_y": 10.992,
+    "position_x": 0.791,
+    "position_y": 13.978,
     "polar": {
-      "angle_deg": 87.76,
-      "radius": 11.0
+      "angle_deg": 86.76,
+      "radius": 14.0
     }
   },
   {
-    "id": "conn_cleric_rung_5",
+    "id": "conn_cleric_rung_7",
     "name": "Cleric Path: Liturgical Memory",
     "type": "connector",
     "role": "zone_ladder",
@@ -2921,7 +2511,7 @@
     "is_gate": false,
     "zone": "Cleric",
     "subregion": null,
-    "depth": 5.0,
+    "depth": 7.0,
     "point_cost": 1,
     "tags": [
       "connector"
@@ -2944,93 +2534,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 1.153,
-    "position_y": 16.961,
-    "polar": {
-      "angle_deg": 86.11,
-      "radius": 17.0
-    }
-  },
-  {
-    "id": "conn_cleric_rung_7",
-    "name": "Cleric Path: Temple Bearing",
-    "type": "connector",
-    "role": "zone_ladder",
-    "source_book": null,
-    "generated": true,
-    "is_spine": true,
-    "is_gate": false,
-    "zone": "Cleric",
-    "subregion": null,
-    "depth": 7.0,
-    "point_cost": 1,
-    "tags": [
-      "connector"
-    ],
-    "effect_summary": "You have a +1 bonus to Charisma (Persuasion) checks made with members of a faith you know.",
-    "mechanical_data": {},
-    "prereqs": {
-      "logic": "AND",
-      "nodes": [
-        "gate_cleric"
-      ],
-      "threshold_count": null,
-      "groups": [
-        {
-          "logic": "AND",
-          "nodes": [
-            "gate_cleric"
-          ]
-        }
-      ]
-    },
-    "ability_prereqs": [],
     "position_x": 0.979,
     "position_y": 22.979,
     "polar": {
       "angle_deg": 87.56,
       "radius": 23.0
-    }
-  },
-  {
-    "id": "conn_cleric_rung_9",
-    "name": "Cleric Path: Warding Word",
-    "type": "connector",
-    "role": "zone_ladder",
-    "source_book": null,
-    "generated": true,
-    "is_spine": true,
-    "is_gate": false,
-    "zone": "Cleric",
-    "subregion": null,
-    "depth": 9.0,
-    "point_cost": 1,
-    "tags": [
-      "connector"
-    ],
-    "effect_summary": "Once per Short Rest, a creature within 30 feet gains a +1 bonus to one saving throw.",
-    "mechanical_data": {},
-    "prereqs": {
-      "logic": "AND",
-      "nodes": [
-        "gate_cleric"
-      ],
-      "threshold_count": null,
-      "groups": [
-        {
-          "logic": "AND",
-          "nodes": [
-            "gate_cleric"
-          ]
-        }
-      ]
-    },
-    "ability_prereqs": [],
-    "position_x": 3.496,
-    "position_y": 28.789,
-    "polar": {
-      "angle_deg": 83.08,
-      "radius": 29.0
     }
   },
   {
@@ -3953,8 +3461,8 @@
     }
   },
   {
-    "id": "conn_druid_rung_11",
-    "name": "Druid Path: Storm Ear",
+    "id": "conn_druid_rung_10",
+    "name": "Druid Path: Seed Pouch",
     "type": "connector",
     "role": "zone_ladder",
     "source_book": null,
@@ -3963,12 +3471,12 @@
     "is_gate": false,
     "zone": "Druid",
     "subregion": null,
-    "depth": 11.0,
+    "depth": 10.0,
     "point_cost": 1,
     "tags": [
       "connector"
     ],
-    "effect_summary": "You have a +1 bonus to Wisdom (Perception) checks made outdoors.",
+    "effect_summary": "Once per Long Rest, you can cause a plant to grow a day's worth of edible fruit.",
     "mechanical_data": {},
     "prereqs": {
       "logic": "AND",
@@ -3986,16 +3494,16 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -12.411,
-    "position_y": 32.726,
+    "position_x": -12.184,
+    "position_y": 29.59,
     "polar": {
-      "angle_deg": 110.77,
-      "radius": 35.0
+      "angle_deg": 112.38,
+      "radius": 32.0
     }
   },
   {
     "id": "conn_druid_rung_13",
-    "name": "Druid Path: Rootsense 2",
+    "name": "Druid Path: Loam Step",
     "type": "connector",
     "role": "zone_ladder",
     "source_book": null,
@@ -4009,7 +3517,7 @@
     "tags": [
       "connector"
     ],
-    "effect_summary": "You have a +1 bonus to Wisdom (Survival) checks in natural terrain.",
+    "effect_summary": "You leave no tracks in natural terrain unless you choose to.",
     "mechanical_data": {},
     "prereqs": {
       "logic": "AND",
@@ -4035,8 +3543,8 @@
     }
   },
   {
-    "id": "conn_druid_rung_15",
-    "name": "Druid Path: Green Tongue 2",
+    "id": "conn_druid_rung_16",
+    "name": "Druid Path: Storm Ear",
     "type": "connector",
     "role": "zone_ladder",
     "source_book": null,
@@ -4045,12 +3553,12 @@
     "is_gate": false,
     "zone": "Druid",
     "subregion": null,
-    "depth": 15.0,
+    "depth": 16.0,
     "point_cost": 1,
     "tags": [
       "connector"
     ],
-    "effect_summary": "You can exchange simple ideas with Beasts and Plants within 15 feet.",
+    "effect_summary": "You have a +1 bonus to Wisdom (Perception) checks made outdoors.",
     "mechanical_data": {},
     "prereqs": {
       "logic": "AND",
@@ -4068,57 +3576,16 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -17.505,
-    "position_y": 43.619,
+    "position_x": -18.569,
+    "position_y": 46.424,
     "polar": {
-      "angle_deg": 111.87,
-      "radius": 47.0
-    }
-  },
-  {
-    "id": "conn_druid_rung_17",
-    "name": "Druid Path: Weather Skin 2",
-    "type": "connector",
-    "role": "zone_ladder",
-    "source_book": null,
-    "generated": true,
-    "is_spine": true,
-    "is_gate": false,
-    "zone": "Druid",
-    "subregion": null,
-    "depth": 17.0,
-    "point_cost": 1,
-    "tags": [
-      "connector"
-    ],
-    "effect_summary": "You ignore the effects of Extreme Cold or Extreme Heat, whichever you choose when you gain this node.",
-    "mechanical_data": {},
-    "prereqs": {
-      "logic": "AND",
-      "nodes": [
-        "gate_druid"
-      ],
-      "threshold_count": null,
-      "groups": [
-        {
-          "logic": "AND",
-          "nodes": [
-            "gate_druid"
-          ]
-        }
-      ]
-    },
-    "ability_prereqs": [],
-    "position_x": -18.794,
-    "position_y": 49.556,
-    "polar": {
-      "angle_deg": 110.77,
-      "radius": 53.0
+      "angle_deg": 111.8,
+      "radius": 50.0
     }
   },
   {
     "id": "conn_druid_rung_19",
-    "name": "Druid Path: Seed Pouch 2",
+    "name": "Druid Path: Rootsense 2",
     "type": "connector",
     "role": "zone_ladder",
     "source_book": null,
@@ -4132,7 +3599,7 @@
     "tags": [
       "connector"
     ],
-    "effect_summary": "Once per Long Rest, you can cause a plant to grow a day's worth of edible fruit.",
+    "effect_summary": "You have a +1 bonus to Wisdom (Survival) checks in natural terrain.",
     "mechanical_data": {},
     "prereqs": {
       "logic": "AND",
@@ -4158,7 +3625,7 @@
     }
   },
   {
-    "id": "conn_druid_rung_3",
+    "id": "conn_druid_rung_4",
     "name": "Druid Path: Green Tongue",
     "type": "connector",
     "role": "zone_ladder",
@@ -4168,7 +3635,7 @@
     "is_gate": false,
     "zone": "Druid",
     "subregion": null,
-    "depth": 3.0,
+    "depth": 4.0,
     "point_cost": 1,
     "tags": [
       "connector"
@@ -4191,15 +3658,15 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -4.728,
-    "position_y": 9.932,
+    "position_x": -5.795,
+    "position_y": 12.744,
     "polar": {
-      "angle_deg": 115.46,
-      "radius": 11.0
+      "angle_deg": 114.45,
+      "radius": 14.0
     }
   },
   {
-    "id": "conn_druid_rung_5",
+    "id": "conn_druid_rung_7",
     "name": "Druid Path: Weather Skin",
     "type": "connector",
     "role": "zone_ladder",
@@ -4209,7 +3676,7 @@
     "is_gate": false,
     "zone": "Druid",
     "subregion": null,
-    "depth": 5.0,
+    "depth": 7.0,
     "point_cost": 1,
     "tags": [
       "connector"
@@ -4232,93 +3699,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -6.861,
-    "position_y": 15.554,
-    "polar": {
-      "angle_deg": 113.8,
-      "radius": 17.0
-    }
-  },
-  {
-    "id": "conn_druid_rung_7",
-    "name": "Druid Path: Seed Pouch",
-    "type": "connector",
-    "role": "zone_ladder",
-    "source_book": null,
-    "generated": true,
-    "is_spine": true,
-    "is_gate": false,
-    "zone": "Druid",
-    "subregion": null,
-    "depth": 7.0,
-    "point_cost": 1,
-    "tags": [
-      "connector"
-    ],
-    "effect_summary": "Once per Long Rest, you can cause a plant to grow a day's worth of edible fruit.",
-    "mechanical_data": {},
-    "prereqs": {
-      "logic": "AND",
-      "nodes": [
-        "gate_druid"
-      ],
-      "threshold_count": null,
-      "groups": [
-        {
-          "logic": "AND",
-          "nodes": [
-            "gate_druid"
-          ]
-        }
-      ]
-    },
-    "ability_prereqs": [],
     "position_x": -9.812,
     "position_y": 20.802,
     "polar": {
       "angle_deg": 115.25,
       "radius": 23.0
-    }
-  },
-  {
-    "id": "conn_druid_rung_9",
-    "name": "Druid Path: Loam Step",
-    "type": "connector",
-    "role": "zone_ladder",
-    "source_book": null,
-    "generated": true,
-    "is_spine": true,
-    "is_gate": false,
-    "zone": "Druid",
-    "subregion": null,
-    "depth": 9.0,
-    "point_cost": 1,
-    "tags": [
-      "connector"
-    ],
-    "effect_summary": "You leave no tracks in natural terrain unless you choose to.",
-    "mechanical_data": {},
-    "prereqs": {
-      "logic": "AND",
-      "nodes": [
-        "gate_druid"
-      ],
-      "threshold_count": null,
-      "groups": [
-        {
-          "logic": "AND",
-          "nodes": [
-            "gate_druid"
-          ]
-        }
-      ]
-    },
-    "ability_prereqs": [],
-    "position_x": -10.284,
-    "position_y": 27.115,
-    "polar": {
-      "angle_deg": 110.77,
-      "radius": 29.0
     }
   },
   {
@@ -5511,8 +4896,8 @@
     }
   },
   {
-    "id": "conn_fighter_rung_11",
-    "name": "Fighter Path: Parade Discipline",
+    "id": "conn_fighter_rung_10",
+    "name": "Fighter Path: Set Guard",
     "type": "connector",
     "role": "zone_ladder",
     "source_book": null,
@@ -5521,12 +4906,12 @@
     "is_gate": false,
     "zone": "Fighter",
     "subregion": null,
-    "depth": 11.0,
+    "depth": 10.0,
     "point_cost": 1,
     "tags": [
       "connector"
     ],
-    "effect_summary": "You have a +1 bonus to Strength (Athletics) or Charisma (Intimidation) checks; choose when you gain this node.",
+    "effect_summary": "Once per Short Rest, you can take the Dodge action as a Bonus Action.",
     "mechanical_data": {},
     "prereqs": {
       "logic": "AND",
@@ -5544,16 +4929,16 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 30.563,
-    "position_y": 17.057,
+    "position_x": 27.905,
+    "position_y": 15.662,
     "polar": {
-      "angle_deg": 29.17,
-      "radius": 35.0
+      "angle_deg": 29.3,
+      "radius": 32.0
     }
   },
   {
     "id": "conn_fighter_rung_13",
-    "name": "Fighter Path: Drilled Footwork 2",
+    "name": "Fighter Path: Second Grip",
     "type": "connector",
     "role": "zone_ladder",
     "source_book": null,
@@ -5567,7 +4952,7 @@
     "tags": [
       "connector"
     ],
-    "effect_summary": "Your Speed increases by 5 feet while you are wearing armor.",
+    "effect_summary": "You can draw or stow one additional weapon whenever you would draw or stow one.",
     "mechanical_data": {},
     "prereqs": {
       "logic": "AND",
@@ -5593,8 +4978,8 @@
     }
   },
   {
-    "id": "conn_fighter_rung_15",
-    "name": "Fighter Path: Weapon Care 2",
+    "id": "conn_fighter_rung_16",
+    "name": "Fighter Path: Parade Discipline",
     "type": "connector",
     "role": "zone_ladder",
     "source_book": null,
@@ -5603,12 +4988,12 @@
     "is_gate": false,
     "zone": "Fighter",
     "subregion": null,
-    "depth": 15.0,
+    "depth": 16.0,
     "point_cost": 1,
     "tags": [
       "connector"
     ],
-    "effect_summary": "You gain proficiency with one Simple or Martial weapon of your choice.",
+    "effect_summary": "You have a +1 bonus to Strength (Athletics) or Charisma (Intimidation) checks; choose when you gain this node.",
     "mechanical_data": {},
     "prereqs": {
       "logic": "AND",
@@ -5626,57 +5011,16 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 41.191,
-    "position_y": 22.635,
+    "position_x": 43.847,
+    "position_y": 24.029,
     "polar": {
-      "angle_deg": 28.79,
-      "radius": 47.0
-    }
-  },
-  {
-    "id": "conn_fighter_rung_17",
-    "name": "Fighter Path: Battlefield Read 2",
-    "type": "connector",
-    "role": "zone_ladder",
-    "source_book": null,
-    "generated": true,
-    "is_spine": true,
-    "is_gate": false,
-    "zone": "Fighter",
-    "subregion": null,
-    "depth": 17.0,
-    "point_cost": 1,
-    "tags": [
-      "connector"
-    ],
-    "effect_summary": "You have a +1 bonus to Initiative rolls.",
-    "mechanical_data": {},
-    "prereqs": {
-      "logic": "AND",
-      "nodes": [
-        "gate_fighter"
-      ],
-      "threshold_count": null,
-      "groups": [
-        {
-          "logic": "AND",
-          "nodes": [
-            "gate_fighter"
-          ]
-        }
-      ]
-    },
-    "ability_prereqs": [],
-    "position_x": 47.341,
-    "position_y": 23.83,
-    "polar": {
-      "angle_deg": 26.72,
-      "radius": 53.0
+      "angle_deg": 28.72,
+      "radius": 50.0
     }
   },
   {
     "id": "conn_fighter_rung_19",
-    "name": "Fighter Path: Set Guard 2",
+    "name": "Fighter Path: Drilled Footwork 2",
     "type": "connector",
     "role": "zone_ladder",
     "source_book": null,
@@ -5690,7 +5034,7 @@
     "tags": [
       "connector"
     ],
-    "effect_summary": "Once per Short Rest, you can take the Dodge action as a Bonus Action.",
+    "effect_summary": "Your Speed increases by 5 feet while you are wearing armor.",
     "mechanical_data": {},
     "prereqs": {
       "logic": "AND",
@@ -5716,7 +5060,7 @@
     }
   },
   {
-    "id": "conn_fighter_rung_3",
+    "id": "conn_fighter_rung_4",
     "name": "Fighter Path: Weapon Care",
     "type": "connector",
     "role": "zone_ladder",
@@ -5726,7 +5070,7 @@
     "is_gate": false,
     "zone": "Fighter",
     "subregion": null,
-    "depth": 3.0,
+    "depth": 4.0,
     "point_cost": 1,
     "tags": [
       "connector"
@@ -5749,15 +5093,15 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 9.29,
-    "position_y": 5.891,
+    "position_x": 11.953,
+    "position_y": 7.289,
     "polar": {
-      "angle_deg": 32.38,
-      "radius": 11.0
+      "angle_deg": 31.38,
+      "radius": 14.0
     }
   },
   {
-    "id": "conn_fighter_rung_5",
+    "id": "conn_fighter_rung_7",
     "name": "Fighter Path: Battlefield Read",
     "type": "connector",
     "role": "zone_ladder",
@@ -5767,7 +5111,7 @@
     "is_gate": false,
     "zone": "Fighter",
     "subregion": null,
-    "depth": 5.0,
+    "depth": 7.0,
     "point_cost": 1,
     "tags": [
       "connector"
@@ -5790,93 +5134,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 15.45,
-    "position_y": 7.093,
-    "polar": {
-      "angle_deg": 24.66,
-      "radius": 17.0
-    }
-  },
-  {
-    "id": "conn_fighter_rung_7",
-    "name": "Fighter Path: Set Guard",
-    "type": "connector",
-    "role": "zone_ladder",
-    "source_book": null,
-    "generated": true,
-    "is_spine": true,
-    "is_gate": false,
-    "zone": "Fighter",
-    "subregion": null,
-    "depth": 7.0,
-    "point_cost": 1,
-    "tags": [
-      "connector"
-    ],
-    "effect_summary": "Once per Short Rest, you can take the Dodge action as a Bonus Action.",
-    "mechanical_data": {},
-    "prereqs": {
-      "logic": "AND",
-      "nodes": [
-        "gate_fighter"
-      ],
-      "threshold_count": null,
-      "groups": [
-        {
-          "logic": "AND",
-          "nodes": [
-            "gate_fighter"
-          ]
-        }
-      ]
-    },
-    "ability_prereqs": [],
     "position_x": 19.932,
     "position_y": 11.477,
     "polar": {
       "angle_deg": 29.93,
       "radius": 23.0
-    }
-  },
-  {
-    "id": "conn_fighter_rung_9",
-    "name": "Fighter Path: Second Grip",
-    "type": "connector",
-    "role": "zone_ladder",
-    "source_book": null,
-    "generated": true,
-    "is_spine": true,
-    "is_gate": false,
-    "zone": "Fighter",
-    "subregion": null,
-    "depth": 9.0,
-    "point_cost": 1,
-    "tags": [
-      "connector"
-    ],
-    "effect_summary": "You can draw or stow one additional weapon whenever you would draw or stow one.",
-    "mechanical_data": {},
-    "prereqs": {
-      "logic": "AND",
-      "nodes": [
-        "gate_fighter"
-      ],
-      "threshold_count": null,
-      "groups": [
-        {
-          "logic": "AND",
-          "nodes": [
-            "gate_fighter"
-          ]
-        }
-      ]
-    },
-    "ability_prereqs": [],
-    "position_x": 26.084,
-    "position_y": 12.674,
-    "polar": {
-      "angle_deg": 25.91,
-      "radius": 29.0
     }
   },
   {
@@ -6413,8 +5675,8 @@
     }
   },
   {
-    "id": "conn_monk_rung_11",
-    "name": "Monk Path: Stillness",
+    "id": "conn_monk_rung_10",
+    "name": "Monk Path: Cold Discipline",
     "type": "connector",
     "role": "zone_ladder",
     "source_book": null,
@@ -6423,12 +5685,12 @@
     "is_gate": false,
     "zone": "Monk",
     "subregion": null,
-    "depth": 11.0,
+    "depth": 10.0,
     "point_cost": 1,
     "tags": [
       "connector"
     ],
-    "effect_summary": "You have a +1 bonus to saving throws against being moved against your will.",
+    "effect_summary": "You are comfortable in temperatures as low as 0 degrees Fahrenheit without protection.",
     "mechanical_data": {},
     "prereqs": {
       "logic": "AND",
@@ -6446,16 +5708,16 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 31.399,
-    "position_y": -15.463,
+    "position_x": 27.905,
+    "position_y": -15.662,
     "polar": {
-      "angle_deg": 333.78,
-      "radius": 35.0
+      "angle_deg": 330.7,
+      "radius": 32.0
     }
   },
   {
     "id": "conn_monk_rung_13",
-    "name": "Monk Path: Breath Count 2",
+    "name": "Monk Path: Empty Palm",
     "type": "connector",
     "role": "zone_ladder",
     "source_book": null,
@@ -6469,7 +5731,7 @@
     "tags": [
       "connector"
     ],
-    "effect_summary": "You can hold your breath for twice as long as normal.",
+    "effect_summary": "Once per Short Rest, you can catch a thrown Light object aimed at you with your Reaction.",
     "mechanical_data": {},
     "prereqs": {
       "logic": "AND",
@@ -6495,8 +5757,8 @@
     }
   },
   {
-    "id": "conn_monk_rung_15",
-    "name": "Monk Path: Quiet Tread 2",
+    "id": "conn_monk_rung_16",
+    "name": "Monk Path: Stillness",
     "type": "connector",
     "role": "zone_ladder",
     "source_book": null,
@@ -6505,12 +5767,12 @@
     "is_gate": false,
     "zone": "Monk",
     "subregion": null,
-    "depth": 15.0,
+    "depth": 16.0,
     "point_cost": 1,
     "tags": [
       "connector"
     ],
-    "effect_summary": "You have a +1 bonus to Dexterity (Stealth) checks made while unarmored.",
+    "effect_summary": "You have a +1 bonus to saving throws against being moved against your will.",
     "mechanical_data": {},
     "prereqs": {
       "logic": "AND",
@@ -6528,57 +5790,16 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 42.027,
-    "position_y": -21.041,
+    "position_x": 44.684,
+    "position_y": -22.436,
     "polar": {
-      "angle_deg": 333.4,
-      "radius": 47.0
-    }
-  },
-  {
-    "id": "conn_monk_rung_17",
-    "name": "Monk Path: Balance Line 2",
-    "type": "connector",
-    "role": "zone_ladder",
-    "source_book": null,
-    "generated": true,
-    "is_spine": true,
-    "is_gate": false,
-    "zone": "Monk",
-    "subregion": null,
-    "depth": 17.0,
-    "point_cost": 1,
-    "tags": [
-      "connector"
-    ],
-    "effect_summary": "You have a +1 bonus to Dexterity (Acrobatics) checks.",
-    "mechanical_data": {},
-    "prereqs": {
-      "logic": "AND",
-      "nodes": [
-        "gate_monk"
-      ],
-      "threshold_count": null,
-      "groups": [
-        {
-          "logic": "AND",
-          "nodes": [
-            "gate_monk"
-          ]
-        }
-      ]
-    },
-    "ability_prereqs": [],
-    "position_x": 47.341,
-    "position_y": -23.83,
-    "polar": {
-      "angle_deg": 333.28,
-      "radius": 53.0
+      "angle_deg": 333.34,
+      "radius": 50.0
     }
   },
   {
     "id": "conn_monk_rung_19",
-    "name": "Monk Path: Cold Discipline 2",
+    "name": "Monk Path: Breath Count 2",
     "type": "connector",
     "role": "zone_ladder",
     "source_book": null,
@@ -6592,7 +5813,7 @@
     "tags": [
       "connector"
     ],
-    "effect_summary": "You are comfortable in temperatures as low as 0 degrees Fahrenheit without protection.",
+    "effect_summary": "You can hold your breath for twice as long as normal.",
     "mechanical_data": {},
     "prereqs": {
       "logic": "AND",
@@ -6618,7 +5839,7 @@
     }
   },
   {
-    "id": "conn_monk_rung_3",
+    "id": "conn_monk_rung_4",
     "name": "Monk Path: Quiet Tread",
     "type": "connector",
     "role": "zone_ladder",
@@ -6628,7 +5849,7 @@
     "is_gate": false,
     "zone": "Monk",
     "subregion": null,
-    "depth": 3.0,
+    "depth": 4.0,
     "point_cost": 1,
     "tags": [
       "connector"
@@ -6651,15 +5872,15 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 9.29,
-    "position_y": -5.891,
+    "position_x": 11.953,
+    "position_y": -7.289,
     "polar": {
-      "angle_deg": 327.62,
-      "radius": 11.0
+      "angle_deg": 328.62,
+      "radius": 14.0
     }
   },
   {
-    "id": "conn_monk_rung_5",
+    "id": "conn_monk_rung_7",
     "name": "Monk Path: Balance Line",
     "type": "connector",
     "role": "zone_ladder",
@@ -6669,7 +5890,7 @@
     "is_gate": false,
     "zone": "Monk",
     "subregion": null,
-    "depth": 5.0,
+    "depth": 7.0,
     "point_cost": 1,
     "tags": [
       "connector"
@@ -6692,93 +5913,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 14.614,
-    "position_y": -8.686,
-    "polar": {
-      "angle_deg": 329.27,
-      "radius": 17.0
-    }
-  },
-  {
-    "id": "conn_monk_rung_7",
-    "name": "Monk Path: Cold Discipline",
-    "type": "connector",
-    "role": "zone_ladder",
-    "source_book": null,
-    "generated": true,
-    "is_spine": true,
-    "is_gate": false,
-    "zone": "Monk",
-    "subregion": null,
-    "depth": 7.0,
-    "point_cost": 1,
-    "tags": [
-      "connector"
-    ],
-    "effect_summary": "You are comfortable in temperatures as low as 0 degrees Fahrenheit without protection.",
-    "mechanical_data": {},
-    "prereqs": {
-      "logic": "AND",
-      "nodes": [
-        "gate_monk"
-      ],
-      "threshold_count": null,
-      "groups": [
-        {
-          "logic": "AND",
-          "nodes": [
-            "gate_monk"
-          ]
-        }
-      ]
-    },
-    "ability_prereqs": [],
     "position_x": 20.768,
     "position_y": -9.884,
     "polar": {
       "angle_deg": 334.55,
       "radius": 23.0
-    }
-  },
-  {
-    "id": "conn_monk_rung_9",
-    "name": "Monk Path: Empty Palm",
-    "type": "connector",
-    "role": "zone_ladder",
-    "source_book": null,
-    "generated": true,
-    "is_spine": true,
-    "is_gate": false,
-    "zone": "Monk",
-    "subregion": null,
-    "depth": 9.0,
-    "point_cost": 1,
-    "tags": [
-      "connector"
-    ],
-    "effect_summary": "Once per Short Rest, you can catch a thrown Light object aimed at you with your Reaction.",
-    "mechanical_data": {},
-    "prereqs": {
-      "logic": "AND",
-      "nodes": [
-        "gate_monk"
-      ],
-      "threshold_count": null,
-      "groups": [
-        {
-          "logic": "AND",
-          "nodes": [
-            "gate_monk"
-          ]
-        }
-      ]
-    },
-    "ability_prereqs": [],
-    "position_x": 26.084,
-    "position_y": -12.674,
-    "polar": {
-      "angle_deg": 334.09,
-      "radius": 29.0
     }
   },
   {
@@ -7479,8 +6618,8 @@
     }
   },
   {
-    "id": "conn_paladin_rung_11",
-    "name": "Paladin Path: Radiant Ember",
+    "id": "conn_paladin_rung_10",
+    "name": "Paladin Path: Shield Arm",
     "type": "connector",
     "role": "zone_ladder",
     "source_book": null,
@@ -7489,12 +6628,12 @@
     "is_gate": false,
     "zone": "Paladin",
     "subregion": null,
-    "depth": 11.0,
+    "depth": 10.0,
     "point_cost": 1,
     "tags": [
       "connector"
     ],
-    "effect_summary": "You can shed Bright Light in a 10-foot radius at will as a Bonus Action.",
+    "effect_summary": "Once per Short Rest, you can add 1 to your AC against one attack roll you can see coming.",
     "mechanical_data": {},
     "prereqs": {
       "logic": "AND",
@@ -7512,16 +6651,16 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 19.135,
-    "position_y": 29.306,
+    "position_x": 17.43,
+    "position_y": 26.836,
     "polar": {
-      "angle_deg": 56.86,
-      "radius": 35.0
+      "angle_deg": 57.0,
+      "radius": 32.0
     }
   },
   {
     "id": "conn_paladin_rung_13",
-    "name": "Paladin Path: Steady Oath 2",
+    "name": "Paladin Path: Vigil",
     "type": "connector",
     "role": "zone_ladder",
     "source_book": null,
@@ -7535,7 +6674,7 @@
     "tags": [
       "connector"
     ],
-    "effect_summary": "You have a +1 bonus to saving throws against being Charmed.",
+    "effect_summary": "You need only 4 hours of rest to gain the benefit of a Long Rest once per week.",
     "mechanical_data": {},
     "prereqs": {
       "logic": "AND",
@@ -7561,8 +6700,8 @@
     }
   },
   {
-    "id": "conn_paladin_rung_15",
-    "name": "Paladin Path: Polished Plate 2",
+    "id": "conn_paladin_rung_16",
+    "name": "Paladin Path: Radiant Ember",
     "type": "connector",
     "role": "zone_ladder",
     "source_book": null,
@@ -7571,12 +6710,12 @@
     "is_gate": false,
     "zone": "Paladin",
     "subregion": null,
-    "depth": 15.0,
+    "depth": 16.0,
     "point_cost": 1,
     "tags": [
       "connector"
     ],
-    "effect_summary": "Wearing Medium or Heavy armor no longer imposes Disadvantage on Stealth checks made while standing still.",
+    "effect_summary": "You can shed Bright Light in a 10-foot radius at will as a Bonus Action.",
     "mechanical_data": {},
     "prereqs": {
       "logic": "AND",
@@ -7594,57 +6733,16 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 25.954,
-    "position_y": 39.184,
+    "position_x": 27.658,
+    "position_y": 41.654,
     "polar": {
-      "angle_deg": 56.48,
-      "radius": 47.0
-    }
-  },
-  {
-    "id": "conn_paladin_rung_17",
-    "name": "Paladin Path: Litany Practice 2",
-    "type": "connector",
-    "role": "zone_ladder",
-    "source_book": null,
-    "generated": true,
-    "is_spine": true,
-    "is_gate": false,
-    "zone": "Paladin",
-    "subregion": null,
-    "depth": 17.0,
-    "point_cost": 1,
-    "tags": [
-      "connector"
-    ],
-    "effect_summary": "You gain proficiency in Religion, or a +1 bonus to it if you already have it.",
-    "mechanical_data": {},
-    "prereqs": {
-      "logic": "AND",
-      "nodes": [
-        "gate_paladin"
-      ],
-      "threshold_count": null,
-      "groups": [
-        {
-          "logic": "AND",
-          "nodes": [
-            "gate_paladin"
-          ]
-        }
-      ]
-    },
-    "ability_prereqs": [],
-    "position_x": 30.107,
-    "position_y": 43.618,
-    "polar": {
-      "angle_deg": 55.38,
-      "radius": 53.0
+      "angle_deg": 56.42,
+      "radius": 50.0
     }
   },
   {
     "id": "conn_paladin_rung_19",
-    "name": "Paladin Path: Shield Arm 2",
+    "name": "Paladin Path: Steady Oath 2",
     "type": "connector",
     "role": "zone_ladder",
     "source_book": null,
@@ -7658,7 +6756,7 @@
     "tags": [
       "connector"
     ],
-    "effect_summary": "Once per Short Rest, you can add 1 to your AC against one attack roll you can see coming.",
+    "effect_summary": "You have a +1 bonus to saving throws against being Charmed.",
     "mechanical_data": {},
     "prereqs": {
       "logic": "AND",
@@ -7684,7 +6782,7 @@
     }
   },
   {
-    "id": "conn_paladin_rung_3",
+    "id": "conn_paladin_rung_4",
     "name": "Paladin Path: Polished Plate",
     "type": "connector",
     "role": "zone_ladder",
@@ -7694,7 +6792,7 @@
     "is_gate": false,
     "zone": "Paladin",
     "subregion": null,
-    "depth": 3.0,
+    "depth": 4.0,
     "point_cost": 1,
     "tags": [
       "connector"
@@ -7717,15 +6815,15 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 4.69,
-    "position_y": 9.95,
+    "position_x": 7.196,
+    "position_y": 12.009,
     "polar": {
-      "angle_deg": 64.76,
-      "radius": 11.0
+      "angle_deg": 59.07,
+      "radius": 14.0
     }
   },
   {
-    "id": "conn_paladin_rung_5",
+    "id": "conn_paladin_rung_7",
     "name": "Paladin Path: Litany Practice",
     "type": "connector",
     "role": "zone_ladder",
@@ -7735,7 +6833,7 @@
     "is_gate": false,
     "zone": "Paladin",
     "subregion": null,
-    "depth": 5.0,
+    "depth": 7.0,
     "point_cost": 1,
     "tags": [
       "connector"
@@ -7758,93 +6856,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 10.384,
-    "position_y": 13.46,
-    "polar": {
-      "angle_deg": 52.35,
-      "radius": 17.0
-    }
-  },
-  {
-    "id": "conn_paladin_rung_7",
-    "name": "Paladin Path: Shield Arm",
-    "type": "connector",
-    "role": "zone_ladder",
-    "source_book": null,
-    "generated": true,
-    "is_spine": true,
-    "is_gate": false,
-    "zone": "Paladin",
-    "subregion": null,
-    "depth": 7.0,
-    "point_cost": 1,
-    "tags": [
-      "connector"
-    ],
-    "effect_summary": "Once per Short Rest, you can add 1 to your AC against one attack roll you can see coming.",
-    "mechanical_data": {},
-    "prereqs": {
-      "logic": "AND",
-      "nodes": [
-        "gate_paladin"
-      ],
-      "threshold_count": null,
-      "groups": [
-        {
-          "logic": "AND",
-          "nodes": [
-            "gate_paladin"
-          ]
-        }
-      ]
-    },
-    "ability_prereqs": [],
     "position_x": 12.315,
     "position_y": 19.425,
     "polar": {
       "angle_deg": 57.63,
       "radius": 23.0
-    }
-  },
-  {
-    "id": "conn_paladin_rung_9",
-    "name": "Paladin Path: Vigil",
-    "type": "connector",
-    "role": "zone_ladder",
-    "source_book": null,
-    "generated": true,
-    "is_spine": true,
-    "is_gate": false,
-    "zone": "Paladin",
-    "subregion": null,
-    "depth": 9.0,
-    "point_cost": 1,
-    "tags": [
-      "connector"
-    ],
-    "effect_summary": "You need only 4 hours of rest to gain the benefit of a Long Rest once per week.",
-    "mechanical_data": {},
-    "prereqs": {
-      "logic": "AND",
-      "nodes": [
-        "gate_paladin"
-      ],
-      "threshold_count": null,
-      "groups": [
-        {
-          "logic": "AND",
-          "nodes": [
-            "gate_paladin"
-          ]
-        }
-      ]
-    },
-    "ability_prereqs": [],
-    "position_x": 15.725,
-    "position_y": 24.366,
-    "polar": {
-      "angle_deg": 57.16,
-      "radius": 29.0
     }
   },
   {
@@ -8709,8 +7725,8 @@
     }
   },
   {
-    "id": "conn_ranger_rung_11",
-    "name": "Ranger Path: Beast Read",
+    "id": "conn_ranger_rung_10",
+    "name": "Ranger Path: Field Medicine",
     "type": "connector",
     "role": "zone_ladder",
     "source_book": null,
@@ -8719,12 +7735,12 @@
     "is_gate": false,
     "zone": "Ranger",
     "subregion": null,
-    "depth": 11.0,
+    "depth": 10.0,
     "point_cost": 1,
     "tags": [
       "connector"
     ],
-    "effect_summary": "You have a +1 bonus to Wisdom (Animal Handling) checks.",
+    "effect_summary": "You gain proficiency with a Herbalism Kit.",
     "mechanical_data": {},
     "prereqs": {
       "logic": "AND",
@@ -8742,16 +7758,16 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -26.786,
-    "position_y": 22.528,
+    "position_x": -24.54,
+    "position_y": 20.538,
     "polar": {
-      "angle_deg": 139.93,
-      "radius": 35.0
+      "angle_deg": 140.07,
+      "radius": 32.0
     }
   },
   {
     "id": "conn_ranger_rung_13",
-    "name": "Ranger Path: Trail Eye 2",
+    "name": "Ranger Path: Long March",
     "type": "connector",
     "role": "zone_ladder",
     "source_book": null,
@@ -8765,7 +7781,7 @@
     "tags": [
       "connector"
     ],
-    "effect_summary": "You have a +1 bonus to Wisdom (Survival) checks made to track.",
+    "effect_summary": "Your walking Speed increases by 5 feet while you carry no more than half your carrying capacity.",
     "mechanical_data": {},
     "prereqs": {
       "logic": "AND",
@@ -8791,8 +7807,8 @@
     }
   },
   {
-    "id": "conn_ranger_rung_15",
-    "name": "Ranger Path: Quiet Boots 2",
+    "id": "conn_ranger_rung_16",
+    "name": "Ranger Path: Beast Read",
     "type": "connector",
     "role": "zone_ladder",
     "source_book": null,
@@ -8801,12 +7817,12 @@
     "is_gate": false,
     "zone": "Ranger",
     "subregion": null,
-    "depth": 15.0,
+    "depth": 16.0,
     "point_cost": 1,
     "tags": [
       "connector"
     ],
-    "effect_summary": "You have a +1 bonus to Dexterity (Stealth) checks made in natural terrain.",
+    "effect_summary": "You have a +1 bonus to Wisdom (Animal Handling) checks.",
     "mechanical_data": {},
     "prereqs": {
       "logic": "AND",
@@ -8824,57 +7840,16 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -35.77,
-    "position_y": 30.487,
+    "position_x": -38.016,
+    "position_y": 32.477,
     "polar": {
-      "angle_deg": 139.56,
-      "radius": 47.0
-    }
-  },
-  {
-    "id": "conn_ranger_rung_17",
-    "name": "Ranger Path: Fletcher's Habit 2",
-    "type": "connector",
-    "role": "zone_ladder",
-    "source_book": null,
-    "generated": true,
-    "is_spine": true,
-    "is_gate": false,
-    "zone": "Ranger",
-    "subregion": null,
-    "depth": 17.0,
-    "point_cost": 1,
-    "tags": [
-      "connector"
-    ],
-    "effect_summary": "Once per Long Rest, you can recover half your expended ammunition after a fight instead of half rounded down.",
-    "mechanical_data": {},
-    "prereqs": {
-      "logic": "AND",
-      "nodes": [
-        "gate_ranger"
-      ],
-      "threshold_count": null,
-      "groups": [
-        {
-          "logic": "AND",
-          "nodes": [
-            "gate_ranger"
-          ]
-        }
-      ]
-    },
-    "ability_prereqs": [],
-    "position_x": -40.262,
-    "position_y": 34.467,
-    "polar": {
-      "angle_deg": 139.43,
-      "radius": 53.0
+      "angle_deg": 139.49,
+      "radius": 50.0
     }
   },
   {
     "id": "conn_ranger_rung_19",
-    "name": "Ranger Path: Field Medicine 2",
+    "name": "Ranger Path: Trail Eye 2",
     "type": "connector",
     "role": "zone_ladder",
     "source_book": null,
@@ -8888,7 +7863,7 @@
     "tags": [
       "connector"
     ],
-    "effect_summary": "You gain proficiency with a Herbalism Kit.",
+    "effect_summary": "You have a +1 bonus to Wisdom (Survival) checks made to track.",
     "mechanical_data": {},
     "prereqs": {
       "logic": "AND",
@@ -8914,7 +7889,7 @@
     }
   },
   {
-    "id": "conn_ranger_rung_3",
+    "id": "conn_ranger_rung_4",
     "name": "Ranger Path: Quiet Boots",
     "type": "connector",
     "role": "zone_ladder",
@@ -8924,7 +7899,7 @@
     "is_gate": false,
     "zone": "Ranger",
     "subregion": null,
-    "depth": 3.0,
+    "depth": 4.0,
     "point_cost": 1,
     "tags": [
       "connector"
@@ -8947,15 +7922,15 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -8.802,
-    "position_y": 6.597,
+    "position_x": -11.054,
+    "position_y": 8.591,
     "polar": {
-      "angle_deg": 143.15,
-      "radius": 11.0
+      "angle_deg": 142.14,
+      "radius": 14.0
     }
   },
   {
-    "id": "conn_ranger_rung_5",
+    "id": "conn_ranger_rung_7",
     "name": "Ranger Path: Fletcher's Habit",
     "type": "connector",
     "role": "zone_ladder",
@@ -8965,7 +7940,7 @@
     "is_gate": false,
     "zone": "Ranger",
     "subregion": null,
-    "depth": 5.0,
+    "depth": 7.0,
     "point_cost": 1,
     "tags": [
       "connector"
@@ -8988,93 +7963,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -13.303,
-    "position_y": 10.584,
-    "polar": {
-      "angle_deg": 141.49,
-      "radius": 17.0
-    }
-  },
-  {
-    "id": "conn_ranger_rung_7",
-    "name": "Ranger Path: Field Medicine",
-    "type": "connector",
-    "role": "zone_ladder",
-    "source_book": null,
-    "generated": true,
-    "is_spine": true,
-    "is_gate": false,
-    "zone": "Ranger",
-    "subregion": null,
-    "depth": 7.0,
-    "point_cost": 1,
-    "tags": [
-      "connector"
-    ],
-    "effect_summary": "You gain proficiency with a Herbalism Kit.",
-    "mechanical_data": {},
-    "prereqs": {
-      "logic": "AND",
-      "nodes": [
-        "gate_ranger"
-      ],
-      "threshold_count": null,
-      "groups": [
-        {
-          "logic": "AND",
-          "nodes": [
-            "gate_ranger"
-          ]
-        }
-      ]
-    },
-    "ability_prereqs": [],
     "position_x": -17.799,
     "position_y": 14.567,
     "polar": {
       "angle_deg": 140.7,
       "radius": 23.0
-    }
-  },
-  {
-    "id": "conn_ranger_rung_9",
-    "name": "Ranger Path: Long March",
-    "type": "connector",
-    "role": "zone_ladder",
-    "source_book": null,
-    "generated": true,
-    "is_spine": true,
-    "is_gate": false,
-    "zone": "Ranger",
-    "subregion": null,
-    "depth": 9.0,
-    "point_cost": 1,
-    "tags": [
-      "connector"
-    ],
-    "effect_summary": "Your walking Speed increases by 5 feet while you carry no more than half your carrying capacity.",
-    "mechanical_data": {},
-    "prereqs": {
-      "logic": "AND",
-      "nodes": [
-        "gate_ranger"
-      ],
-      "threshold_count": null,
-      "groups": [
-        {
-          "logic": "AND",
-          "nodes": [
-            "gate_ranger"
-          ]
-        }
-      ]
-    },
-    "ability_prereqs": [],
-    "position_x": -22.293,
-    "position_y": 18.548,
-    "polar": {
-      "angle_deg": 140.24,
-      "radius": 29.0
     }
   },
   {
@@ -9447,8 +8340,8 @@
     }
   },
   {
-    "id": "conn_rogue_rung_11",
-    "name": "Rogue Path: Read the Room",
+    "id": "conn_rogue_rung_10",
+    "name": "Rogue Path: Soft Landing",
     "type": "connector",
     "role": "zone_ladder",
     "source_book": null,
@@ -9457,12 +8350,12 @@
     "is_gate": false,
     "zone": "Rogue",
     "subregion": null,
-    "depth": 11.0,
+    "depth": 10.0,
     "point_cost": 1,
     "tags": [
       "connector"
     ],
-    "effect_summary": "You have a +1 bonus to Initiative rolls.",
+    "effect_summary": "You take 1 less damage per 10 feet fallen.",
     "mechanical_data": {},
     "prereqs": {
       "logic": "AND",
@@ -9480,16 +8373,16 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -34.187,
-    "position_y": 7.5,
+    "position_x": -31.273,
+    "position_y": 6.781,
     "polar": {
-      "angle_deg": 167.63,
-      "radius": 35.0
+      "angle_deg": 167.77,
+      "radius": 32.0
     }
   },
   {
     "id": "conn_rogue_rung_13",
-    "name": "Rogue Path: Light Fingers 2",
+    "name": "Rogue Path: Second Pocket",
     "type": "connector",
     "role": "zone_ladder",
     "source_book": null,
@@ -9503,7 +8396,7 @@
     "tags": [
       "connector"
     ],
-    "effect_summary": "You have a +1 bonus to Dexterity (Sleight of Hand) checks.",
+    "effect_summary": "Once per Long Rest, a search of your person fails to find one small object you have hidden on you.",
     "mechanical_data": {},
     "prereqs": {
       "logic": "AND",
@@ -9529,8 +8422,8 @@
     }
   },
   {
-    "id": "conn_rogue_rung_15",
-    "name": "Rogue Path: Doorway Sense 2",
+    "id": "conn_rogue_rung_16",
+    "name": "Rogue Path: Read the Room",
     "type": "connector",
     "role": "zone_ladder",
     "source_book": null,
@@ -9539,12 +8432,12 @@
     "is_gate": false,
     "zone": "Rogue",
     "subregion": null,
-    "depth": 15.0,
+    "depth": 16.0,
     "point_cost": 1,
     "tags": [
       "connector"
     ],
-    "effect_summary": "You have a +1 bonus to Intelligence (Investigation) checks made to find a hidden object or mechanism.",
+    "effect_summary": "You have a +1 bonus to Initiative rolls.",
     "mechanical_data": {},
     "prereqs": {
       "logic": "AND",
@@ -9562,57 +8455,16 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -45.841,
-    "position_y": 10.372,
+    "position_x": -48.755,
+    "position_y": 11.09,
     "polar": {
-      "angle_deg": 167.25,
-      "radius": 47.0
-    }
-  },
-  {
-    "id": "conn_rogue_rung_17",
-    "name": "Rogue Path: Alley Cant 2",
-    "type": "connector",
-    "role": "zone_ladder",
-    "source_book": null,
-    "generated": true,
-    "is_spine": true,
-    "is_gate": false,
-    "zone": "Rogue",
-    "subregion": null,
-    "depth": 17.0,
-    "point_cost": 1,
-    "tags": [
-      "connector"
-    ],
-    "effect_summary": "You gain proficiency in Deception, or a +1 bonus to it if you already have it.",
-    "mechanical_data": {},
-    "prereqs": {
-      "logic": "AND",
-      "nodes": [
-        "gate_rogue"
-      ],
-      "threshold_count": null,
-      "groups": [
-        {
-          "logic": "AND",
-          "nodes": [
-            "gate_rogue"
-          ]
-        }
-      ]
-    },
-    "ability_prereqs": [],
-    "position_x": -51.668,
-    "position_y": 11.808,
-    "polar": {
-      "angle_deg": 167.13,
-      "radius": 53.0
+      "angle_deg": 167.19,
+      "radius": 50.0
     }
   },
   {
     "id": "conn_rogue_rung_19",
-    "name": "Rogue Path: Soft Landing 2",
+    "name": "Rogue Path: Light Fingers 2",
     "type": "connector",
     "role": "zone_ladder",
     "source_book": null,
@@ -9626,7 +8478,7 @@
     "tags": [
       "connector"
     ],
-    "effect_summary": "You take 1 less damage per 10 feet fallen.",
+    "effect_summary": "You have a +1 bonus to Dexterity (Sleight of Hand) checks.",
     "mechanical_data": {},
     "prereqs": {
       "logic": "AND",
@@ -9652,7 +8504,7 @@
     }
   },
   {
-    "id": "conn_rogue_rung_3",
+    "id": "conn_rogue_rung_4",
     "name": "Rogue Path: Doorway Sense",
     "type": "connector",
     "role": "zone_ladder",
@@ -9662,7 +8514,7 @@
     "is_gate": false,
     "zone": "Rogue",
     "subregion": null,
-    "depth": 3.0,
+    "depth": 4.0,
     "point_cost": 1,
     "tags": [
       "connector"
@@ -9685,15 +8537,15 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -10.429,
-    "position_y": 3.497,
+    "position_x": -13.78,
+    "position_y": 2.47,
     "polar": {
-      "angle_deg": 161.47,
-      "radius": 11.0
+      "angle_deg": 169.84,
+      "radius": 14.0
     }
   },
   {
-    "id": "conn_rogue_rung_5",
+    "id": "conn_rogue_rung_7",
     "name": "Rogue Path: Alley Cant",
     "type": "connector",
     "role": "zone_ladder",
@@ -9703,7 +8555,7 @@
     "is_gate": false,
     "zone": "Rogue",
     "subregion": null,
-    "depth": 5.0,
+    "depth": 7.0,
     "point_cost": 1,
     "tags": [
       "connector"
@@ -9726,93 +8578,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -16.942,
-    "position_y": 1.407,
-    "polar": {
-      "angle_deg": 175.25,
-      "radius": 17.0
-    }
-  },
-  {
-    "id": "conn_rogue_rung_7",
-    "name": "Rogue Path: Soft Landing",
-    "type": "connector",
-    "role": "zone_ladder",
-    "source_book": null,
-    "generated": true,
-    "is_spine": true,
-    "is_gate": false,
-    "zone": "Rogue",
-    "subregion": null,
-    "depth": 7.0,
-    "point_cost": 1,
-    "tags": [
-      "connector"
-    ],
-    "effect_summary": "You take 1 less damage per 10 feet fallen.",
-    "mechanical_data": {},
-    "prereqs": {
-      "logic": "AND",
-      "nodes": [
-        "gate_rogue"
-      ],
-      "threshold_count": null,
-      "groups": [
-        {
-          "logic": "AND",
-          "nodes": [
-            "gate_rogue"
-          ]
-        }
-      ]
-    },
-    "ability_prereqs": [],
     "position_x": -22.099,
     "position_y": 6.374,
     "polar": {
       "angle_deg": 163.91,
       "radius": 23.0
-    }
-  },
-  {
-    "id": "conn_rogue_rung_9",
-    "name": "Rogue Path: Second Pocket",
-    "type": "connector",
-    "role": "zone_ladder",
-    "source_book": null,
-    "generated": true,
-    "is_spine": true,
-    "is_gate": false,
-    "zone": "Rogue",
-    "subregion": null,
-    "depth": 9.0,
-    "point_cost": 1,
-    "tags": [
-      "connector"
-    ],
-    "effect_summary": "Once per Long Rest, a search of your person fails to find one small object you have hidden on you.",
-    "mechanical_data": {},
-    "prereqs": {
-      "logic": "AND",
-      "nodes": [
-        "gate_rogue"
-      ],
-      "threshold_count": null,
-      "groups": [
-        {
-          "logic": "AND",
-          "nodes": [
-            "gate_rogue"
-          ]
-        }
-      ]
-    },
-    "ability_prereqs": [],
-    "position_x": -28.359,
-    "position_y": 6.063,
-    "polar": {
-      "angle_deg": 167.93,
-      "radius": 29.0
     }
   },
   {
@@ -10677,8 +9447,8 @@
     }
   },
   {
-    "id": "conn_sorcerer_rung_11",
-    "name": "Sorcerer Path: Overflow",
+    "id": "conn_sorcerer_rung_10",
+    "name": "Sorcerer Path: Loose Spark",
     "type": "connector",
     "role": "zone_ladder",
     "source_book": null,
@@ -10687,12 +9457,12 @@
     "is_gate": false,
     "zone": "Sorcerer",
     "subregion": null,
-    "depth": 11.0,
+    "depth": 10.0,
     "point_cost": 1,
     "tags": [
       "connector"
     ],
-    "effect_summary": "Once per Long Rest, you can reroll a damage die of 1 on a spell you cast.",
+    "effect_summary": "You can produce a harmless spark, gust, or chime at a range of 15 feet at will.",
     "mechanical_data": {},
     "prereqs": {
       "logic": "AND",
@@ -10710,16 +9480,16 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -12.411,
-    "position_y": -32.726,
+    "position_x": -10.501,
+    "position_y": -30.228,
     "polar": {
-      "angle_deg": 249.23,
-      "radius": 35.0
+      "angle_deg": 250.84,
+      "radius": 32.0
     }
   },
   {
     "id": "conn_sorcerer_rung_13",
-    "name": "Sorcerer Path: Wellspring Trickle 2",
+    "name": "Sorcerer Path: Innate Poise",
     "type": "connector",
     "role": "zone_ladder",
     "source_book": null,
@@ -10733,7 +9503,7 @@
     "tags": [
       "connector"
     ],
-    "effect_summary": "You have a +1 bonus to Charisma saving throws.",
+    "effect_summary": "You have a +1 bonus to Charisma (Performance) checks.",
     "mechanical_data": {},
     "prereqs": {
       "logic": "AND",
@@ -10759,8 +9529,8 @@
     }
   },
   {
-    "id": "conn_sorcerer_rung_15",
-    "name": "Sorcerer Path: Static Skin 2",
+    "id": "conn_sorcerer_rung_16",
+    "name": "Sorcerer Path: Overflow",
     "type": "connector",
     "role": "zone_ladder",
     "source_book": null,
@@ -10769,12 +9539,12 @@
     "is_gate": false,
     "zone": "Sorcerer",
     "subregion": null,
-    "depth": 15.0,
+    "depth": 16.0,
     "point_cost": 1,
     "tags": [
       "connector"
     ],
-    "effect_summary": "You take 1 less damage from the first source of Lightning or Thunder damage that hits you each Long Rest.",
+    "effect_summary": "Once per Long Rest, you can reroll a damage die of 1 on a spell you cast.",
     "mechanical_data": {},
     "prereqs": {
       "logic": "AND",
@@ -10792,57 +9562,16 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -16.666,
-    "position_y": -43.946,
+    "position_x": -16.886,
+    "position_y": -47.062,
     "polar": {
-      "angle_deg": 249.23,
-      "radius": 47.0
-    }
-  },
-  {
-    "id": "conn_sorcerer_rung_17",
-    "name": "Sorcerer Path: Blood Hum 2",
-    "type": "connector",
-    "role": "zone_ladder",
-    "source_book": null,
-    "generated": true,
-    "is_spine": true,
-    "is_gate": false,
-    "zone": "Sorcerer",
-    "subregion": null,
-    "depth": 17.0,
-    "point_cost": 1,
-    "tags": [
-      "connector"
-    ],
-    "effect_summary": "You can sense the presence of active magic within 10 feet of you as a Bonus Action, without knowing its nature.",
-    "mechanical_data": {},
-    "prereqs": {
-      "logic": "AND",
-      "nodes": [
-        "gate_sorcerer"
-      ],
-      "threshold_count": null,
-      "groups": [
-        {
-          "logic": "AND",
-          "nodes": [
-            "gate_sorcerer"
-          ]
-        }
-      ]
-    },
-    "ability_prereqs": [],
-    "position_x": -17.95,
-    "position_y": -49.868,
-    "polar": {
-      "angle_deg": 250.2,
-      "radius": 53.0
+      "angle_deg": 250.26,
+      "radius": 50.0
     }
   },
   {
     "id": "conn_sorcerer_rung_19",
-    "name": "Sorcerer Path: Loose Spark 2",
+    "name": "Sorcerer Path: Wellspring Trickle 2",
     "type": "connector",
     "role": "zone_ladder",
     "source_book": null,
@@ -10856,7 +9585,7 @@
     "tags": [
       "connector"
     ],
-    "effect_summary": "You can produce a harmless spark, gust, or chime at a range of 15 feet at will.",
+    "effect_summary": "You have a +1 bonus to Charisma saving throws.",
     "mechanical_data": {},
     "prereqs": {
       "logic": "AND",
@@ -10882,7 +9611,7 @@
     }
   },
   {
-    "id": "conn_sorcerer_rung_3",
+    "id": "conn_sorcerer_rung_4",
     "name": "Sorcerer Path: Static Skin",
     "type": "connector",
     "role": "zone_ladder",
@@ -10892,7 +9621,7 @@
     "is_gate": false,
     "zone": "Sorcerer",
     "subregion": null,
-    "depth": 3.0,
+    "depth": 4.0,
     "point_cost": 1,
     "tags": [
       "connector"
@@ -10915,15 +9644,15 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -3.047,
-    "position_y": -10.57,
+    "position_x": -4.113,
+    "position_y": -13.382,
     "polar": {
-      "angle_deg": 253.92,
-      "radius": 11.0
+      "angle_deg": 252.91,
+      "radius": 14.0
     }
   },
   {
-    "id": "conn_sorcerer_rung_5",
+    "id": "conn_sorcerer_rung_7",
     "name": "Sorcerer Path: Blood Hum",
     "type": "connector",
     "role": "zone_ladder",
@@ -10933,7 +9662,7 @@
     "is_gate": false,
     "zone": "Sorcerer",
     "subregion": null,
-    "depth": 5.0,
+    "depth": 7.0,
     "point_cost": 1,
     "tags": [
       "connector"
@@ -10956,93 +9685,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -5.179,
-    "position_y": -16.192,
-    "polar": {
-      "angle_deg": 252.26,
-      "radius": 17.0
-    }
-  },
-  {
-    "id": "conn_sorcerer_rung_7",
-    "name": "Sorcerer Path: Loose Spark",
-    "type": "connector",
-    "role": "zone_ladder",
-    "source_book": null,
-    "generated": true,
-    "is_spine": true,
-    "is_gate": false,
-    "zone": "Sorcerer",
-    "subregion": null,
-    "depth": 7.0,
-    "point_cost": 1,
-    "tags": [
-      "connector"
-    ],
-    "effect_summary": "You can produce a harmless spark, gust, or chime at a range of 15 feet at will.",
-    "mechanical_data": {},
-    "prereqs": {
-      "logic": "AND",
-      "nodes": [
-        "gate_sorcerer"
-      ],
-      "threshold_count": null,
-      "groups": [
-        {
-          "logic": "AND",
-          "nodes": [
-            "gate_sorcerer"
-          ]
-        }
-      ]
-    },
-    "ability_prereqs": [],
     "position_x": -7.308,
     "position_y": -21.808,
     "polar": {
       "angle_deg": 251.47,
       "radius": 23.0
-    }
-  },
-  {
-    "id": "conn_sorcerer_rung_9",
-    "name": "Sorcerer Path: Innate Poise",
-    "type": "connector",
-    "role": "zone_ladder",
-    "source_book": null,
-    "generated": true,
-    "is_spine": true,
-    "is_gate": false,
-    "zone": "Sorcerer",
-    "subregion": null,
-    "depth": 9.0,
-    "point_cost": 1,
-    "tags": [
-      "connector"
-    ],
-    "effect_summary": "You have a +1 bonus to Charisma (Performance) checks.",
-    "mechanical_data": {},
-    "prereqs": {
-      "logic": "AND",
-      "nodes": [
-        "gate_sorcerer"
-      ],
-      "threshold_count": null,
-      "groups": [
-        {
-          "logic": "AND",
-          "nodes": [
-            "gate_sorcerer"
-          ]
-        }
-      ]
-    },
-    "ability_prereqs": [],
-    "position_x": -10.284,
-    "position_y": -27.115,
-    "polar": {
-      "angle_deg": 249.23,
-      "radius": 29.0
     }
   },
   {
@@ -12035,8 +10682,8 @@
     }
   },
   {
-    "id": "conn_warlock_rung_11",
-    "name": "Warlock Path: Hollow Step",
+    "id": "conn_warlock_rung_10",
+    "name": "Warlock Path: Cold Signature",
     "type": "connector",
     "role": "zone_ladder",
     "source_book": null,
@@ -12045,12 +10692,12 @@
     "is_gate": false,
     "zone": "Warlock",
     "subregion": null,
-    "depth": 11.0,
+    "depth": 10.0,
     "point_cost": 1,
     "tags": [
       "connector"
     ],
-    "effect_summary": "You have a +1 bonus to Dexterity (Stealth) checks made in Dim Light or Darkness.",
+    "effect_summary": "You gain proficiency in Arcana, or a +1 bonus to it if you already have it.",
     "mechanical_data": {},
     "prereqs": {
       "logic": "AND",
@@ -12068,16 +10715,16 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 5.111,
-    "position_y": -34.625,
+    "position_x": 4.749,
+    "position_y": -31.646,
     "polar": {
-      "angle_deg": 278.4,
-      "radius": 35.0
+      "angle_deg": 278.53,
+      "radius": 32.0
     }
   },
   {
     "id": "conn_warlock_rung_13",
-    "name": "Warlock Path: Whispered Terms 2",
+    "name": "Warlock Path: Patron's Ear",
     "type": "connector",
     "role": "zone_ladder",
     "source_book": null,
@@ -12091,7 +10738,7 @@
     "tags": [
       "connector"
     ],
-    "effect_summary": "You have a +1 bonus to Charisma (Deception) checks.",
+    "effect_summary": "Once per Long Rest, you can send a 10-word message to your patron; a reply is not guaranteed.",
     "mechanical_data": {},
     "prereqs": {
       "logic": "AND",
@@ -12117,8 +10764,8 @@
     }
   },
   {
-    "id": "conn_warlock_rung_15",
-    "name": "Warlock Path: Borrowed Eyes 2",
+    "id": "conn_warlock_rung_16",
+    "name": "Warlock Path: Hollow Step",
     "type": "connector",
     "role": "zone_ladder",
     "source_book": null,
@@ -12127,12 +10774,12 @@
     "is_gate": false,
     "zone": "Warlock",
     "subregion": null,
-    "depth": 15.0,
+    "depth": 16.0,
     "point_cost": 1,
     "tags": [
       "connector"
     ],
-    "effect_summary": "You can see in Dim Light within 30 feet as though it were Bright Light.",
+    "effect_summary": "You have a +1 bonus to Dexterity (Stealth) checks made in Dim Light or Darkness.",
     "mechanical_data": {},
     "prereqs": {
       "logic": "AND",
@@ -12150,57 +10797,16 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 6.558,
-    "position_y": -46.54,
+    "position_x": 6.919,
+    "position_y": -49.519,
     "polar": {
-      "angle_deg": 278.02,
-      "radius": 47.0
-    }
-  },
-  {
-    "id": "conn_warlock_rung_17",
-    "name": "Warlock Path: Contract Clause 2",
-    "type": "connector",
-    "role": "zone_ladder",
-    "source_book": null,
-    "generated": true,
-    "is_spine": true,
-    "is_gate": false,
-    "zone": "Warlock",
-    "subregion": null,
-    "depth": 17.0,
-    "point_cost": 1,
-    "tags": [
-      "connector"
-    ],
-    "effect_summary": "Once per Long Rest, you know whether a creature you can see has told you a deliberate lie in the last minute.",
-    "mechanical_data": {},
-    "prereqs": {
-      "logic": "AND",
-      "nodes": [
-        "gate_warlock"
-      ],
-      "threshold_count": null,
-      "groups": [
-        {
-          "logic": "AND",
-          "nodes": [
-            "gate_warlock"
-          ]
-        }
-      ]
-    },
-    "ability_prereqs": [],
-    "position_x": 7.281,
-    "position_y": -52.498,
-    "polar": {
-      "angle_deg": 277.9,
-      "radius": 53.0
+      "angle_deg": 277.95,
+      "radius": 50.0
     }
   },
   {
     "id": "conn_warlock_rung_19",
-    "name": "Warlock Path: Cold Signature 2",
+    "name": "Warlock Path: Whispered Terms 2",
     "type": "connector",
     "role": "zone_ladder",
     "source_book": null,
@@ -12214,7 +10820,7 @@
     "tags": [
       "connector"
     ],
-    "effect_summary": "You gain proficiency in Arcana, or a +1 bonus to it if you already have it.",
+    "effect_summary": "You have a +1 bonus to Charisma (Deception) checks.",
     "mechanical_data": {},
     "prereqs": {
       "logic": "AND",
@@ -12240,7 +10846,7 @@
     }
   },
   {
-    "id": "conn_warlock_rung_3",
+    "id": "conn_warlock_rung_4",
     "name": "Warlock Path: Borrowed Eyes",
     "type": "connector",
     "role": "zone_ladder",
@@ -12250,7 +10856,7 @@
     "is_gate": false,
     "zone": "Warlock",
     "subregion": null,
-    "depth": 3.0,
+    "depth": 4.0,
     "point_cost": 1,
     "tags": [
       "connector"
@@ -12273,15 +10879,15 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 2.214,
-    "position_y": -10.775,
+    "position_x": 2.577,
+    "position_y": -13.761,
     "polar": {
-      "angle_deg": 281.61,
-      "radius": 11.0
+      "angle_deg": 280.61,
+      "radius": 14.0
     }
   },
   {
-    "id": "conn_warlock_rung_5",
+    "id": "conn_warlock_rung_7",
     "name": "Warlock Path: Contract Clause",
     "type": "connector",
     "role": "zone_ladder",
@@ -12291,7 +10897,7 @@
     "is_gate": false,
     "zone": "Warlock",
     "subregion": null,
-    "depth": 5.0,
+    "depth": 7.0,
     "point_cost": 1,
     "tags": [
       "connector"
@@ -12314,93 +10920,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": 2.049,
-    "position_y": -16.876,
-    "polar": {
-      "angle_deg": 276.92,
-      "radius": 17.0
-    }
-  },
-  {
-    "id": "conn_warlock_rung_7",
-    "name": "Warlock Path: Cold Signature",
-    "type": "connector",
-    "role": "zone_ladder",
-    "source_book": null,
-    "generated": true,
-    "is_spine": true,
-    "is_gate": false,
-    "zone": "Warlock",
-    "subregion": null,
-    "depth": 7.0,
-    "point_cost": 1,
-    "tags": [
-      "connector"
-    ],
-    "effect_summary": "You gain proficiency in Arcana, or a +1 bonus to it if you already have it.",
-    "mechanical_data": {},
-    "prereqs": {
-      "logic": "AND",
-      "nodes": [
-        "gate_warlock"
-      ],
-      "threshold_count": null,
-      "groups": [
-        {
-          "logic": "AND",
-          "nodes": [
-            "gate_warlock"
-          ]
-        }
-      ]
-    },
-    "ability_prereqs": [],
     "position_x": 2.772,
     "position_y": -22.832,
     "polar": {
       "angle_deg": 276.92,
       "radius": 23.0
-    }
-  },
-  {
-    "id": "conn_warlock_rung_9",
-    "name": "Warlock Path: Patron's Ear",
-    "type": "connector",
-    "role": "zone_ladder",
-    "source_book": null,
-    "generated": true,
-    "is_spine": true,
-    "is_gate": false,
-    "zone": "Warlock",
-    "subregion": null,
-    "depth": 9.0,
-    "point_cost": 1,
-    "tags": [
-      "connector"
-    ],
-    "effect_summary": "Once per Long Rest, you can send a 10-word message to your patron; a reply is not guaranteed.",
-    "mechanical_data": {},
-    "prereqs": {
-      "logic": "AND",
-      "nodes": [
-        "gate_warlock"
-      ],
-      "threshold_count": null,
-      "groups": [
-        {
-          "logic": "AND",
-          "nodes": [
-            "gate_warlock"
-          ]
-        }
-      ]
-    },
-    "ability_prereqs": [],
-    "position_x": 4.387,
-    "position_y": -28.666,
-    "polar": {
-      "angle_deg": 278.7,
-      "radius": 29.0
     }
   },
   {
@@ -13101,8 +11625,8 @@
     }
   },
   {
-    "id": "conn_wizard_rung_11",
-    "name": "Wizard Path: Cross-Reference",
+    "id": "conn_wizard_rung_10",
+    "name": "Wizard Path: Pocket Cantrip",
     "type": "connector",
     "role": "zone_ladder",
     "source_book": null,
@@ -13111,12 +11635,12 @@
     "is_gate": false,
     "zone": "Wizard",
     "subregion": null,
-    "depth": 11.0,
+    "depth": 10.0,
     "point_cost": 1,
     "tags": [
       "connector"
     ],
-    "effect_summary": "You have a +1 bonus to Intelligence (History) checks.",
+    "effect_summary": "You learn one cantrip-equivalent trick: you can clean, chill, warm, or mark a Tiny object at a range of 10 feet.",
     "mechanical_data": {},
     "prereqs": {
       "logic": "AND",
@@ -13134,16 +11658,16 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -26.198,
-    "position_y": -23.209,
+    "position_x": -23.346,
+    "position_y": -21.885,
     "polar": {
-      "angle_deg": 221.54,
-      "radius": 35.0
+      "angle_deg": 223.15,
+      "radius": 32.0
     }
   },
   {
     "id": "conn_wizard_rung_13",
-    "name": "Wizard Path: Marginalia 2",
+    "name": "Wizard Path: Reading Light",
     "type": "connector",
     "role": "zone_ladder",
     "source_book": null,
@@ -13157,7 +11681,7 @@
     "tags": [
       "connector"
     ],
-    "effect_summary": "You have a +1 bonus to Intelligence (Arcana) checks.",
+    "effect_summary": "You can read in Darkness as if it were Dim Light.",
     "mechanical_data": {},
     "prereqs": {
       "logic": "AND",
@@ -13183,8 +11707,8 @@
     }
   },
   {
-    "id": "conn_wizard_rung_15",
-    "name": "Wizard Path: Steady Hand 2",
+    "id": "conn_wizard_rung_16",
+    "name": "Wizard Path: Cross-Reference",
     "type": "connector",
     "role": "zone_ladder",
     "source_book": null,
@@ -13193,12 +11717,12 @@
     "is_gate": false,
     "zone": "Wizard",
     "subregion": null,
-    "depth": 15.0,
+    "depth": 16.0,
     "point_cost": 1,
     "tags": [
       "connector"
     ],
-    "effect_summary": "You have a +1 bonus to saving throws made to maintain Concentration.",
+    "effect_summary": "You have a +1 bonus to Intelligence (History) checks.",
     "mechanical_data": {},
     "prereqs": {
       "logic": "AND",
@@ -13216,57 +11740,16 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -35.18,
-    "position_y": -31.167,
+    "position_x": -36.823,
+    "position_y": -33.824,
     "polar": {
-      "angle_deg": 221.54,
-      "radius": 47.0
-    }
-  },
-  {
-    "id": "conn_wizard_rung_17",
-    "name": "Wizard Path: Ink and Salt 2",
-    "type": "connector",
-    "role": "zone_ladder",
-    "source_book": null,
-    "generated": true,
-    "is_spine": true,
-    "is_gate": false,
-    "zone": "Wizard",
-    "subregion": null,
-    "depth": 17.0,
-    "point_cost": 1,
-    "tags": [
-      "connector"
-    ],
-    "effect_summary": "You gain proficiency with a Calligrapher's Supplies.",
-    "mechanical_data": {},
-    "prereqs": {
-      "logic": "AND",
-      "nodes": [
-        "gate_wizard"
-      ],
-      "threshold_count": null,
-      "groups": [
-        {
-          "logic": "AND",
-          "nodes": [
-            "gate_wizard"
-          ]
-        }
-      ]
-    },
-    "ability_prereqs": [],
-    "position_x": -39.671,
-    "position_y": -35.146,
-    "polar": {
-      "angle_deg": 221.54,
-      "radius": 53.0
+      "angle_deg": 222.57,
+      "radius": 50.0
     }
   },
   {
     "id": "conn_wizard_rung_19",
-    "name": "Wizard Path: Pocket Cantrip 2",
+    "name": "Wizard Path: Marginalia 2",
     "type": "connector",
     "role": "zone_ladder",
     "source_book": null,
@@ -13280,7 +11763,7 @@
     "tags": [
       "connector"
     ],
-    "effect_summary": "You learn one cantrip-equivalent trick: you can clean, chill, warm, or mark a Tiny object at a range of 10 feet.",
+    "effect_summary": "You have a +1 bonus to Intelligence (Arcana) checks.",
     "mechanical_data": {},
     "prereqs": {
       "logic": "AND",
@@ -13306,7 +11789,7 @@
     }
   },
   {
-    "id": "conn_wizard_rung_3",
+    "id": "conn_wizard_rung_4",
     "name": "Wizard Path: Steady Hand",
     "type": "connector",
     "role": "zone_ladder",
@@ -13316,7 +11799,7 @@
     "is_gate": false,
     "zone": "Wizard",
     "subregion": null,
-    "depth": 3.0,
+    "depth": 4.0,
     "point_cost": 1,
     "tags": [
       "connector"
@@ -13339,15 +11822,15 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -7.61,
-    "position_y": -7.943,
+    "position_x": -9.861,
+    "position_y": -9.938,
     "polar": {
-      "angle_deg": 226.23,
-      "radius": 11.0
+      "angle_deg": 225.22,
+      "radius": 14.0
     }
   },
   {
-    "id": "conn_wizard_rung_5",
+    "id": "conn_wizard_rung_7",
     "name": "Wizard Path: Ink and Salt",
     "type": "connector",
     "role": "zone_ladder",
@@ -13357,7 +11840,7 @@
     "is_gate": false,
     "zone": "Wizard",
     "subregion": null,
-    "depth": 5.0,
+    "depth": 7.0,
     "point_cost": 1,
     "tags": [
       "connector"
@@ -13380,93 +11863,11 @@
       ]
     },
     "ability_prereqs": [],
-    "position_x": -12.11,
-    "position_y": -11.931,
-    "polar": {
-      "angle_deg": 224.57,
-      "radius": 17.0
-    }
-  },
-  {
-    "id": "conn_wizard_rung_7",
-    "name": "Wizard Path: Pocket Cantrip",
-    "type": "connector",
-    "role": "zone_ladder",
-    "source_book": null,
-    "generated": true,
-    "is_spine": true,
-    "is_gate": false,
-    "zone": "Wizard",
-    "subregion": null,
-    "depth": 7.0,
-    "point_cost": 1,
-    "tags": [
-      "connector"
-    ],
-    "effect_summary": "You learn one cantrip-equivalent trick: you can clean, chill, warm, or mark a Tiny object at a range of 10 feet.",
-    "mechanical_data": {},
-    "prereqs": {
-      "logic": "AND",
-      "nodes": [
-        "gate_wizard"
-      ],
-      "threshold_count": null,
-      "groups": [
-        {
-          "logic": "AND",
-          "nodes": [
-            "gate_wizard"
-          ]
-        }
-      ]
-    },
-    "ability_prereqs": [],
     "position_x": -17.216,
     "position_y": -15.252,
     "polar": {
       "angle_deg": 221.54,
       "radius": 23.0
-    }
-  },
-  {
-    "id": "conn_wizard_rung_9",
-    "name": "Wizard Path: Reading Light",
-    "type": "connector",
-    "role": "zone_ladder",
-    "source_book": null,
-    "generated": true,
-    "is_spine": true,
-    "is_gate": false,
-    "zone": "Wizard",
-    "subregion": null,
-    "depth": 9.0,
-    "point_cost": 1,
-    "tags": [
-      "connector"
-    ],
-    "effect_summary": "You can read in Darkness as if it were Dim Light.",
-    "mechanical_data": {},
-    "prereqs": {
-      "logic": "AND",
-      "nodes": [
-        "gate_wizard"
-      ],
-      "threshold_count": null,
-      "groups": [
-        {
-          "logic": "AND",
-          "nodes": [
-            "gate_wizard"
-          ]
-        }
-      ]
-    },
-    "ability_prereqs": [],
-    "position_x": -21.707,
-    "position_y": -19.231,
-    "polar": {
-      "angle_deg": 221.54,
-      "radius": 29.0
     }
   },
   {

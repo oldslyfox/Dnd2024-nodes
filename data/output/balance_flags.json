@@ -33,8 +33,8 @@
         "Thirsting Blade"
       ],
       "measured": {
-        "points_to_own_all": 37,
-        "nodes_owned": 51,
+        "points_to_own_all": 24,
+        "nodes_owned": 35,
         "pulled_in_as_prerequisites": [
           "of_pact_of_the_blade_xphb",
           "gate_warlock",
@@ -44,9 +44,13 @@
           "gate_fighter",
           "gate_barbarian"
         ],
-        "not_ownable_from_this_start": {},
+        "not_ownable_from_this_start": {
+          "of_devouring_blade_xphb": [
+            "needs 36 points spent (has 27)"
+          ]
+        },
         "career_budget": 58,
-        "share_of_career_budget": 0.64
+        "share_of_career_budget": 0.41
       },
       "suggested_review": "Compare share_of_career_budget against how much of a build this combination actually is. If it is cheap, push the nodes deeper (Task 4 says depth, not price, is the lever)."
     },
@@ -100,22 +104,22 @@
         "Boon of Speed"
       ],
       "measured": {
-        "points_to_own_all": 8,
-        "nodes_owned": 10,
+        "points_to_own_all": 7,
+        "nodes_owned": 9,
         "pulled_in_as_prerequisites": [
           "gate_monk",
           "gate_barbarian"
         ],
         "not_ownable_from_this_start": {
           "feat_heavy_armor_master_xphb": [
-            "needs 14 points spent (has 9)"
+            "needs 14 points spent (has 8)"
           ],
           "feat_boon_of_speed_xphb": [
-            "needs 53 points spent (has 18)"
+            "needs 53 points spent (has 16)"
           ]
         },
         "career_budget": 58,
-        "share_of_career_budget": 0.14
+        "share_of_career_budget": 0.12
       },
       "suggested_review": "Compare share_of_career_budget against how much of a build this combination actually is. If it is cheap, push the nodes deeper (Task 4 says depth, not price, is the lever)."
     },
@@ -136,8 +140,8 @@
         "Unarmored Defense"
       ],
       "measured": {
-        "points_to_own_all": 9,
-        "nodes_owned": 11,
+        "points_to_own_all": 8,
+        "nodes_owned": 10,
         "pulled_in_as_prerequisites": [
           "gate_bard",
           "gate_monk",
@@ -145,7 +149,7 @@
         ],
         "not_ownable_from_this_start": {},
         "career_budget": 58,
-        "share_of_career_budget": 0.16
+        "share_of_career_budget": 0.14
       },
       "suggested_review": "Compare share_of_career_budget against how much of a build this combination actually is. If it is cheap, push the nodes deeper (Task 4 says depth, not price, is the lever)."
     },
@@ -168,15 +172,15 @@
         "Action Surge"
       ],
       "measured": {
-        "points_to_own_all": 8,
-        "nodes_owned": 12,
+        "points_to_own_all": 7,
+        "nodes_owned": 10,
         "pulled_in_as_prerequisites": [
           "gate_fighter",
           "gate_rogue"
         ],
         "not_ownable_from_this_start": {},
         "career_budget": 58,
-        "share_of_career_budget": 0.14
+        "share_of_career_budget": 0.12
       },
       "suggested_review": "Compare share_of_career_budget against how much of a build this combination actually is. If it is cheap, push the nodes deeper (Task 4 says depth, not price, is the lever)."
     },
@@ -244,8 +248,8 @@
         "Infiltration Expertise"
       ],
       "measured": {
-        "points_to_own_all": 16,
-        "nodes_owned": 21,
+        "points_to_own_all": 25,
+        "nodes_owned": 30,
         "pulled_in_as_prerequisites": [
           "gate_rogue",
           "gate_wizard",
@@ -254,11 +258,11 @@
         ],
         "not_ownable_from_this_start": {
           "feat_boon_of_skill_xphb": [
-            "needs 53 points spent (has 17)"
+            "needs 53 points spent (has 26)"
           ]
         },
         "career_budget": 58,
-        "share_of_career_budget": 0.28
+        "share_of_career_budget": 0.43
       },
       "suggested_review": "Compare share_of_career_budget against how much of a build this combination actually is. If it is cheap, push the nodes deeper (Task 4 says depth, not price, is the lever)."
     },
@@ -287,56 +291,18 @@
         "Ability Score Improvement (7)"
       ],
       "measured": {
-        "points_to_own_all": 14,
-        "nodes_owned": 23,
+        "points_to_own_all": 6,
+        "nodes_owned": 12,
         "pulled_in_as_prerequisites": [],
-        "not_ownable_from_this_start": {},
+        "not_ownable_from_this_start": {
+          "feat_ability_score_improvement_xphb": [
+            "needs 14 points spent (has 7)"
+          ]
+        },
         "career_budget": 58,
-        "share_of_career_budget": 0.24
+        "share_of_career_budget": 0.1
       },
       "suggested_review": "Compare share_of_career_budget against how much of a build this combination actually is. If it is cheap, push the nodes deeper (Task 4 says depth, not price, is the lever)."
-    },
-    {
-      "id": "cross_zone_reference_shortcuts",
-      "title": "Work Order 1 reference edges bypass zone gates",
-      "severity": "high",
-      "raw_position": "n/a - artefact of the extraction, not of the rules",
-      "concern": "Task 5 says the pathing graph is edges.json plus the new connector edges, so the extraction's `references` edges are traversable. Some of them join two class zones directly (a Barbarian subclass feature to a Monk subclass feature, for instance), which lets a player enter a zone without buying its gate and undercuts the Diablo-4-style modular board loading in Task 2. Either mark these non-traversable or accept them as deliberate wormholes.",
-      "nodes": [
-        "cf_bard_expertise_2",
-        "cf_bard_expertise_9",
-        "cf_ranger_deft_explorer_2",
-        "cf_ranger_expertise_9",
-        "cf_wizard_scholar_2",
-        "of_devil_s_sight_xphb",
-        "of_one_with_shadows_xphb",
-        "scf_barbarian_wild_heart_aspect_of_the_wilds_6",
-        "scf_cleric_light_radiance_of_the_dawn_3",
-        "scf_ranger_gloom_stalker_umbral_sight_3",
-        "scf_wizard_diviner_the_third_eye_10"
-      ],
-      "node_names": [],
-      "measured": {
-        "cross_zone_reference_edges": 24
-      },
-      "examples": [
-        "cf_bard_expertise_2 -> cf_ranger_expertise_9",
-        "cf_bard_expertise_2 -> cf_rogue_expertise_1",
-        "cf_bard_expertise_2 -> cf_rogue_expertise_6",
-        "cf_bard_expertise_9 -> cf_ranger_expertise_9",
-        "cf_bard_expertise_9 -> cf_rogue_expertise_1",
-        "cf_bard_expertise_9 -> cf_rogue_expertise_6",
-        "cf_ranger_deft_explorer_2 -> cf_bard_expertise_2",
-        "cf_ranger_deft_explorer_2 -> cf_bard_expertise_9",
-        "cf_ranger_deft_explorer_2 -> cf_rogue_expertise_1",
-        "cf_ranger_deft_explorer_2 -> cf_rogue_expertise_6",
-        "cf_ranger_expertise_9 -> cf_rogue_expertise_1",
-        "cf_ranger_expertise_9 -> cf_rogue_expertise_6",
-        "cf_wizard_scholar_2 -> cf_bard_expertise_2",
-        "cf_wizard_scholar_2 -> cf_bard_expertise_9",
-        "cf_wizard_scholar_2 -> cf_ranger_expertise_9"
-      ],
-      "suggested_review": "Decide per edge: keep as a wormhole, or set traversable=false and leave it as semantic metadata only."
     },
     {
       "id": "multiple_capstones",
@@ -355,8 +321,8 @@
         "Greater Divine Intervention"
       ],
       "measured": {
-        "points_to_own_all": 21,
-        "nodes_owned": 31,
+        "points_to_own_all": 20,
+        "nodes_owned": 29,
         "pulled_in_as_prerequisites": [
           "gate_cleric",
           "gate_bard",
@@ -364,9 +330,45 @@
         ],
         "not_ownable_from_this_start": {},
         "career_budget": 58,
-        "share_of_career_budget": 0.36
+        "share_of_career_budget": 0.34
       },
       "suggested_review": "Compare share_of_career_budget against how much of a build this combination actually is. If it is cheap, push the nodes deeper (Task 4 says depth, not price, is the lever)."
     }
-  ]
+  ],
+  "resolved_in_review": [
+    {
+      "id": "cross_zone_reference_shortcuts",
+      "title": "Work Order 1 reference edges bypassed the depth ladder",
+      "resolution": "Marked non-traversable (Work Order 2 review, item 1). edges.json was a citation registry from the extraction, not designed connectivity. The edges stay in the data tagged relation=\"reference\" for future 'see also' UI, and the pathing engine excludes them, so depth remains the sole balance lever under flat costing.",
+      "cross_zone_reference_edges": 24,
+      "examples": [
+        "cf_bard_expertise_2 -> cf_ranger_expertise_9",
+        "cf_bard_expertise_2 -> cf_rogue_expertise_1",
+        "cf_bard_expertise_2 -> cf_rogue_expertise_6",
+        "cf_bard_expertise_9 -> cf_ranger_expertise_9",
+        "cf_bard_expertise_9 -> cf_rogue_expertise_1",
+        "cf_bard_expertise_9 -> cf_rogue_expertise_6",
+        "cf_ranger_deft_explorer_2 -> cf_bard_expertise_2",
+        "cf_ranger_deft_explorer_2 -> cf_bard_expertise_9",
+        "cf_ranger_deft_explorer_2 -> cf_rogue_expertise_1",
+        "cf_ranger_deft_explorer_2 -> cf_rogue_expertise_6",
+        "cf_ranger_expertise_9 -> cf_rogue_expertise_1",
+        "cf_ranger_expertise_9 -> cf_rogue_expertise_6",
+        "cf_wizard_scholar_2 -> cf_bard_expertise_2",
+        "cf_wizard_scholar_2 -> cf_bard_expertise_9",
+        "cf_wizard_scholar_2 -> cf_ranger_expertise_9"
+      ]
+    },
+    {
+      "id": "warlock_short_rest_recovery",
+      "title": "Pact Magic short-rest recovery is not represented",
+      "resolution": "Out of scope (review, item 3). Recovery timing is character-state tracking, not tree structure; it belongs to a later work order. The Pact Magic chain models acquisition only, deliberately."
+    },
+    {
+      "id": "slot_spine_cost_at_home",
+      "title": "Slot spine nodes cost a point even in your own zone",
+      "resolution": "Correct as implemented (review, item 2). The own-zone exemption skips the connector toll, not the destination node's own price."
+    }
+  ],
+  "see_also": "proficiency_gap_audit.json - the review's item 4 follow-up"
 }

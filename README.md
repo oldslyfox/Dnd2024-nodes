@@ -9,15 +9,15 @@ asserts it.
 
 ```bash
 python3 scripts/build_all.py       # build -> validate -> flag, writes data/output
-python3 -m pytest                  # 40 tests, incl. the hand-checked path cases
+python3 -m pytest                  # 47 tests, incl. the hand-checked path cases
 python3 scripts/render_preview.py  # optional: an SVG of the layout, for eyeballing
 ```
 
 Current output:
 
 ```
-graph v2: 1172 nodes, 1740 edges
-  class_feature 283   subclass_feature 309   connector 344
+graph v2: 1133 nodes, 1701 edges
+  class_feature 283   subclass_feature 309   connector 305
   spell_slot 81       feat 89                optional_feature 58   weapon_mastery 8
 validation: PASS
 ```
@@ -31,7 +31,8 @@ validation: PASS
 | `data/output/nodes_connectors.json` | Task 1 — generated connector and gate nodes |
 | `data/output/nodes_spell_slots.json` | Task 2b — slot spines and the Warlock chain |
 | `data/output/point_economy.json` | the derived budget and level → points curve |
-| `data/output/balance_flags.json` | Task 6 — flagged, not fixed |
+| `data/output/balance_flags.json` | Task 6 — flagged, not fixed, plus what review resolved |
+| `data/output/proficiency_gap_audit.json` | the review's item 4 follow-up |
 | `data/output/validation_report.json` | acceptance checks plus layout measurements |
 | `data/output/layout_preview.svg` | a review aid — the whole tree, hover for node names |
 | `docs/layout_depth_rationale.md` | **the design document** — replaces `cost_methodology.md` per Task 4 |
@@ -53,11 +54,11 @@ because they are on the rim, not because they are priced.
 **Distance is paid for by connectivity.** A node is purchasable only if a path
 of owned nodes reaches back to where you started. Your own zone's connector
 spine is free to walk; everything else bills. Measured: reaching a notable node
-at home costs 1 point on average, abroad 6.07.
+at home costs 1 point on average, abroad 5.12.
 
 **Depth is normalized.** Each of the 13 zones carries an identical connector
 ladder, so "level 10" is the same graph distance from the hub in every zone
-regardless of how sparse that zone's real content is. Measured: 6 hops, all
+regardless of how sparse that zone's real content is. Measured: 5 hops, all
 thirteen.
 
 **Budget.** RAW offers a mean of 33.3 meaningful build choices over 20 levels
@@ -73,11 +74,10 @@ engine = PathEngine.load()                       # data/output/graph.v2.json
 state  = engine.start_state("Wizard", 58)        # home zone fixes the hit die
 
 engine.can_afford(state, "cf_fighter_extra_attack_5")
-# {'affordable': True, 'total_cost': 5,
+# {'affordable': True, 'total_cost': 4,
 #  'path': ['conn_core_hub', 'gate_fighter', 'conn_fighter_rung_1',
-#           'conn_fighter_rung_3', 'conn_fighter_rung_5',
-#           'cf_fighter_extra_attack_5'],
-#  'new_nodes': [...], 'points_remaining_after': 53, ...}
+#           'conn_fighter_rung_4', 'cf_fighter_extra_attack_5'],
+#  'new_nodes': [...], 'points_remaining_after': 54, ...}
 
 engine.allocate(state, "cf_fighter_extra_attack_5")   # buys the whole path
 engine.hit_die(state)                                 # {'number': 1, 'faces': 6}
@@ -92,22 +92,40 @@ When a node is blocked, `reason` is `unmet_prerequisites` /
 `insufficient_points` / `unreachable`, and `blocking_prereqs` says what in plain
 language: `"needs 36 points spent (has 13)"`, `"needs: of_thirsting_blade_xphb"`.
 
-## Things a human needs to decide
+## Settled in review
 
-Written up properly in `balance_flags.json` and the rationale doc; in short:
+Recorded in `balance_flags.json` under `resolved_in_review`:
 
-1. **Cross-zone reference shortcuts.** 24 edges from the Work Order 1
-   extraction join two class zones directly. Task 5 says the pathing graph
-   includes `edges.json`, so they are traversable — but they shortcut the depth
-   ladder. Keep as wormholes, or mark non-traversable?
-2. **Warlock Pact Magic** is modelled as an acquisition chain only; short-rest
-   recovery has nowhere to live until Phase 3. Flagged as Task 2b asked.
-3. **Slot spines cost points at home** — the Task 2b free-spine exemption is
-   applied to connectors, not to the slot nodes themselves, which are payload.
-   One line in `PathEngine.node_cost` if that reading is wrong.
-4. **Invented content** that RAW gave away with class membership: armor training
-   connectors, weapon mastery drill grounds. Both were needed to keep extracted
-   prerequisites satisfiable.
-5. The nine other balance flags, each with a measured cost as a share of the
-   58-point career budget — Extra Attack stacking at 64%, two full caster
-   spines at 34%, two capstones at 36%.
+1. **Cross-zone reference shortcuts** — the 24 edges from the extraction that
+   joined two class zones are now `relation: "reference"`, `traversable: false`.
+   They stay in the data for "see also" UI; the pathing engine skips them, and
+   validation fails the build if one becomes traversable again. Removing them
+   also sharpened the layout: cross-zone paths now cross 6.6 connectors against
+   3.7 at home, where before the wormholes had made the two nearly equal. The
+   ladder was retuned from a rung every two levels to every three as a result.
+2. **Slot spines cost points at home** — correct as implemented; the own-zone
+   exemption skips the connector toll, not the destination's own price.
+3. **Warlock short-rest recovery** — out of scope; character-state tracking, not
+   tree structure.
+4. **Invented armor training / drill ground connectors** — approved, with an
+   audit of whether the same gap appears elsewhere (below).
+
+**Artificer** stays a shell zone (gate, ladder, half-caster spine) and is now
+labelled in `meta.zone_status` as `"pending official 2024 content"` — not a
+broken extraction. A test holds that label.
+
+## Still open, not blocking
+
+- **The nine balance flags**, each with a measured cost as a share of the
+  58-point career budget: Extra Attack stacking 41%, expertise pile 43%, two
+  full-caster spines 34%, two capstones 34%. First item for a balance-tuning
+  pass.
+- **The proficiency gap** (`data/output/proficiency_gap_audit.json`). No
+  prerequisite in the data is unsatisfiable, but two things a RAW class hands
+  over free have no home in the tree: **saving throw proficiencies** (all 13
+  classes grant two; the tree has one node that grants one — Resilient) and
+  **simple weapon proficiency**. Saves look like chassis in the same sense hit
+  die is, and `classes_meta` already carries them per class, so the natural fix
+  mirrors the Task 2c hit die rule. Not applied — future systemic pass.
+- **`layout_preview.svg` label crowding** around Rogue/Artificer/Wizard.
+  Cosmetic; for whenever the real renderer work order starts.

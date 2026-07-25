@@ -83,8 +83,17 @@ class GraphBuilder:
         self.nodes[node["id"]] = node
         return node
 
-    def add_edge(self, source: str, target: str, relation: str) -> None:
-        self.edges.append({"from": source, "to": target, "relation": relation})
+    def add_edge(
+        self, source: str, target: str, relation: str, *, traversable: bool = True
+    ) -> None:
+        self.edges.append(
+            {
+                "from": source,
+                "to": target,
+                "relation": relation,
+                "traversable": traversable,
+            }
+        )
 
     def ring_neighbour(self, zone: str, step: int = 1) -> str:
         ring = config.ZONE_RING
@@ -311,8 +320,9 @@ class GraphBuilder:
             self.add_edge(source, target, "spine")
         self.notes.append(
             "Warlock Pact Magic is modelled as a three-branch chain (slot level, "
-            "slot count, Mystic Arcanum) rather than a slot-count spine - flagged "
-            "for design review per Task 2b."
+            "slot count, Mystic Arcanum) rather than a slot-count spine, per Task 2b. "
+            "It models acquisition only: short-rest recovery is character-state "
+            "tracking and was ruled out of scope in the Work Order 2 review."
         )
 
     def gate_id(self, zone: str) -> str:
@@ -427,7 +437,15 @@ class GraphBuilder:
             self.attach_to_zone(node["id"], zone, depth, "overlap")
 
     def merge_reference_edges(self) -> None:
-        """Keep the Work Order 1 `references` edges as traversable links."""
+        """Carry the Work Order 1 cross-references over as non-traversable edges.
+
+        These are a citation registry from the extraction ("this feature mentions
+        that one"), not designed connectivity. Twenty-four of them join two class
+        zones directly, which would let a player skip the depth ladder - and under
+        flat costing depth is the only balance lever there is. They stay in the
+        data, tagged `reference`, for "see also" UI; the pathing engine ignores
+        them.
+        """
         seen = {(e["from"], e["to"]) for e in self.edges}
         seen |= {(e["to"], e["from"]) for e in self.edges}
         for edge in self.source_edges:
@@ -438,7 +456,7 @@ class GraphBuilder:
                 continue
             seen.add((source, target))
             seen.add((target, source))
-            self.add_edge(source, target, "references")
+            self.add_edge(source, target, "reference", traversable=False)
 
     # -- Task 3 ----------------------------------------------------------
 
@@ -541,6 +559,29 @@ class GraphBuilder:
         self.assign_positions()
         return self.to_graph()
 
+    def _zone_status(self, nodes: list[dict]) -> dict:
+        """Mark zones that are structurally complete but hold no book content.
+
+        Artificer is the only one today: `classes_meta` lists it (source EFA,
+        d8, half-caster) but the Work Order 1 extraction produced no Artificer
+        features, because Artificer is not part of the 2024 core PHB. The zone is
+        built regardless - gate, ladder, half-caster spine - so the ring stays
+        complete and a character can start there and take the d8. This field
+        exists so nobody later mistakes an empty board for a broken extraction.
+        """
+        status = {}
+        for zone in config.ZONE_RING:
+            extracted = sum(
+                1
+                for node in nodes
+                if node["zone"] == zone and not node.get("generated")
+            )
+            status[zone] = {
+                "extracted_nodes": extracted,
+                "state": "populated" if extracted else "pending official 2024 content",
+            }
+        return status
+
     def to_graph(self) -> dict:
         nodes = sorted(self.nodes.values(), key=lambda n: n["id"])
         counts = Counter(node["type"] for node in nodes)
@@ -558,6 +599,7 @@ class GraphBuilder:
                 "hit_die_by_zone": {
                     name: meta["hit_die"] for name, meta in self.classes_meta.items()
                 },
+                "zone_status": self._zone_status(nodes),
                 "notes": self.notes,
             },
             "classes": self.source["classes"],

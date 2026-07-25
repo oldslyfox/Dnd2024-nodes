@@ -30,10 +30,11 @@ ALLOWED_SOURCES = {"XPHB", "XDMG", "EFA", None}
 REQUIRED_FIELDS = ("zone", "depth", "position_x", "position_y", "point_cost", "prereqs")
 
 
-def _adjacency(graph: dict, *, structural_only: bool = False) -> dict[str, set[str]]:
+def _adjacency(graph: dict, *, include_references: bool = False) -> dict[str, set[str]]:
+    """The traversable graph by default; pass include_references to see all edges."""
     adjacency: dict[str, set[str]] = {n["id"]: set() for n in graph["nodes"]}
     for edge in graph["edges"]:
-        if structural_only and edge["relation"] == "references":
+        if not include_references and not edge.get("traversable", True):
             continue
         adjacency[edge["from"]].add(edge["to"])
         adjacency[edge["to"]].add(edge["from"])
@@ -111,30 +112,32 @@ def validate(graph: dict) -> dict:
         if f"gate_{zone.lower()}" not in by_id:
             errors.append(f"zone {zone} has no gate node")
 
+    # -- reference edges must stay out of the traversable graph -----------
+    cross_zone_references = 0
+    for edge in graph["edges"]:
+        if edge["relation"] != "reference":
+            continue
+        if edge.get("traversable", True):
+            errors.append(f"reference edge is traversable: {edge['from']} -> {edge['to']}")
+        zone_a, zone_b = by_id[edge["from"]]["zone"], by_id[edge["to"]]["zone"]
+        if zone_a != zone_b and zone_a in config.ZONE_RING and zone_b in config.ZONE_RING:
+            cross_zone_references += 1
+
     # -- depth normalization ---------------------------------------------
-    # Measured on the structural graph. The extraction's `references` edges are
-    # traversable (Task 5 says so) but a few of them join two class zones
-    # directly, which shortcuts the ladder; those are surfaced separately in
-    # balance_flags.json rather than silently deleted here.
-    structural = _adjacency(graph, structural_only=True)
-    structural_hops = _hops_from(structural, "conn_core_hub")
-    probe_level = 9  # the ladder rung nearest level 10
+    # the ladder rung nearest level 10, whatever the ladder's granularity
+    probe_level = min(config.LADDER_RUNG_LEVELS, key=lambda lvl: abs(lvl - 10))
     depth_probe = {
-        zone: structural_hops.get(f"conn_{zone.lower()}_rung_{probe_level}")
+        zone: reachable.get(f"conn_{zone.lower()}_rung_{probe_level}")
         for zone in config.ZONE_RING
     }
+    with_references = _hops_from(_adjacency(graph, include_references=True), "conn_core_hub")
     full_probe = {
-        zone: reachable.get(f"conn_{zone.lower()}_rung_{probe_level}")
+        zone: with_references.get(f"conn_{zone.lower()}_rung_{probe_level}")
         for zone in config.ZONE_RING
     }
     distinct = {v for v in depth_probe.values() if v is not None}
     if len(distinct) != 1:
-        errors.append(f"depth normalization broken on the structural graph: {depth_probe}")
-    if len({v for v in full_probe.values() if v is not None}) != 1:
-        warnings.append(
-            "reference edges from the Work Order 1 extraction shortcut the ladder; "
-            "see the cross_zone_reference_shortcuts flag"
-        )
+        errors.append(f"depth normalization broken: {depth_probe}")
 
     # -- connector density -------------------------------------------------
     notable_by_zone: dict[str, list[str]] = defaultdict(list)
@@ -201,9 +204,10 @@ def validate(graph: dict) -> dict:
         },
         "depth_normalization": {
             "probe_rung_level": probe_level,
-            "structural_hops_from_hub": depth_probe,
-            "uniform_on_structural_graph": len(distinct) == 1,
-            "hops_including_reference_edges": full_probe,
+            "hops_from_hub": depth_probe,
+            "uniform": len(distinct) == 1,
+            "hops_if_reference_edges_were_traversable": full_probe,
+            "cross_zone_reference_edges_excluded_from_pathing": cross_zone_references,
         },
         "connector_density": {
             "same_zone": {

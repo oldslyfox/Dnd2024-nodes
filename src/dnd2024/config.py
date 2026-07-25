@@ -76,13 +76,19 @@ WARLOCK_ARCANUM_LEVELS = {6: 11, 7: 13, 8: 15, 9: 17}
 DEPTH_MIN = 0
 DEPTH_MAX = 20
 
-# The connector ladder that normalizes depth carries one rung per two levels.
-# One rung per level makes the ladder so long that two notable nodes in the same
-# zone end up five or six connectors apart, over the density target in Task 1;
-# one rung per two levels lands the same-zone average inside the 2-4 band while
-# still putting "level 10" exactly the same number of hops from the hub in every
-# zone, which is what Task 2d actually asks for.
-LADDER_RUNG_LEVELS = list(range(1, 21, 2))  # 1, 3, 5, ... 19
+# The connector ladder that normalizes depth carries one rung per three levels.
+# Granularity is a tuning knob between Task 1's density target (2-4 connectors
+# between two notable nodes in the same zone) and Task 2d's normalization, and
+# it was retuned once the extraction's reference edges stopped being traversable
+# - those had been quietly shortening paths. Measured, same-zone / cross-zone
+# mean connectors crossed:
+#     every level   6.4 / 9.2   too long
+#     every 2       4.1 / 7.4   just over the band
+#     every 3       3.7 / 6.6   <- chosen
+#     every 4       3.4 / 6.2   band met, but depth resolution starts to blur
+# Normalization holds at any of these: "level 10" is the same number of hops
+# from the hub in all thirteen zones either way.
+LADDER_RUNG_LEVELS = list(range(1, 21, 3))  # 1, 4, 7, 10, 13, 16, 19
 
 DEPTH_ORIGIN_FEAT = 1  # granted at character creation via background
 DEPTH_GENERAL_FEAT = 4  # first normally available at level 4

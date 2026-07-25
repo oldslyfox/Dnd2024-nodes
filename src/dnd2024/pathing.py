@@ -73,6 +73,12 @@ class PathEngine:
         self.nodes: dict[str, dict] = {n["id"]: n for n in graph["nodes"]}
         self.adjacency: dict[str, set[str]] = {node_id: set() for node_id in self.nodes}
         for edge in graph["edges"]:
+            # `reference` edges are the extraction's citation registry, not
+            # designed connectivity: they are carried in the data for "see also"
+            # UI and deliberately excluded from pathing, because a cross-zone
+            # citation would otherwise let a player skip the depth ladder.
+            if not edge.get("traversable", True):
+                continue
             source, target = edge["from"], edge["to"]
             if source in self.adjacency and target in self.adjacency:
                 self.adjacency[source].add(target)

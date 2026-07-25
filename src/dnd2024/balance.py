@@ -295,45 +295,7 @@ def detect(engine: PathEngine) -> list[dict]:
         )
     )
 
-    # 9 - Cross-zone reference shortcuts -----------------------------------
-    shortcuts = []
-    for edge in engine.graph["edges"]:
-        if edge["relation"] != "references":
-            continue
-        a, b = nodes[edge["from"]], nodes[edge["to"]]
-        if a["zone"] == b["zone"]:
-            continue
-        if CORE_ZONE in (a["zone"], b["zone"]) or "commons" in (a["zone"], b["zone"]):
-            continue
-        if a["zone"] in ZONE_RING and b["zone"] in ZONE_RING:
-            shortcuts.append(f"{edge['from']} -> {edge['to']}")
-    flags.append(
-        {
-            "id": "cross_zone_reference_shortcuts",
-            "title": "Work Order 1 reference edges bypass zone gates",
-            "severity": "high",
-            "raw_position": "n/a - artefact of the extraction, not of the rules",
-            "concern": (
-                "Task 5 says the pathing graph is edges.json plus the new connector "
-                "edges, so the extraction's `references` edges are traversable. Some "
-                "of them join two class zones directly (a Barbarian subclass feature "
-                "to a Monk subclass feature, for instance), which lets a player enter "
-                "a zone without buying its gate and undercuts the Diablo-4-style "
-                "modular board loading in Task 2. Either mark these non-traversable "
-                "or accept them as deliberate wormholes."
-            ),
-            "nodes": sorted({s.split(" -> ")[0] for s in shortcuts})[:20],
-            "node_names": [],
-            "measured": {"cross_zone_reference_edges": len(shortcuts)},
-            "examples": sorted(shortcuts)[:15],
-            "suggested_review": (
-                "Decide per edge: keep as a wormhole, or set traversable=false and "
-                "leave it as semantic metadata only."
-            ),
-        }
-    )
-
-    # 10 - Capstone collection --------------------------------------------
+    # 9 - Capstone collection ---------------------------------------------
     capstones = sorted(
         n["id"] for n in nodes.values() if n["type"] == "class_feature" and n.get("level") == 20
     )
@@ -356,6 +318,55 @@ def detect(engine: PathEngine) -> list[dict]:
     return flags
 
 
+def resolved(engine: PathEngine) -> list[dict]:
+    """Concerns raised in review and since settled. Kept for traceability."""
+    nodes = engine.nodes
+    shortcuts = []
+    for edge in engine.graph["edges"]:
+        if edge["relation"] != "reference":
+            continue
+        zone_a, zone_b = nodes[edge["from"]]["zone"], nodes[edge["to"]]["zone"]
+        if zone_a == zone_b:
+            continue
+        if CORE_ZONE in (zone_a, zone_b) or "commons" in (zone_a, zone_b):
+            continue
+        if zone_a in ZONE_RING and zone_b in ZONE_RING:
+            shortcuts.append(f"{edge['from']} -> {edge['to']}")
+
+    return [
+        {
+            "id": "cross_zone_reference_shortcuts",
+            "title": "Work Order 1 reference edges bypassed the depth ladder",
+            "resolution": (
+                "Marked non-traversable (Work Order 2 review, item 1). edges.json was "
+                "a citation registry from the extraction, not designed connectivity. "
+                "The edges stay in the data tagged relation=\"reference\" for future "
+                "'see also' UI, and the pathing engine excludes them, so depth remains "
+                "the sole balance lever under flat costing."
+            ),
+            "cross_zone_reference_edges": len(shortcuts),
+            "examples": sorted(shortcuts)[:15],
+        },
+        {
+            "id": "warlock_short_rest_recovery",
+            "title": "Pact Magic short-rest recovery is not represented",
+            "resolution": (
+                "Out of scope (review, item 3). Recovery timing is character-state "
+                "tracking, not tree structure; it belongs to a later work order. The "
+                "Pact Magic chain models acquisition only, deliberately."
+            ),
+        },
+        {
+            "id": "slot_spine_cost_at_home",
+            "title": "Slot spine nodes cost a point even in your own zone",
+            "resolution": (
+                "Correct as implemented (review, item 2). The own-zone exemption skips "
+                "the connector toll, not the destination node's own price."
+            ),
+        },
+    ]
+
+
 def write_flags(engine: PathEngine | None = None) -> list[dict]:
     engine = engine or PathEngine.load()
     flags = detect(engine)
@@ -370,6 +381,8 @@ def write_flags(engine: PathEngine | None = None) -> list[dict]:
             "calls. share_of_career_budget is that cost over the level-20 budget."
         ),
         "flags": flags,
+        "resolved_in_review": resolved(engine),
+        "see_also": "proficiency_gap_audit.json - the review's item 4 follow-up",
     }
     with open(out, "w") as handle:
         json.dump(payload, handle, indent=2)

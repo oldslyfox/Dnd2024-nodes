@@ -1,0 +1,300 @@
+{
+  "question": "Does the class-decoupling gap that forced armor training connectors appear anywhere else in the proficiency system?",
+  "verdict": "No prerequisite in the current data is unsatisfiable: the only proficiency prerequisites the extraction contains are armor ones, and the training connectors resolve all of them. Same decoupling gap, unaddressed: Saving throw proficiency. Partially covered: Weapon proficiency. Neither is blocking - nothing in the tree references them - but a character built entirely from the tree is missing chassis a RAW class would have given them at creation. Same shape of fix as the armor connectors.",
+  "prerequisite_demand": {
+    "unresolvable_proficiency_prerequisites": [],
+    "nodes_depending_on_training_connectors": {
+      "conn_training_heavy_armor": [
+        "feat_heavy_armor_master_xphb"
+      ],
+      "conn_training_light_armor": [
+        "feat_moderately_armored_xphb"
+      ],
+      "conn_training_medium_armor": [
+        "feat_heavily_armored_xphb",
+        "feat_medium_armor_master_xphb"
+      ],
+      "conn_training_shields": [
+        "feat_shield_master_xphb"
+      ]
+    }
+  },
+  "findings": [
+    {
+      "category": "armor",
+      "label": "Armor training",
+      "purchasable_sources": 9,
+      "example_sources": [
+        "cf_cleric_protector_1",
+        "cf_druid_warden_1",
+        "conn_training_heavy_armor",
+        "conn_training_light_armor",
+        "conn_training_medium_armor"
+      ],
+      "granted_free_by_every_raw_class": false,
+      "status": "COVERED - 9 purchasable source(s)"
+    },
+    {
+      "category": "shields",
+      "label": "Shield training",
+      "purchasable_sources": 3,
+      "example_sources": [
+        "conn_training_shields",
+        "feat_interception_xphb",
+        "feat_shield_master_xphb"
+      ],
+      "granted_free_by_every_raw_class": false,
+      "status": "COVERED - 3 purchasable source(s)"
+    },
+    {
+      "category": "weapons",
+      "label": "Weapon proficiency",
+      "purchasable_sources": 4,
+      "example_sources": [
+        "cf_cleric_protector_1",
+        "cf_druid_warden_1",
+        "conn_fighter_rung_4",
+        "feat_martial_weapon_training_xphb"
+      ],
+      "granted_free_by_every_raw_class": false,
+      "status": "THIN - 4 purchasable source(s). RAW hands simple and often martial weapon proficiency out with the class; the tree covers martial weapons (Martial Weapon Training) but nothing grants simple weapons, which every class gets for free."
+    },
+    {
+      "category": "tools",
+      "label": "Tool proficiency",
+      "purchasable_sources": 19,
+      "example_sources": [
+        "cf_bard_spellcasting_1",
+        "cf_cleric_protector_1",
+        "cf_druid_warden_1",
+        "conn_artificer_rung_1",
+        "conn_artificer_rung_19"
+      ],
+      "granted_free_by_every_raw_class": false,
+      "status": "COVERED - 19 purchasable source(s)"
+    },
+    {
+      "category": "skills",
+      "label": "Skill proficiency",
+      "purchasable_sources": 64,
+      "example_sources": [
+        "cf_barbarian_primal_knowledge_3",
+        "cf_rogue_slippery_mind_15",
+        "conn_artificer_rung_16",
+        "conn_barbarian_berserker_rung_6",
+        "conn_barbarian_rung_7"
+      ],
+      "granted_free_by_every_raw_class": false,
+      "status": "COVERED - 64 purchasable source(s)"
+    },
+    {
+      "category": "saving_throws",
+      "label": "Saving throw proficiency",
+      "purchasable_sources": 1,
+      "example_sources": [
+        "feat_resilient_xphb"
+      ],
+      "granted_free_by_every_raw_class": true,
+      "status": "GAP - every RAW class grants two saving throw proficiencies at creation (13/13 classes in classes_meta), and the tree has 1 node(s) that can grant one. A character built purely from the tree has no save proficiencies unless they buy Resilient."
+    }
+  ],
+  "raw_creation_grants_by_class": {
+    "Artificer": {
+      "armor": [
+        "light",
+        "medium",
+        "shield"
+      ],
+      "weapons": [
+        "simple"
+      ],
+      "tools": true,
+      "skills": true,
+      "saving_throws": [
+        "con",
+        "int"
+      ]
+    },
+    "Barbarian": {
+      "armor": [
+        "light",
+        "medium",
+        "shield"
+      ],
+      "weapons": [
+        "simple",
+        "martial"
+      ],
+      "tools": false,
+      "skills": true,
+      "saving_throws": [
+        "str",
+        "con"
+      ]
+    },
+    "Bard": {
+      "armor": [
+        "light"
+      ],
+      "weapons": [
+        "simple"
+      ],
+      "tools": true,
+      "skills": true,
+      "saving_throws": [
+        "dex",
+        "cha"
+      ]
+    },
+    "Cleric": {
+      "armor": [
+        "light",
+        "medium",
+        "shield"
+      ],
+      "weapons": [
+        "simple"
+      ],
+      "tools": false,
+      "skills": true,
+      "saving_throws": [
+        "wis",
+        "cha"
+      ]
+    },
+    "Druid": {
+      "armor": [
+        "light",
+        "shield"
+      ],
+      "weapons": [
+        "simple"
+      ],
+      "tools": true,
+      "skills": true,
+      "saving_throws": [
+        "int",
+        "wis"
+      ]
+    },
+    "Fighter": {
+      "armor": [
+        "light",
+        "medium",
+        "heavy",
+        "shield"
+      ],
+      "weapons": [
+        "simple",
+        "martial"
+      ],
+      "tools": false,
+      "skills": true,
+      "saving_throws": [
+        "str",
+        "con"
+      ]
+    },
+    "Monk": {
+      "armor": [],
+      "weapons": [
+        "simple",
+        "Martial weapons that have the {@filter Light|items|type=martial weapon|property=light} property"
+      ],
+      "tools": true,
+      "skills": true,
+      "saving_throws": [
+        "str",
+        "dex"
+      ]
+    },
+    "Paladin": {
+      "armor": [
+        "light",
+        "medium",
+        "heavy",
+        "shield"
+      ],
+      "weapons": [
+        "simple",
+        "martial"
+      ],
+      "tools": false,
+      "skills": true,
+      "saving_throws": [
+        "wis",
+        "cha"
+      ]
+    },
+    "Ranger": {
+      "armor": [
+        "light",
+        "medium",
+        "shield"
+      ],
+      "weapons": [
+        "simple",
+        "martial"
+      ],
+      "tools": false,
+      "skills": true,
+      "saving_throws": [
+        "str",
+        "dex"
+      ]
+    },
+    "Rogue": {
+      "armor": [
+        "light"
+      ],
+      "weapons": [
+        "simple",
+        "Martial weapons that have the {@filter Finesse or Light|items|type=martial weapon|property=finesse;light} property"
+      ],
+      "tools": true,
+      "skills": true,
+      "saving_throws": [
+        "dex",
+        "int"
+      ]
+    },
+    "Sorcerer": {
+      "armor": [],
+      "weapons": [
+        "simple"
+      ],
+      "tools": false,
+      "skills": true,
+      "saving_throws": [
+        "con",
+        "cha"
+      ]
+    },
+    "Warlock": {
+      "armor": [
+        "light"
+      ],
+      "weapons": [
+        "simple"
+      ],
+      "tools": false,
+      "skills": true,
+      "saving_throws": [
+        "wis",
+        "cha"
+      ]
+    },
+    "Wizard": {
+      "armor": [],
+      "weapons": [
+        "simple"
+      ],
+      "tools": false,
+      "skills": true,
+      "saving_throws": [
+        "int",
+        "wis"
+      ]
+    }
+  }
+}

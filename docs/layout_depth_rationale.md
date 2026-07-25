@@ -96,27 +96,37 @@ Real content is unevenly distributed. Monk has 34 class features, Wizard has 16;
 Barbarian has nothing at all between levels 15 and 18. Without filler, "how far
 out is level 10" would mean something different in every zone.
 
-Each zone therefore carries an identical connector ladder — one rung every two
-levels, at levels 1, 3, 5, … 19 — and every real node attaches to the rung at or
-below its depth. The result is measured, not asserted:
+Each zone therefore carries an identical connector ladder — one rung every three
+levels, at levels 1, 4, 7, 10, 13, 16, 19 — and every real node attaches to the
+rung at or below its depth. The result is measured, not asserted:
 
 ```
-"structural_hops_from_hub": every zone -> 6 hops to the level-9 rung
-"uniform_on_structural_graph": true
+"hops_from_hub": every zone -> 5 hops to the level-10 rung
+"uniform": true
 ```
 
 Same in all thirteen zones, including Artificer, whose zone contains no
 extracted content at all (see §7).
 
-Ladder granularity is a trade-off between the two things Task 1 and Task 2d
-each want. One rung per level normalizes perfectly but puts same-zone notable
-nodes 5–6 connectors apart, above the 2–4 density target. One rung per three
-levels lands density nicely but breaks uniformity, because subclass sub-regions
-then anchor at inconsistent rungs. One rung per two levels satisfies both:
+Ladder granularity is the tuning knob between Task 1's density target and Task
+2d's normalization. Normalization holds at every granularity tried; density does
+not. Measured mean connectors crossed, same-zone / cross-zone:
+
+| rung every | same zone | cross zone | |
+|---|---|---|---|
+| 1 level | 6.4 | 9.2 | ladder too long |
+| 2 levels | 4.1 | 7.4 | just over the band |
+| **3 levels** | **3.7** | **6.6** | **chosen** |
+| 4 levels | 3.4 | 6.2 | in band, but depth resolution blurs |
 
 ```
-"same_zone": mean 3.6 connectors crossed, median 4     (target 2-4)
+"same_zone": mean 3.72 connectors crossed, median 4, in_band true   (target 2-4)
+"cross_zone": mean 6.64
 ```
+
+This was retuned after the review: while the extraction's reference edges were
+traversable they had been quietly shortening paths, and removing them moved both
+numbers up (see §9).
 
 Subclass sub-regions branch off the class ladder at their first feature level,
 chain outward through their own rungs, and are also tied laterally back to the
@@ -124,9 +134,8 @@ class ladder at each of their own depths. That keeps a sub-region hanging off
 the spine at the right radius instead of trailing away from it, and it is what
 brought same-zone crossings inside the target band.
 
-**Cross-zone distance.** Raw hop counts abroad (3.9) are close to hop counts at
-home (3.6), because adjacent zones deliberately share boundary content. The
-difference is in what you pay, not how far you walk — see §8.
+**Cross-zone distance.** Abroad costs 6.64 connectors crossed against 3.7 at
+home, and the gap in points is wider still — see §8.
 
 ## 4. Slot spines
 
@@ -147,12 +156,11 @@ three branches:
 - **Mystic Arcanum** 6th → 9th, at depths 11/13/15/17, hanging off the end of
   the slot-level branch
 
-**Flagged for design review** (Task 2b asked for this if the shape was not
-obvious from the data): the short-rest recovery that makes Pact Magic what it is
-has no representation here at all. It is a property of the resource, not of any
-node, and it will need somewhere to live when Phase 3 does the spellcasting
-economy. The three-branch chain is a placeholder for the *acquisition* shape
-only.
+The short-rest recovery that makes Pact Magic what it is has no representation
+here — it is a property of the resource, not of any node. Raised for design
+review per Task 2b and **ruled out of scope**: recovery timing is character-state
+tracking and belongs to a later work order, so this chain models *acquisition*
+only, deliberately.
 
 ## 5. Depth as the only balance lever
 
@@ -191,6 +199,11 @@ so nobody's home zone contains the whole chain.
 Both are invented content, both are flagged here because they are design calls
 rather than extraction:
 
+These were approved in review as the same invented-filler pattern as ordinary
+connectors, applied to proficiency gating rather than pure pathing. The follow-up
+audit the review asked for lives in `data/output/proficiency_gap_audit.json` and
+is summarised in §10.
+
 - **Armor training connectors** (`conn_training_light_armor`,
   `…_medium_armor`, `…_heavy_armor`, `conn_training_shields`, at depths
   1/2/3/1 in the core). RAW hands armor proficiency out with class membership.
@@ -214,25 +227,33 @@ rather than extraction:
 |---|---|---|---|---|---|---|
 | core | – | – | – | 13 | 14 | hub, origin feats, armor training |
 | commons | – | – | – | – | 81 | general feats, epic boons, masteries, ASI chain |
-| Barbarian | 26 | 22 | – | 27 | – | no casting; sparse at 15–18, normalized by ladder |
-| Fighter | 27 | 33 | 4 | 31 | 20 | densest subclass content; EK third-caster spine; 20 maneuvers on the Barbarian seam |
-| Paladin | 24 | 25 | 5 | 27 | 1 | half-caster spine; owns Blessed Warrior |
-| Cleric | 22 | 24 | 9 | 23 | – | full spine |
-| Druid | 23 | 27 | 9 | 27 | – | full spine |
-| Ranger | 23 | 25 | 5 | 27 | 1 | half-caster spine; owns Druidic Warrior |
-| Rogue | 32 | 28 | 4 | 27 | – | Arcane Trickster third-caster spine |
-| Artificer | – | – | 5 | 11 | – | **empty of extracted content** — see below |
-| Wizard | 16 | 24 | 9 | 27 | – | fewest class features; ladder does the most work here |
-| Sorcerer | 19 | 25 | 9 | 27 | 10 | 10 metamagic nodes on the Wizard seam |
-| Warlock | 19 | 26 | 13 | 27 | 28 | Pact Magic chain; 28 invocations on the Sorcerer seam |
-| Bard | 18 | 24 | 9 | 23 | – | full spine |
-| Monk | 34 | 26 | – | 27 | – | most class features of any zone |
+| Barbarian | 26 | 22 | – | 24 | – | no casting; sparse at 15–18, normalized by ladder |
+| Fighter | 27 | 33 | 4 | 28 | 20 | densest subclass content; EK third-caster spine; 20 maneuvers on the Barbarian seam |
+| Paladin | 24 | 25 | 5 | 24 | 1 | half-caster spine; owns Blessed Warrior |
+| Cleric | 22 | 24 | 9 | 20 | – | full spine |
+| Druid | 23 | 27 | 9 | 24 | – | full spine |
+| Ranger | 23 | 25 | 5 | 24 | 1 | half-caster spine; owns Druidic Warrior |
+| Rogue | 32 | 28 | 4 | 24 | – | Arcane Trickster third-caster spine |
+| Artificer | – | – | 5 | 8 | – | **pending official 2024 content** — see below |
+| Wizard | 16 | 24 | 9 | 24 | – | fewest class features; ladder does the most work here |
+| Sorcerer | 19 | 25 | 9 | 24 | 10 | 10 metamagic nodes on the Wizard seam |
+| Warlock | 19 | 26 | 13 | 24 | 28 | Pact Magic chain; 28 invocations on the Sorcerer seam |
+| Bard | 18 | 24 | 9 | 20 | – | full spine |
+| Monk | 34 | 26 | – | 24 | – | most class features of any zone |
 
-**Artificer.** `classes_meta.json` lists it (source EFA, hit die d8, half-caster)
-but the Work Order 1 extraction produced zero Artificer features. The zone is
-built anyway — gate, full 1–20 ladder, half-caster spine — so the ring has all
-thirteen zones and so a character can start there and get the d8 hit die. It is
-an empty board waiting for content, not an omission.
+**Artificer — pending official 2024 content.** `classes_meta.json` lists it
+(source EFA, hit die d8, half-caster) but the Work Order 1 extraction produced
+zero Artificer features, because Artificer is not part of the 2024 core PHB. The
+zone is built anyway — gate, ladder, half-caster spine — so the ring has all
+thirteen zones and a character can start there and take the d8. `meta.zone_status`
+in graph v2 labels it explicitly:
+
+```json
+"Artificer": {"extracted_nodes": 0, "state": "pending official 2024 content"}
+```
+
+It is an empty board awaiting content, not a broken extraction, and a test holds
+that label in place.
 
 ## 8. What a path actually costs
 
@@ -242,27 +263,62 @@ where the cross-zone premium comes from:
 
 ```
 mean points to reach a notable node in your home zone:   1.0
-mean points to reach a notable node in another zone:     6.07
+mean points to reach a notable node in another zone:     5.12
 ```
 
 A Wizard reaching their own level-18 capstone pays 1 point — the capstone. A
-Wizard reaching Fighter's Extra Attack pays 5: the Fighter gate, three foreign
+Wizard reaching Fighter's Extra Attack pays 4: the Fighter gate, two foreign
 ladder rungs, and the feature.
 
-**One reading worth checking.** Task 2b says a caster's own slot spine incurs no
-connector cost. Slot spine nodes are payload, not filler — they *are* the
-spell slots — so they are billed at 1 point each even at home; the exemption is
-applied to connectors. That is why `slot_cleric_t9` costs a Cleric 9 rather than
-1. If the intent was that the whole spine is free at home, it is a one-line
-change in `PathEngine.node_cost`.
+**Confirmed in review.** Task 2b's own-zone exemption skips the connector toll,
+not the destination node's own price. Slot spine nodes are payload, not filler —
+they *are* the spell slots — so they are billed at 1 point each even at home.
+That is why `slot_cleric_t9` costs a Cleric 9 rather than 1.
 
-## 9. Known tension, not silently resolved
+## 9. Reference edges are not pathing (resolved in review)
 
-The extraction's `references` edges are traversable, because Task 5 says the
-pathing graph is `edges.json` plus the new connector edges. Twenty-four of them
-join two class zones directly (a Barbarian subclass feature to a Monk subclass
-feature, for instance). They do not break the gate rule — gates are enforced as
-prerequisites, not as topology — but they do shortcut the depth ladder, which is
-why the validation report measures normalization on the structural graph and
-warns about the full one. They are listed in `balance_flags.json` under
-`cross_zone_reference_shortcuts` for a keep-or-cut decision.
+The Work Order 1 `edges.json` is a citation registry — "this feature's text
+mentions that one" — not designed connectivity. Twenty-four of its edges join
+two class zones directly (a Barbarian subclass feature to a Monk subclass
+feature, for instance), which shortcut the depth ladder; under flat costing
+depth is the only balance lever, so anything that bypasses it takes the lever
+away.
+
+They are kept in the graph, tagged `relation: "reference"` with
+`traversable: false`, so a UI can still offer "see also" links. `PathEngine`
+skips them when it builds its adjacency, and `validate` fails the build if one
+ever comes back traversable. The full-graph hop counts are still reported in
+`validation_report.json` for comparison.
+
+Removing them from pathing is what moved the density numbers in §3, and it also
+sharpened the cross-zone premium: cross-zone paths now cross nearly twice as
+many connectors as same-zone ones, where before the wormholes had made the two
+almost equal.
+
+## 10. The proficiency gap, audited
+
+Review item 4 asked whether the class-decoupling gap that forced the armor
+training connectors shows up anywhere else. `src/dnd2024/audit.py` checks it from
+both sides and writes `data/output/proficiency_gap_audit.json`.
+
+**Demand — clean.** The only proficiency prerequisites anywhere in the extraction
+are armor ones (medium ×2, heavy, light, shield), and the training connectors
+resolve all of them. No node in the graph is unbuyable for want of a proficiency.
+
+**Supply — one real gap and one thin spot.**
+
+| category | verdict |
+|---|---|
+| Armor, shields | covered — 9 and 3 purchasable sources |
+| Skills | covered — 69 sources |
+| Tools | covered — 22 sources |
+| Weapons | **thin** — Martial Weapon Training covers martial, nothing grants *simple* weapons, which every RAW class gives away free |
+| Saving throws | **gap** — all 13 classes grant two save proficiencies at creation; the tree has exactly one node that grants one (Resilient) |
+
+Nothing references either, so nothing is blocked — but a character built purely
+from the tree has no saving throw proficiencies and no simple weapon training,
+both of which a RAW class hands over before play starts. Saves in particular look
+like chassis in the same sense hit die is (Task 2c), and `classes_meta` already
+carries `saving_throw_proficiencies` per class, so the natural fix mirrors the
+hit die rule: derive them from the starting zone. Not done here — the review
+marked this a future systemic pass, not blocking.

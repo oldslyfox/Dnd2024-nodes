@@ -54,8 +54,11 @@ def main() -> int:
 
     for edge in graph["edges"]:
         a, b = by_id[edge["from"]], by_id[edge["to"]]
-        opacity = 0.5 if edge["relation"] in ("spine", "gate") else 0.18
-        stroke = "#ff6b6b" if edge["relation"] == "references" else "#7f8fa6"
+        # non-traversable `reference` edges are drawn faintly in red: they are
+        # "see also" metadata, not routes anyone can walk
+        traversable = edge.get("traversable", True)
+        opacity = (0.5 if edge["relation"] in ("spine", "gate") else 0.18) if traversable else 0.12
+        stroke = "#7f8fa6" if traversable else "#ff6b6b"
         parts.append(
             f'<line x1="{a["position_x"]}" y1="{a["position_y"]}" '
             f'x2="{b["position_x"]}" y2="{b["position_y"]}" '

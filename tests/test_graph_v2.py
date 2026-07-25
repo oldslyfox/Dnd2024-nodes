@@ -142,6 +142,45 @@ def test_point_economy_is_inside_the_locked_band(graph):
     assert cumulative[-1] == economy["total_points_at_level_20"]
 
 
+def test_reference_edges_are_kept_but_not_traversable(graph):
+    """Review item 1 - the extraction's citations are 'see also', not pathing."""
+    references = [edge for edge in graph["edges"] if edge["relation"] == "reference"]
+    assert references, "the Work Order 1 cross-references were dropped entirely"
+    assert all(edge["traversable"] is False for edge in references)
+    assert all(
+        edge["traversable"] is True
+        for edge in graph["edges"]
+        if edge["relation"] != "reference"
+    )
+
+
+def test_pathing_engine_ignores_reference_edges(graph):
+    from dnd2024.pathing import PathEngine
+
+    engine = PathEngine(graph)
+    for edge in graph["edges"]:
+        if edge["relation"] == "reference":
+            assert edge["to"] not in engine.adjacency[edge["from"]]
+
+
+def test_empty_zones_are_labelled_not_silently_empty(graph):
+    """Review - Artificer is pending official 2024 content, not a broken extract."""
+    status = graph["meta"]["zone_status"]
+    assert status["Artificer"] == {
+        "extracted_nodes": 0,
+        "state": "pending official 2024 content",
+    }
+    assert all(
+        entry["state"] == "populated"
+        for zone, entry in status.items()
+        if zone != "Artificer"
+    )
+    # the shell is still a real zone: gate, ladder and a half-caster spine
+    ids = {node["id"] for node in graph["nodes"]}
+    assert "gate_artificer" in ids
+    assert len([n for n in graph["nodes"] if n["zone"] == "Artificer" and n["type"] == "spell_slot"]) == 5
+
+
 def test_hit_die_table_is_present_for_every_zone(graph):
     hit_dice = graph["meta"]["hit_die_by_zone"]
     for zone in config.ZONE_RING:

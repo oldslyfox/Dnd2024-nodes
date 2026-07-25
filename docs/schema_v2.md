@@ -65,19 +65,21 @@ what keeps the modular board loading honest (see the layout rationale, §2).
 ## Edge
 
 ```json
-{"from": "node_id", "to": "node_id", "relation": "spine"}
+{"from": "node_id", "to": "node_id", "relation": "spine", "traversable": true}
 ```
 
-Edges are undirected for pathing. Relations:
+Edges are undirected. `traversable: false` means the edge is metadata only —
+`PathEngine` excludes it when building its adjacency, and `validate` errors if a
+`reference` edge is ever marked traversable.
 
-| relation | meaning |
-|---|---|
-| `gate` | hub ↔ a zone gate |
-| `spine` | connector ladder links, sub-region links, slot spine links |
-| `attach` | a real node hanging off the rung at its depth |
-| `overlap` | a shared node wired into a second zone's ladder |
-| `chain` | repeatable feat chains, armor training chain |
-| `references` | carried over from the Work Order 1 extraction, deduplicated |
+| relation | traversable | meaning |
+|---|---|---|
+| `gate` | yes | hub ↔ a zone gate |
+| `spine` | yes | connector ladder links, sub-region links, slot spine links |
+| `attach` | yes | a real node hanging off the rung at its depth |
+| `overlap` | yes | a shared node wired into a second zone's ladder |
+| `chain` | yes | repeatable feat chains, armor training chain |
+| `reference` | **no** | the Work Order 1 citation registry, deduplicated — "this feature's text mentions that one". Kept for "see also" UI; excluded from pathing so cross-zone citations cannot shortcut the depth ladder |
 
 ## Meta
 
@@ -86,6 +88,13 @@ level → points curve, the level → threshold table). `meta.hit_die_by_zone` i
 the Task 2c lookup: hit die is fixed by the zone a character starts in, read
 straight from `classes_meta.json`, locked once at creation.
 
+`meta.zone_status` marks zones that are structurally complete but hold no book
+content, so an empty board is never mistaken for a broken extraction:
+
+```json
+"Artificer": {"extracted_nodes": 0, "state": "pending official 2024 content"}
+```
+
 ## Other output files
 
 | file | contents |
@@ -93,5 +102,6 @@ straight from `classes_meta.json`, locked once at creation.
 | `nodes_connectors.json` | the generated connectors and gates, same schema, `type: "connector"` |
 | `nodes_spell_slots.json` | the generated slot spines and the Warlock Pact Magic chain |
 | `point_economy.json` | the economy, standalone |
-| `balance_flags.json` | Task 6 guardrails |
+| `balance_flags.json` | Task 6 guardrails, plus `resolved_in_review` for decisions already taken |
+| `proficiency_gap_audit.json` | which proficiencies a class used to grant free that the tree cannot sell |
 | `validation_report.json` | acceptance checks and the layout measurements |
