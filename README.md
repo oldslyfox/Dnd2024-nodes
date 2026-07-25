@@ -15,8 +15,9 @@ anywhere in the output, and a test asserts it.
 
 ```bash
 python3 scripts/build_all.py       # build -> validate -> flag, writes data/output
-python3 -m pytest                  # 55 tests, incl. the hand-checked path cases
+python3 -m pytest                  # 84 tests, incl. the hand-checked path cases
 python3 scripts/render_preview.py  # optional: an SVG of the layout, for eyeballing
+python3 scripts/sweep_sources.py --dump /path/to/5etools/data   # re-extract (WO7)
 ```
 
 Current output:
@@ -43,10 +44,13 @@ layout: radius 12 + 12/depth, max radius 253.8, min node separation 1.799
 | `data/output/validation_report.json` | acceptance checks plus layout measurements |
 | `data/output/layout_preview.svg` | a review aid — the whole tree, hover for node names |
 | `docs/layout_depth_rationale.md` | **the design document** — replaces `cost_methodology.md` per Task 4 |
+| `docs/source_policy.md` | which books count, how reprints are resolved, how to run the sweep |
 | `docs/point_economy.md` | RAW baseline, budget, and the level → points-spent mapping |
 | `docs/schema_v2.md` | node/edge schema |
 | `docs/work_order_02.md` | the work order this implements |
 | `src/dnd2024/` | the generator, the pathing engine, the validator |
+| `src/dnd2024/sources.py` | Work Order 7 — the source allowlist, derived from `books.json` |
+| `src/dnd2024/sweep.py` | Work Order 7 — re-extraction, reprint dedup, conflict detection |
 | `web/` | the visual tree renderer, desktop and mobile (Work Orders 3–6) — its own README |
 | `scripts/export_engine_fixtures.py` | records the Python engine's answers for the JS port to match |
 

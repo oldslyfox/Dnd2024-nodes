@@ -182,6 +182,10 @@ OPTIONAL_FEATURE_HOME = {
     "eldritch_invocation": ("Warlock", "Sorcerer"),
     "metamagic": ("Sorcerer", "Wizard"),
     "maneuver_battle_master": ("Fighter", "Barbarian"),
+    # Work Order 7: Artificer infusions arrive with the EFA class. Artificer's
+    # ring neighbours are Rogue and Wizard; infusions are item magic, so they
+    # sit on the Wizard side.
+    "artificer_infusion": ("Artificer", "Wizard"),
 }
 
 # Fighting-style feats that are locked to one class's Fighting Style feature.

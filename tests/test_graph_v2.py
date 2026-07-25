@@ -38,9 +38,26 @@ def test_costs_are_flat(graph):
     assert set(costs.values()) == {config.FLAT_POINT_COST}
 
 
+#: Source codes from the 2014 edition. Work Order 7 widened the extraction from a
+#: two-book allowlist to a derived one, so the guarantee is stated as "no 2014
+#: content" rather than "only these two books" - which is what the scope actually
+#: says, and what stays true as new books are released.
+LEGACY_2014_SOURCES = {
+    "PHB", "DMG", "MM", "XGE", "TCE", "SCAG", "VGM", "MTF", "FTD", "MPMM",
+    "EGW", "ERLW", "GGR", "SCC", "AI", "BGDIA", "IDRotF", "CoS", "TCE-legacy",
+}
+
+
 def test_no_2014_content(graph):
-    allowed = {"XPHB", "XDMG", "EFA", None}
-    assert {node.get("source_book") for node in graph["nodes"]} <= allowed
+    used = {node.get("source_book") for node in graph["nodes"]} - {None}
+    assert not (used & LEGACY_2014_SOURCES), sorted(used & LEGACY_2014_SOURCES)
+
+    allowlist_path = GRAPH_PATH.parent / "source_allowlist.json"
+    if allowlist_path.exists():
+        # once a sweep has run, the graph may only contain books it accepted
+        with open(allowlist_path) as handle:
+            allowed = set(json.load(handle)["sources"])
+        assert used <= allowed, sorted(used - allowed)
 
 
 def test_every_class_has_a_zone_and_a_gate(graph):
@@ -163,22 +180,33 @@ def test_pathing_engine_ignores_reference_edges(graph):
             assert edge["to"] not in engine.adjacency[edge["from"]]
 
 
-def test_empty_zones_are_labelled_not_silently_empty(graph):
-    """Review - Artificer is pending official 2024 content, not a broken extract."""
+def test_zone_status_matches_what_is_actually_extracted(graph):
+    """A zone with no book content is labelled, never silently empty.
+
+    Stated as an invariant rather than as "Artificer is empty": Work Order 7
+    broadened the source list precisely so zones can stop being empty, and this
+    test has to keep holding on the day one does.
+    """
     status = graph["meta"]["zone_status"]
-    assert status["Artificer"] == {
-        "extracted_nodes": 0,
-        "state": "pending official 2024 content",
-    }
-    assert all(
-        entry["state"] == "populated"
-        for zone, entry in status.items()
-        if zone != "Artificer"
-    )
-    # the shell is still a real zone: gate, ladder and a half-caster spine
+    for zone, entry in status.items():
+        extracted = len(
+            [
+                node
+                for node in graph["nodes"]
+                if node["zone"] == zone and not node.get("generated")
+            ]
+        )
+        assert entry["extracted_nodes"] == extracted, zone
+        expected = "populated" if extracted else "pending official 2024 content"
+        assert entry["state"] == expected, zone
+
+    # every zone is a real zone whether or not a book has filled it yet
     ids = {node["id"] for node in graph["nodes"]}
-    assert "gate_artificer" in ids
-    assert len([n for n in graph["nodes"] if n["zone"] == "Artificer" and n["type"] == "spell_slot"]) == 5
+    for zone in config.ZONE_RING:
+        assert f"gate_{zone.lower()}" in ids, zone
+    assert len(
+        [n for n in graph["nodes"] if n["zone"] == "Artificer" and n["type"] == "spell_slot"]
+    ) == 5, "Artificer is a half caster whether or not its features are extracted yet"
 
 
 def test_chassis_is_complete_for_every_zone(graph):
@@ -211,3 +239,18 @@ def test_chassis_is_not_duplicated_as_purchasable_nodes(graph):
         if "saving throw proficiency" in (n.get("effect_summary") or "").lower()
     ]
     assert not [n for n in generated if n["id"].startswith("conn_training_simple")]
+
+
+def test_the_build_is_byte_reproducible():
+    """Two runs of the same input must produce the same graph.
+
+    Epic boons with no owning class used to be placed with `hash(node_id)`,
+    which Python salts per process - so an unchanged build produced different
+    coordinates on every run, and the web bundle's inlined data changed with it.
+    Found by Work Order 7's rebuild; this holds the fix in place.
+    """
+    from dnd2024.build import GraphBuilder
+
+    first = GraphBuilder().build()
+    second = GraphBuilder().build()
+    assert json.dumps(first, sort_keys=True) == json.dumps(second, sort_keys=True)

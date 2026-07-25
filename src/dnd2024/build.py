@@ -6,6 +6,7 @@ generated node files to data/output.
 
 from __future__ import annotations
 
+import hashlib
 import json
 import math
 from collections import Counter, defaultdict
@@ -40,7 +41,13 @@ OPTIONAL_FEATURE_DEFAULT_DEPTH = {
     "eldritch_invocation": 1,
     "metamagic": 2,
     "maneuver_battle_master": 3,
+    "artificer_infusion": 2,  # Artificer gains its infusion feature at level 2
 }
+
+#: Where an optional feature goes when a future book invents a category nobody
+#: has mapped yet. Work Order 7 widened the source list, so this will happen -
+#: better a visible commons node plus a note than a crashed build or a silent drop.
+UNMAPPED_OPTIONAL_FEATURE_DEPTH = 4
 
 ARMOR_TRAINING_SOURCES = {
     "light": ["conn_training_light_armor", "feat_lightly_armored_xphb"],
@@ -150,12 +157,28 @@ class GraphBuilder:
 
             elif kind == "optional_feature":
                 label = node["feature_type_labels"][0]
-                owner, neighbour = config.OPTIONAL_FEATURE_HOME[label]
-                node["zone"] = owner
-                node["boundary"] = [owner, neighbour]
+                home = config.OPTIONAL_FEATURE_HOME.get(label)
+                if home is None:
+                    # A category from a book nobody has mapped yet (Work Order 7
+                    # made new books arrive without code changes, so this is a
+                    # question of when, not if). Park it in the commons, keep it
+                    # buyable, and say so out loud.
+                    node["zone"] = COMMONS_ZONE
+                    node["boundary"] = None
+                    self.notes.append(
+                        f"optional feature category '{label}' has no zone mapping "
+                        f"({node['id']}); placed in the commons - add it to "
+                        "config.OPTIONAL_FEATURE_HOME"
+                    )
+                else:
+                    owner, neighbour = home
+                    node["zone"] = owner
+                    node["boundary"] = [owner, neighbour]
                 node["depth"] = float(
                     self._optional_feature_level(node)
-                    or OPTIONAL_FEATURE_DEFAULT_DEPTH[label]
+                    or OPTIONAL_FEATURE_DEFAULT_DEPTH.get(
+                        label, UNMAPPED_OPTIONAL_FEATURE_DEPTH
+                    )
                 )
                 node["role"] = label
                 if label == "maneuver_battle_master":
@@ -214,7 +237,14 @@ class GraphBuilder:
             elif len(owners) == 1:
                 pair = (owners[0], self.ring_neighbour(owners[0]))
             else:
-                pair = boundary_cycle[hash(node["id"]) % len(boundary_cycle)]
+                # `hash()` is salted per process, which made this placement -
+                # and therefore the node's coordinates - differ between runs of
+                # an otherwise identical build. Digest the id instead so the
+                # graph is byte-reproducible (found by Work Order 7's rebuild).
+                digest = hashlib.blake2s(node["id"].encode(), digest_size=8).digest()
+                pair = boundary_cycle[
+                    int.from_bytes(digest, "big") % len(boundary_cycle)
+                ]
             node["zone"] = COMMONS_ZONE
             node["boundary"] = list(pair)
             node["depth"] = float(config.DEPTH_EPIC_BOON)

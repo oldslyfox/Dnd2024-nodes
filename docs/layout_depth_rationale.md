@@ -241,19 +241,28 @@ is summarised in §10.
 | Bard | 18 | 24 | 9 | 20 | – | full spine |
 | Monk | 34 | 26 | – | 24 | – | most class features of any zone |
 
-**Artificer — pending official 2024 content.** `classes_meta.json` lists it
-(source EFA, hit die d8, half-caster) but the Work Order 1 extraction produced
-zero Artificer features, because Artificer is not part of the 2024 core PHB. The
-zone is built anyway — gate, ladder, half-caster spine — so the ring has all
-thirteen zones and a character can start there and take the d8. `meta.zone_status`
-in graph v2 labels it explicitly:
+**Artificer — an empty board, and why.** `classes_meta.json` lists it (source
+EFA, hit die d8, half-caster) but the Work Order 1 extraction produced zero
+Artificer features. The zone is built anyway — gate, ladder, half-caster spine —
+so the ring has all thirteen zones and a character can start there and take the
+d8. `meta.zone_status` in graph v2 labels it explicitly:
 
 ```json
 "Artificer": {"extracted_nodes": 0, "state": "pending official 2024 content"}
 ```
 
 It is an empty board awaiting content, not a broken extraction, and a test holds
-that label in place.
+the *invariant* (a zone's status matches what is actually extracted) rather than
+the fact about Artificer specifically.
+
+**Work Order 7 established that the content exists** — Artificer's 2024 rewrite
+is in `EFA`, and Ravenloft (`RHW`) adds the Reanimator subclass. The reason the
+zone is still empty is not the layout: it is that Work Order 1's extraction
+filter was a two-book allowlist. `docs/source_policy.md` documents the derived
+allowlist that replaces it and the sweep that applies it. Nothing in this
+document changes when the zone fills: depth still comes from level, the
+half-caster spine is already there, and `tests/test_new_content.py` re-measures
+the §11 separation guarantee against a populated Artificer zone.
 
 ## 8. What a path actually costs
 

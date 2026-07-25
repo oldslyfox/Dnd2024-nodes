@@ -26176,8 +26176,8 @@
       "is_gate": false,
       "subregion": null,
       "boundary": [
-        "Monk",
-        "Barbarian"
+        "Wizard",
+        "Sorcerer"
       ],
       "role": "feat_epic_boon",
       "zone": "commons",
@@ -26192,10 +26192,10 @@
       "prereq_notes": [
         "RAW level 19 -> 53 points spent"
       ],
-      "position_x": 246.425,
-      "position_y": -60.738,
+      "position_x": -144.175,
+      "position_y": -208.873,
       "polar": {
-        "angle_deg": 346.15,
+        "angle_deg": 235.38,
         "radius": 253.8
       }
     },
@@ -26286,8 +26286,8 @@
       "is_gate": false,
       "subregion": null,
       "boundary": [
-        "Paladin",
-        "Cleric"
+        "Monk",
+        "Barbarian"
       ],
       "role": "feat_epic_boon",
       "zone": "commons",
@@ -26302,10 +26302,10 @@
       "prereq_notes": [
         "RAW level 19 -> 53 points spent"
       ],
-      "position_x": 89.999,
-      "position_y": 237.307,
+      "position_x": 246.425,
+      "position_y": -60.738,
       "polar": {
-        "angle_deg": 69.23,
+        "angle_deg": 346.15,
         "radius": 253.8
       }
     },
@@ -26392,8 +26392,8 @@
       "is_gate": false,
       "subregion": null,
       "boundary": [
-        "Barbarian",
-        "Fighter"
+        "Monk",
+        "Barbarian"
       ],
       "role": "feat_epic_boon",
       "zone": "commons",
@@ -26408,10 +26408,10 @@
       "prereq_notes": [
         "RAW level 19 -> 53 points spent"
       ],
-      "position_x": 246.425,
-      "position_y": 60.738,
+      "position_x": 247.103,
+      "position_y": -57.919,
       "polar": {
-        "angle_deg": 13.85,
+        "angle_deg": 346.81,
         "radius": 253.8
       }
     },
@@ -26447,8 +26447,8 @@
       "is_gate": false,
       "subregion": null,
       "boundary": [
-        "Monk",
-        "Barbarian"
+        "Ranger",
+        "Rogue"
       ],
       "role": "feat_epic_boon",
       "zone": "commons",
@@ -26463,10 +26463,10 @@
       "prereq_notes": [
         "RAW level 19 -> 53 points spent"
       ],
-      "position_x": 247.103,
-      "position_y": -57.919,
+      "position_x": -224.729,
+      "position_y": 117.947,
       "polar": {
-        "angle_deg": 346.81,
+        "angle_deg": 152.31,
         "radius": 253.8
       }
     },
@@ -26502,8 +26502,8 @@
       "is_gate": false,
       "subregion": null,
       "boundary": [
-        "Paladin",
-        "Cleric"
+        "Barbarian",
+        "Fighter"
       ],
       "role": "feat_epic_boon",
       "zone": "commons",
@@ -26518,10 +26518,10 @@
       "prereq_notes": [
         "RAW level 19 -> 53 points spent"
       ],
-      "position_x": 87.281,
-      "position_y": 238.32,
+      "position_x": 246.425,
+      "position_y": 60.738,
       "polar": {
-        "angle_deg": 69.89,
+        "angle_deg": 13.85,
         "radius": 253.8
       }
     },
@@ -26711,10 +26711,10 @@
       "prereq_notes": [
         "RAW level 19 -> 53 points spent"
       ],
-      "position_x": 84.553,
-      "position_y": 239.302,
+      "position_x": 89.999,
+      "position_y": 237.307,
       "polar": {
-        "angle_deg": 70.54,
+        "angle_deg": 69.23,
         "radius": 253.8
       }
     },
@@ -57975,13 +57975,13 @@
       "traversable": true
     },
     {
-      "from": "conn_monk_rung_19",
+      "from": "conn_wizard_rung_19",
       "to": "feat_boon_of_energy_resistance_xphb",
       "relation": "overlap",
       "traversable": true
     },
     {
-      "from": "conn_barbarian_rung_19",
+      "from": "conn_sorcerer_rung_19",
       "to": "feat_boon_of_energy_resistance_xphb",
       "relation": "overlap",
       "traversable": true
@@ -57999,13 +57999,13 @@
       "traversable": true
     },
     {
-      "from": "conn_paladin_rung_19",
+      "from": "conn_monk_rung_19",
       "to": "feat_boon_of_fortitude_xphb",
       "relation": "overlap",
       "traversable": true
     },
     {
-      "from": "conn_cleric_rung_19",
+      "from": "conn_barbarian_rung_19",
       "to": "feat_boon_of_fortitude_xphb",
       "relation": "overlap",
       "traversable": true
@@ -58023,37 +58023,37 @@
       "traversable": true
     },
     {
-      "from": "conn_barbarian_rung_19",
-      "to": "feat_boon_of_recovery_xphb",
-      "relation": "overlap",
-      "traversable": true
-    },
-    {
-      "from": "conn_fighter_rung_19",
-      "to": "feat_boon_of_recovery_xphb",
-      "relation": "overlap",
-      "traversable": true
-    },
-    {
       "from": "conn_monk_rung_19",
+      "to": "feat_boon_of_recovery_xphb",
+      "relation": "overlap",
+      "traversable": true
+    },
+    {
+      "from": "conn_barbarian_rung_19",
+      "to": "feat_boon_of_recovery_xphb",
+      "relation": "overlap",
+      "traversable": true
+    },
+    {
+      "from": "conn_ranger_rung_19",
+      "to": "feat_boon_of_skill_xphb",
+      "relation": "overlap",
+      "traversable": true
+    },
+    {
+      "from": "conn_rogue_rung_19",
       "to": "feat_boon_of_skill_xphb",
       "relation": "overlap",
       "traversable": true
     },
     {
       "from": "conn_barbarian_rung_19",
-      "to": "feat_boon_of_skill_xphb",
-      "relation": "overlap",
-      "traversable": true
-    },
-    {
-      "from": "conn_paladin_rung_19",
       "to": "feat_boon_of_speed_xphb",
       "relation": "overlap",
       "traversable": true
     },
     {
-      "from": "conn_cleric_rung_19",
+      "from": "conn_fighter_rung_19",
       "to": "feat_boon_of_speed_xphb",
       "relation": "overlap",
       "traversable": true
