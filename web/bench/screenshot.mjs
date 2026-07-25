@@ -101,6 +101,52 @@ await page.evaluate(() => {
 await page.waitForTimeout(250);
 await page.screenshot({ path: join(outDir, '05-commons-reading-zoom.png') });
 
+// Work Order 6: the playtest build - Fighter with Paladin, Barbarian and Bard
+// splashed in - showing owned nodes and edges against a pulsing frontier.
+const SPLASH = [
+  'cf_fighter_second_wind_1',
+  'cf_fighter_action_surge_2',
+  'cf_fighter_extra_attack_5',
+  'scf_fighter_champion_improved_critical_3',
+  'mastery_cleave_xphb',
+  'feat_alert_xphb',
+  'cf_paladin_lay_on_hands_1',
+  'slot_paladin_t2',
+  'cf_barbarian_rage_1',
+  'cf_bard_bardic_inspiration_1',
+];
+await page.evaluate(() => {
+  globalThis.__tree.app.renderer.showReferences = false;
+  document.getElementById('btn-respec').click();
+  [...document.querySelectorAll('#zone-grid button')]
+    .find((button) => button.textContent.startsWith('Fighter'))
+    ?.click();
+});
+await page.evaluate((ids) => {
+  // through the real UI path: select, then confirm
+  for (const id of ids) {
+    globalThis.__tree.select(globalThis.__tree.app.index.byId.get(id));
+    const allocate = document.getElementById('btn-allocate');
+    if (!allocate.disabled) allocate.click();
+  }
+  globalThis.__tree.select(null);
+}, SPLASH);
+await page.evaluate(() => {
+  const tree = globalThis.__tree;
+  const node = tree.app.index.byId.get('gate_fighter');
+  tree.app.camera.centreOn(node.position_x + 3, node.position_y, tree.app.camera.lodNear * 3.2);
+  tree.markDirty();
+});
+await page.waitForTimeout(400);
+await page.screenshot({ path: join(outDir, '06-owned-and-frontier.png') });
+
+// the same build read back as a character sheet, in the left panel
+await page.evaluate(() => {
+  document.getElementById('sheet-body').scrollTop = 0;
+});
+await page.waitForTimeout(200);
+await page.screenshot({ path: join(outDir, '07-character-sheet.png') });
+
 await browser.close();
 server.close();
 console.log(`screenshots in ${outDir}`);

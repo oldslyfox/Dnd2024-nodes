@@ -286,6 +286,117 @@ test('desktop UI', { skip }, async (t) => {
     assert.equal(await page.evaluate(() => globalThis.__tree.app.renderer.selectedId), null);
   });
 
+  // -- Work Order 6 -------------------------------------------------------
+
+  await t.test('the frontier is what you can buy next, and it animates', async () => {
+    await page.click('#btn-respec');
+    for (const id of ['cf_wizard_arcane_recovery_1', 'feat_alert_xphb']) {
+      await page.evaluate((nodeId) => {
+        globalThis.__tree.select(globalThis.__tree.app.index.byId.get(nodeId));
+      }, id);
+      await page.click('#btn-allocate');
+    }
+
+    const report = await page.evaluate(() => {
+      const tree = globalThis.__tree;
+      const frontier = tree.frontier();
+      const state = tree.app.state;
+      const owned = new Set(state.owned);
+      return {
+        size: frontier.length,
+        allUnowned: frontier.every((id) => !owned.has(id)),
+        allAdjacent: frontier.every((id) =>
+          [...owned].some((ownedId) => tree.app.engine.adjacency.get(ownedId).includes(id)),
+        ),
+        allAffordable: frontier.every(
+          (id) => tree.app.engine.canAfford(state, id).affordable,
+        ),
+        noFiller: frontier.every((id) => {
+          const node = tree.app.index.byId.get(id);
+          return node.type !== 'connector' || node.is_gate;
+        }),
+      };
+    });
+
+    assert.ok(report.size > 0, 'a character with points left has somewhere to go');
+    assert.ok(report.allUnowned);
+    assert.ok(report.allAdjacent, 'the frontier is one step out, not the whole graph');
+    assert.ok(report.allAffordable);
+    assert.ok(report.noFiller, 'filler connectors are plumbing, not a choice');
+
+    // the pulse is driven by the frame loop, so the phase must actually move
+    const first = await page.evaluate(() => globalThis.__tree.app.renderer.pulsePhase);
+    await page.waitForTimeout(320);
+    const second = await page.evaluate(() => globalThis.__tree.app.renderer.pulsePhase);
+    assert.notEqual(first, second, 'the frontier pulse should be animating');
+  });
+
+  await t.test('the sheet lists the build and its entries select the node', async () => {
+    const sheet = await page.textContent('#sheet-body');
+    assert.match(sheet, /Arcane Recovery/);
+    assert.match(sheet, /Alert/);
+    assert.match(sheet, /Zones entered/);
+    assert.match(sheet, /Wizard/);
+
+    await page.click('#sheet-body button[data-node="feat_alert_xphb"]');
+    await page.waitForTimeout(80);
+    assert.match(await page.textContent('#detail-body'), /Alert/);
+    assert.equal(
+      await page.evaluate(() => globalThis.__tree.app.selected.id),
+      'feat_alert_xphb',
+    );
+  });
+
+  await t.test('the sheet exports as Markdown and as JSON', async () => {
+    const markdownDownload = page.waitForEvent('download');
+    await page.click('#btn-export-md');
+    const markdownFile = await markdownDownload;
+    assert.match(markdownFile.suggestedFilename(), /\.md$/);
+    const markdown = await readFile(await markdownFile.path(), 'utf8');
+    assert.match(markdown, /D&D 2024 skill tree/);
+    assert.match(markdown, /Arcane Recovery/);
+    assert.match(markdown, /\*\*Hit die\*\* d6/);
+
+    const jsonDownload = page.waitForEvent('download');
+    await page.click('#btn-export-json');
+    const jsonFile = await jsonDownload;
+    assert.match(jsonFile.suggestedFilename(), /\.json$/);
+    const payload = JSON.parse(await readFile(await jsonFile.path(), 'utf8'));
+    assert.equal(payload.format, 'dnd2024-skill-tree-build');
+    assert.equal(payload.build.homeZone, 'Wizard');
+    assert.ok(payload.build.owned.includes('feat_alert_xphb'));
+    assert.ok(payload.nodes.some((entry) => entry.name === 'Alert'));
+  });
+
+  await t.test('owned nodes and their edges are drawn distinctly', async () => {
+    // Task 1 is a visual claim, so assert the mechanism that produces it: owned
+    // nodes get their own batch with a full-strength style and an outline path,
+    // and the owned-edge layer is populated.
+    const report = await page.evaluate(() => {
+      const renderer = globalThis.__tree.app.renderer;
+      renderer.draw();
+      const paths = renderer._worldCache;
+      const owned = [...paths.batches.values()].filter((batch) => batch.state === 'owned');
+      const unreachable = [...paths.batches.values()].filter(
+        (batch) => batch.state === 'unreachable',
+      );
+      return {
+        ownedBatches: owned.length,
+        ownedHaveOutlines: owned.every((batch) => Boolean(batch.stroke)),
+        ownedAlpha: owned[0] && owned[0].style.alpha,
+        unreachableAlpha: unreachable[0] && unreachable[0].style.alpha,
+        ownedEdges: paths.hasBright,
+      };
+    });
+    assert.ok(report.ownedBatches > 0);
+    assert.ok(report.ownedHaveOutlines);
+    assert.equal(report.ownedEdges, true);
+    assert.ok(
+      report.ownedAlpha - report.unreachableAlpha > 0.6,
+      'owned and unreachable must not read as the same thing',
+    );
+  });
+
   await t.test('desktop keeps side panels, not sheets', async () => {
     assert.equal(await page.isVisible('#tabbar'), false);
     assert.equal(await page.evaluate(() => globalThis.__tree.isPhone()), false);
@@ -550,6 +661,45 @@ test('phone UI (touch)', { skip }, async (t) => {
       await page.evaluate(() => document.getElementById('panel-character').dataset.open),
       'true',
     );
+  });
+
+  await t.test('the build sheet and its exports are usable on a phone', async () => {
+    // allocate by touch, the way a player would, then read the sheet back.
+    // Close whatever sheet the previous test left open first - it covers the
+    // bottom of the screen, and a tap there would land on the panel, not the graph.
+    await page.tap('#tab-close');
+    await page.waitForTimeout(250);
+    await centreOn(page, 'cf_fighter_extra_attack_5', 11);
+    const point = await nodeAt(page, 'cf_fighter_extra_attack_5');
+    await page.touchscreen.tap(point.x, point.y);
+    await page.waitForTimeout(150);
+    await page.tap('#btn-allocate');
+    await page.waitForTimeout(120);
+    const owned = 'Extra Attack';
+    assert.ok(
+      await page.evaluate(() =>
+        globalThis.__tree.app.state.owned.has('cf_fighter_extra_attack_5'),
+      ),
+      'the touch allocation should have landed',
+    );
+
+    await page.tap('#tabbar button[data-tab="character"]');
+    await page.waitForTimeout(200);
+    const sheet = await page.textContent('#sheet-body');
+    assert.ok(sheet.includes(owned), `${owned} is owned but missing from the phone sheet`);
+
+    // the export controls are real tap targets, not desktop-only chrome
+    for (const id of ['#btn-copy-sheet', '#btn-export-md', '#btn-export-json']) {
+      const box = await page.locator(id).boundingBox();
+      assert.ok(box, `${id} should be visible in the character sheet`);
+      assert.ok(box.height >= 36, `${id} is too small to tap (${box.height}px)`);
+    }
+
+    const download = page.waitForEvent('download');
+    await page.tap('#btn-export-md');
+    const file = await download;
+    assert.match(await readFile(await file.path(), 'utf8'), /D&D 2024 skill tree/);
+    await page.tap('#tabbar button[data-tab="character"]');
   });
 
   await t.test('landscape keeps the sheet layout and a usable canvas', async () => {

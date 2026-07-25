@@ -1,5 +1,5 @@
 {
-  "measured_at": "2026-07-25T17:43:22.459Z",
+  "measured_at": "2026-07-25T22:06:17.964Z",
   "renderer": "Canvas 2D",
   "device_profile": "Pixel 7 (Playwright device profile)",
   "cpu_throttling": "4x",
@@ -12,45 +12,45 @@
       "results": [
         {
           "name": "one-finger pan",
-          "frames": 24,
-          "mean_ms": 5.85,
-          "p95_ms": 8.1,
-          "mean_fps": 170.8,
+          "frames": 54,
+          "mean_ms": 5.81,
+          "p95_ms": 10.4,
+          "mean_fps": 172.2,
           "holds_60fps": true,
-          "touch_to_frame_mean_ms": 6.41,
-          "touch_to_frame_p95_ms": 9
+          "touch_to_frame_mean_ms": 6.09,
+          "touch_to_frame_p95_ms": 9.5
         },
         {
           "name": "two-finger pinch zoom",
-          "frames": 24,
-          "mean_ms": 4.34,
-          "p95_ms": 9.7,
-          "mean_fps": 230.3,
+          "frames": 39,
+          "mean_ms": 4.14,
+          "p95_ms": 7.7,
+          "mean_fps": 241.5,
           "holds_60fps": true,
-          "touch_to_frame_mean_ms": 5.42,
-          "touch_to_frame_p95_ms": 12.3,
+          "touch_to_frame_mean_ms": 5.62,
+          "touch_to_frame_p95_ms": 8.9,
           "zoom_changed": 3.56
         },
         {
           "name": "pan with the whole graph in view",
-          "frames": 25,
-          "mean_ms": 1.89,
-          "p95_ms": 3,
-          "mean_fps": 529.7,
+          "frames": 43,
+          "mean_ms": 1.9,
+          "p95_ms": 2.7,
+          "mean_fps": 526.3,
           "holds_60fps": true,
-          "touch_to_frame_mean_ms": 1.8,
-          "touch_to_frame_p95_ms": 3.1,
+          "touch_to_frame_mean_ms": 2.49,
+          "touch_to_frame_p95_ms": 3.2,
           "nodes_drawn": 1133
         },
         {
           "name": "pan with the “see also” overlay on",
-          "frames": 25,
-          "mean_ms": 2.26,
-          "p95_ms": 2.3,
-          "mean_fps": 442.5,
+          "frames": 41,
+          "mean_ms": 2.28,
+          "p95_ms": 3.3,
+          "mean_fps": 438,
           "holds_60fps": true,
-          "touch_to_frame_mean_ms": 2,
-          "touch_to_frame_p95_ms": 2.7
+          "touch_to_frame_mean_ms": 2.65,
+          "touch_to_frame_p95_ms": 3.8
         }
       ]
     },
@@ -61,50 +61,50 @@
       "results": [
         {
           "name": "one-finger pan",
-          "frames": 24,
-          "mean_ms": 5.69,
-          "p95_ms": 7.4,
-          "mean_fps": 175.7,
+          "frames": 54,
+          "mean_ms": 5.96,
+          "p95_ms": 9.9,
+          "mean_fps": 167.6,
           "holds_60fps": true,
-          "touch_to_frame_mean_ms": 6.41,
-          "touch_to_frame_p95_ms": 8.6
+          "touch_to_frame_mean_ms": 7.27,
+          "touch_to_frame_p95_ms": 11.3
         },
         {
           "name": "two-finger pinch zoom",
-          "frames": 24,
-          "mean_ms": 3.88,
-          "p95_ms": 6.7,
-          "mean_fps": 258.1,
+          "frames": 44,
+          "mean_ms": 3.86,
+          "p95_ms": 6.3,
+          "mean_fps": 259,
           "holds_60fps": true,
-          "touch_to_frame_mean_ms": 4.97,
-          "touch_to_frame_p95_ms": 8.6,
+          "touch_to_frame_mean_ms": 5.1,
+          "touch_to_frame_p95_ms": 9.1,
           "zoom_changed": 3.56
         },
         {
           "name": "pan with the whole graph in view",
-          "frames": 25,
-          "mean_ms": 1.87,
-          "p95_ms": 2,
-          "mean_fps": 535.3,
+          "frames": 39,
+          "mean_ms": 1.93,
+          "p95_ms": 4.8,
+          "mean_fps": 517.2,
           "holds_60fps": true,
-          "touch_to_frame_mean_ms": 1.77,
-          "touch_to_frame_p95_ms": 2.3,
+          "touch_to_frame_mean_ms": 2.55,
+          "touch_to_frame_p95_ms": 3.9,
           "nodes_drawn": 1133
         },
         {
           "name": "pan with the “see also” overlay on",
-          "frames": 25,
-          "mean_ms": 2.61,
-          "p95_ms": 3.9,
-          "mean_fps": 382.8,
+          "frames": 46,
+          "mean_ms": 1.83,
+          "p95_ms": 3.1,
+          "mean_fps": 546.3,
           "holds_60fps": true,
-          "touch_to_frame_mean_ms": 2.46,
-          "touch_to_frame_p95_ms": 3.6
+          "touch_to_frame_mean_ms": 2.37,
+          "touch_to_frame_p95_ms": 3.9
         }
       ]
     }
   ],
-  "worst_p95_frame_ms": 9.7,
-  "worst_p95_touch_to_frame_ms": 12.3,
+  "worst_p95_frame_ms": 10.4,
+  "worst_p95_touch_to_frame_ms": 11.3,
   "verdict": "Holds 60fps on a 4x-throttled phone profile in both orientations; Canvas 2D stays sufficient."
 }

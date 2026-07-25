@@ -118,6 +118,34 @@ await shoot('16-mobile-search-select', phone, async (page) => {
   await page.waitForTimeout(200);
 });
 
+// the Work Order 6 character sheet on a phone, with a build in it
+await shoot('17-mobile-character-sheet-build', phone, async (page) => {
+  await page.tap('#zone-grid button:has-text("Fighter")');
+  await page.waitForTimeout(200);
+  await page.evaluate(() => {
+    const tree = globalThis.__tree;
+    for (const id of [
+      'cf_fighter_second_wind_1',
+      'cf_fighter_action_surge_2',
+      'cf_fighter_extra_attack_5',
+      'mastery_cleave_xphb',
+      'cf_paladin_lay_on_hands_1',
+      'slot_paladin_t2',
+      'cf_barbarian_rage_1',
+    ]) {
+      tree.select(tree.app.index.byId.get(id));
+      const allocate = document.getElementById('btn-allocate');
+      if (!allocate.disabled) allocate.click();
+    }
+    tree.select(null);
+  });
+  await page.tap('#tabbar button[data-tab="character"]');
+  await page.waitForTimeout(250);
+  await page.evaluate(() => {
+    document.getElementById('panel-character').scrollTop = 210;
+  });
+});
+
 await browser.close();
 server.close();
 console.log(`mobile screenshots in ${outDir}`);

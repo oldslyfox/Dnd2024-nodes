@@ -82,12 +82,20 @@ export function nodeRadius(node) {
   }
 }
 
-/** The four allocation states from Task 4, plus the search/preview accents. */
+/**
+ * The four allocation states from Task 4, plus the search/preview accents.
+ *
+ * Work Order 6 Task 1 widened the gaps between them. They were correct but too
+ * close together to read at a glance while playing: owned now keeps its full
+ * hue and carries a thicker white ring, affordable is barely dimmed at all, and
+ * the two states you cannot act on drop further back so the frontier is what
+ * your eye lands on.
+ */
 export const STATE_STYLE = {
-  owned: { alpha: 1, stroke: '#ffffff', strokeWidth: 0.42, dim: 0 },
-  affordable: { alpha: 0.95, stroke: '#f2f5ff', strokeWidth: 0.22, dim: 0.15 },
-  reachable: { alpha: 0.6, stroke: 'rgba(255,255,255,0.35)', strokeWidth: 0.14, dim: 0.45 },
-  unreachable: { alpha: 0.28, stroke: 'rgba(255,255,255,0.12)', strokeWidth: 0, dim: 0.72 },
+  owned: { alpha: 1, stroke: '#ffffff', strokeWidth: 0.58, dim: 0 },
+  affordable: { alpha: 1, stroke: '#ffffff', strokeWidth: 0.3, dim: 0.04 },
+  reachable: { alpha: 0.5, stroke: 'rgba(255,255,255,0.28)', strokeWidth: 0.12, dim: 0.55 },
+  unreachable: { alpha: 0.22, stroke: 'rgba(255,255,255,0.1)', strokeWidth: 0, dim: 0.8 },
 };
 
 export const ACCENT = {
@@ -96,8 +104,14 @@ export const ACCENT = {
   search: '#7ef2c8',
   hover: '#ffffff',
   reference: 'rgba(255, 107, 107, 0.55)',
-  edge: 'rgba(150, 162, 185, 0.30)',
-  edgeOwned: 'rgba(255, 255, 255, 0.55)',
+  edge: 'rgba(150, 162, 185, 0.26)',
+  // The route you have actually walked. Drawn as a wide soft underlay plus a
+  // bright core line, so an owned chain reads as a lit path rather than as
+  // slightly-lighter graph edges.
+  edgeOwned: 'rgba(255, 255, 255, 0.92)',
+  edgeOwnedGlow: 'rgba(150, 200, 255, 0.22)',
+  ownedHalo: 'rgba(190, 220, 255, 0.30)',
+  frontier: '#7ef2c8',
   background: '#0d0f15',
 };
 

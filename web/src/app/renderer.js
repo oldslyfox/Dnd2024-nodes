@@ -52,6 +52,18 @@ export class Renderer {
     this._textWidths = new Map();
     /** @type {Map<string, string>} node -> allocation state, per character state */
     this._stateCache = new Map();
+    /**
+     * Work Order 6 Task 2: the frontier is where you can go *next* - a node you
+     * can afford that touches something you already own. Recomputed only when
+     * the character changes; the animation itself is a phase, not a rebuild.
+     */
+    /** @type {string[]} */
+    this._frontier = [];
+    this._frontierVersion = null;
+    /** 0..1, advanced by the frame loop. */
+    this.pulsePhase = 0;
+    /** Honoured from `prefers-reduced-motion`: a steady ring instead of a pulse. */
+    this.reducedMotion = false;
     /** World-space geometry, rebuilt only when zoom/state/LOD changes. */
     this._worldCacheKey = null;
     this._worldCache = null;
@@ -61,6 +73,7 @@ export class Renderer {
   setState(state) {
     this.state = state;
     this._reachVersion = -1;
+    this._frontierVersion = null;
     this._worldCacheKey = null;
   }
 
@@ -95,6 +108,40 @@ export class Renderer {
     }
     this._stateCache.set(node.id, result);
     return result;
+  }
+
+  /**
+   * Nodes one step out from what you own and affordable right now.
+   *
+   * Bounded by the size of the build, not the size of the graph: it walks the
+   * adjacency of owned nodes only, which is a few dozen entries even late in a
+   * character. Cached against the same version key as reachability.
+   * @returns {string[]}
+   */
+  frontier() {
+    if (!this.state) return [];
+    this._reachability();
+    if (this._frontierVersion === this._reachVersion) return this._frontier;
+
+    const seen = new Set();
+    const found = [];
+    for (const id of this.state.owned) {
+      for (const neighbour of this.engine.adjacency.get(id) || []) {
+        if (seen.has(neighbour) || this.state.owned.has(neighbour)) continue;
+        seen.add(neighbour);
+        const node = this.index.byId.get(neighbour);
+        if (!node || this.nodeState(node) !== 'affordable') continue;
+        // Filler rungs are not a decision - allocating anything buys the whole
+        // path to it, so a pulsing connector would be pointing at plumbing.
+        // Gates stay: entering a new zone is very much a choice.
+        if (node.type === 'connector' && !node.is_gate) continue;
+        found.push(neighbour);
+      }
+    }
+    found.sort();
+    this._frontier = found;
+    this._frontierVersion = this._reachVersion;
+    return found;
   }
 
   resize() {
@@ -136,6 +183,7 @@ export class Renderer {
     if (this.showReferences) this._drawReferenceEdges(ctx, paths);
     this._drawPreviewPath(ctx);
     this._drawNodes(ctx, paths);
+    this._drawFrontier(ctx);
     this._drawAccents(ctx);
 
     // The spatial cull now only serves labels, so only pay for it when labels
@@ -236,7 +284,7 @@ export class Renderer {
       }
     }
 
-    /** @type {Map<string, {colour: string, style: any, fill: Path2D, stroke: Path2D|null}>} */
+    /** @type {Map<string, {colour: string, style: any, state: string, fill: Path2D, stroke: Path2D|null}>} */
     const batches = new Map();
     let count = 0;
     for (const node of this.index.nodes) {
@@ -250,7 +298,7 @@ export class Renderer {
 
       let batch = batches.get(batchKey);
       if (!batch) {
-        batch = { colour, style, fill: new Path2D(), stroke: null };
+        batch = { colour, style, state, fill: new Path2D(), stroke: null };
         batches.set(batchKey, batch);
       }
 
@@ -290,6 +338,11 @@ export class Renderer {
     ctx.restore();
   }
 
+  /**
+   * Owned edges are drawn twice: a wide soft underlay and a bright core line.
+   * Work Order 6 Task 1 - the route you have walked has to be unmistakable at a
+   * glance, and one slightly brighter line was not doing it.
+   */
   _drawEdges(ctx, paths, lod) {
     if (lod === 'far') return;
     this._withWorldTransform(ctx, (scale) => {
@@ -297,9 +350,14 @@ export class Renderer {
       ctx.lineWidth = Math.max(0.5, 0.09 * scale) / scale;
       ctx.stroke(paths.plain);
       if (paths.hasBright) {
-        ctx.strokeStyle = ACCENT.edgeOwned;
-        ctx.lineWidth = Math.max(0.8, 0.13 * scale) / scale;
+        ctx.lineCap = 'round';
+        ctx.strokeStyle = ACCENT.edgeOwnedGlow;
+        ctx.lineWidth = Math.max(2.5, 0.3 * scale) / scale;
         ctx.stroke(paths.bright);
+        ctx.strokeStyle = ACCENT.edgeOwned;
+        ctx.lineWidth = Math.max(1, 0.14 * scale) / scale;
+        ctx.stroke(paths.bright);
+        ctx.lineCap = 'butt';
       }
     });
   }
@@ -337,6 +395,14 @@ export class Renderer {
 
   _drawNodes(ctx, paths) {
     this._withWorldTransform(ctx, (scale) => {
+      // Owned nodes get a halo under the fill: one extra wide stroke over an
+      // already-built path, so it costs a stroke call per batch, not per node.
+      for (const batch of paths.batches.values()) {
+        if (batch.state !== 'owned' || !batch.stroke) continue;
+        ctx.strokeStyle = ACCENT.ownedHalo;
+        ctx.lineWidth = Math.max(2.5, 0.55 * scale) / scale;
+        ctx.stroke(batch.stroke);
+      }
       for (const batch of paths.batches.values()) {
         ctx.globalAlpha = batch.style.alpha;
         ctx.fillStyle = batch.colour;
@@ -350,6 +416,57 @@ export class Renderer {
         ctx.stroke(batch.stroke);
       }
     });
+  }
+
+  /**
+   * The frontier pulse (Work Order 6, Task 2): a ring that breathes around every
+   * node you could buy next. It answers "where can I go from here" without the
+   * player tracing edges by eye.
+   *
+   * Screen space, drawn from the frontier id list rather than by scanning the
+   * graph, and clipped to the viewport - so the cost is proportional to how many
+   * choices you have, which is a few dozen. Under `prefers-reduced-motion` the
+   * ring is still drawn, it just does not move.
+   */
+  _drawFrontier(ctx) {
+    const camera = this.camera;
+    const lod = camera.lod();
+    // Zoomed all the way out a ring per option is mush, and the nodes under it
+    // are three pixels wide. The pulse is guidance for reading a region, so it
+    // starts once the region is legible.
+    if (lod === 'far') return;
+    const ids = this.frontier();
+    if (!ids.length) return;
+
+    const scale = camera.scale;
+    const offsetX = camera.viewportWidth / 2 - camera.x * scale;
+    const offsetY = camera.viewportHeight / 2 - camera.y * scale;
+    // A sine so the pulse eases at both ends instead of sawtoothing.
+    const phase = this.reducedMotion ? 0.35 : (1 - Math.cos(this.pulsePhase * Math.PI * 2)) / 2;
+
+    ctx.save();
+    ctx.strokeStyle = ACCENT.frontier;
+    let drawn = 0;
+    for (const id of ids) {
+      const node = this.index.byId.get(id);
+      if (!node) continue;
+      const x = node.position_x * scale + offsetX;
+      const y = node.position_y * scale + offsetY;
+      if (x < -40 || y < -40 || x > this.canvas.width + 40 || y > this.canvas.height + 40) continue;
+
+      const radius = this.radiusWorld(node, lod) * scale;
+      ctx.globalAlpha = 0.62 - phase * 0.32;
+      ctx.lineWidth = Math.max(1.1, radius * 0.22);
+      ctx.beginPath();
+      ctx.arc(x, y, radius + 2.5 + phase * (radius * 0.75 + 4), 0, Math.PI * 2);
+      ctx.stroke();
+
+      drawn += 1;
+      if (drawn > 220) break;
+    }
+    ctx.globalAlpha = 1;
+    ctx.restore();
+    this.lastFrontierDrawn = drawn;
   }
 
   /**

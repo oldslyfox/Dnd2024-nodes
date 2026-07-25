@@ -22,6 +22,13 @@ export {
 } from './character.js';
 export { GraphIndex } from './graph.js';
 export { BuildStore, MemoryStorage } from './storage.js';
+export {
+  buildSheet,
+  highlightLines,
+  sheetToJSON,
+  sheetToMarkdown,
+  typeLabelOf,
+} from './sheet.js';
 
 /**
  * Build everything the UI needs from a parsed graph document.

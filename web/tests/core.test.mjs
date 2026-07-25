@@ -15,11 +15,14 @@ import {
   MemoryStorage,
   PathEngine,
   PlayerState,
+  buildSheet,
   canDeallocate,
   characterSummary,
   createSession,
   deallocate,
   respec,
+  sheetToJSON,
+  sheetToMarkdown,
 } from '../src/core/index.js';
 
 const here = dirname(fileURLToPath(import.meta.url));
@@ -333,4 +336,142 @@ test('every class zone has a chassis the UI can render', () => {
     assert.equal(chassis.saving_throw_proficiencies.length, 2, zone);
     assert.ok(chassis.weapon_proficiencies.summary, zone);
   }
+});
+
+// -- Work Order 6: the character sheet and its exports ---------------------
+
+/**
+ * The build from the playtest that triggered this work order: a Fighter who
+ * splashed Paladin, Barbarian and Bard. Every assertion below runs against it,
+ * because a single-zone character would not exercise the grouping at all.
+ */
+function splashBuild() {
+  const { index, engine } = createSession(graph);
+  const state = engine.startState('Fighter');
+  const ids = [
+    'cf_fighter_second_wind_1',
+    'cf_fighter_action_surge_2',
+    'cf_fighter_extra_attack_5',
+    'scf_fighter_champion_improved_critical_3',
+    'mastery_cleave_xphb',
+    'feat_alert_xphb',
+    'cf_paladin_lay_on_hands_1',
+    'slot_paladin_t2',
+    'cf_barbarian_rage_1',
+    'cf_bard_bardic_inspiration_1',
+  ];
+  for (const id of ids) {
+    const result = engine.allocate(state, id);
+    assert.ok(result.affordable, `could not build the splash: ${id} (${result.reason})`);
+  }
+  return { index, engine, state, ids };
+}
+
+test('the sheet covers every owned real node', () => {
+  const { engine, state } = splashBuild();
+  const sheet = buildSheet(engine, state);
+
+  const onSheet = new Set(sheet.groups.flatMap((group) => group.entries.map((e) => e.id)));
+  const real = [...state.owned]
+    .map((id) => engine.node(id))
+    .filter((node) => node.type !== 'connector' && node.id !== 'conn_core_hub');
+
+  assert.equal(onSheet.size, real.length);
+  for (const node of real) {
+    assert.ok(onSheet.has(node.id), `${node.id} is owned but missing from the sheet`);
+  }
+  // connectors and gates are counted, but deliberately not listed as content
+  assert.ok(sheet.counts.connectors > 0);
+  for (const id of onSheet) assert.notEqual(engine.node(id).type, 'connector');
+});
+
+test('the sheet groups by zone, home zone first, shared content last', () => {
+  const { engine, state } = splashBuild();
+  const sheet = buildSheet(engine, state);
+
+  assert.equal(sheet.groups[0].title, 'Fighter');
+  assert.equal(sheet.groups[0].subtitle, 'starting zone');
+
+  const titles = sheet.groups.map((group) => group.title);
+  for (const zone of ['Barbarian', 'Paladin', 'Bard']) assert.ok(titles.includes(zone));
+  assert.ok(titles.includes('Weapon masteries'));
+  assert.ok(titles.includes('Origin feats'));
+
+  // every zone group comes before every shared group
+  const lastZone = sheet.groups.findLastIndex((group) => group.zone !== null);
+  const firstShared = sheet.groups.findIndex((group) => group.zone === null);
+  assert.ok(lastZone < firstShared);
+});
+
+test('the sheet derives aggregates from the nodes it owns', () => {
+  const { engine, state } = splashBuild();
+  const sheet = buildSheet(engine, state);
+
+  assert.deepEqual(sheet.highlights.zonesEntered, ['Fighter', 'Barbarian', 'Paladin', 'Bard']);
+  assert.deepEqual(sheet.highlights.weaponMasteries, ['Cleave']);
+  assert.deepEqual(
+    sheet.highlights.subclasses.map((entry) => entry.subclass),
+    ['Champion'],
+  );
+
+  const paladin = sheet.highlights.spellcasting.find((entry) => entry.zone === 'Paladin');
+  assert.ok(paladin, 'the Paladin slot spine should show up as spellcasting');
+  assert.equal(paladin.chassis, 'half');
+  assert.equal(paladin.maxTier, 2);
+
+  assert.equal(sheet.chassis.hitDie.faces, 10);
+  assert.deepEqual(sheet.chassis.savingThrows, ['str', 'con']);
+  assert.equal(sheet.points.spent, state.pointsSpent);
+  assert.equal(sheet.points.remaining, state.pointsTotal - state.pointsSpent);
+});
+
+test('the Markdown export is readable standalone and names every owned node', () => {
+  const { engine, state } = splashBuild();
+  const sheet = buildSheet(engine, state);
+  const markdown = sheetToMarkdown(sheet);
+
+  assert.match(markdown, /^# .*D&D 2024 skill tree/m);
+  assert.match(markdown, /\*\*Hit die\*\* d10/);
+  assert.match(markdown, /\*\*Saving throws\*\* STR, CON/);
+  assert.match(markdown, /## At a glance/);
+  assert.match(markdown, /## Fighter \(starting zone\)/);
+
+  for (const group of sheet.groups) {
+    for (const entry of group.entries) {
+      assert.ok(markdown.includes(entry.name), `${entry.name} is missing from the export`);
+    }
+  }
+  // and it says what the things do, so it stands on its own away from the app
+  assert.ok(markdown.includes('Second Wind'));
+  assert.match(markdown, /Bonus Action/i);
+});
+
+test('the JSON export round-trips back into a playable state', () => {
+  const { engine, state } = splashBuild();
+  const sheet = buildSheet(engine, state);
+  const payload = JSON.parse(JSON.stringify(sheetToJSON(state, sheet)));
+
+  assert.equal(payload.format, 'dnd2024-skill-tree-build');
+  assert.equal(payload.summary.points.spent, state.pointsSpent);
+  assert.equal(payload.nodes.length, sheet.counts.features);
+
+  const restored = PlayerState.fromJSON(payload.build);
+  assert.deepEqual([...restored.owned].sort(), [...state.owned].sort());
+  assert.equal(restored.pointsSpent, state.pointsSpent);
+  assert.equal(restored.homeZone, 'Fighter');
+  // and the restored character behaves identically
+  assert.deepEqual(
+    engine.canAfford(restored, 'cf_fighter_indomitable_9'),
+    engine.canAfford(state, 'cf_fighter_indomitable_9'),
+  );
+});
+
+test('a fresh character has an empty sheet rather than a broken one', () => {
+  const { engine } = createSession(graph);
+  const state = engine.startState('Monk');
+  const sheet = buildSheet(engine, state);
+  assert.equal(sheet.counts.features, 0);
+  assert.deepEqual(sheet.groups, []);
+  assert.deepEqual(sheet.highlights.zonesEntered, ['Monk']);
+  assert.match(sheetToMarkdown(sheet), /Monk/);
 });

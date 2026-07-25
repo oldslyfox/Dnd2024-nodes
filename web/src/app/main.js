@@ -17,9 +17,13 @@ import {
   GraphIndex,
   PathEngine,
   PlayerState,
+  buildSheet,
   canDeallocate,
   characterSummary,
   deallocate,
+  highlightLines,
+  sheetToJSON,
+  sheetToMarkdown,
 } from '../core/index.js';
 import { Camera } from './camera.js';
 import { Renderer } from './renderer.js';
@@ -47,6 +51,11 @@ const dom = {
   respec: el('btn-respec'),
   respecMobile: el('btn-respec-mobile'),
   chassis: el('chassis-body'),
+  sheetBody: el('sheet-body'),
+  copySheet: el('btn-copy-sheet'),
+  exportMd: el('btn-export-md'),
+  exportJson: el('btn-export-json'),
+  exportStatus: el('export-status'),
   buildName: el('build-name'),
   buildList: el('build-list'),
   buildStatus: el('build-status'),
@@ -84,8 +93,10 @@ const app = {
   /** @type {any} the selected node - the whole interaction hangs off this */
   selected: null,
   /** @type {any} */ selectionResult: null,
+  /** @type {any} the last rendered character sheet (Work Order 6) */ sheet: null,
   openSheet: 'none',
   dirty: true,
+  reducedMotion: false,
 };
 
 /**
@@ -108,6 +119,19 @@ async function boot() {
 
   app.renderer.resize();
   app.camera.fit(app.index.bounds);
+  const reduceMotion =
+    typeof window.matchMedia === 'function'
+      ? window.matchMedia('(prefers-reduced-motion: reduce)')
+      : null;
+  app.reducedMotion = Boolean(reduceMotion && reduceMotion.matches);
+  app.renderer.reducedMotion = app.reducedMotion;
+  if (reduceMotion && reduceMotion.addEventListener) {
+    reduceMotion.addEventListener('change', (event) => {
+      app.reducedMotion = event.matches;
+      app.renderer.reducedMotion = event.matches;
+      markDirty();
+    });
+  }
   drawLegend();
   buildZonePicker();
   refreshBuildList();
@@ -226,7 +250,7 @@ function select(node, { openSheet = false } = {}) {
   dom.allocate.textContent = owned ? 'Allocated' : 'Allocate';
   dom.deallocate.disabled = !owned || !(refund && refund.ok);
 
-  if (openSheet && isPhone()) openTab('detail');
+  if (openSheet && isPhone()) showTab('detail');
   markDirty();
 }
 
@@ -282,6 +306,134 @@ function refreshChassis() {
   dom.statusLeft.textContent = `${summary.homeZone} · ${summary.pointsSpent}/${summary.pointsTotal} points spent`;
   dom.pointsPill.hidden = false;
   dom.pointsPillValue.textContent = String(summary.pointsRemaining);
+  // The chassis and the sheet describe the same character; they refresh together
+  // so they cannot show two different builds.
+  refreshSheet();
+}
+
+/**
+ * The Work Order 6 character sheet: every owned real node, grouped by where it
+ * came from, plus the aggregates derived from them. The grouping is by zone
+ * because a build's story is which classes it dipped, with shared content
+ * (feats, masteries, fighting styles) grouped by what it is instead - a general
+ * feat has no class to belong to.
+ *
+ * The panel and the export both render from the same `buildSheet()` structure,
+ * so what you read on screen and what you export cannot disagree.
+ */
+function refreshSheet() {
+  if (!app.state) return;
+  const sheet = buildSheet(app.engine, app.state);
+  app.sheet = sheet;
+
+  if (!sheet.counts.features) {
+    dom.sheetBody.innerHTML =
+      '<p class="muted small">Nothing allocated yet. Allocate a node and it appears here.</p>';
+    return;
+  }
+
+  const glance = highlightLines(sheet)
+    .map(
+      (line) =>
+        `<div class="stat"><span>${escapeHtml(line.label)}</span><b>${escapeHtml(
+          line.value,
+        )}</b></div>`,
+    )
+    .join('');
+
+  const groups = sheet.groups
+    .map((group) => {
+      const items = group.entries
+        .map(
+          (entry) =>
+            `<li><button type="button" data-node="${entry.id}"><span>${escapeHtml(
+              entry.name,
+            )}</span><span class="result-meta">${escapeHtml(entry.detail)}</span></button></li>`,
+        )
+        .join('');
+      const colour = group.zone ? zoneColour(group.zone) : '#9aa3b2';
+      return `<div class="sheet-group">
+        <h3 style="color:${colour}">${escapeHtml(group.title)}<span class="muted">${
+          group.subtitle ? ` · ${group.subtitle}` : ''
+        } · ${group.entries.length}</span></h3>
+        <ul class="result-list sheet-list">${items}</ul>
+      </div>`;
+    })
+    .join('');
+
+  dom.sheetBody.innerHTML = `<div class="sheet-glance">${glance}</div>${groups}`;
+  for (const button of dom.sheetBody.querySelectorAll('button[data-node]')) {
+    button.addEventListener('click', () => {
+      const node = app.index.byId.get(button.dataset.node);
+      if (node) revealNode(node, { openSheet: true });
+    });
+  }
+}
+
+function escapeHtml(text) {
+  return String(text).replace(
+    /[&<>"]/g,
+    (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[character],
+  );
+}
+
+/**
+ * Export (Task 4). Static-file philosophy: a Blob and an object URL, no server
+ * anywhere. Copy-to-clipboard falls back to a hidden textarea because the async
+ * clipboard API needs a permission that a file:// page does not always have -
+ * and this app is meant to be opened straight off disk.
+ */
+function downloadFile(filename, text, type) {
+  const blob = new Blob([text], { type });
+  const url = URL.createObjectURL(blob);
+  const anchor = document.createElement('a');
+  anchor.href = url;
+  anchor.download = filename;
+  document.body.appendChild(anchor);
+  anchor.click();
+  anchor.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+async function copyText(text) {
+  try {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      await navigator.clipboard.writeText(text);
+      return true;
+    }
+  } catch {
+    // fall through to the legacy path
+  }
+  try {
+    const area = document.createElement('textarea');
+    area.value = text;
+    area.setAttribute('readonly', '');
+    area.style.position = 'fixed';
+    area.style.opacity = '0';
+    document.body.appendChild(area);
+    area.select();
+    const ok = document.execCommand('copy');
+    area.remove();
+    return ok;
+  } catch {
+    return false;
+  }
+}
+
+/** `fighter-build-41pt.md` - a filename that says what is in it. */
+function exportBasename() {
+  const name = (dom.buildName.value || '').trim() || `${app.state.homeZone} build`;
+  return `${name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}-${
+    app.state.pointsSpent
+  }pt`;
+}
+
+function exportMarkdown() {
+  if (!app.state) return '';
+  const sheet = buildSheet(app.engine, app.state);
+  return sheetToMarkdown(sheet, {
+    title: (dom.buildName.value || '').trim() || undefined,
+  });
 }
 
 function refreshBuildList(selected) {
@@ -329,6 +481,17 @@ function drawLegend() {
 }
 
 // -- bottom sheets (phone) ------------------------------------------------
+
+/**
+ * Tab bar behaviour: tapping the *same* tab again closes the sheet, which is
+ * what a tab bar should do. Selecting a node is not a tab press, though, so it
+ * goes through `showTab` - otherwise tapping a second node while the detail
+ * sheet was open would close the sheet on the node you just selected.
+ * @param {'character'|'detail'|'search'|'none'} name
+ */
+function showTab(name) {
+  if (app.openSheet !== name) openTab(name);
+}
 
 /** @param {'character'|'detail'|'search'|'none'} name */
 function openTab(name) {
@@ -396,7 +559,25 @@ function markDirty() {
   app.dirty = true;
 }
 
-function loop() {
+/**
+ * Work Order 6, Task 2. The pulse is the only thing in the app that animates
+ * without input, so it is deliberately cheap and deliberately conditional: it
+ * runs at ~25fps rather than 60, only while there is a frontier to show, only
+ * while the tab is visible, and not at all under `prefers-reduced-motion` (the
+ * ring is still drawn there, it just holds still).
+ */
+const PULSE_PERIOD_MS = 2200;
+const PULSE_INTERVAL_MS = 40;
+let lastPulse = 0;
+
+function loop(now = 0) {
+  if (app.state && !app.reducedMotion && !document.hidden && now - lastPulse > PULSE_INTERVAL_MS) {
+    if (app.renderer.frontier().length) {
+      lastPulse = now;
+      app.renderer.pulsePhase = (now % PULSE_PERIOD_MS) / PULSE_PERIOD_MS;
+      app.dirty = true;
+    }
+  }
   if (app.dirty) {
     app.dirty = false;
     app.renderer.draw();
@@ -462,6 +643,32 @@ function wireEvents() {
 
   dom.allocate.addEventListener('click', allocateSelected);
   dom.deallocate.addEventListener('click', deallocateSelected);
+
+  dom.copySheet.addEventListener('click', async () => {
+    if (!app.state) return;
+    const ok = await copyText(exportMarkdown());
+    dom.exportStatus.textContent = ok
+      ? 'Sheet copied as Markdown.'
+      : 'Could not reach the clipboard — use the .md button instead.';
+  });
+  dom.exportMd.addEventListener('click', () => {
+    if (!app.state) return;
+    downloadFile(`${exportBasename()}.md`, exportMarkdown(), 'text/markdown;charset=utf-8');
+    dom.exportStatus.textContent = 'Downloaded the sheet as Markdown.';
+  });
+  dom.exportJson.addEventListener('click', () => {
+    if (!app.state) return;
+    const sheet = buildSheet(app.engine, app.state);
+    const payload = sheetToJSON(app.state, sheet, {
+      name: (dom.buildName.value || '').trim() || undefined,
+    });
+    downloadFile(
+      `${exportBasename()}.json`,
+      `${JSON.stringify(payload, null, 2)}\n`,
+      'application/json',
+    );
+    dom.exportStatus.textContent = 'Downloaded the owned-node list as JSON.';
+  });
 
   for (const button of dom.tabbar.querySelectorAll('button')) {
     button.addEventListener('click', () => openTab(button.dataset.tab));
@@ -575,8 +782,13 @@ globalThis.__tree = {
   },
   select,
   openTab,
+  showTab,
   isPhone,
   pickNodeAt,
+  sheet: () => buildSheet(app.engine, app.state),
+  markdown: () => exportMarkdown(),
+  json: () => sheetToJSON(app.state, buildSheet(app.engine, app.state)),
+  frontier: () => app.renderer.frontier(),
   ready: () => Boolean(app.renderer),
   graphUrl: graphDataUrl(),
 };

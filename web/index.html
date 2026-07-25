@@ -44,6 +44,17 @@
       <h2>Character</h2>
       <div id="chassis-body" class="panel-body"></div>
 
+      <h2>Build sheet</h2>
+      <div id="sheet-body" class="panel-body sheet-body">
+        <p class="muted small">Allocate something and it appears here.</p>
+      </div>
+      <div class="panel-body export-row">
+        <button id="btn-copy-sheet" type="button">Copy sheet</button>
+        <button id="btn-export-md" type="button" class="ghost">.md</button>
+        <button id="btn-export-json" type="button" class="ghost">.json</button>
+      </div>
+      <p class="muted small" id="export-status"></p>
+
       <h2>Builds</h2>
       <div class="panel-body build-controls">
         <input id="build-name" type="text" placeholder="Build name" autocomplete="off" />
