@@ -1,0 +1,24 @@
+{
+  "warnings": [],
+  "counts": {
+    "class_features": 283,
+    "subclass_features": 309,
+    "classes": 13,
+    "feats": 77,
+    "feats_by_category": {
+      "general": 43,
+      "origin": 10,
+      "fighting_style": 10,
+      "fighting_style_paladin": 1,
+      "fighting_style_ranger": 1,
+      "fighting_style_bard": 0,
+      "epic_boon": 12
+    },
+    "optional_features": 58,
+    "weapon_masteries": 8,
+    "weapons_with_mastery_2024": 46,
+    "edges_resolved": 314,
+    "edges_unresolved_dropped": 1735,
+    "total_nodes": 735
+  }
+}

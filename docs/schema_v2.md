@@ -1,0 +1,97 @@
+# graph v2 schema
+
+`data/output/graph.v2.json` — `{meta, classes, nodes, edges}`.
+
+## Node
+
+Every node in the file carries all of these. Fields marked ★ are the ones the
+acceptance criteria check.
+
+| field | type | notes |
+|---|---|---|
+| `id` | string | stable; extracted nodes keep their Work Order 1 ids |
+| `name` | string | |
+| `type` | string | `class_feature`, `subclass_feature`, `feat`, `optional_feature`, `weapon_mastery`, `connector`, `spell_slot` |
+| `role` | string | finer grain: `zone_ladder`, `subclass_ladder`, `gate`, `hub`, `core`, `training`, `commons`, `slot_spine`, `feat_general`, `feat_origin`, `feat_epic_boon`, `metamagic`, `eldritch_invocation`, `maneuver_battle_master`, … |
+| ★ `zone` | string | one of the 13 class names, `core`, or `commons` |
+| `subregion` | string\|null | subclass name, for nodes inside a sub-region |
+| `boundary` | [string, string]\|null | the two zones a shared node sits between |
+| ★ `depth` | number | 0–20; equals RAW level for extracted content |
+| ★ `position_x`, `position_y` | number | cartesian, hub at the origin |
+| `polar` | {angle_deg, radius} | the same position in polar form |
+| ★ `point_cost` | int | always 1 (the hub is 0) |
+| ★ `prereqs` | object | see below |
+| `ability_prereqs` | list of {ability: score} | alternatives — satisfy any one |
+| `prereq_notes` | list of string | conversions and deferrals, human-readable |
+| `is_spine` | bool | connector on a zone's own spine — free to walk at home |
+| `is_gate` | bool | zone gate node |
+| `generated` | bool | true for invented content (connectors, slot spines, feat repeats) |
+| `source_book` | string\|null | `XPHB`/`XDMG`/`EFA`; null for generated content |
+| `effect_summary` | string | |
+| `level` | int | extracted content only; **positioning metadata, not a runtime gate** |
+| `repeat_index`, `repeat_chain` | int, string | repeatable feats |
+| `chassis`, `slot_tier` | string, int | `spell_slot` nodes (`full`/`half`/`third`/`pact`) |
+
+### `prereqs`
+
+```json
+{
+  "logic": "AND" | "OR" | "THRESHOLD",
+  "nodes": ["node_id", ...],
+  "threshold_count": null | 14,
+  "groups": [{"logic": "AND" | "OR", "nodes": ["node_id", ...]}]
+}
+```
+
+- **AND** — own every id in `nodes`.
+- **OR** — own at least one id in `nodes`.
+- **THRESHOLD** — have spent at least `threshold_count` points in total, *and*
+  satisfy the nodes. Every converted RAW level gate takes this form; the ratio
+  is in `docs/point_economy.md`.
+- **`groups`** — an addition to the three fields the work order specifies,
+  because a few RAW prerequisites are genuinely an AND of ORs ("14 points spent
+  AND medium armor training from any source"). When `groups` is present it is
+  authoritative: satisfaction is AND across groups, each group resolved by its
+  own logic. `nodes` is always the flattened union of every group, so a consumer
+  that reads only `logic`/`nodes`/`threshold_count` still sees the full list.
+
+Ability scores never appear in `prereqs` — they live in `ability_prereqs` and do
+not participate in tree logic. Spell-knowledge prerequisites are deferred to
+Phase 3 and appear only as `prereq_notes`.
+
+Every node inside a class zone carries that zone's gate as an AND group. That is
+what keeps the modular board loading honest (see the layout rationale, §2).
+
+## Edge
+
+```json
+{"from": "node_id", "to": "node_id", "relation": "spine"}
+```
+
+Edges are undirected for pathing. Relations:
+
+| relation | meaning |
+|---|---|
+| `gate` | hub ↔ a zone gate |
+| `spine` | connector ladder links, sub-region links, slot spine links |
+| `attach` | a real node hanging off the rung at its depth |
+| `overlap` | a shared node wired into a second zone's ladder |
+| `chain` | repeatable feat chains, armor training chain |
+| `references` | carried over from the Work Order 1 extraction, deduplicated |
+
+## Meta
+
+`meta.point_economy` is the whole derived economy (baseline per class, the
+level → points curve, the level → threshold table). `meta.hit_die_by_zone` is
+the Task 2c lookup: hit die is fixed by the zone a character starts in, read
+straight from `classes_meta.json`, locked once at creation.
+
+## Other output files
+
+| file | contents |
+|---|---|
+| `nodes_connectors.json` | the generated connectors and gates, same schema, `type: "connector"` |
+| `nodes_spell_slots.json` | the generated slot spines and the Warlock Pact Magic chain |
+| `point_economy.json` | the economy, standalone |
+| `balance_flags.json` | Task 6 guardrails |
+| `validation_report.json` | acceptance checks and the layout measurements |

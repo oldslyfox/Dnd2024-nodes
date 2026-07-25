@@ -1,0 +1,1572 @@
+[
+  {
+    "from": "cf_barbarian_ability_score_improvement_4",
+    "to": "feat_ability_score_improvement_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "cf_barbarian_ability_score_improvement_8",
+    "to": "feat_ability_score_improvement_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "cf_barbarian_ability_score_improvement_12",
+    "to": "feat_ability_score_improvement_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "cf_barbarian_ability_score_improvement_16",
+    "to": "feat_ability_score_improvement_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "cf_barbarian_epic_boon_19",
+    "to": "feat_boon_of_irresistible_offense_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "scf_barbarian_berserker_path_of_the_berserker_3",
+    "to": "scf_barbarian_berserker_frenzy_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_barbarian_wild_heart_path_of_the_wild_heart_3",
+    "to": "scf_barbarian_wild_heart_animal_speaker_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_barbarian_wild_heart_path_of_the_wild_heart_3",
+    "to": "scf_barbarian_wild_heart_rage_of_the_wilds_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_barbarian_wild_heart_aspect_of_the_wilds_6",
+    "to": "scf_monk_shadow_darkvision_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_barbarian_wild_heart_aspect_of_the_wilds_6",
+    "to": "scf_monk_shadow_darkvision_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_barbarian_world_tree_path_of_the_world_tree_3",
+    "to": "scf_barbarian_world_tree_vitality_of_the_tree_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_barbarian_world_tree_battering_roots_10",
+    "to": "mastery_push_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "scf_barbarian_world_tree_battering_roots_10",
+    "to": "mastery_topple_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "scf_barbarian_zealot_path_of_the_zealot_3",
+    "to": "scf_barbarian_zealot_divine_fury_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_barbarian_zealot_path_of_the_zealot_3",
+    "to": "scf_barbarian_zealot_warrior_of_the_gods_3",
+    "relation": "references"
+  },
+  {
+    "from": "cf_bard_expertise_2",
+    "to": "cf_bard_expertise_9",
+    "relation": "references"
+  },
+  {
+    "from": "cf_bard_expertise_2",
+    "to": "cf_ranger_expertise_9",
+    "relation": "references"
+  },
+  {
+    "from": "cf_bard_expertise_2",
+    "to": "cf_rogue_expertise_1",
+    "relation": "references"
+  },
+  {
+    "from": "cf_bard_expertise_2",
+    "to": "cf_rogue_expertise_6",
+    "relation": "references"
+  },
+  {
+    "from": "cf_bard_expertise_2",
+    "to": "cf_bard_expertise_9",
+    "relation": "references"
+  },
+  {
+    "from": "cf_bard_expertise_2",
+    "to": "cf_ranger_expertise_9",
+    "relation": "references"
+  },
+  {
+    "from": "cf_bard_expertise_2",
+    "to": "cf_rogue_expertise_1",
+    "relation": "references"
+  },
+  {
+    "from": "cf_bard_expertise_2",
+    "to": "cf_rogue_expertise_6",
+    "relation": "references"
+  },
+  {
+    "from": "cf_bard_ability_score_improvement_4",
+    "to": "feat_ability_score_improvement_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "cf_bard_ability_score_improvement_8",
+    "to": "feat_ability_score_improvement_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "cf_bard_expertise_9",
+    "to": "cf_bard_expertise_2",
+    "relation": "references"
+  },
+  {
+    "from": "cf_bard_expertise_9",
+    "to": "cf_ranger_expertise_9",
+    "relation": "references"
+  },
+  {
+    "from": "cf_bard_expertise_9",
+    "to": "cf_rogue_expertise_1",
+    "relation": "references"
+  },
+  {
+    "from": "cf_bard_expertise_9",
+    "to": "cf_rogue_expertise_6",
+    "relation": "references"
+  },
+  {
+    "from": "cf_bard_ability_score_improvement_12",
+    "to": "feat_ability_score_improvement_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "cf_bard_ability_score_improvement_16",
+    "to": "feat_ability_score_improvement_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "cf_bard_epic_boon_19",
+    "to": "feat_boon_of_spell_recall_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "scf_bard_dance_college_of_dance_3",
+    "to": "scf_bard_dance_dazzling_footwork_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_bard_dance_dazzling_footwork_3",
+    "to": "scf_bard_dance_dance_virtuoso_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_bard_dance_dazzling_footwork_3",
+    "to": "scf_bard_dance_unarmored_defense_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_bard_dance_dazzling_footwork_3",
+    "to": "scf_bard_dance_agile_strikes_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_bard_dance_dazzling_footwork_3",
+    "to": "scf_bard_dance_bardic_damage_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_bard_glamour_college_of_glamour_3",
+    "to": "scf_bard_glamour_beguiling_magic_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_bard_glamour_college_of_glamour_3",
+    "to": "scf_bard_glamour_mantle_of_inspiration_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_bard_lore_college_of_lore_3",
+    "to": "scf_bard_lore_bonus_proficiencies_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_bard_lore_college_of_lore_3",
+    "to": "scf_bard_lore_cutting_words_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_bard_valor_college_of_valor_3",
+    "to": "scf_bard_valor_combat_inspiration_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_bard_valor_college_of_valor_3",
+    "to": "scf_bard_valor_martial_training_3",
+    "relation": "references"
+  },
+  {
+    "from": "cf_cleric_divine_order_1",
+    "to": "cf_cleric_protector_1",
+    "relation": "references"
+  },
+  {
+    "from": "cf_cleric_divine_order_1",
+    "to": "cf_cleric_thaumaturge_1",
+    "relation": "references"
+  },
+  {
+    "from": "cf_cleric_channel_divinity_2",
+    "to": "cf_cleric_divine_spark_2",
+    "relation": "references"
+  },
+  {
+    "from": "cf_cleric_channel_divinity_2",
+    "to": "cf_cleric_turn_undead_2",
+    "relation": "references"
+  },
+  {
+    "from": "cf_cleric_ability_score_improvement_4",
+    "to": "feat_ability_score_improvement_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "cf_cleric_blessed_strikes_7",
+    "to": "cf_cleric_divine_strike_7",
+    "relation": "references"
+  },
+  {
+    "from": "cf_cleric_blessed_strikes_7",
+    "to": "cf_cleric_potent_spellcasting_7",
+    "relation": "references"
+  },
+  {
+    "from": "cf_cleric_ability_score_improvement_8",
+    "to": "feat_ability_score_improvement_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "cf_cleric_ability_score_improvement_12",
+    "to": "feat_ability_score_improvement_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "cf_cleric_ability_score_improvement_16",
+    "to": "feat_ability_score_improvement_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "cf_cleric_epic_boon_19",
+    "to": "feat_boon_of_fate_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "scf_cleric_life_life_domain_3",
+    "to": "scf_cleric_life_life_domain_spells_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_cleric_life_life_domain_3",
+    "to": "scf_cleric_life_disciple_of_life_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_cleric_life_life_domain_3",
+    "to": "scf_cleric_life_preserve_life_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_cleric_light_light_domain_3",
+    "to": "scf_cleric_light_light_domain_spells_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_cleric_light_light_domain_3",
+    "to": "scf_cleric_light_radiance_of_the_dawn_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_cleric_light_light_domain_3",
+    "to": "scf_cleric_light_warding_flare_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_cleric_light_radiance_of_the_dawn_3",
+    "to": "scf_monk_shadow_darkness_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_cleric_light_radiance_of_the_dawn_3",
+    "to": "scf_monk_shadow_darkness_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_cleric_trickery_trickery_domain_3",
+    "to": "scf_cleric_trickery_trickery_domain_spells_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_cleric_trickery_trickery_domain_3",
+    "to": "scf_cleric_trickery_blessing_of_the_trickster_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_cleric_trickery_trickery_domain_3",
+    "to": "scf_cleric_trickery_invoke_duplicity_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_cleric_war_war_domain_3",
+    "to": "scf_cleric_war_war_domain_spells_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_cleric_war_war_domain_3",
+    "to": "scf_cleric_war_war_priest_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_cleric_war_war_domain_3",
+    "to": "scf_cleric_war_guided_strike_3",
+    "relation": "references"
+  },
+  {
+    "from": "cf_druid_primal_order_1",
+    "to": "cf_druid_magician_1",
+    "relation": "references"
+  },
+  {
+    "from": "cf_druid_primal_order_1",
+    "to": "cf_druid_warden_1",
+    "relation": "references"
+  },
+  {
+    "from": "cf_druid_ability_score_improvement_4",
+    "to": "feat_ability_score_improvement_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "cf_druid_elemental_fury_7",
+    "to": "cf_druid_potent_spellcasting_7",
+    "relation": "references"
+  },
+  {
+    "from": "cf_druid_elemental_fury_7",
+    "to": "cf_druid_primal_strike_7",
+    "relation": "references"
+  },
+  {
+    "from": "cf_druid_ability_score_improvement_8",
+    "to": "feat_ability_score_improvement_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "cf_druid_ability_score_improvement_12",
+    "to": "feat_ability_score_improvement_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "cf_druid_ability_score_improvement_16",
+    "to": "feat_ability_score_improvement_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "cf_druid_epic_boon_19",
+    "to": "feat_boon_of_dimensional_travel_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "scf_druid_land_circle_of_the_land_3",
+    "to": "scf_druid_land_circle_of_the_land_spells_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_druid_land_circle_of_the_land_3",
+    "to": "scf_druid_land_land_s_aid_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_druid_moon_circle_of_the_moon_3",
+    "to": "scf_druid_moon_circle_of_the_moon_spells_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_druid_moon_circle_of_the_moon_3",
+    "to": "scf_druid_moon_circle_forms_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_druid_sea_circle_of_the_sea_3",
+    "to": "scf_druid_sea_circle_of_the_sea_spells_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_druid_sea_circle_of_the_sea_3",
+    "to": "scf_druid_sea_wrath_of_the_sea_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_druid_stars_circle_of_the_stars_3",
+    "to": "scf_druid_stars_star_map_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_druid_stars_circle_of_the_stars_3",
+    "to": "scf_druid_stars_starry_form_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_druid_stars_starry_form_3",
+    "to": "scf_druid_stars_archer_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_druid_stars_starry_form_3",
+    "to": "scf_druid_stars_chalice_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_druid_stars_starry_form_3",
+    "to": "scf_druid_stars_dragon_3",
+    "relation": "references"
+  },
+  {
+    "from": "cf_fighter_fighting_style_1",
+    "to": "feat_defense_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "cf_fighter_ability_score_improvement_4",
+    "to": "feat_ability_score_improvement_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "cf_fighter_ability_score_improvement_6",
+    "to": "feat_ability_score_improvement_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "cf_fighter_ability_score_improvement_8",
+    "to": "feat_ability_score_improvement_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "cf_fighter_tactical_master_9",
+    "to": "mastery_push_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "cf_fighter_tactical_master_9",
+    "to": "mastery_sap_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "cf_fighter_tactical_master_9",
+    "to": "mastery_slow_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "cf_fighter_ability_score_improvement_12",
+    "to": "feat_ability_score_improvement_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "cf_fighter_ability_score_improvement_14",
+    "to": "feat_ability_score_improvement_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "cf_fighter_ability_score_improvement_16",
+    "to": "feat_ability_score_improvement_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "cf_fighter_epic_boon_19",
+    "to": "feat_boon_of_combat_prowess_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "scf_fighter_battle_master_battle_master_3",
+    "to": "scf_fighter_battle_master_combat_superiority_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_fighter_battle_master_battle_master_3",
+    "to": "scf_fighter_battle_master_student_of_war_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_fighter_battle_master_battle_master_3",
+    "to": "scf_fighter_battle_master_maneuver_options_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_fighter_champion_champion_3",
+    "to": "scf_fighter_champion_improved_critical_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_fighter_champion_champion_3",
+    "to": "scf_fighter_champion_remarkable_athlete_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_fighter_eldritch_knight_eldritch_knight_3",
+    "to": "scf_fighter_eldritch_knight_spellcasting_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_fighter_eldritch_knight_eldritch_knight_3",
+    "to": "scf_fighter_eldritch_knight_war_bond_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_fighter_psi_warrior_psi_warrior_3",
+    "to": "scf_fighter_psi_warrior_psionic_power_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_fighter_psi_warrior_psionic_power_3",
+    "to": "scf_fighter_psi_warrior_protective_field_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_fighter_psi_warrior_psionic_power_3",
+    "to": "scf_fighter_psi_warrior_psionic_strike_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_fighter_psi_warrior_psionic_power_3",
+    "to": "scf_fighter_psi_warrior_telekinetic_movement_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_fighter_psi_warrior_telekinetic_adept_7",
+    "to": "scf_fighter_psi_warrior_psi_powered_leap_7",
+    "relation": "references"
+  },
+  {
+    "from": "scf_fighter_psi_warrior_telekinetic_adept_7",
+    "to": "scf_fighter_psi_warrior_telekinetic_thrust_7",
+    "relation": "references"
+  },
+  {
+    "from": "cf_monk_martial_arts_1",
+    "to": "cf_monk_bonus_unarmed_strike_1",
+    "relation": "references"
+  },
+  {
+    "from": "cf_monk_martial_arts_1",
+    "to": "cf_monk_martial_arts_die_1",
+    "relation": "references"
+  },
+  {
+    "from": "cf_monk_martial_arts_1",
+    "to": "cf_monk_dexterous_attacks_1",
+    "relation": "references"
+  },
+  {
+    "from": "cf_monk_monk_s_focus_2",
+    "to": "cf_monk_flurry_of_blows_2",
+    "relation": "references"
+  },
+  {
+    "from": "cf_monk_monk_s_focus_2",
+    "to": "cf_monk_patient_defense_2",
+    "relation": "references"
+  },
+  {
+    "from": "cf_monk_monk_s_focus_2",
+    "to": "cf_monk_step_of_the_wind_2",
+    "relation": "references"
+  },
+  {
+    "from": "cf_monk_ability_score_improvement_4",
+    "to": "feat_ability_score_improvement_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "cf_monk_ability_score_improvement_8",
+    "to": "feat_ability_score_improvement_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "cf_monk_ability_score_improvement_12",
+    "to": "feat_ability_score_improvement_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "cf_monk_ability_score_improvement_16",
+    "to": "feat_ability_score_improvement_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "cf_monk_epic_boon_19",
+    "to": "feat_boon_of_irresistible_offense_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "scf_monk_elements_warrior_of_the_elements_3",
+    "to": "scf_monk_elements_elemental_attunement_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_monk_elements_warrior_of_the_elements_3",
+    "to": "scf_monk_elements_manipulate_elements_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_monk_mercy_warrior_of_mercy_3",
+    "to": "scf_monk_mercy_hand_of_harm_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_monk_mercy_warrior_of_mercy_3",
+    "to": "scf_monk_mercy_hand_of_healing_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_monk_mercy_warrior_of_mercy_3",
+    "to": "scf_monk_mercy_implements_of_mercy_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_monk_open_hand_warrior_of_the_open_hand_3",
+    "to": "scf_monk_open_hand_open_hand_technique_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_monk_shadow_shadow_arts_3",
+    "to": "scf_monk_shadow_darkness_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_monk_shadow_shadow_arts_3",
+    "to": "scf_monk_shadow_darkvision_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_monk_shadow_shadow_arts_3",
+    "to": "scf_monk_shadow_shadowy_figments_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_monk_shadow_warrior_of_shadow_3",
+    "to": "scf_monk_shadow_shadow_arts_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_monk_shadow_shadow_step_6",
+    "to": "scf_monk_shadow_darkness_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_monk_shadow_shadow_step_6",
+    "to": "scf_monk_shadow_darkness_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_monk_shadow_improved_shadow_step_11",
+    "to": "scf_monk_shadow_darkness_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_monk_shadow_cloak_of_shadows_17",
+    "to": "scf_monk_shadow_darkness_3",
+    "relation": "references"
+  },
+  {
+    "from": "cf_paladin_channel_divinity_3",
+    "to": "cf_paladin_divine_sense_3",
+    "relation": "references"
+  },
+  {
+    "from": "cf_paladin_ability_score_improvement_4",
+    "to": "feat_ability_score_improvement_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "cf_paladin_ability_score_improvement_8",
+    "to": "feat_ability_score_improvement_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "cf_paladin_ability_score_improvement_12",
+    "to": "feat_ability_score_improvement_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "cf_paladin_ability_score_improvement_16",
+    "to": "feat_ability_score_improvement_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "cf_paladin_epic_boon_19",
+    "to": "feat_boon_of_truesight_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "scf_paladin_ancients_oath_of_the_ancients_3",
+    "to": "scf_paladin_ancients_oath_of_the_ancients_spells_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_paladin_ancients_oath_of_the_ancients_3",
+    "to": "scf_paladin_ancients_nature_s_wrath_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_paladin_devotion_oath_of_devotion_3",
+    "to": "scf_paladin_devotion_oath_of_devotion_spells_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_paladin_devotion_oath_of_devotion_3",
+    "to": "scf_paladin_devotion_sacred_weapon_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_paladin_glory_oath_of_glory_3",
+    "to": "scf_paladin_glory_oath_of_glory_spells_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_paladin_glory_oath_of_glory_3",
+    "to": "scf_paladin_glory_inspiring_smite_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_paladin_glory_oath_of_glory_3",
+    "to": "scf_paladin_glory_peerless_athlete_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_paladin_vengeance_oath_of_vengeance_3",
+    "to": "scf_paladin_vengeance_oath_of_vengeance_spells_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_paladin_vengeance_oath_of_vengeance_3",
+    "to": "scf_paladin_vengeance_vow_of_enmity_3",
+    "relation": "references"
+  },
+  {
+    "from": "cf_ranger_deft_explorer_2",
+    "to": "cf_bard_expertise_2",
+    "relation": "references"
+  },
+  {
+    "from": "cf_ranger_deft_explorer_2",
+    "to": "cf_bard_expertise_9",
+    "relation": "references"
+  },
+  {
+    "from": "cf_ranger_deft_explorer_2",
+    "to": "cf_ranger_expertise_9",
+    "relation": "references"
+  },
+  {
+    "from": "cf_ranger_deft_explorer_2",
+    "to": "cf_rogue_expertise_1",
+    "relation": "references"
+  },
+  {
+    "from": "cf_ranger_deft_explorer_2",
+    "to": "cf_rogue_expertise_6",
+    "relation": "references"
+  },
+  {
+    "from": "cf_ranger_deft_explorer_2",
+    "to": "cf_bard_expertise_2",
+    "relation": "references"
+  },
+  {
+    "from": "cf_ranger_deft_explorer_2",
+    "to": "cf_bard_expertise_9",
+    "relation": "references"
+  },
+  {
+    "from": "cf_ranger_deft_explorer_2",
+    "to": "cf_ranger_expertise_9",
+    "relation": "references"
+  },
+  {
+    "from": "cf_ranger_deft_explorer_2",
+    "to": "cf_rogue_expertise_1",
+    "relation": "references"
+  },
+  {
+    "from": "cf_ranger_deft_explorer_2",
+    "to": "cf_rogue_expertise_6",
+    "relation": "references"
+  },
+  {
+    "from": "cf_ranger_ability_score_improvement_4",
+    "to": "feat_ability_score_improvement_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "cf_ranger_ability_score_improvement_8",
+    "to": "feat_ability_score_improvement_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "cf_ranger_expertise_9",
+    "to": "cf_bard_expertise_2",
+    "relation": "references"
+  },
+  {
+    "from": "cf_ranger_expertise_9",
+    "to": "cf_bard_expertise_9",
+    "relation": "references"
+  },
+  {
+    "from": "cf_ranger_expertise_9",
+    "to": "cf_rogue_expertise_1",
+    "relation": "references"
+  },
+  {
+    "from": "cf_ranger_expertise_9",
+    "to": "cf_rogue_expertise_6",
+    "relation": "references"
+  },
+  {
+    "from": "cf_ranger_expertise_9",
+    "to": "cf_bard_expertise_2",
+    "relation": "references"
+  },
+  {
+    "from": "cf_ranger_expertise_9",
+    "to": "cf_bard_expertise_9",
+    "relation": "references"
+  },
+  {
+    "from": "cf_ranger_expertise_9",
+    "to": "cf_rogue_expertise_1",
+    "relation": "references"
+  },
+  {
+    "from": "cf_ranger_expertise_9",
+    "to": "cf_rogue_expertise_6",
+    "relation": "references"
+  },
+  {
+    "from": "cf_ranger_ability_score_improvement_12",
+    "to": "feat_ability_score_improvement_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "cf_ranger_ability_score_improvement_16",
+    "to": "feat_ability_score_improvement_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "cf_ranger_epic_boon_19",
+    "to": "feat_boon_of_dimensional_travel_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "scf_ranger_beast_master_beast_master_3",
+    "to": "scf_ranger_beast_master_primal_companion_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_ranger_fey_wanderer_fey_wanderer_3",
+    "to": "scf_ranger_fey_wanderer_dreadful_strikes_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_ranger_fey_wanderer_fey_wanderer_3",
+    "to": "scf_ranger_fey_wanderer_fey_wanderer_spells_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_ranger_fey_wanderer_fey_wanderer_3",
+    "to": "scf_ranger_fey_wanderer_otherworldly_glamour_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_ranger_gloom_stalker_gloom_stalker_3",
+    "to": "scf_ranger_gloom_stalker_dread_ambusher_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_ranger_gloom_stalker_gloom_stalker_3",
+    "to": "scf_ranger_gloom_stalker_gloom_stalker_spells_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_ranger_gloom_stalker_gloom_stalker_3",
+    "to": "scf_ranger_gloom_stalker_umbral_sight_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_ranger_gloom_stalker_umbral_sight_3",
+    "to": "scf_monk_shadow_darkvision_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_ranger_gloom_stalker_umbral_sight_3",
+    "to": "scf_monk_shadow_darkvision_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_ranger_gloom_stalker_umbral_sight_3",
+    "to": "scf_monk_shadow_darkvision_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_ranger_gloom_stalker_umbral_sight_3",
+    "to": "scf_monk_shadow_darkness_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_ranger_gloom_stalker_umbral_sight_3",
+    "to": "scf_monk_shadow_darkvision_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_ranger_gloom_stalker_umbral_sight_3",
+    "to": "scf_monk_shadow_darkness_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_ranger_hunter_hunter_3",
+    "to": "scf_ranger_hunter_hunter_s_prey_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_ranger_hunter_hunter_3",
+    "to": "scf_ranger_hunter_hunter_s_lore_3",
+    "relation": "references"
+  },
+  {
+    "from": "cf_rogue_expertise_1",
+    "to": "cf_bard_expertise_2",
+    "relation": "references"
+  },
+  {
+    "from": "cf_rogue_expertise_1",
+    "to": "cf_bard_expertise_9",
+    "relation": "references"
+  },
+  {
+    "from": "cf_rogue_expertise_1",
+    "to": "cf_ranger_expertise_9",
+    "relation": "references"
+  },
+  {
+    "from": "cf_rogue_expertise_1",
+    "to": "cf_rogue_expertise_6",
+    "relation": "references"
+  },
+  {
+    "from": "cf_rogue_expertise_1",
+    "to": "cf_bard_expertise_2",
+    "relation": "references"
+  },
+  {
+    "from": "cf_rogue_expertise_1",
+    "to": "cf_bard_expertise_9",
+    "relation": "references"
+  },
+  {
+    "from": "cf_rogue_expertise_1",
+    "to": "cf_ranger_expertise_9",
+    "relation": "references"
+  },
+  {
+    "from": "cf_rogue_expertise_1",
+    "to": "cf_rogue_expertise_6",
+    "relation": "references"
+  },
+  {
+    "from": "cf_rogue_ability_score_improvement_4",
+    "to": "feat_ability_score_improvement_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "cf_rogue_cunning_strike_5",
+    "to": "cf_rogue_poison_cost_1d6_5",
+    "relation": "references"
+  },
+  {
+    "from": "cf_rogue_cunning_strike_5",
+    "to": "cf_rogue_trip_cost_1d6_5",
+    "relation": "references"
+  },
+  {
+    "from": "cf_rogue_cunning_strike_5",
+    "to": "cf_rogue_withdraw_cost_1d6_5",
+    "relation": "references"
+  },
+  {
+    "from": "cf_rogue_expertise_6",
+    "to": "cf_bard_expertise_2",
+    "relation": "references"
+  },
+  {
+    "from": "cf_rogue_expertise_6",
+    "to": "cf_bard_expertise_9",
+    "relation": "references"
+  },
+  {
+    "from": "cf_rogue_expertise_6",
+    "to": "cf_ranger_expertise_9",
+    "relation": "references"
+  },
+  {
+    "from": "cf_rogue_expertise_6",
+    "to": "cf_rogue_expertise_1",
+    "relation": "references"
+  },
+  {
+    "from": "cf_rogue_ability_score_improvement_8",
+    "to": "feat_ability_score_improvement_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "cf_rogue_ability_score_improvement_10",
+    "to": "feat_ability_score_improvement_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "cf_rogue_ability_score_improvement_12",
+    "to": "feat_ability_score_improvement_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "cf_rogue_devious_strikes_14",
+    "to": "cf_rogue_daze_cost_2d6_14",
+    "relation": "references"
+  },
+  {
+    "from": "cf_rogue_devious_strikes_14",
+    "to": "cf_rogue_knock_out_cost_6d6_14",
+    "relation": "references"
+  },
+  {
+    "from": "cf_rogue_devious_strikes_14",
+    "to": "cf_rogue_obscure_cost_3d6_14",
+    "relation": "references"
+  },
+  {
+    "from": "cf_rogue_ability_score_improvement_16",
+    "to": "feat_ability_score_improvement_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "cf_rogue_epic_boon_19",
+    "to": "feat_boon_of_the_night_spirit_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "scf_rogue_arcane_trickster_arcane_trickster_3",
+    "to": "scf_rogue_arcane_trickster_spellcasting_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_rogue_arcane_trickster_arcane_trickster_3",
+    "to": "scf_rogue_arcane_trickster_mage_hand_legerdemain_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_rogue_assassin_assassin_3",
+    "to": "scf_rogue_assassin_assassinate_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_rogue_assassin_assassin_3",
+    "to": "scf_rogue_assassin_assassin_s_tools_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_rogue_soulknife_soulknife_3",
+    "to": "scf_rogue_soulknife_psionic_power_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_rogue_soulknife_soulknife_3",
+    "to": "scf_rogue_soulknife_psychic_blades_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_rogue_soulknife_psionic_power_3",
+    "to": "scf_rogue_soulknife_psi_bolstered_knack_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_rogue_soulknife_psionic_power_3",
+    "to": "scf_rogue_soulknife_psychic_whispers_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_rogue_soulknife_soul_blades_9",
+    "to": "scf_rogue_soulknife_homing_strikes_9",
+    "relation": "references"
+  },
+  {
+    "from": "scf_rogue_soulknife_soul_blades_9",
+    "to": "scf_rogue_soulknife_psychic_teleportation_9",
+    "relation": "references"
+  },
+  {
+    "from": "scf_rogue_thief_thief_3",
+    "to": "scf_rogue_thief_fast_hands_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_rogue_thief_thief_3",
+    "to": "scf_rogue_thief_second_story_work_3",
+    "relation": "references"
+  },
+  {
+    "from": "cf_sorcerer_metamagic_2",
+    "to": "cf_sorcerer_metamagic_options_2",
+    "relation": "references"
+  },
+  {
+    "from": "cf_sorcerer_ability_score_improvement_4",
+    "to": "feat_ability_score_improvement_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "cf_sorcerer_sorcery_incarnate_7",
+    "to": "cf_sorcerer_metamagic_options_2",
+    "relation": "references"
+  },
+  {
+    "from": "cf_sorcerer_ability_score_improvement_8",
+    "to": "feat_ability_score_improvement_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "cf_sorcerer_metamagic_10",
+    "to": "cf_sorcerer_metamagic_options_2",
+    "relation": "references"
+  },
+  {
+    "from": "cf_sorcerer_ability_score_improvement_12",
+    "to": "feat_ability_score_improvement_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "cf_sorcerer_ability_score_improvement_16",
+    "to": "feat_ability_score_improvement_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "cf_sorcerer_metamagic_17",
+    "to": "cf_sorcerer_metamagic_options_2",
+    "relation": "references"
+  },
+  {
+    "from": "cf_sorcerer_epic_boon_19",
+    "to": "feat_boon_of_dimensional_travel_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "scf_sorcerer_aberrant_aberrant_sorcery_3",
+    "to": "scf_sorcerer_aberrant_psionic_spells_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_sorcerer_aberrant_aberrant_sorcery_3",
+    "to": "scf_sorcerer_aberrant_telepathic_speech_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_sorcerer_clockwork_clockwork_sorcery_3",
+    "to": "scf_sorcerer_clockwork_clockwork_spells_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_sorcerer_clockwork_clockwork_sorcery_3",
+    "to": "scf_sorcerer_clockwork_restore_balance_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_sorcerer_draconic_draconic_sorcery_3",
+    "to": "scf_sorcerer_draconic_draconic_resilience_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_sorcerer_draconic_draconic_sorcery_3",
+    "to": "scf_sorcerer_draconic_draconic_spells_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_sorcerer_wild_magic_wild_magic_sorcery_3",
+    "to": "scf_sorcerer_wild_magic_wild_magic_surge_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_sorcerer_wild_magic_wild_magic_sorcery_3",
+    "to": "scf_sorcerer_wild_magic_tides_of_chaos_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_sorcerer_wild_magic_tides_of_chaos_3",
+    "to": "scf_sorcerer_wild_magic_wild_magic_surge_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_sorcerer_wild_magic_tamed_surge_18",
+    "to": "scf_sorcerer_wild_magic_wild_magic_surge_3",
+    "relation": "references"
+  },
+  {
+    "from": "cf_warlock_eldritch_invocations_1",
+    "to": "cf_warlock_eldritch_invocation_options_1",
+    "relation": "references"
+  },
+  {
+    "from": "cf_warlock_ability_score_improvement_4",
+    "to": "feat_ability_score_improvement_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "cf_warlock_ability_score_improvement_8",
+    "to": "feat_ability_score_improvement_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "cf_warlock_ability_score_improvement_12",
+    "to": "feat_ability_score_improvement_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "cf_warlock_ability_score_improvement_16",
+    "to": "feat_ability_score_improvement_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "cf_warlock_epic_boon_19",
+    "to": "feat_boon_of_fate_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "scf_warlock_archfey_archfey_patron_3",
+    "to": "scf_warlock_archfey_archfey_spells_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_warlock_archfey_archfey_patron_3",
+    "to": "scf_warlock_archfey_steps_of_the_fey_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_warlock_celestial_celestial_patron_3",
+    "to": "scf_warlock_celestial_celestial_spells_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_warlock_celestial_celestial_patron_3",
+    "to": "scf_warlock_celestial_healing_light_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_warlock_fiend_fiend_patron_3",
+    "to": "scf_warlock_fiend_fiend_spells_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_warlock_fiend_fiend_patron_3",
+    "to": "scf_warlock_fiend_dark_one_s_blessing_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_warlock_great_old_one_great_old_one_patron_3",
+    "to": "scf_warlock_great_old_one_great_old_one_spells_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_warlock_great_old_one_great_old_one_patron_3",
+    "to": "scf_warlock_great_old_one_awakened_mind_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_warlock_great_old_one_great_old_one_patron_3",
+    "to": "scf_warlock_great_old_one_psychic_spells_3",
+    "relation": "references"
+  },
+  {
+    "from": "cf_wizard_scholar_2",
+    "to": "cf_bard_expertise_2",
+    "relation": "references"
+  },
+  {
+    "from": "cf_wizard_scholar_2",
+    "to": "cf_bard_expertise_9",
+    "relation": "references"
+  },
+  {
+    "from": "cf_wizard_scholar_2",
+    "to": "cf_ranger_expertise_9",
+    "relation": "references"
+  },
+  {
+    "from": "cf_wizard_scholar_2",
+    "to": "cf_rogue_expertise_1",
+    "relation": "references"
+  },
+  {
+    "from": "cf_wizard_scholar_2",
+    "to": "cf_rogue_expertise_6",
+    "relation": "references"
+  },
+  {
+    "from": "cf_wizard_ability_score_improvement_4",
+    "to": "feat_ability_score_improvement_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "cf_wizard_ability_score_improvement_8",
+    "to": "feat_ability_score_improvement_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "cf_wizard_ability_score_improvement_12",
+    "to": "feat_ability_score_improvement_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "cf_wizard_ability_score_improvement_16",
+    "to": "feat_ability_score_improvement_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "cf_wizard_epic_boon_19",
+    "to": "feat_boon_of_spell_recall_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "scf_wizard_abjurer_abjurer_3",
+    "to": "scf_wizard_abjurer_abjuration_savant_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_wizard_abjurer_abjurer_3",
+    "to": "scf_wizard_abjurer_arcane_ward_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_wizard_diviner_diviner_3",
+    "to": "scf_wizard_diviner_divination_savant_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_wizard_diviner_diviner_3",
+    "to": "scf_wizard_diviner_portent_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_wizard_diviner_the_third_eye_10",
+    "to": "scf_monk_shadow_darkvision_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_wizard_evoker_evoker_3",
+    "to": "scf_wizard_evoker_evocation_savant_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_wizard_evoker_evoker_3",
+    "to": "scf_wizard_evoker_potent_cantrip_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_wizard_illusionist_illusionist_3",
+    "to": "scf_wizard_illusionist_illusion_savant_3",
+    "relation": "references"
+  },
+  {
+    "from": "scf_wizard_illusionist_illusionist_3",
+    "to": "scf_wizard_illusionist_improved_illusions_3",
+    "relation": "references"
+  },
+  {
+    "from": "feat_boon_of_skill_xphb",
+    "to": "cf_bard_expertise_2",
+    "relation": "references"
+  },
+  {
+    "from": "feat_boon_of_skill_xphb",
+    "to": "cf_bard_expertise_9",
+    "relation": "references"
+  },
+  {
+    "from": "feat_boon_of_skill_xphb",
+    "to": "cf_ranger_expertise_9",
+    "relation": "references"
+  },
+  {
+    "from": "feat_boon_of_skill_xphb",
+    "to": "cf_rogue_expertise_1",
+    "relation": "references"
+  },
+  {
+    "from": "feat_boon_of_skill_xphb",
+    "to": "cf_rogue_expertise_6",
+    "relation": "references"
+  },
+  {
+    "from": "feat_boon_of_skill_xphb",
+    "to": "cf_bard_expertise_2",
+    "relation": "references"
+  },
+  {
+    "from": "feat_boon_of_skill_xphb",
+    "to": "cf_bard_expertise_9",
+    "relation": "references"
+  },
+  {
+    "from": "feat_boon_of_skill_xphb",
+    "to": "cf_ranger_expertise_9",
+    "relation": "references"
+  },
+  {
+    "from": "feat_boon_of_skill_xphb",
+    "to": "cf_rogue_expertise_1",
+    "relation": "references"
+  },
+  {
+    "from": "feat_boon_of_skill_xphb",
+    "to": "cf_rogue_expertise_6",
+    "relation": "references"
+  },
+  {
+    "from": "feat_boon_of_the_night_spirit_xphb",
+    "to": "scf_monk_shadow_darkness_3",
+    "relation": "references"
+  },
+  {
+    "from": "feat_boon_of_the_night_spirit_xphb",
+    "to": "scf_monk_shadow_darkness_3",
+    "relation": "references"
+  },
+  {
+    "from": "feat_keen_mind_xphb",
+    "to": "cf_bard_expertise_2",
+    "relation": "references"
+  },
+  {
+    "from": "feat_keen_mind_xphb",
+    "to": "cf_bard_expertise_9",
+    "relation": "references"
+  },
+  {
+    "from": "feat_keen_mind_xphb",
+    "to": "cf_ranger_expertise_9",
+    "relation": "references"
+  },
+  {
+    "from": "feat_keen_mind_xphb",
+    "to": "cf_rogue_expertise_1",
+    "relation": "references"
+  },
+  {
+    "from": "feat_keen_mind_xphb",
+    "to": "cf_rogue_expertise_6",
+    "relation": "references"
+  },
+  {
+    "from": "feat_observant_xphb",
+    "to": "cf_bard_expertise_2",
+    "relation": "references"
+  },
+  {
+    "from": "feat_observant_xphb",
+    "to": "cf_bard_expertise_9",
+    "relation": "references"
+  },
+  {
+    "from": "feat_observant_xphb",
+    "to": "cf_ranger_expertise_9",
+    "relation": "references"
+  },
+  {
+    "from": "feat_observant_xphb",
+    "to": "cf_rogue_expertise_1",
+    "relation": "references"
+  },
+  {
+    "from": "feat_observant_xphb",
+    "to": "cf_rogue_expertise_6",
+    "relation": "references"
+  },
+  {
+    "from": "feat_skill_expert_xphb",
+    "to": "cf_bard_expertise_2",
+    "relation": "references"
+  },
+  {
+    "from": "feat_skill_expert_xphb",
+    "to": "cf_bard_expertise_9",
+    "relation": "references"
+  },
+  {
+    "from": "feat_skill_expert_xphb",
+    "to": "cf_ranger_expertise_9",
+    "relation": "references"
+  },
+  {
+    "from": "feat_skill_expert_xphb",
+    "to": "cf_rogue_expertise_1",
+    "relation": "references"
+  },
+  {
+    "from": "feat_skill_expert_xphb",
+    "to": "cf_rogue_expertise_6",
+    "relation": "references"
+  },
+  {
+    "from": "feat_skill_expert_xphb",
+    "to": "cf_bard_expertise_2",
+    "relation": "references"
+  },
+  {
+    "from": "feat_skill_expert_xphb",
+    "to": "cf_bard_expertise_9",
+    "relation": "references"
+  },
+  {
+    "from": "feat_skill_expert_xphb",
+    "to": "cf_ranger_expertise_9",
+    "relation": "references"
+  },
+  {
+    "from": "feat_skill_expert_xphb",
+    "to": "cf_rogue_expertise_1",
+    "relation": "references"
+  },
+  {
+    "from": "feat_skill_expert_xphb",
+    "to": "cf_rogue_expertise_6",
+    "relation": "references"
+  },
+  {
+    "from": "of_devil_s_sight_xphb",
+    "to": "scf_monk_shadow_darkness_3",
+    "relation": "references"
+  },
+  {
+    "from": "of_devouring_blade_xphb",
+    "to": "of_thirsting_blade_xphb",
+    "relation": "references"
+  },
+  {
+    "from": "of_one_with_shadows_xphb",
+    "to": "scf_monk_shadow_darkness_3",
+    "relation": "references"
+  }
+]

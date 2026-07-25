@@ -1,0 +1,801 @@
+{
+  "Artificer": {
+    "name": "Artificer",
+    "source": "EFA",
+    "hit_die": {
+      "number": 1,
+      "faces": 8
+    },
+    "saving_throw_proficiencies": [
+      "con",
+      "int"
+    ],
+    "starting_proficiencies": {
+      "armor": [
+        "light",
+        "medium",
+        "shield"
+      ],
+      "weapons": [
+        "simple"
+      ],
+      "tools": [
+        "{@item Thieves' Tools|XPHB}",
+        "{@item Tinker's Tools|XPHB}",
+        "one type of {@item Artisan's Tools|XPHB} of your choice"
+      ],
+      "toolProficiencies": [
+        {
+          "thieves' tools": true,
+          "tinker's tools": true,
+          "anyArtisansTool": 1
+        }
+      ],
+      "skills": [
+        {
+          "choose": {
+            "from": [
+              "arcana",
+              "history",
+              "investigation",
+              "medicine",
+              "nature",
+              "perception",
+              "sleight of hand"
+            ],
+            "count": 2
+          }
+        }
+      ]
+    },
+    "multiclassing": {
+      "proficienciesGained": {
+        "armor": [
+          "light",
+          "medium",
+          "shield"
+        ],
+        "tools": [
+          "{@item Tinker's Tools|XPHB}"
+        ],
+        "toolProficiencies": [
+          {
+            "tinker's tools": true
+          }
+        ],
+        "skills": [
+          {
+            "choose": {
+              "from": [
+                "arcana",
+                "history",
+                "investigation",
+                "medicine",
+                "nature",
+                "perception",
+                "sleight of hand"
+              ],
+              "count": 1
+            }
+          }
+        ]
+      }
+    },
+    "optionalfeature_progression": null,
+    "subclass_title": "Artificer Subclass"
+  },
+  "Barbarian": {
+    "name": "Barbarian",
+    "source": "XPHB",
+    "hit_die": {
+      "number": 1,
+      "faces": 12
+    },
+    "saving_throw_proficiencies": [
+      "str",
+      "con"
+    ],
+    "starting_proficiencies": {
+      "armor": [
+        "light",
+        "medium",
+        "shield"
+      ],
+      "weapons": [
+        "simple",
+        "martial"
+      ],
+      "skills": [
+        {
+          "choose": {
+            "from": [
+              "animal handling",
+              "athletics",
+              "intimidation",
+              "nature",
+              "perception",
+              "survival"
+            ],
+            "count": 2
+          }
+        }
+      ]
+    },
+    "multiclassing": {
+      "proficienciesGained": {
+        "armor": [
+          "shield"
+        ],
+        "weapons": [
+          "martial"
+        ]
+      }
+    },
+    "optionalfeature_progression": null,
+    "subclass_title": "Barbarian Subclass"
+  },
+  "Bard": {
+    "name": "Bard",
+    "source": "XPHB",
+    "hit_die": {
+      "number": 1,
+      "faces": 8
+    },
+    "saving_throw_proficiencies": [
+      "dex",
+      "cha"
+    ],
+    "starting_proficiencies": {
+      "armor": [
+        "light"
+      ],
+      "weapons": [
+        "simple"
+      ],
+      "tools": [
+        "Choose three {@item Musical Instrument|XPHB|Musical Instruments}"
+      ],
+      "toolProficiencies": [
+        {
+          "anyMusicalInstrument": 3
+        }
+      ],
+      "skills": [
+        {
+          "any": 3
+        }
+      ]
+    },
+    "multiclassing": {
+      "proficienciesGained": {
+        "armor": [
+          "light"
+        ],
+        "tools": [
+          "Choose one {@item Musical Instrument|XPHB}"
+        ],
+        "toolProficiencies": [
+          {
+            "anyMusicalInstrument": 1
+          }
+        ],
+        "skills": [
+          {
+            "choose": {
+              "from": [
+                "athletics",
+                "acrobatics",
+                "sleight of hand",
+                "stealth",
+                "arcana",
+                "history",
+                "investigation",
+                "nature",
+                "religion",
+                "animal handling",
+                "insight",
+                "medicine",
+                "perception",
+                "survival",
+                "deception",
+                "intimidation",
+                "performance",
+                "persuasion"
+              ],
+              "count": 1
+            }
+          }
+        ]
+      }
+    },
+    "optionalfeature_progression": null,
+    "subclass_title": "Bard Subclass"
+  },
+  "Cleric": {
+    "name": "Cleric",
+    "source": "XPHB",
+    "hit_die": {
+      "number": 1,
+      "faces": 8
+    },
+    "saving_throw_proficiencies": [
+      "wis",
+      "cha"
+    ],
+    "starting_proficiencies": {
+      "armor": [
+        "light",
+        "medium",
+        "shield"
+      ],
+      "weapons": [
+        "simple"
+      ],
+      "skills": [
+        {
+          "choose": {
+            "from": [
+              "history",
+              "insight",
+              "medicine",
+              "persuasion",
+              "religion"
+            ],
+            "count": 2
+          }
+        }
+      ]
+    },
+    "multiclassing": {
+      "proficienciesGained": {
+        "armor": [
+          "light",
+          "medium",
+          "shield"
+        ]
+      }
+    },
+    "optionalfeature_progression": null,
+    "subclass_title": "Cleric Subclass"
+  },
+  "Druid": {
+    "name": "Druid",
+    "source": "XPHB",
+    "hit_die": {
+      "number": 1,
+      "faces": 8
+    },
+    "saving_throw_proficiencies": [
+      "int",
+      "wis"
+    ],
+    "starting_proficiencies": {
+      "armor": [
+        "light",
+        "shield"
+      ],
+      "weapons": [
+        "simple"
+      ],
+      "tools": [
+        "{@item Herbalism Kit|XPHB}"
+      ],
+      "toolProficiencies": [
+        {
+          "herbalism kit": true
+        }
+      ],
+      "skills": [
+        {
+          "choose": {
+            "from": [
+              "arcana",
+              "animal handling",
+              "insight",
+              "medicine",
+              "nature",
+              "perception",
+              "religion",
+              "survival"
+            ],
+            "count": 2
+          }
+        }
+      ]
+    },
+    "multiclassing": {
+      "proficienciesGained": {
+        "armor": [
+          "light",
+          "shield"
+        ]
+      }
+    },
+    "optionalfeature_progression": null,
+    "subclass_title": "Druid Subclass"
+  },
+  "Fighter": {
+    "name": "Fighter",
+    "source": "XPHB",
+    "hit_die": {
+      "number": 1,
+      "faces": 10
+    },
+    "saving_throw_proficiencies": [
+      "str",
+      "con"
+    ],
+    "starting_proficiencies": {
+      "armor": [
+        "light",
+        "medium",
+        "heavy",
+        "shield"
+      ],
+      "weapons": [
+        "simple",
+        "martial"
+      ],
+      "skills": [
+        {
+          "choose": {
+            "from": [
+              "acrobatics",
+              "animal handling",
+              "athletics",
+              "history",
+              "insight",
+              "intimidation",
+              "persuasion",
+              "perception",
+              "survival"
+            ],
+            "count": 2
+          }
+        }
+      ]
+    },
+    "multiclassing": {
+      "proficienciesGained": {
+        "armor": [
+          "light",
+          "medium",
+          "shield"
+        ],
+        "weapons": [
+          "martial"
+        ]
+      }
+    },
+    "optionalfeature_progression": null,
+    "subclass_title": "Fighter Subclass"
+  },
+  "Monk": {
+    "name": "Monk",
+    "source": "XPHB",
+    "hit_die": {
+      "number": 1,
+      "faces": 8
+    },
+    "saving_throw_proficiencies": [
+      "str",
+      "dex"
+    ],
+    "starting_proficiencies": {
+      "weapons": [
+        "simple",
+        "Martial weapons that have the {@filter Light|items|type=martial weapon|property=light} property"
+      ],
+      "weaponProficiencies": [
+        {
+          "simple": true,
+          "all": {
+            "fromFilter": "type=martial weapon|property=light"
+          }
+        }
+      ],
+      "tools": [
+        "Choose one type of {@item Artisan's Tools|XPHB} or {@item Musical Instrument|XPHB}"
+      ],
+      "toolProficiencies": [
+        {
+          "anyArtisansTool": 1
+        },
+        {
+          "anyMusicalInstrument": 1
+        }
+      ],
+      "skills": [
+        {
+          "choose": {
+            "from": [
+              "acrobatics",
+              "athletics",
+              "history",
+              "insight",
+              "religion",
+              "stealth"
+            ],
+            "count": 2
+          }
+        }
+      ]
+    },
+    "multiclassing": {},
+    "optionalfeature_progression": null,
+    "subclass_title": "Monk Subclass"
+  },
+  "Paladin": {
+    "name": "Paladin",
+    "source": "XPHB",
+    "hit_die": {
+      "number": 1,
+      "faces": 10
+    },
+    "saving_throw_proficiencies": [
+      "wis",
+      "cha"
+    ],
+    "starting_proficiencies": {
+      "armor": [
+        "light",
+        "medium",
+        "heavy",
+        "shield"
+      ],
+      "weapons": [
+        "simple",
+        "martial"
+      ],
+      "skills": [
+        {
+          "choose": {
+            "from": [
+              "athletics",
+              "insight",
+              "intimidation",
+              "medicine",
+              "persuasion",
+              "religion"
+            ],
+            "count": 2
+          }
+        }
+      ]
+    },
+    "multiclassing": {
+      "proficienciesGained": {
+        "armor": [
+          "light",
+          "medium",
+          "shield"
+        ],
+        "weapons": [
+          "martial"
+        ]
+      }
+    },
+    "optionalfeature_progression": null,
+    "subclass_title": "Paladin Subclass"
+  },
+  "Ranger": {
+    "name": "Ranger",
+    "source": "XPHB",
+    "hit_die": {
+      "number": 1,
+      "faces": 10
+    },
+    "saving_throw_proficiencies": [
+      "str",
+      "dex"
+    ],
+    "starting_proficiencies": {
+      "armor": [
+        "light",
+        "medium",
+        "shield"
+      ],
+      "weapons": [
+        "simple",
+        "martial"
+      ],
+      "skills": [
+        {
+          "choose": {
+            "from": [
+              "animal handling",
+              "athletics",
+              "insight",
+              "investigation",
+              "nature",
+              "perception",
+              "stealth",
+              "survival"
+            ],
+            "count": 3
+          }
+        }
+      ]
+    },
+    "multiclassing": {
+      "proficienciesGained": {
+        "weapons": [
+          "martial"
+        ],
+        "armor": [
+          "light",
+          "medium",
+          "shield"
+        ],
+        "skills": [
+          {
+            "choose": {
+              "from": [
+                "animal handling",
+                "athletics",
+                "insight",
+                "investigation",
+                "nature",
+                "perception",
+                "stealth",
+                "survival"
+              ],
+              "count": 1
+            }
+          }
+        ]
+      }
+    },
+    "optionalfeature_progression": null,
+    "subclass_title": "Ranger Subclass"
+  },
+  "Rogue": {
+    "name": "Rogue",
+    "source": "XPHB",
+    "hit_die": {
+      "number": 1,
+      "faces": 8
+    },
+    "saving_throw_proficiencies": [
+      "dex",
+      "int"
+    ],
+    "starting_proficiencies": {
+      "armor": [
+        "light"
+      ],
+      "weapons": [
+        "simple",
+        "Martial weapons that have the {@filter Finesse or Light|items|type=martial weapon|property=finesse;light} property"
+      ],
+      "weaponProficiencies": [
+        {
+          "simple": true,
+          "all": {
+            "fromFilter": "type=martial weapon|property=light;finesse"
+          }
+        }
+      ],
+      "tools": [
+        "{@item Thieves' Tools|XPHB}"
+      ],
+      "toolProficiencies": [
+        {
+          "thieves' tools": true
+        }
+      ],
+      "skills": [
+        {
+          "choose": {
+            "from": [
+              "acrobatics",
+              "athletics",
+              "deception",
+              "insight",
+              "intimidation",
+              "investigation",
+              "perception",
+              "persuasion",
+              "sleight of hand",
+              "stealth"
+            ],
+            "count": 4
+          }
+        }
+      ]
+    },
+    "multiclassing": {
+      "proficienciesGained": {
+        "armor": [
+          "light"
+        ],
+        "tools": [
+          "{@item Thieves' Tools|XPHB}"
+        ],
+        "toolProficiencies": [
+          {
+            "thieves' tools": true
+          }
+        ],
+        "skills": [
+          {
+            "choose": {
+              "from": [
+                "acrobatics",
+                "athletics",
+                "deception",
+                "insight",
+                "intimidation",
+                "investigation",
+                "perception",
+                "persuasion",
+                "sleight of hand",
+                "stealth"
+              ],
+              "count": 1
+            }
+          }
+        ]
+      }
+    },
+    "optionalfeature_progression": null,
+    "subclass_title": "Rogue Subclass"
+  },
+  "Sorcerer": {
+    "name": "Sorcerer",
+    "source": "XPHB",
+    "hit_die": {
+      "number": 1,
+      "faces": 6
+    },
+    "saving_throw_proficiencies": [
+      "con",
+      "cha"
+    ],
+    "starting_proficiencies": {
+      "weapons": [
+        "simple"
+      ],
+      "skills": [
+        {
+          "choose": {
+            "from": [
+              "arcana",
+              "deception",
+              "insight",
+              "intimidation",
+              "persuasion",
+              "religion"
+            ],
+            "count": 2
+          }
+        }
+      ]
+    },
+    "multiclassing": {},
+    "optionalfeature_progression": [
+      {
+        "name": "Metamagic",
+        "featureType": [
+          "MM"
+        ],
+        "progression": {
+          "2": 2,
+          "10": 4,
+          "17": 6
+        }
+      }
+    ],
+    "subclass_title": "Sorcerer Subclass"
+  },
+  "Warlock": {
+    "name": "Warlock",
+    "source": "XPHB",
+    "hit_die": {
+      "number": 1,
+      "faces": 8
+    },
+    "saving_throw_proficiencies": [
+      "wis",
+      "cha"
+    ],
+    "starting_proficiencies": {
+      "armor": [
+        "light"
+      ],
+      "weapons": [
+        "simple"
+      ],
+      "skills": [
+        {
+          "choose": {
+            "from": [
+              "arcana",
+              "deception",
+              "history",
+              "intimidation",
+              "investigation",
+              "nature",
+              "religion"
+            ],
+            "count": 2
+          }
+        }
+      ]
+    },
+    "multiclassing": {
+      "proficienciesGained": {
+        "armor": [
+          "light"
+        ]
+      }
+    },
+    "optionalfeature_progression": [
+      {
+        "name": "Eldritch Invocations",
+        "featureType": [
+          "EI"
+        ],
+        "progression": [
+          1,
+          3,
+          3,
+          3,
+          5,
+          5,
+          6,
+          6,
+          7,
+          7,
+          7,
+          8,
+          8,
+          8,
+          9,
+          9,
+          9,
+          10,
+          10,
+          10
+        ]
+      }
+    ],
+    "subclass_title": "Warlock Subclass"
+  },
+  "Wizard": {
+    "name": "Wizard",
+    "source": "XPHB",
+    "hit_die": {
+      "number": 1,
+      "faces": 6
+    },
+    "saving_throw_proficiencies": [
+      "int",
+      "wis"
+    ],
+    "starting_proficiencies": {
+      "weapons": [
+        "simple"
+      ],
+      "skills": [
+        {
+          "choose": {
+            "from": [
+              "arcana",
+              "history",
+              "insight",
+              "investigation",
+              "medicine",
+              "nature",
+              "religion"
+            ],
+            "count": 2
+          }
+        }
+      ]
+    },
+    "multiclassing": {},
+    "optionalfeature_progression": null,
+    "subclass_title": "Wizard Subclass"
+  }
+}

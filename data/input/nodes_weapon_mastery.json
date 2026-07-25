@@ -1,0 +1,148 @@
+{
+  "masteries": [
+    {
+      "id": "mastery_cleave_xphb",
+      "name": "Cleave",
+      "type": "weapon_mastery",
+      "source_book": "XPHB",
+      "point_cost": null,
+      "tags": [],
+      "effect_summary": "If you hit a creature with a melee attack roll using this weapon, you can make a melee attack roll with the weapon against a second creature within 5 feet of the first that is also within your reach. On a hit, the second creature takes the weapon's damage, but don't add your ability modifier to that damage unless that modifier is negative. You can make this extra attack only once per turn.",
+      "mechanical_data": {}
+    },
+    {
+      "id": "mastery_graze_xphb",
+      "name": "Graze",
+      "type": "weapon_mastery",
+      "source_book": "XPHB",
+      "point_cost": null,
+      "tags": [],
+      "effect_summary": "If your attack roll with this weapon misses a creature, you can deal damage to that creature equal to the ability modifier you used to make the attack roll. This damage is the same type dealt by the weapon, and the damage can be increased only by increasing the ability modifier.",
+      "mechanical_data": {}
+    },
+    {
+      "id": "mastery_nick_xphb",
+      "name": "Nick",
+      "type": "weapon_mastery",
+      "source_book": "XPHB",
+      "point_cost": null,
+      "tags": [],
+      "effect_summary": "When you make the extra attack of the Light property, you can make it as part of the Attack action instead of as a Bonus Action. You can make this extra attack only once per turn.",
+      "mechanical_data": {}
+    },
+    {
+      "id": "mastery_push_xphb",
+      "name": "Push",
+      "type": "weapon_mastery",
+      "source_book": "XPHB",
+      "point_cost": null,
+      "tags": [],
+      "effect_summary": "If you hit a creature with this weapon, you can push the creature up to 10 feet straight away from yourself if it is Large or smaller.",
+      "mechanical_data": {}
+    },
+    {
+      "id": "mastery_sap_xphb",
+      "name": "Sap",
+      "type": "weapon_mastery",
+      "source_book": "XPHB",
+      "point_cost": null,
+      "tags": [],
+      "effect_summary": "If you hit a creature with this weapon, that creature has Disadvantage on its next attack roll before the start of your next turn.",
+      "mechanical_data": {}
+    },
+    {
+      "id": "mastery_slow_xphb",
+      "name": "Slow",
+      "type": "weapon_mastery",
+      "source_book": "XPHB",
+      "point_cost": null,
+      "tags": [],
+      "effect_summary": "If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet.",
+      "mechanical_data": {}
+    },
+    {
+      "id": "mastery_topple_xphb",
+      "name": "Topple",
+      "type": "weapon_mastery",
+      "source_book": "XPHB",
+      "point_cost": null,
+      "tags": [],
+      "effect_summary": "If you hit a creature with this weapon, you can force the creature to make a Constitution saving throw (8 plus the ability modifier used to make the attack roll and your Proficiency). On a failed save, the creature has the Prone condition.",
+      "mechanical_data": {}
+    },
+    {
+      "id": "mastery_vex_xphb",
+      "name": "Vex",
+      "type": "weapon_mastery",
+      "source_book": "XPHB",
+      "point_cost": null,
+      "tags": [],
+      "effect_summary": "If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn.",
+      "mechanical_data": {}
+    }
+  ],
+  "weapon_to_mastery_map": {
+    "Sap": [
+      "Antimatter Rifle",
+      "Flail",
+      "Longsword",
+      "Mace",
+      "Morningstar",
+      "Revolver",
+      "Spear",
+      "War Pick"
+    ],
+    "Slow": [
+      "Automatic Rifle",
+      "Club",
+      "Hunting Rifle",
+      "Javelin",
+      "Laser Rifle",
+      "Light Crossbow",
+      "Longbow",
+      "Musket",
+      "Sling",
+      "Whip"
+    ],
+    "Topple": [
+      "Battleaxe",
+      "Lance",
+      "Maul",
+      "Quarterstaff",
+      "Trident"
+    ],
+    "Vex": [
+      "Blowgun",
+      "Dart",
+      "Hand Crossbow",
+      "Handaxe",
+      "Laser Pistol",
+      "Pistol",
+      "Rapier",
+      "Semiautomatic Pistol",
+      "Shortbow",
+      "Shortsword"
+    ],
+    "Nick": [
+      "Dagger",
+      "Light Hammer",
+      "Scimitar",
+      "Sickle"
+    ],
+    "Graze": [
+      "Glaive",
+      "Greatsword"
+    ],
+    "Cleave": [
+      "Greataxe",
+      "Halberd"
+    ],
+    "Push": [
+      "Greatclub",
+      "Heavy Crossbow",
+      "Pike",
+      "Shotgun",
+      "Warhammer"
+    ]
+  }
+}

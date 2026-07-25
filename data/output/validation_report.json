@@ -1,0 +1,74 @@
+{
+  "ok": true,
+  "errors": [],
+  "warnings": [
+    "reference edges from the Work Order 1 extraction shortcut the ladder; see the cross_zone_reference_shortcuts flag"
+  ],
+  "counts": {
+    "nodes": 1172,
+    "edges": 1740,
+    "by_type": {
+      "class_feature": 283,
+      "connector": 344,
+      "feat": 89,
+      "optional_feature": 58,
+      "spell_slot": 81,
+      "subclass_feature": 309,
+      "weapon_mastery": 8
+    }
+  },
+  "depth_normalization": {
+    "probe_rung_level": 9,
+    "structural_hops_from_hub": {
+      "Barbarian": 6,
+      "Fighter": 6,
+      "Paladin": 6,
+      "Cleric": 6,
+      "Druid": 6,
+      "Ranger": 6,
+      "Rogue": 6,
+      "Artificer": 6,
+      "Wizard": 6,
+      "Sorcerer": 6,
+      "Warlock": 6,
+      "Bard": 6,
+      "Monk": 6
+    },
+    "uniform_on_structural_graph": true,
+    "hops_including_reference_edges": {
+      "Barbarian": 6,
+      "Fighter": 6,
+      "Paladin": 6,
+      "Cleric": 6,
+      "Druid": 6,
+      "Ranger": 5,
+      "Rogue": 6,
+      "Artificer": 6,
+      "Wizard": 6,
+      "Sorcerer": 5,
+      "Warlock": 6,
+      "Bard": 5,
+      "Monk": 6
+    }
+  },
+  "connector_density": {
+    "same_zone": {
+      "sampled_pairs": 720,
+      "mean_connectors_crossed": 3.61,
+      "median_connectors_crossed": 3.0,
+      "target_band": "2-4 (Task 1)",
+      "in_band": true
+    },
+    "cross_zone": {
+      "sampled_pairs": 400,
+      "mean_connectors_crossed": 3.92,
+      "target": "meaningfully more than same-zone (Task 1)"
+    }
+  },
+  "traversal_cost": {
+    "note": "Points a fresh character in the named home zone pays to reach a random notable node. Home-zone spine connectors are free (Task 2b), foreign ones are not, which is where the cross-zone premium lives.",
+    "mean_points_same_zone": 1,
+    "mean_points_cross_zone": 6.07,
+    "cross_zone_premium": 6.07
+  }
+}

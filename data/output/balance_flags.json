@@ -1,0 +1,372 @@
+{
+  "generated_for": "Work Order 2, Task 6",
+  "policy": "flag only - no fixes are applied anywhere in this pipeline",
+  "career_budget": 58,
+  "how_to_read": "measured.points_to_own_all is the real cost of the combination from a fresh character in the named home zone, using the same engine the UI calls. share_of_career_budget is that cost over the level-20 budget.",
+  "flags": [
+    {
+      "id": "extra_attack_stacking",
+      "title": "Multiple Extra Attack sources reachable by one character",
+      "severity": "high",
+      "raw_position": "Extra Attack features from different classes do not stack (2024 PHB, multiclassing).",
+      "concern": "RAW, Extra Attack from different classes explicitly does not stack, and multiclassing gates it behind class levels. Here every source is a node, and nothing in the data says they are mutually exclusive. A character that walks Fighter and Warlock can hold Two Extra Attacks and Thirsting Blade/Devouring Blade at once.",
+      "nodes": [
+        "cf_barbarian_extra_attack_5",
+        "cf_fighter_extra_attack_5",
+        "cf_fighter_three_extra_attacks_20",
+        "cf_fighter_two_extra_attacks_11",
+        "cf_monk_extra_attack_5",
+        "cf_paladin_extra_attack_5",
+        "cf_ranger_extra_attack_5",
+        "of_devouring_blade_xphb",
+        "of_thirsting_blade_xphb"
+      ],
+      "node_names": [
+        "Extra Attack",
+        "Extra Attack",
+        "Three Extra Attacks",
+        "Two Extra Attacks",
+        "Extra Attack",
+        "Extra Attack",
+        "Extra Attack",
+        "Devouring Blade",
+        "Thirsting Blade"
+      ],
+      "measured": {
+        "points_to_own_all": 37,
+        "nodes_owned": 51,
+        "pulled_in_as_prerequisites": [
+          "of_pact_of_the_blade_xphb",
+          "gate_warlock",
+          "gate_ranger",
+          "gate_paladin",
+          "gate_monk",
+          "gate_fighter",
+          "gate_barbarian"
+        ],
+        "not_ownable_from_this_start": {},
+        "career_budget": 58,
+        "share_of_career_budget": 0.64
+      },
+      "suggested_review": "Compare share_of_career_budget against how much of a build this combination actually is. If it is cheap, push the nodes deeper (Task 4 says depth, not price, is the lever)."
+    },
+    {
+      "id": "double_full_caster_spine",
+      "title": "Two full-caster slot spines reachable by one character",
+      "severity": "high",
+      "raw_position": "Multiclass casters share one pooled slot progression (2024 PHB, multiclass spellcasting).",
+      "concern": "RAW pools multiclass spell slots into one progression; two separate 9th-level slot tracks is strictly more resource than any RAW character has. The spines are cheap to walk once you are inside a zone, so the only thing stopping this is cross-zone distance.",
+      "nodes": [
+        "slot_bard_t9",
+        "slot_cleric_t9"
+      ],
+      "node_names": [
+        "Bard Spellcasting: 9th-Level Slots",
+        "Cleric Spellcasting: 9th-Level Slots"
+      ],
+      "measured": {
+        "points_to_own_all": 20,
+        "nodes_owned": 21,
+        "pulled_in_as_prerequisites": [
+          "gate_cleric",
+          "gate_bard"
+        ],
+        "not_ownable_from_this_start": {},
+        "career_budget": 58,
+        "share_of_career_budget": 0.34
+      },
+      "suggested_review": "Compare share_of_career_budget against how much of a build this combination actually is. If it is cheap, push the nodes deeper (Task 4 says depth, not price, is the lever)."
+    },
+    {
+      "id": "heavy_armor_high_mobility",
+      "title": "Heavy armor training combined with monk/barbarian mobility",
+      "severity": "medium",
+      "raw_position": "Unarmored Movement requires no armor; Rage requires no Heavy armor.",
+      "concern": "Monk and Barbarian movement bonuses are RAW-conditional on wearing no armor (Monk) or no Heavy armor (Barbarian Rage). Armor training is now a purchasable core connector, so the conditionality has to be enforced in the rules layer - the tree cannot express it.",
+      "nodes": [
+        "conn_training_heavy_armor",
+        "feat_heavy_armor_master_xphb",
+        "cf_barbarian_fast_movement_5",
+        "cf_monk_step_of_the_wind_2",
+        "cf_monk_unarmored_movement_2",
+        "feat_boon_of_speed_xphb"
+      ],
+      "node_names": [
+        "Armor Training: Heavy",
+        "Heavy Armor Master",
+        "Fast Movement",
+        "Step of the Wind",
+        "Unarmored Movement",
+        "Boon of Speed"
+      ],
+      "measured": {
+        "points_to_own_all": 8,
+        "nodes_owned": 10,
+        "pulled_in_as_prerequisites": [
+          "gate_monk",
+          "gate_barbarian"
+        ],
+        "not_ownable_from_this_start": {
+          "feat_heavy_armor_master_xphb": [
+            "needs 14 points spent (has 9)"
+          ],
+          "feat_boon_of_speed_xphb": [
+            "needs 53 points spent (has 18)"
+          ]
+        },
+        "career_budget": 58,
+        "share_of_career_budget": 0.14
+      },
+      "suggested_review": "Compare share_of_career_budget against how much of a build this combination actually is. If it is cheap, push the nodes deeper (Task 4 says depth, not price, is the lever)."
+    },
+    {
+      "id": "unarmored_defense_stacking",
+      "title": "Multiple Unarmored Defense calculations available at once",
+      "severity": "medium",
+      "raw_position": "Only one Unarmored Defense formula applies at a time.",
+      "concern": "Barbarian, Monk and College of Dance each define their own AC formula. Owning several does not stack in RAW, but nothing in the node data encodes 'pick the best, not the sum'.",
+      "nodes": [
+        "cf_barbarian_unarmored_defense_1",
+        "cf_monk_unarmored_defense_1",
+        "scf_bard_dance_unarmored_defense_3"
+      ],
+      "node_names": [
+        "Unarmored Defense",
+        "Unarmored Defense",
+        "Unarmored Defense"
+      ],
+      "measured": {
+        "points_to_own_all": 9,
+        "nodes_owned": 11,
+        "pulled_in_as_prerequisites": [
+          "gate_bard",
+          "gate_monk",
+          "gate_barbarian"
+        ],
+        "not_ownable_from_this_start": {},
+        "career_budget": 58,
+        "share_of_career_budget": 0.16
+      },
+      "suggested_review": "Compare share_of_career_budget against how much of a build this combination actually is. If it is cheap, push the nodes deeper (Task 4 says depth, not price, is the lever)."
+    },
+    {
+      "id": "sneak_attack_with_multiattack",
+      "title": "Full Sneak Attack progression alongside Extra Attack",
+      "severity": "medium",
+      "raw_position": "Sneak Attack dice scale with Rogue level only.",
+      "concern": "RAW this costs a rogue their whole level progression; here Sneak Attack scaling lives on the Rogue ladder and Extra Attack on the Fighter ladder, and both are reachable within one career budget.",
+      "nodes": [
+        "cf_rogue_sneak_attack_1",
+        "cf_rogue_cunning_strike_5",
+        "cf_fighter_extra_attack_5",
+        "cf_fighter_action_surge_2"
+      ],
+      "node_names": [
+        "Sneak Attack",
+        "Cunning Strike",
+        "Extra Attack",
+        "Action Surge"
+      ],
+      "measured": {
+        "points_to_own_all": 8,
+        "nodes_owned": 12,
+        "pulled_in_as_prerequisites": [
+          "gate_fighter",
+          "gate_rogue"
+        ],
+        "not_ownable_from_this_start": {},
+        "career_budget": 58,
+        "share_of_career_budget": 0.14
+      },
+      "suggested_review": "Compare share_of_career_budget against how much of a build this combination actually is. If it is cheap, push the nodes deeper (Task 4 says depth, not price, is the lever)."
+    },
+    {
+      "id": "rage_plus_spellcasting",
+      "title": "Rage held together with a full slot progression",
+      "severity": "low",
+      "raw_position": "You cannot cast or concentrate on spells while Raging.",
+      "concern": "RAW forbids casting or concentrating while Raging, which is a rules restriction rather than an acquisition restriction. Worth confirming the rules layer still enforces it once the tree stops caring about class identity.",
+      "nodes": [
+        "cf_barbarian_rage_1",
+        "slot_druid_t1",
+        "slot_druid_t5"
+      ],
+      "node_names": [
+        "Rage",
+        "Druid Spellcasting: Cantrips and 1st-Level Slots",
+        "Druid Spellcasting: 5th-Level Slots"
+      ],
+      "measured": {
+        "points_to_own_all": 7,
+        "nodes_owned": 9,
+        "pulled_in_as_prerequisites": [
+          "gate_druid",
+          "gate_barbarian"
+        ],
+        "not_ownable_from_this_start": {},
+        "career_budget": 58,
+        "share_of_career_budget": 0.12
+      },
+      "suggested_review": "Compare share_of_career_budget against how much of a build this combination actually is. If it is cheap, push the nodes deeper (Task 4 says depth, not price, is the lever)."
+    },
+    {
+      "id": "expertise_pile",
+      "title": "Expertise grants from several zones plus Boon of Skill",
+      "severity": "low",
+      "raw_position": "Expertise is granted a fixed number of times per class.",
+      "concern": "The extraction already cross-links every Expertise feature to every other, so these sit unusually close together in the graph. Skill DCs are the softest part of the maths and the least likely to be checked.",
+      "nodes": [
+        "cf_bard_expertise_2",
+        "cf_bard_expertise_9",
+        "cf_ranger_deft_explorer_2",
+        "cf_ranger_expertise_9",
+        "cf_rogue_expertise_1",
+        "cf_rogue_expertise_6",
+        "cf_wizard_scholar_2",
+        "feat_boon_of_skill_xphb",
+        "feat_keen_mind_xphb",
+        "feat_observant_xphb",
+        "feat_skill_expert_xphb",
+        "scf_rogue_assassin_infiltration_expertise_9"
+      ],
+      "node_names": [
+        "Expertise",
+        "Expertise",
+        "Deft Explorer",
+        "Expertise",
+        "Expertise",
+        "Expertise",
+        "Scholar",
+        "Boon of Skill",
+        "Keen Mind",
+        "Observant",
+        "Skill Expert",
+        "Infiltration Expertise"
+      ],
+      "measured": {
+        "points_to_own_all": 16,
+        "nodes_owned": 21,
+        "pulled_in_as_prerequisites": [
+          "gate_rogue",
+          "gate_wizard",
+          "gate_ranger",
+          "gate_bard"
+        ],
+        "not_ownable_from_this_start": {
+          "feat_boon_of_skill_xphb": [
+            "needs 53 points spent (has 17)"
+          ]
+        },
+        "career_budget": 58,
+        "share_of_career_budget": 0.28
+      },
+      "suggested_review": "Compare share_of_career_budget against how much of a build this combination actually is. If it is cheap, push the nodes deeper (Task 4 says depth, not price, is the lever)."
+    },
+    {
+      "id": "asi_chain_available_to_all",
+      "title": "Every character can buy the Fighter-sized ASI chain",
+      "severity": "medium",
+      "raw_position": "ASI slot count varies by class (4 for most, 5 Rogue, 7 Fighter).",
+      "concern": "The repeat chain is sized to the RAW ceiling (Fighter's seven slots), so a character in any zone can now reach seven ASIs. The 20-point cap per ability still applies, but the spread does not.",
+      "nodes": [
+        "feat_ability_score_improvement_xphb",
+        "feat_ability_score_improvement_xphb_r2",
+        "feat_ability_score_improvement_xphb_r3",
+        "feat_ability_score_improvement_xphb_r4",
+        "feat_ability_score_improvement_xphb_r5",
+        "feat_ability_score_improvement_xphb_r6",
+        "feat_ability_score_improvement_xphb_r7"
+      ],
+      "node_names": [
+        "Ability Score Improvement",
+        "Ability Score Improvement (2)",
+        "Ability Score Improvement (3)",
+        "Ability Score Improvement (4)",
+        "Ability Score Improvement (5)",
+        "Ability Score Improvement (6)",
+        "Ability Score Improvement (7)"
+      ],
+      "measured": {
+        "points_to_own_all": 14,
+        "nodes_owned": 23,
+        "pulled_in_as_prerequisites": [],
+        "not_ownable_from_this_start": {},
+        "career_budget": 58,
+        "share_of_career_budget": 0.24
+      },
+      "suggested_review": "Compare share_of_career_budget against how much of a build this combination actually is. If it is cheap, push the nodes deeper (Task 4 says depth, not price, is the lever)."
+    },
+    {
+      "id": "cross_zone_reference_shortcuts",
+      "title": "Work Order 1 reference edges bypass zone gates",
+      "severity": "high",
+      "raw_position": "n/a - artefact of the extraction, not of the rules",
+      "concern": "Task 5 says the pathing graph is edges.json plus the new connector edges, so the extraction's `references` edges are traversable. Some of them join two class zones directly (a Barbarian subclass feature to a Monk subclass feature, for instance), which lets a player enter a zone without buying its gate and undercuts the Diablo-4-style modular board loading in Task 2. Either mark these non-traversable or accept them as deliberate wormholes.",
+      "nodes": [
+        "cf_bard_expertise_2",
+        "cf_bard_expertise_9",
+        "cf_ranger_deft_explorer_2",
+        "cf_ranger_expertise_9",
+        "cf_wizard_scholar_2",
+        "of_devil_s_sight_xphb",
+        "of_one_with_shadows_xphb",
+        "scf_barbarian_wild_heart_aspect_of_the_wilds_6",
+        "scf_cleric_light_radiance_of_the_dawn_3",
+        "scf_ranger_gloom_stalker_umbral_sight_3",
+        "scf_wizard_diviner_the_third_eye_10"
+      ],
+      "node_names": [],
+      "measured": {
+        "cross_zone_reference_edges": 24
+      },
+      "examples": [
+        "cf_bard_expertise_2 -> cf_ranger_expertise_9",
+        "cf_bard_expertise_2 -> cf_rogue_expertise_1",
+        "cf_bard_expertise_2 -> cf_rogue_expertise_6",
+        "cf_bard_expertise_9 -> cf_ranger_expertise_9",
+        "cf_bard_expertise_9 -> cf_rogue_expertise_1",
+        "cf_bard_expertise_9 -> cf_rogue_expertise_6",
+        "cf_ranger_deft_explorer_2 -> cf_bard_expertise_2",
+        "cf_ranger_deft_explorer_2 -> cf_bard_expertise_9",
+        "cf_ranger_deft_explorer_2 -> cf_rogue_expertise_1",
+        "cf_ranger_deft_explorer_2 -> cf_rogue_expertise_6",
+        "cf_ranger_expertise_9 -> cf_rogue_expertise_1",
+        "cf_ranger_expertise_9 -> cf_rogue_expertise_6",
+        "cf_wizard_scholar_2 -> cf_bard_expertise_2",
+        "cf_wizard_scholar_2 -> cf_bard_expertise_9",
+        "cf_wizard_scholar_2 -> cf_ranger_expertise_9"
+      ],
+      "suggested_review": "Decide per edge: keep as a wormhole, or set traversable=false and leave it as semantic metadata only."
+    },
+    {
+      "id": "multiple_capstones",
+      "title": "More than one level-20 capstone reachable in a career",
+      "severity": "medium",
+      "raw_position": "A character reaches exactly one level-20 class feature.",
+      "concern": "Capstones are designed as the single reward for never multiclassing. Depth is the only thing keeping a player from collecting two, so this is the clearest test of whether RING_STEP and the point budget are tuned correctly.",
+      "nodes": [
+        "cf_barbarian_primal_champion_20",
+        "cf_bard_words_of_creation_20",
+        "cf_cleric_greater_divine_intervention_20"
+      ],
+      "node_names": [
+        "Primal Champion",
+        "Words of Creation",
+        "Greater Divine Intervention"
+      ],
+      "measured": {
+        "points_to_own_all": 21,
+        "nodes_owned": 31,
+        "pulled_in_as_prerequisites": [
+          "gate_cleric",
+          "gate_bard",
+          "gate_barbarian"
+        ],
+        "not_ownable_from_this_start": {},
+        "career_budget": 58,
+        "share_of_career_budget": 0.36
+      },
+      "suggested_review": "Compare share_of_career_budget against how much of a build this combination actually is. If it is cheap, push the nodes deeper (Task 4 says depth, not price, is the lever)."
+    }
+  ]
+}

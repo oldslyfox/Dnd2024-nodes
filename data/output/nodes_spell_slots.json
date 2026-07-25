@@ -1,0 +1,3824 @@
+[
+  {
+    "id": "slot_artificer_t1",
+    "name": "Artificer Spellcasting: Cantrips and 1st-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Artificer",
+    "subregion": null,
+    "depth": 2.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "half"
+    ],
+    "chassis": "half",
+    "slot_tier": 1,
+    "effect_summary": "You gain the ability to prepare and cast spells of 1st level, along with cantrips, using this zone's spellcasting ability.",
+    "mechanical_data": {
+      "slot_tier": 1,
+      "chassis": "half"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_artificer"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_artificer"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": -7.647,
+    "position_y": -2.35,
+    "polar": {
+      "angle_deg": 197.09,
+      "radius": 8.0
+    }
+  },
+  {
+    "id": "slot_artificer_t2",
+    "name": "Artificer Spellcasting: 2nd-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Artificer",
+    "subregion": null,
+    "depth": 5.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "half"
+    ],
+    "chassis": "half",
+    "slot_tier": 2,
+    "effect_summary": "You gain spell slots of 2nd level.",
+    "mechanical_data": {
+      "slot_tier": 2,
+      "chassis": "half"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_artificer"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_artificer"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": -16.25,
+    "position_y": -4.995,
+    "polar": {
+      "angle_deg": 197.09,
+      "radius": 17.0
+    }
+  },
+  {
+    "id": "slot_artificer_t3",
+    "name": "Artificer Spellcasting: 3rd-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Artificer",
+    "subregion": null,
+    "depth": 9.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "half"
+    ],
+    "chassis": "half",
+    "slot_tier": 3,
+    "effect_summary": "You gain spell slots of 3rd level.",
+    "mechanical_data": {
+      "slot_tier": 3,
+      "chassis": "half"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_artificer"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_artificer"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": -27.72,
+    "position_y": -8.52,
+    "polar": {
+      "angle_deg": 197.09,
+      "radius": 29.0
+    }
+  },
+  {
+    "id": "slot_artificer_t4",
+    "name": "Artificer Spellcasting: 4th-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Artificer",
+    "subregion": null,
+    "depth": 13.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "half"
+    ],
+    "chassis": "half",
+    "slot_tier": 4,
+    "effect_summary": "You gain spell slots of 4th level.",
+    "mechanical_data": {
+      "slot_tier": 4,
+      "chassis": "half"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_artificer"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_artificer"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": -39.19,
+    "position_y": -12.046,
+    "polar": {
+      "angle_deg": 197.09,
+      "radius": 41.0
+    }
+  },
+  {
+    "id": "slot_artificer_t5",
+    "name": "Artificer Spellcasting: 5th-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Artificer",
+    "subregion": null,
+    "depth": 17.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "half"
+    ],
+    "chassis": "half",
+    "slot_tier": 5,
+    "effect_summary": "You gain spell slots of 5th level.",
+    "mechanical_data": {
+      "slot_tier": 5,
+      "chassis": "half"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_artificer"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_artificer"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": -50.661,
+    "position_y": -15.572,
+    "polar": {
+      "angle_deg": 197.09,
+      "radius": 53.0
+    }
+  },
+  {
+    "id": "slot_bard_t1",
+    "name": "Bard Spellcasting: Cantrips and 1st-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Bard",
+    "subregion": null,
+    "depth": 1.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "full"
+    ],
+    "chassis": "full",
+    "slot_tier": 1,
+    "effect_summary": "You gain the ability to prepare and cast spells of 1st level, along with cantrips, using this zone's spellcasting ability.",
+    "mechanical_data": {
+      "slot_tier": 1,
+      "chassis": "full"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_bard"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_bard"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": 3.068,
+    "position_y": -3.948,
+    "polar": {
+      "angle_deg": 307.86,
+      "radius": 5.0
+    }
+  },
+  {
+    "id": "slot_bard_t2",
+    "name": "Bard Spellcasting: 2nd-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Bard",
+    "subregion": null,
+    "depth": 3.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "full"
+    ],
+    "chassis": "full",
+    "slot_tier": 2,
+    "effect_summary": "You gain spell slots of 2nd level.",
+    "mechanical_data": {
+      "slot_tier": 2,
+      "chassis": "full"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_bard"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_bard"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": 6.75,
+    "position_y": -8.685,
+    "polar": {
+      "angle_deg": 307.86,
+      "radius": 11.0
+    }
+  },
+  {
+    "id": "slot_bard_t3",
+    "name": "Bard Spellcasting: 3rd-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Bard",
+    "subregion": null,
+    "depth": 5.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "full"
+    ],
+    "chassis": "full",
+    "slot_tier": 3,
+    "effect_summary": "You gain spell slots of 3rd level.",
+    "mechanical_data": {
+      "slot_tier": 3,
+      "chassis": "full"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_bard"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_bard"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": 10.432,
+    "position_y": -13.423,
+    "polar": {
+      "angle_deg": 307.86,
+      "radius": 17.0
+    }
+  },
+  {
+    "id": "slot_bard_t4",
+    "name": "Bard Spellcasting: 4th-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Bard",
+    "subregion": null,
+    "depth": 7.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "full"
+    ],
+    "chassis": "full",
+    "slot_tier": 4,
+    "effect_summary": "You gain spell slots of 4th level.",
+    "mechanical_data": {
+      "slot_tier": 4,
+      "chassis": "full"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_bard"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_bard"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": 14.114,
+    "position_y": -18.16,
+    "polar": {
+      "angle_deg": 307.86,
+      "radius": 23.0
+    }
+  },
+  {
+    "id": "slot_bard_t5",
+    "name": "Bard Spellcasting: 5th-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Bard",
+    "subregion": null,
+    "depth": 9.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "full"
+    ],
+    "chassis": "full",
+    "slot_tier": 5,
+    "effect_summary": "You gain spell slots of 5th level.",
+    "mechanical_data": {
+      "slot_tier": 5,
+      "chassis": "full"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_bard"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_bard"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": 17.796,
+    "position_y": -22.897,
+    "polar": {
+      "angle_deg": 307.86,
+      "radius": 29.0
+    }
+  },
+  {
+    "id": "slot_bard_t6",
+    "name": "Bard Spellcasting: 6th-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Bard",
+    "subregion": null,
+    "depth": 11.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "full"
+    ],
+    "chassis": "full",
+    "slot_tier": 6,
+    "effect_summary": "You gain spell slots of 6th level.",
+    "mechanical_data": {
+      "slot_tier": 6,
+      "chassis": "full"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_bard"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_bard"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": 21.478,
+    "position_y": -27.635,
+    "polar": {
+      "angle_deg": 307.86,
+      "radius": 35.0
+    }
+  },
+  {
+    "id": "slot_bard_t7",
+    "name": "Bard Spellcasting: 7th-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Bard",
+    "subregion": null,
+    "depth": 13.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "full"
+    ],
+    "chassis": "full",
+    "slot_tier": 7,
+    "effect_summary": "You gain spell slots of 7th level.",
+    "mechanical_data": {
+      "slot_tier": 7,
+      "chassis": "full"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_bard"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_bard"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": 25.16,
+    "position_y": -32.372,
+    "polar": {
+      "angle_deg": 307.86,
+      "radius": 41.0
+    }
+  },
+  {
+    "id": "slot_bard_t8",
+    "name": "Bard Spellcasting: 8th-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Bard",
+    "subregion": null,
+    "depth": 15.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "full"
+    ],
+    "chassis": "full",
+    "slot_tier": 8,
+    "effect_summary": "You gain spell slots of 8th level.",
+    "mechanical_data": {
+      "slot_tier": 8,
+      "chassis": "full"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_bard"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_bard"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": 28.843,
+    "position_y": -37.109,
+    "polar": {
+      "angle_deg": 307.86,
+      "radius": 47.0
+    }
+  },
+  {
+    "id": "slot_bard_t9",
+    "name": "Bard Spellcasting: 9th-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Bard",
+    "subregion": null,
+    "depth": 17.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "full"
+    ],
+    "chassis": "full",
+    "slot_tier": 9,
+    "effect_summary": "You gain spell slots of 9th level.",
+    "mechanical_data": {
+      "slot_tier": 9,
+      "chassis": "full"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_bard"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_bard"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": 32.525,
+    "position_y": -41.847,
+    "polar": {
+      "angle_deg": 307.86,
+      "radius": 53.0
+    }
+  },
+  {
+    "id": "slot_cleric_t1",
+    "name": "Cleric Spellcasting: Cantrips and 1st-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Cleric",
+    "subregion": null,
+    "depth": 1.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "full"
+    ],
+    "chassis": "full",
+    "slot_tier": 1,
+    "effect_summary": "You gain the ability to prepare and cast spells of 1st level, along with cantrips, using this zone's spellcasting ability.",
+    "mechanical_data": {
+      "slot_tier": 1,
+      "chassis": "full"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_cleric"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_cleric"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": 0.321,
+    "position_y": 4.99,
+    "polar": {
+      "angle_deg": 86.32,
+      "radius": 5.0
+    }
+  },
+  {
+    "id": "slot_cleric_t2",
+    "name": "Cleric Spellcasting: 2nd-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Cleric",
+    "subregion": null,
+    "depth": 3.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "full"
+    ],
+    "chassis": "full",
+    "slot_tier": 2,
+    "effect_summary": "You gain spell slots of 2nd level.",
+    "mechanical_data": {
+      "slot_tier": 2,
+      "chassis": "full"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_cleric"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_cleric"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": 0.707,
+    "position_y": 10.977,
+    "polar": {
+      "angle_deg": 86.32,
+      "radius": 11.0
+    }
+  },
+  {
+    "id": "slot_cleric_t3",
+    "name": "Cleric Spellcasting: 3rd-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Cleric",
+    "subregion": null,
+    "depth": 5.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "full"
+    ],
+    "chassis": "full",
+    "slot_tier": 3,
+    "effect_summary": "You gain spell slots of 3rd level.",
+    "mechanical_data": {
+      "slot_tier": 3,
+      "chassis": "full"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_cleric"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_cleric"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": 1.092,
+    "position_y": 16.965,
+    "polar": {
+      "angle_deg": 86.32,
+      "radius": 17.0
+    }
+  },
+  {
+    "id": "slot_cleric_t4",
+    "name": "Cleric Spellcasting: 4th-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Cleric",
+    "subregion": null,
+    "depth": 7.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "full"
+    ],
+    "chassis": "full",
+    "slot_tier": 4,
+    "effect_summary": "You gain spell slots of 4th level.",
+    "mechanical_data": {
+      "slot_tier": 4,
+      "chassis": "full"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_cleric"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_cleric"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": 1.477,
+    "position_y": 22.952,
+    "polar": {
+      "angle_deg": 86.32,
+      "radius": 23.0
+    }
+  },
+  {
+    "id": "slot_cleric_t5",
+    "name": "Cleric Spellcasting: 5th-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Cleric",
+    "subregion": null,
+    "depth": 9.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "full"
+    ],
+    "chassis": "full",
+    "slot_tier": 5,
+    "effect_summary": "You gain spell slots of 5th level.",
+    "mechanical_data": {
+      "slot_tier": 5,
+      "chassis": "full"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_cleric"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_cleric"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": 1.863,
+    "position_y": 28.94,
+    "polar": {
+      "angle_deg": 86.32,
+      "radius": 29.0
+    }
+  },
+  {
+    "id": "slot_cleric_t6",
+    "name": "Cleric Spellcasting: 6th-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Cleric",
+    "subregion": null,
+    "depth": 11.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "full"
+    ],
+    "chassis": "full",
+    "slot_tier": 6,
+    "effect_summary": "You gain spell slots of 6th level.",
+    "mechanical_data": {
+      "slot_tier": 6,
+      "chassis": "full"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_cleric"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_cleric"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": 2.248,
+    "position_y": 34.928,
+    "polar": {
+      "angle_deg": 86.32,
+      "radius": 35.0
+    }
+  },
+  {
+    "id": "slot_cleric_t7",
+    "name": "Cleric Spellcasting: 7th-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Cleric",
+    "subregion": null,
+    "depth": 13.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "full"
+    ],
+    "chassis": "full",
+    "slot_tier": 7,
+    "effect_summary": "You gain spell slots of 7th level.",
+    "mechanical_data": {
+      "slot_tier": 7,
+      "chassis": "full"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_cleric"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_cleric"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": 2.634,
+    "position_y": 40.915,
+    "polar": {
+      "angle_deg": 86.32,
+      "radius": 41.0
+    }
+  },
+  {
+    "id": "slot_cleric_t8",
+    "name": "Cleric Spellcasting: 8th-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Cleric",
+    "subregion": null,
+    "depth": 15.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "full"
+    ],
+    "chassis": "full",
+    "slot_tier": 8,
+    "effect_summary": "You gain spell slots of 8th level.",
+    "mechanical_data": {
+      "slot_tier": 8,
+      "chassis": "full"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_cleric"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_cleric"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": 3.019,
+    "position_y": 46.903,
+    "polar": {
+      "angle_deg": 86.32,
+      "radius": 47.0
+    }
+  },
+  {
+    "id": "slot_cleric_t9",
+    "name": "Cleric Spellcasting: 9th-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Cleric",
+    "subregion": null,
+    "depth": 17.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "full"
+    ],
+    "chassis": "full",
+    "slot_tier": 9,
+    "effect_summary": "You gain spell slots of 9th level.",
+    "mechanical_data": {
+      "slot_tier": 9,
+      "chassis": "full"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_cleric"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_cleric"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": 3.405,
+    "position_y": 52.891,
+    "polar": {
+      "angle_deg": 86.32,
+      "radius": 53.0
+    }
+  },
+  {
+    "id": "slot_druid_t1",
+    "name": "Druid Spellcasting: Cantrips and 1st-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Druid",
+    "subregion": null,
+    "depth": 1.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "full"
+    ],
+    "chassis": "full",
+    "slot_tier": 1,
+    "effect_summary": "You gain the ability to prepare and cast spells of 1st level, along with cantrips, using this zone's spellcasting ability.",
+    "mechanical_data": {
+      "slot_tier": 1,
+      "chassis": "full"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_druid"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_druid"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": -2.034,
+    "position_y": 4.567,
+    "polar": {
+      "angle_deg": 114.01,
+      "radius": 5.0
+    }
+  },
+  {
+    "id": "slot_druid_t2",
+    "name": "Druid Spellcasting: 2nd-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Druid",
+    "subregion": null,
+    "depth": 3.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "full"
+    ],
+    "chassis": "full",
+    "slot_tier": 2,
+    "effect_summary": "You gain spell slots of 2nd level.",
+    "mechanical_data": {
+      "slot_tier": 2,
+      "chassis": "full"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_druid"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_druid"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": -4.476,
+    "position_y": 10.048,
+    "polar": {
+      "angle_deg": 114.01,
+      "radius": 11.0
+    }
+  },
+  {
+    "id": "slot_druid_t3",
+    "name": "Druid Spellcasting: 3rd-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Druid",
+    "subregion": null,
+    "depth": 5.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "full"
+    ],
+    "chassis": "full",
+    "slot_tier": 3,
+    "effect_summary": "You gain spell slots of 3rd level.",
+    "mechanical_data": {
+      "slot_tier": 3,
+      "chassis": "full"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_druid"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_druid"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": -6.917,
+    "position_y": 15.529,
+    "polar": {
+      "angle_deg": 114.01,
+      "radius": 17.0
+    }
+  },
+  {
+    "id": "slot_druid_t4",
+    "name": "Druid Spellcasting: 4th-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Druid",
+    "subregion": null,
+    "depth": 7.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "full"
+    ],
+    "chassis": "full",
+    "slot_tier": 4,
+    "effect_summary": "You gain spell slots of 4th level.",
+    "mechanical_data": {
+      "slot_tier": 4,
+      "chassis": "full"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_druid"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_druid"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": -9.358,
+    "position_y": 21.01,
+    "polar": {
+      "angle_deg": 114.01,
+      "radius": 23.0
+    }
+  },
+  {
+    "id": "slot_druid_t5",
+    "name": "Druid Spellcasting: 5th-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Druid",
+    "subregion": null,
+    "depth": 9.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "full"
+    ],
+    "chassis": "full",
+    "slot_tier": 5,
+    "effect_summary": "You gain spell slots of 5th level.",
+    "mechanical_data": {
+      "slot_tier": 5,
+      "chassis": "full"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_druid"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_druid"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": -11.8,
+    "position_y": 26.491,
+    "polar": {
+      "angle_deg": 114.01,
+      "radius": 29.0
+    }
+  },
+  {
+    "id": "slot_druid_t6",
+    "name": "Druid Spellcasting: 6th-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Druid",
+    "subregion": null,
+    "depth": 11.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "full"
+    ],
+    "chassis": "full",
+    "slot_tier": 6,
+    "effect_summary": "You gain spell slots of 6th level.",
+    "mechanical_data": {
+      "slot_tier": 6,
+      "chassis": "full"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_druid"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_druid"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": -14.241,
+    "position_y": 31.972,
+    "polar": {
+      "angle_deg": 114.01,
+      "radius": 35.0
+    }
+  },
+  {
+    "id": "slot_druid_t7",
+    "name": "Druid Spellcasting: 7th-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Druid",
+    "subregion": null,
+    "depth": 13.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "full"
+    ],
+    "chassis": "full",
+    "slot_tier": 7,
+    "effect_summary": "You gain spell slots of 7th level.",
+    "mechanical_data": {
+      "slot_tier": 7,
+      "chassis": "full"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_druid"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_druid"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": -16.682,
+    "position_y": 37.453,
+    "polar": {
+      "angle_deg": 114.01,
+      "radius": 41.0
+    }
+  },
+  {
+    "id": "slot_druid_t8",
+    "name": "Druid Spellcasting: 8th-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Druid",
+    "subregion": null,
+    "depth": 15.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "full"
+    ],
+    "chassis": "full",
+    "slot_tier": 8,
+    "effect_summary": "You gain spell slots of 8th level.",
+    "mechanical_data": {
+      "slot_tier": 8,
+      "chassis": "full"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_druid"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_druid"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": -19.124,
+    "position_y": 42.934,
+    "polar": {
+      "angle_deg": 114.01,
+      "radius": 47.0
+    }
+  },
+  {
+    "id": "slot_druid_t9",
+    "name": "Druid Spellcasting: 9th-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Druid",
+    "subregion": null,
+    "depth": 17.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "full"
+    ],
+    "chassis": "full",
+    "slot_tier": 9,
+    "effect_summary": "You gain spell slots of 9th level.",
+    "mechanical_data": {
+      "slot_tier": 9,
+      "chassis": "full"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_druid"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_druid"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": -21.565,
+    "position_y": 48.414,
+    "polar": {
+      "angle_deg": 114.01,
+      "radius": 53.0
+    }
+  },
+  {
+    "id": "slot_fighter_eldritch_knight_t1",
+    "name": "Eldritch Knight Spellcasting: Cantrips and 1st-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Fighter",
+    "subregion": "Eldritch Knight",
+    "depth": 3.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "third"
+    ],
+    "chassis": "third",
+    "slot_tier": 1,
+    "effect_summary": "You gain the ability to prepare and cast spells of 1st level, along with cantrips, using this zone's spellcasting ability.",
+    "mechanical_data": {
+      "slot_tier": 1,
+      "chassis": "third"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_fighter"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_fighter"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": 10.029,
+    "position_y": 4.519,
+    "polar": {
+      "angle_deg": 24.26,
+      "radius": 11.0
+    }
+  },
+  {
+    "id": "slot_fighter_eldritch_knight_t2",
+    "name": "Eldritch Knight Spellcasting: 2nd-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Fighter",
+    "subregion": "Eldritch Knight",
+    "depth": 7.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "third"
+    ],
+    "chassis": "third",
+    "slot_tier": 2,
+    "effect_summary": "You gain spell slots of 2nd level.",
+    "mechanical_data": {
+      "slot_tier": 2,
+      "chassis": "third"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_fighter"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_fighter"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": 19.634,
+    "position_y": 11.98,
+    "polar": {
+      "angle_deg": 31.39,
+      "radius": 23.0
+    }
+  },
+  {
+    "id": "slot_fighter_eldritch_knight_t3",
+    "name": "Eldritch Knight Spellcasting: 3rd-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Fighter",
+    "subregion": "Eldritch Knight",
+    "depth": 13.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "third"
+    ],
+    "chassis": "third",
+    "slot_tier": 3,
+    "effect_summary": "You gain spell slots of 3rd level.",
+    "mechanical_data": {
+      "slot_tier": 3,
+      "chassis": "third"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_fighter"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_fighter"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": 34.137,
+    "position_y": 22.708,
+    "polar": {
+      "angle_deg": 33.63,
+      "radius": 41.0
+    }
+  },
+  {
+    "id": "slot_fighter_eldritch_knight_t4",
+    "name": "Eldritch Knight Spellcasting: 4th-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Fighter",
+    "subregion": "Eldritch Knight",
+    "depth": 19.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "third"
+    ],
+    "chassis": "third",
+    "slot_tier": 4,
+    "effect_summary": "You gain spell slots of 4th level.",
+    "mechanical_data": {
+      "slot_tier": 4,
+      "chassis": "third"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_fighter"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_fighter"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": 49.124,
+    "position_y": 32.678,
+    "polar": {
+      "angle_deg": 33.63,
+      "radius": 59.0
+    }
+  },
+  {
+    "id": "slot_paladin_t1",
+    "name": "Paladin Spellcasting: Cantrips and 1st-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Paladin",
+    "subregion": null,
+    "depth": 2.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "half"
+    ],
+    "chassis": "half",
+    "slot_tier": 1,
+    "effect_summary": "You gain the ability to prepare and cast spells of 1st level, along with cantrips, using this zone's spellcasting ability.",
+    "mechanical_data": {
+      "slot_tier": 1,
+      "chassis": "half"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_paladin"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_paladin"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": 4.165,
+    "position_y": 6.83,
+    "polar": {
+      "angle_deg": 58.62,
+      "radius": 8.0
+    }
+  },
+  {
+    "id": "slot_paladin_t2",
+    "name": "Paladin Spellcasting: 2nd-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Paladin",
+    "subregion": null,
+    "depth": 5.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "half"
+    ],
+    "chassis": "half",
+    "slot_tier": 2,
+    "effect_summary": "You gain spell slots of 2nd level.",
+    "mechanical_data": {
+      "slot_tier": 2,
+      "chassis": "half"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_paladin"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_paladin"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": 8.851,
+    "position_y": 14.514,
+    "polar": {
+      "angle_deg": 58.62,
+      "radius": 17.0
+    }
+  },
+  {
+    "id": "slot_paladin_t3",
+    "name": "Paladin Spellcasting: 3rd-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Paladin",
+    "subregion": null,
+    "depth": 9.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "half"
+    ],
+    "chassis": "half",
+    "slot_tier": 3,
+    "effect_summary": "You gain spell slots of 3rd level.",
+    "mechanical_data": {
+      "slot_tier": 3,
+      "chassis": "half"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_paladin"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_paladin"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": 15.099,
+    "position_y": 24.759,
+    "polar": {
+      "angle_deg": 58.62,
+      "radius": 29.0
+    }
+  },
+  {
+    "id": "slot_paladin_t4",
+    "name": "Paladin Spellcasting: 4th-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Paladin",
+    "subregion": null,
+    "depth": 13.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "half"
+    ],
+    "chassis": "half",
+    "slot_tier": 4,
+    "effect_summary": "You gain spell slots of 4th level.",
+    "mechanical_data": {
+      "slot_tier": 4,
+      "chassis": "half"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_paladin"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_paladin"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": 21.346,
+    "position_y": 35.005,
+    "polar": {
+      "angle_deg": 58.62,
+      "radius": 41.0
+    }
+  },
+  {
+    "id": "slot_paladin_t5",
+    "name": "Paladin Spellcasting: 5th-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Paladin",
+    "subregion": null,
+    "depth": 17.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "half"
+    ],
+    "chassis": "half",
+    "slot_tier": 5,
+    "effect_summary": "You gain spell slots of 5th level.",
+    "mechanical_data": {
+      "slot_tier": 5,
+      "chassis": "half"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_paladin"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_paladin"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": 27.594,
+    "position_y": 45.25,
+    "polar": {
+      "angle_deg": 58.62,
+      "radius": 53.0
+    }
+  },
+  {
+    "id": "slot_ranger_t1",
+    "name": "Ranger Spellcasting: Cantrips and 1st-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Ranger",
+    "subregion": null,
+    "depth": 2.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "half"
+    ],
+    "chassis": "half",
+    "slot_tier": 1,
+    "effect_summary": "You gain the ability to prepare and cast spells of 1st level, along with cantrips, using this zone's spellcasting ability.",
+    "mechanical_data": {
+      "slot_tier": 1,
+      "chassis": "half"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_ranger"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_ranger"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": -6.278,
+    "position_y": 4.958,
+    "polar": {
+      "angle_deg": 141.7,
+      "radius": 8.0
+    }
+  },
+  {
+    "id": "slot_ranger_t2",
+    "name": "Ranger Spellcasting: 2nd-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Ranger",
+    "subregion": null,
+    "depth": 5.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "half"
+    ],
+    "chassis": "half",
+    "slot_tier": 2,
+    "effect_summary": "You gain spell slots of 2nd level.",
+    "mechanical_data": {
+      "slot_tier": 2,
+      "chassis": "half"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_ranger"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_ranger"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": -13.341,
+    "position_y": 10.536,
+    "polar": {
+      "angle_deg": 141.7,
+      "radius": 17.0
+    }
+  },
+  {
+    "id": "slot_ranger_t3",
+    "name": "Ranger Spellcasting: 3rd-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Ranger",
+    "subregion": null,
+    "depth": 9.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "half"
+    ],
+    "chassis": "half",
+    "slot_tier": 3,
+    "effect_summary": "You gain spell slots of 3rd level.",
+    "mechanical_data": {
+      "slot_tier": 3,
+      "chassis": "half"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_ranger"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_ranger"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": -22.759,
+    "position_y": 17.973,
+    "polar": {
+      "angle_deg": 141.7,
+      "radius": 29.0
+    }
+  },
+  {
+    "id": "slot_ranger_t4",
+    "name": "Ranger Spellcasting: 4th-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Ranger",
+    "subregion": null,
+    "depth": 13.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "half"
+    ],
+    "chassis": "half",
+    "slot_tier": 4,
+    "effect_summary": "You gain spell slots of 4th level.",
+    "mechanical_data": {
+      "slot_tier": 4,
+      "chassis": "half"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_ranger"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_ranger"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": -32.177,
+    "position_y": 25.41,
+    "polar": {
+      "angle_deg": 141.7,
+      "radius": 41.0
+    }
+  },
+  {
+    "id": "slot_ranger_t5",
+    "name": "Ranger Spellcasting: 5th-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Ranger",
+    "subregion": null,
+    "depth": 17.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "half"
+    ],
+    "chassis": "half",
+    "slot_tier": 5,
+    "effect_summary": "You gain spell slots of 5th level.",
+    "mechanical_data": {
+      "slot_tier": 5,
+      "chassis": "half"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_ranger"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_ranger"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": -41.594,
+    "position_y": 32.847,
+    "polar": {
+      "angle_deg": 141.7,
+      "radius": 53.0
+    }
+  },
+  {
+    "id": "slot_rogue_arcane_trickster_t1",
+    "name": "Arcane Trickster Spellcasting: Cantrips and 1st-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Rogue",
+    "subregion": "Arcane Trickster",
+    "depth": 3.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "third"
+    ],
+    "chassis": "third",
+    "slot_tier": 1,
+    "effect_summary": "You gain the ability to prepare and cast spells of 1st level, along with cantrips, using this zone's spellcasting ability.",
+    "mechanical_data": {
+      "slot_tier": 1,
+      "chassis": "third"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_rogue"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_rogue"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": -9.117,
+    "position_y": 6.155,
+    "polar": {
+      "angle_deg": 145.98,
+      "radius": 11.0
+    }
+  },
+  {
+    "id": "slot_rogue_arcane_trickster_t2",
+    "name": "Arcane Trickster Spellcasting: 2nd-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Rogue",
+    "subregion": "Arcane Trickster",
+    "depth": 7.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "third"
+    ],
+    "chassis": "third",
+    "slot_tier": 2,
+    "effect_summary": "You gain spell slots of 2nd level.",
+    "mechanical_data": {
+      "slot_tier": 2,
+      "chassis": "third"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_rogue"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_rogue"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": -20.905,
+    "position_y": 9.591,
+    "polar": {
+      "angle_deg": 155.35,
+      "radius": 23.0
+    }
+  },
+  {
+    "id": "slot_rogue_arcane_trickster_t3",
+    "name": "Arcane Trickster Spellcasting: 3rd-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Rogue",
+    "subregion": "Arcane Trickster",
+    "depth": 13.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "third"
+    ],
+    "chassis": "third",
+    "slot_tier": 3,
+    "effect_summary": "You gain spell slots of 3rd level.",
+    "mechanical_data": {
+      "slot_tier": 3,
+      "chassis": "third"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_rogue"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_rogue"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": -36.881,
+    "position_y": 17.911,
+    "polar": {
+      "angle_deg": 154.1,
+      "radius": 41.0
+    }
+  },
+  {
+    "id": "slot_rogue_arcane_trickster_t4",
+    "name": "Arcane Trickster Spellcasting: 4th-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Rogue",
+    "subregion": "Arcane Trickster",
+    "depth": 19.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "third"
+    ],
+    "chassis": "third",
+    "slot_tier": 4,
+    "effect_summary": "You gain spell slots of 4th level.",
+    "mechanical_data": {
+      "slot_tier": 4,
+      "chassis": "third"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_rogue"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_rogue"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": -53.625,
+    "position_y": 24.604,
+    "polar": {
+      "angle_deg": 155.35,
+      "radius": 59.0
+    }
+  },
+  {
+    "id": "slot_sorcerer_t1",
+    "name": "Sorcerer Spellcasting: Cantrips and 1st-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Sorcerer",
+    "subregion": null,
+    "depth": 1.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "full"
+    ],
+    "chassis": "full",
+    "slot_tier": 1,
+    "effect_summary": "You gain the ability to prepare and cast spells of 1st level, along with cantrips, using this zone's spellcasting ability.",
+    "mechanical_data": {
+      "slot_tier": 1,
+      "chassis": "full"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_sorcerer"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_sorcerer"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": -1.506,
+    "position_y": -4.768,
+    "polar": {
+      "angle_deg": 252.47,
+      "radius": 5.0
+    }
+  },
+  {
+    "id": "slot_sorcerer_t2",
+    "name": "Sorcerer Spellcasting: 2nd-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Sorcerer",
+    "subregion": null,
+    "depth": 3.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "full"
+    ],
+    "chassis": "full",
+    "slot_tier": 2,
+    "effect_summary": "You gain spell slots of 2nd level.",
+    "mechanical_data": {
+      "slot_tier": 2,
+      "chassis": "full"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_sorcerer"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_sorcerer"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": -3.313,
+    "position_y": -10.489,
+    "polar": {
+      "angle_deg": 252.47,
+      "radius": 11.0
+    }
+  },
+  {
+    "id": "slot_sorcerer_t3",
+    "name": "Sorcerer Spellcasting: 3rd-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Sorcerer",
+    "subregion": null,
+    "depth": 5.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "full"
+    ],
+    "chassis": "full",
+    "slot_tier": 3,
+    "effect_summary": "You gain spell slots of 3rd level.",
+    "mechanical_data": {
+      "slot_tier": 3,
+      "chassis": "full"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_sorcerer"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_sorcerer"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": -5.12,
+    "position_y": -16.211,
+    "polar": {
+      "angle_deg": 252.47,
+      "radius": 17.0
+    }
+  },
+  {
+    "id": "slot_sorcerer_t4",
+    "name": "Sorcerer Spellcasting: 4th-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Sorcerer",
+    "subregion": null,
+    "depth": 7.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "full"
+    ],
+    "chassis": "full",
+    "slot_tier": 4,
+    "effect_summary": "You gain spell slots of 4th level.",
+    "mechanical_data": {
+      "slot_tier": 4,
+      "chassis": "full"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_sorcerer"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_sorcerer"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": -6.927,
+    "position_y": -21.932,
+    "polar": {
+      "angle_deg": 252.47,
+      "radius": 23.0
+    }
+  },
+  {
+    "id": "slot_sorcerer_t5",
+    "name": "Sorcerer Spellcasting: 5th-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Sorcerer",
+    "subregion": null,
+    "depth": 9.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "full"
+    ],
+    "chassis": "full",
+    "slot_tier": 5,
+    "effect_summary": "You gain spell slots of 5th level.",
+    "mechanical_data": {
+      "slot_tier": 5,
+      "chassis": "full"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_sorcerer"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_sorcerer"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": -8.735,
+    "position_y": -27.653,
+    "polar": {
+      "angle_deg": 252.47,
+      "radius": 29.0
+    }
+  },
+  {
+    "id": "slot_sorcerer_t6",
+    "name": "Sorcerer Spellcasting: 6th-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Sorcerer",
+    "subregion": null,
+    "depth": 11.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "full"
+    ],
+    "chassis": "full",
+    "slot_tier": 6,
+    "effect_summary": "You gain spell slots of 6th level.",
+    "mechanical_data": {
+      "slot_tier": 6,
+      "chassis": "full"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_sorcerer"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_sorcerer"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": -10.542,
+    "position_y": -33.375,
+    "polar": {
+      "angle_deg": 252.47,
+      "radius": 35.0
+    }
+  },
+  {
+    "id": "slot_sorcerer_t7",
+    "name": "Sorcerer Spellcasting: 7th-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Sorcerer",
+    "subregion": null,
+    "depth": 13.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "full"
+    ],
+    "chassis": "full",
+    "slot_tier": 7,
+    "effect_summary": "You gain spell slots of 7th level.",
+    "mechanical_data": {
+      "slot_tier": 7,
+      "chassis": "full"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_sorcerer"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_sorcerer"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": -12.349,
+    "position_y": -39.096,
+    "polar": {
+      "angle_deg": 252.47,
+      "radius": 41.0
+    }
+  },
+  {
+    "id": "slot_sorcerer_t8",
+    "name": "Sorcerer Spellcasting: 8th-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Sorcerer",
+    "subregion": null,
+    "depth": 15.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "full"
+    ],
+    "chassis": "full",
+    "slot_tier": 8,
+    "effect_summary": "You gain spell slots of 8th level.",
+    "mechanical_data": {
+      "slot_tier": 8,
+      "chassis": "full"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_sorcerer"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_sorcerer"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": -14.156,
+    "position_y": -44.817,
+    "polar": {
+      "angle_deg": 252.47,
+      "radius": 47.0
+    }
+  },
+  {
+    "id": "slot_sorcerer_t9",
+    "name": "Sorcerer Spellcasting: 9th-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Sorcerer",
+    "subregion": null,
+    "depth": 17.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "full"
+    ],
+    "chassis": "full",
+    "slot_tier": 9,
+    "effect_summary": "You gain spell slots of 9th level.",
+    "mechanical_data": {
+      "slot_tier": 9,
+      "chassis": "full"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_sorcerer"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_sorcerer"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": -15.963,
+    "position_y": -50.539,
+    "polar": {
+      "angle_deg": 252.47,
+      "radius": 53.0
+    }
+  },
+  {
+    "id": "slot_warlock_arcanum_6",
+    "name": "Mystic Arcanum: 6th Level",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Warlock",
+    "subregion": null,
+    "depth": 11.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "pact"
+    ],
+    "chassis": "pact",
+    "slot_tier": 6,
+    "effect_summary": "You gain one 6th-level spell that you can cast once without a slot, regained on a Long Rest.",
+    "mechanical_data": {
+      "slot_tier": 6,
+      "chassis": "pact",
+      "branch": "arcanum"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_warlock"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_warlock"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": 6.176,
+    "position_y": -34.451,
+    "polar": {
+      "angle_deg": 280.16,
+      "radius": 35.0
+    }
+  },
+  {
+    "id": "slot_warlock_arcanum_7",
+    "name": "Mystic Arcanum: 7th Level",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Warlock",
+    "subregion": null,
+    "depth": 13.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "pact"
+    ],
+    "chassis": "pact",
+    "slot_tier": 7,
+    "effect_summary": "You gain one 7th-level spell that you can cast once without a slot, regained on a Long Rest.",
+    "mechanical_data": {
+      "slot_tier": 7,
+      "chassis": "pact",
+      "branch": "arcanum"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_warlock"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_warlock"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": 7.234,
+    "position_y": -40.357,
+    "polar": {
+      "angle_deg": 280.16,
+      "radius": 41.0
+    }
+  },
+  {
+    "id": "slot_warlock_arcanum_8",
+    "name": "Mystic Arcanum: 8th Level",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Warlock",
+    "subregion": null,
+    "depth": 15.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "pact"
+    ],
+    "chassis": "pact",
+    "slot_tier": 8,
+    "effect_summary": "You gain one 8th-level spell that you can cast once without a slot, regained on a Long Rest.",
+    "mechanical_data": {
+      "slot_tier": 8,
+      "chassis": "pact",
+      "branch": "arcanum"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_warlock"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_warlock"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": 8.293,
+    "position_y": -46.263,
+    "polar": {
+      "angle_deg": 280.16,
+      "radius": 47.0
+    }
+  },
+  {
+    "id": "slot_warlock_arcanum_9",
+    "name": "Mystic Arcanum: 9th Level",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Warlock",
+    "subregion": null,
+    "depth": 17.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "pact"
+    ],
+    "chassis": "pact",
+    "slot_tier": 9,
+    "effect_summary": "You gain one 9th-level spell that you can cast once without a slot, regained on a Long Rest.",
+    "mechanical_data": {
+      "slot_tier": 9,
+      "chassis": "pact",
+      "branch": "arcanum"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_warlock"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_warlock"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": 9.352,
+    "position_y": -52.168,
+    "polar": {
+      "angle_deg": 280.16,
+      "radius": 53.0
+    }
+  },
+  {
+    "id": "slot_warlock_pact_count_2",
+    "name": "Pact Slots: 2",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Warlock",
+    "subregion": null,
+    "depth": 2.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "pact"
+    ],
+    "chassis": "pact",
+    "slot_tier": 0,
+    "effect_summary": "You have 2 Pact Magic slots, regained on a Short Rest.",
+    "mechanical_data": {
+      "slot_tier": 0,
+      "chassis": "pact",
+      "branch": "slot_count",
+      "slot_count": 2
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_warlock"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_warlock"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": 1.412,
+    "position_y": -7.874,
+    "polar": {
+      "angle_deg": 280.16,
+      "radius": 8.0
+    }
+  },
+  {
+    "id": "slot_warlock_pact_count_3",
+    "name": "Pact Slots: 3",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Warlock",
+    "subregion": null,
+    "depth": 11.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "pact"
+    ],
+    "chassis": "pact",
+    "slot_tier": 0,
+    "effect_summary": "You have 3 Pact Magic slots, regained on a Short Rest.",
+    "mechanical_data": {
+      "slot_tier": 0,
+      "chassis": "pact",
+      "branch": "slot_count",
+      "slot_count": 3
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_warlock"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_warlock"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": 7.06,
+    "position_y": -34.281,
+    "polar": {
+      "angle_deg": 281.64,
+      "radius": 35.0
+    }
+  },
+  {
+    "id": "slot_warlock_pact_count_4",
+    "name": "Pact Slots: 4",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Warlock",
+    "subregion": null,
+    "depth": 17.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "pact"
+    ],
+    "chassis": "pact",
+    "slot_tier": 0,
+    "effect_summary": "You have 4 Pact Magic slots, regained on a Short Rest.",
+    "mechanical_data": {
+      "slot_tier": 0,
+      "chassis": "pact",
+      "branch": "slot_count",
+      "slot_count": 4
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_warlock"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_warlock"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": 10.236,
+    "position_y": -52.002,
+    "polar": {
+      "angle_deg": 281.14,
+      "radius": 53.0
+    }
+  },
+  {
+    "id": "slot_warlock_pact_level_1",
+    "name": "Pact Slot Level: 1st",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Warlock",
+    "subregion": null,
+    "depth": 1.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "pact"
+    ],
+    "chassis": "pact",
+    "slot_tier": 1,
+    "effect_summary": "Your Pact Magic slots are 1st-level slots.",
+    "mechanical_data": {
+      "slot_tier": 1,
+      "chassis": "pact",
+      "branch": "slot_level"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_warlock"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_warlock"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": 0.882,
+    "position_y": -4.922,
+    "polar": {
+      "angle_deg": 280.16,
+      "radius": 5.0
+    }
+  },
+  {
+    "id": "slot_warlock_pact_level_2",
+    "name": "Pact Slot Level: 2nd",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Warlock",
+    "subregion": null,
+    "depth": 3.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "pact"
+    ],
+    "chassis": "pact",
+    "slot_tier": 2,
+    "effect_summary": "Your Pact Magic slots are 2nd-level slots.",
+    "mechanical_data": {
+      "slot_tier": 2,
+      "chassis": "pact",
+      "branch": "slot_level"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_warlock"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_warlock"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": 1.941,
+    "position_y": -10.827,
+    "polar": {
+      "angle_deg": 280.16,
+      "radius": 11.0
+    }
+  },
+  {
+    "id": "slot_warlock_pact_level_3",
+    "name": "Pact Slot Level: 3rd",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Warlock",
+    "subregion": null,
+    "depth": 5.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "pact"
+    ],
+    "chassis": "pact",
+    "slot_tier": 3,
+    "effect_summary": "Your Pact Magic slots are 3rd-level slots.",
+    "mechanical_data": {
+      "slot_tier": 3,
+      "chassis": "pact",
+      "branch": "slot_level"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_warlock"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_warlock"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": 3.0,
+    "position_y": -16.733,
+    "polar": {
+      "angle_deg": 280.16,
+      "radius": 17.0
+    }
+  },
+  {
+    "id": "slot_warlock_pact_level_4",
+    "name": "Pact Slot Level: 4th",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Warlock",
+    "subregion": null,
+    "depth": 7.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "pact"
+    ],
+    "chassis": "pact",
+    "slot_tier": 4,
+    "effect_summary": "Your Pact Magic slots are 4th-level slots.",
+    "mechanical_data": {
+      "slot_tier": 4,
+      "chassis": "pact",
+      "branch": "slot_level"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_warlock"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_warlock"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": 4.058,
+    "position_y": -22.639,
+    "polar": {
+      "angle_deg": 280.16,
+      "radius": 23.0
+    }
+  },
+  {
+    "id": "slot_warlock_pact_level_5",
+    "name": "Pact Slot Level: 5th",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Warlock",
+    "subregion": null,
+    "depth": 9.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "pact"
+    ],
+    "chassis": "pact",
+    "slot_tier": 5,
+    "effect_summary": "Your Pact Magic slots are 5th-level slots.",
+    "mechanical_data": {
+      "slot_tier": 5,
+      "chassis": "pact",
+      "branch": "slot_level"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_warlock"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_warlock"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": 5.117,
+    "position_y": -28.545,
+    "polar": {
+      "angle_deg": 280.16,
+      "radius": 29.0
+    }
+  },
+  {
+    "id": "slot_warlock_pact_root",
+    "name": "Pact Magic",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Warlock",
+    "subregion": null,
+    "depth": 1.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "pact"
+    ],
+    "chassis": "pact",
+    "slot_tier": 0,
+    "effect_summary": "You gain Pact Magic: a small number of spell slots that all sit at the same level and that you regain on a Short Rest.",
+    "mechanical_data": {
+      "slot_tier": 0,
+      "chassis": "pact"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_warlock"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_warlock"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": 1.749,
+    "position_y": -4.684,
+    "polar": {
+      "angle_deg": 290.48,
+      "radius": 5.0
+    }
+  },
+  {
+    "id": "slot_wizard_t1",
+    "name": "Wizard Spellcasting: Cantrips and 1st-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Wizard",
+    "subregion": null,
+    "depth": 1.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "full"
+    ],
+    "chassis": "full",
+    "slot_tier": 1,
+    "effect_summary": "You gain the ability to prepare and cast spells of 1st level, along with cantrips, using this zone's spellcasting ability.",
+    "mechanical_data": {
+      "slot_tier": 1,
+      "chassis": "full"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_wizard"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_wizard"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": -3.549,
+    "position_y": -3.522,
+    "polar": {
+      "angle_deg": 224.78,
+      "radius": 5.0
+    }
+  },
+  {
+    "id": "slot_wizard_t2",
+    "name": "Wizard Spellcasting: 2nd-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Wizard",
+    "subregion": null,
+    "depth": 3.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "full"
+    ],
+    "chassis": "full",
+    "slot_tier": 2,
+    "effect_summary": "You gain spell slots of 2nd level.",
+    "mechanical_data": {
+      "slot_tier": 2,
+      "chassis": "full"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_wizard"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_wizard"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": -7.808,
+    "position_y": -7.748,
+    "polar": {
+      "angle_deg": 224.78,
+      "radius": 11.0
+    }
+  },
+  {
+    "id": "slot_wizard_t3",
+    "name": "Wizard Spellcasting: 3rd-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Wizard",
+    "subregion": null,
+    "depth": 5.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "full"
+    ],
+    "chassis": "full",
+    "slot_tier": 3,
+    "effect_summary": "You gain spell slots of 3rd level.",
+    "mechanical_data": {
+      "slot_tier": 3,
+      "chassis": "full"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_wizard"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_wizard"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": -12.067,
+    "position_y": -11.974,
+    "polar": {
+      "angle_deg": 224.78,
+      "radius": 17.0
+    }
+  },
+  {
+    "id": "slot_wizard_t4",
+    "name": "Wizard Spellcasting: 4th-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Wizard",
+    "subregion": null,
+    "depth": 7.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "full"
+    ],
+    "chassis": "full",
+    "slot_tier": 4,
+    "effect_summary": "You gain spell slots of 4th level.",
+    "mechanical_data": {
+      "slot_tier": 4,
+      "chassis": "full"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_wizard"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_wizard"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": -16.326,
+    "position_y": -16.2,
+    "polar": {
+      "angle_deg": 224.78,
+      "radius": 23.0
+    }
+  },
+  {
+    "id": "slot_wizard_t5",
+    "name": "Wizard Spellcasting: 5th-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Wizard",
+    "subregion": null,
+    "depth": 9.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "full"
+    ],
+    "chassis": "full",
+    "slot_tier": 5,
+    "effect_summary": "You gain spell slots of 5th level.",
+    "mechanical_data": {
+      "slot_tier": 5,
+      "chassis": "full"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_wizard"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_wizard"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": -20.585,
+    "position_y": -20.427,
+    "polar": {
+      "angle_deg": 224.78,
+      "radius": 29.0
+    }
+  },
+  {
+    "id": "slot_wizard_t6",
+    "name": "Wizard Spellcasting: 6th-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Wizard",
+    "subregion": null,
+    "depth": 11.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "full"
+    ],
+    "chassis": "full",
+    "slot_tier": 6,
+    "effect_summary": "You gain spell slots of 6th level.",
+    "mechanical_data": {
+      "slot_tier": 6,
+      "chassis": "full"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_wizard"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_wizard"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": -24.844,
+    "position_y": -24.653,
+    "polar": {
+      "angle_deg": 224.78,
+      "radius": 35.0
+    }
+  },
+  {
+    "id": "slot_wizard_t7",
+    "name": "Wizard Spellcasting: 7th-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Wizard",
+    "subregion": null,
+    "depth": 13.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "full"
+    ],
+    "chassis": "full",
+    "slot_tier": 7,
+    "effect_summary": "You gain spell slots of 7th level.",
+    "mechanical_data": {
+      "slot_tier": 7,
+      "chassis": "full"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_wizard"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_wizard"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": -29.103,
+    "position_y": -28.879,
+    "polar": {
+      "angle_deg": 224.78,
+      "radius": 41.0
+    }
+  },
+  {
+    "id": "slot_wizard_t8",
+    "name": "Wizard Spellcasting: 8th-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Wizard",
+    "subregion": null,
+    "depth": 15.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "full"
+    ],
+    "chassis": "full",
+    "slot_tier": 8,
+    "effect_summary": "You gain spell slots of 8th level.",
+    "mechanical_data": {
+      "slot_tier": 8,
+      "chassis": "full"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_wizard"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_wizard"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": -33.362,
+    "position_y": -33.105,
+    "polar": {
+      "angle_deg": 224.78,
+      "radius": 47.0
+    }
+  },
+  {
+    "id": "slot_wizard_t9",
+    "name": "Wizard Spellcasting: 9th-Level Slots",
+    "type": "spell_slot",
+    "role": "slot_spine",
+    "generated": true,
+    "source_book": null,
+    "is_spine": true,
+    "is_gate": false,
+    "zone": "Wizard",
+    "subregion": null,
+    "depth": 17.0,
+    "point_cost": 1,
+    "tags": [
+      "spell_slot",
+      "full"
+    ],
+    "chassis": "full",
+    "slot_tier": 9,
+    "effect_summary": "You gain spell slots of 9th level.",
+    "mechanical_data": {
+      "slot_tier": 9,
+      "chassis": "full"
+    },
+    "prereqs": {
+      "logic": "AND",
+      "nodes": [
+        "gate_wizard"
+      ],
+      "threshold_count": null,
+      "groups": [
+        {
+          "logic": "AND",
+          "nodes": [
+            "gate_wizard"
+          ]
+        }
+      ]
+    },
+    "ability_prereqs": [],
+    "position_x": -37.621,
+    "position_y": -37.331,
+    "polar": {
+      "angle_deg": 224.78,
+      "radius": 53.0
+    }
+  }
+]
