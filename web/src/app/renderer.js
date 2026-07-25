@@ -33,6 +33,10 @@ export class Renderer {
     this.state = null;
     this.showReferences = false;
     this.hoverId = null;
+    /** The selected node drives the detail panel and the path preview. */
+    this.selectedId = null;
+    /** Legibility floor (Work Order 4, Task 5): text never renders below this. */
+    this.minFontPx = 12;
     /** @type {string[]} */
     this.previewPath = [];
     /** @type {Set<string>} */
@@ -46,12 +50,18 @@ export class Renderer {
     this.lastDrawnNodes = 0;
     /** @type {Map<string, number>} measureText is the costliest call per frame */
     this._textWidths = new Map();
+    /** @type {Map<string, string>} node -> allocation state, per character state */
+    this._stateCache = new Map();
+    /** World-space geometry, rebuilt only when zoom/state/LOD changes. */
+    this._worldCacheKey = null;
+    this._worldCache = null;
   }
 
   /** @param {import('../core/engine.js').PlayerState} state */
   setState(state) {
     this.state = state;
     this._reachVersion = -1;
+    this._worldCacheKey = null;
   }
 
   _reachability() {
@@ -60,6 +70,7 @@ export class Renderer {
     if (version !== this._reachVersion) {
       this._reach = this.engine.reachability(this.state);
       this._reachVersion = version;
+      this._stateCache.clear();
     }
     return this._reach;
   }
@@ -71,19 +82,41 @@ export class Renderer {
    */
   nodeState(node) {
     if (!this.state) return 'unreachable';
-    if (this.state.owned.has(node.id)) return 'owned';
-    const { dist } = this._reachability();
-    if (!dist.has(node.id)) return 'unreachable';
-    return dist.get(node.id) <= this.state.pointsRemaining ? 'affordable' : 'reachable';
+    const cached = this._stateCache.get(node.id);
+    if (cached !== undefined) return cached;
+
+    let result;
+    if (this.state.owned.has(node.id)) {
+      result = 'owned';
+    } else {
+      const { dist } = this._reachability();
+      if (!dist.has(node.id)) result = 'unreachable';
+      else result = dist.get(node.id) <= this.state.pointsRemaining ? 'affordable' : 'reachable';
+    }
+    this._stateCache.set(node.id, result);
+    return result;
   }
 
   resize() {
-    const dpr = Math.min(globalThis.devicePixelRatio || 1, 2);
     const rect = this.canvas.getBoundingClientRect();
+    const compact = (rect.width || 1) <= 760 || (rect.height || 1) <= 560;
+    // Phones ship 2.6-3x screens; rendering the full ratio costs 3x the fill
+    // for a dark canvas of flat shapes nobody inspects at pixel level. 1.5x
+    // keeps text and outlines crisp at a third of the pixels.
+    const dpr = Math.min(globalThis.devicePixelRatio || 1, compact ? 1.5 : 2);
     this.canvas.width = Math.max(1, Math.round(rect.width * dpr));
     this.canvas.height = Math.max(1, Math.round(rect.height * dpr));
     this.dpr = dpr;
     this.camera.resize(this.canvas.width, this.canvas.height);
+
+    // Everything is drawn in device pixels, so on a 3x phone screen a 12px font
+    // is 4 CSS px - illegible. Scale the floor with the ratio, and give phones a
+    // slightly bigger floor again because they are held further from the eye
+    // than the pixel maths alone suggests.
+    this.isCompact = compact;
+    this._worldCacheKey = null;
+    this.minFontPx = Math.round((this.isCompact ? 13 : 11) * dpr);
+    this._textWidths.clear();
   }
 
   draw() {
@@ -96,20 +129,46 @@ export class Renderer {
     ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
     this._reachability();
-    const rect = camera.visibleRect(6);
-    const visible = this.index.nodesInRect(rect.minX, rect.minY, rect.maxX, rect.maxY);
-    const visibleIds = new Set(visible.map((node) => node.id));
+    const paths = this._worldPaths(lod);
 
     if (lod === 'far') this._drawZoneShapes(ctx);
-    this._drawEdges(ctx, visibleIds, lod);
-    if (this.showReferences) this._drawReferenceEdges(ctx, visibleIds);
+    this._drawEdges(ctx, paths, lod);
+    if (this.showReferences) this._drawReferenceEdges(ctx, paths);
     this._drawPreviewPath(ctx);
-    this._drawNodes(ctx, visible, lod);
-    if (lod === 'near') this._drawNodeLabels(ctx, visible);
+    this._drawNodes(ctx, paths);
+    this._drawAccents(ctx);
+
+    // The spatial cull now only serves labels, so only pay for it when labels
+    // are actually drawn.
+    if (lod === 'near') {
+      const rect = camera.visibleRect(6);
+      this._drawNodeLabels(ctx, this.index.nodesInRect(rect.minX, rect.minY, rect.maxX, rect.maxY));
+    }
     this._drawZoneLabels(ctx);
 
     this.lastFrameMs = performance.now() - started;
-    this.lastDrawnNodes = visible.length;
+    this.lastDrawnNodes = paths.count;
+  }
+
+  /**
+   * Node radius in *world* units.
+   *
+   * Deliberately free of any zoom term: the cached geometry would otherwise be
+   * invalidated on every frame of a pinch, which measured at 22ms a frame. The
+   * "don't let nodes become specks" adjustment is expressed per level of detail
+   * instead, and LOD is already part of the cache key, so zooming is free until
+   * it crosses an LOD boundary.
+   */
+  radiusWorld(node, lod) {
+    const base = nodeRadius(node) * 0.36;
+    if (lod === 'far') return base * 2.4;
+    if (lod === 'mid') return base * (this.isCompact ? 1.7 : 1.25);
+    return base;
+  }
+
+  /** The same radius in device pixels, for rings and label offsets. */
+  radiusOf(node, lod = this.camera.lod()) {
+    return this.radiusWorld(node, lod) * this.camera.scale;
   }
 
   // -- layers -------------------------------------------------------------
@@ -139,63 +198,120 @@ export class Renderer {
     ctx.globalAlpha = 1;
   }
 
-  _drawEdges(ctx, visibleIds, lod) {
-    if (lod === 'far') return;
-    const camera = this.camera;
-    const owned = this.state ? this.state.owned : new Set();
+  /**
+   * Edges and nodes are built in *world* coordinates and drawn through a canvas
+   * transform. Panning is then a transform change rather than a rebuild of a
+   * few thousand sub-paths, which is what a one-finger drag actually does most
+   * of the time. The paths are rebuilt only when the zoom, the character state
+   * or the level of detail changes.
+   */
+  _worldPaths(lod) {
+    const stateVersion = this._reachVersion;
+    const key = `${lod}|${stateVersion}|${this.isCompact}|${this.showReferences}`;
+    if (this._worldCacheKey === key) return this._worldCache;
 
-    ctx.lineWidth = Math.max(0.5, 0.09 * camera.scale);
-    ctx.strokeStyle = ACCENT.edge;
-    ctx.beginPath();
-    for (const edge of this.index.structuralEdges) {
-      if (!visibleIds.has(edge.from) && !visibleIds.has(edge.to)) continue;
-      if (owned.has(edge.from) && owned.has(edge.to)) continue;
-      const a = this.index.byId.get(edge.from);
-      const b = this.index.byId.get(edge.to);
-      const from = camera.worldToScreen(a.position_x, a.position_y);
-      const to = camera.worldToScreen(b.position_x, b.position_y);
-      ctx.moveTo(from.x, from.y);
-      ctx.lineTo(to.x, to.y);
-    }
-    ctx.stroke();
+    const owned = this.state ? this.state.owned : null;
+    const plain = new Path2D();
+    const bright = new Path2D();
+    let hasBright = false;
 
-    // owned edges brighter, drawn second so they sit on top
-    ctx.strokeStyle = ACCENT.edgeOwned;
-    ctx.lineWidth = Math.max(0.8, 0.13 * camera.scale);
-    ctx.beginPath();
-    for (const edge of this.index.structuralEdges) {
-      if (!owned.has(edge.from) || !owned.has(edge.to)) continue;
-      if (!visibleIds.has(edge.from) && !visibleIds.has(edge.to)) continue;
-      const a = this.index.byId.get(edge.from);
-      const b = this.index.byId.get(edge.to);
-      const from = camera.worldToScreen(a.position_x, a.position_y);
-      const to = camera.worldToScreen(b.position_x, b.position_y);
-      ctx.moveTo(from.x, from.y);
-      ctx.lineTo(to.x, to.y);
+    if (lod !== 'far') {
+      for (const edge of this.index.structuralEdgeGeometry) {
+        const isOwned = owned !== null && owned.has(edge.from) && owned.has(edge.to);
+        const target = isOwned ? bright : plain;
+        if (isOwned) hasBright = true;
+        target.moveTo(edge.ax, edge.ay);
+        target.lineTo(edge.bx, edge.by);
+      }
     }
-    ctx.stroke();
+
+    let references = null;
+    if (this.showReferences) {
+      references = new Path2D();
+      for (const edge of this.index.referenceEdgeGeometry) {
+        references.moveTo(edge.ax, edge.ay);
+        references.lineTo(edge.bx, edge.by);
+      }
+    }
+
+    /** @type {Map<string, {colour: string, style: any, fill: Path2D, stroke: Path2D|null}>} */
+    const batches = new Map();
+    let count = 0;
+    for (const node of this.index.nodes) {
+      if (lod === 'far' && node.type === 'connector') {
+        if (!owned || !owned.has(node.id)) continue;
+      }
+      const state = this.nodeState(node);
+      const style = STATE_STYLE[state];
+      const colour = shade(zoneColour(node.zone), style.dim);
+      const batchKey = `${colour}|${state}`;
+
+      let batch = batches.get(batchKey);
+      if (!batch) {
+        batch = { colour, style, fill: new Path2D(), stroke: null };
+        batches.set(batchKey, batch);
+      }
+
+      count += 1;
+      const radius = this.radiusWorld(node, lod);
+      const shape = nodeShape(node);
+      this._addShape(batch.fill, shape, node.position_x, node.position_y, radius, lod);
+
+      // Outlines are the second most expensive thing in the frame, and at mid
+      // zoom they are a sub-pixel hairline nobody can see. Draw them close in,
+      // and otherwise only for owned nodes, whose white ring is load-bearing.
+      if (style.strokeWidth && (lod === 'near' || state === 'owned')) {
+        if (!batch.stroke) batch.stroke = new Path2D();
+        this._addShape(batch.stroke, shape, node.position_x, node.position_y, radius, lod);
+      }
+    }
+
+    this._worldCacheKey = key;
+    this._worldCache = { plain, bright, hasBright, references, batches, count };
+    return this._worldCache;
   }
 
-  _drawReferenceEdges(ctx, visibleIds) {
+  /** Apply the world -> screen transform for the cached paths. */
+  _withWorldTransform(ctx, draw) {
+    const camera = this.camera;
+    const scale = camera.scale;
+    ctx.save();
+    ctx.setTransform(
+      scale,
+      0,
+      0,
+      scale,
+      camera.viewportWidth / 2 - camera.x * scale,
+      camera.viewportHeight / 2 - camera.y * scale,
+    );
+    draw(scale);
+    ctx.restore();
+  }
+
+  _drawEdges(ctx, paths, lod) {
+    if (lod === 'far') return;
+    this._withWorldTransform(ctx, (scale) => {
+      ctx.strokeStyle = ACCENT.edge;
+      ctx.lineWidth = Math.max(0.5, 0.09 * scale) / scale;
+      ctx.stroke(paths.plain);
+      if (paths.hasBright) {
+        ctx.strokeStyle = ACCENT.edgeOwned;
+        ctx.lineWidth = Math.max(0.8, 0.13 * scale) / scale;
+        ctx.stroke(paths.bright);
+      }
+    });
+  }
+
+  _drawReferenceEdges(ctx, paths) {
     // The 268 "see also" citations. Never a traversable path - drawn dashed and
     // only when the overlay is toggled on.
-    const camera = this.camera;
-    ctx.save();
-    ctx.setLineDash([4, 4]);
-    ctx.strokeStyle = ACCENT.reference;
-    ctx.lineWidth = Math.max(0.5, 0.07 * camera.scale);
-    ctx.beginPath();
-    for (const edge of this.index.referenceEdges) {
-      if (!visibleIds.has(edge.from) && !visibleIds.has(edge.to)) continue;
-      const a = this.index.byId.get(edge.from);
-      const b = this.index.byId.get(edge.to);
-      const from = camera.worldToScreen(a.position_x, a.position_y);
-      const to = camera.worldToScreen(b.position_x, b.position_y);
-      ctx.moveTo(from.x, from.y);
-      ctx.lineTo(to.x, to.y);
-    }
-    ctx.stroke();
-    ctx.restore();
+    if (!paths.references) return;
+    this._withWorldTransform(ctx, (scale) => {
+      ctx.setLineDash([4 / scale, 4 / scale]);
+      ctx.strokeStyle = ACCENT.reference;
+      ctx.lineWidth = Math.max(0.5, 0.07 * scale) / scale;
+      ctx.stroke(paths.references);
+    });
   }
 
   _drawPreviewPath(ctx) {
@@ -217,85 +333,95 @@ export class Renderer {
     ctx.restore();
   }
 
-  _drawNodes(ctx, visible, lod) {
-    const camera = this.camera;
-    const batches = this._batches;
-    batches.clear();
-
-    for (const node of visible) {
-      if (lod === 'far' && !(this.state && this.state.owned.has(node.id))) {
-        if (node.type === 'connector') continue;
+  _drawNodes(ctx, paths) {
+    this._withWorldTransform(ctx, (scale) => {
+      for (const batch of paths.batches.values()) {
+        ctx.globalAlpha = batch.style.alpha;
+        ctx.fillStyle = batch.colour;
+        ctx.fill(batch.fill);
       }
-      const state = this.nodeState(node);
-      const style = STATE_STYLE[state];
-      const fill = shade(zoneColour(node.zone), style.dim);
-      let batch = batches.get(fill);
-      if (!batch) {
-        batch = [];
-        batches.set(fill, batch);
+      ctx.globalAlpha = 1;
+      for (const batch of paths.batches.values()) {
+        if (!batch.stroke) continue;
+        ctx.strokeStyle = batch.style.stroke;
+        ctx.lineWidth = Math.max(0.6, batch.style.strokeWidth * scale * 0.3) / scale;
+        ctx.stroke(batch.stroke);
       }
-      batch.push({ node, state, style });
-    }
-
-    for (const [fill, entries] of batches) {
-      ctx.fillStyle = fill;
-      for (const entry of entries) {
-        const { node, style } = entry;
-        const point = camera.worldToScreen(node.position_x, node.position_y);
-        const radius = Math.max(1.1, nodeRadius(node) * camera.scale * 0.36);
-        ctx.globalAlpha = style.alpha;
-        this._shapePath(ctx, nodeShape(node), point.x, point.y, radius, lod);
-        ctx.fill();
-      }
-    }
-    ctx.globalAlpha = 1;
-
-    if (lod !== 'far') {
-      for (const entries of batches.values()) {
-        for (const entry of entries) {
-          const { node, style } = entry;
-          if (!style.strokeWidth) continue;
-          const point = camera.worldToScreen(node.position_x, node.position_y);
-          const radius = Math.max(1.1, nodeRadius(node) * camera.scale * 0.36);
-          ctx.strokeStyle = style.stroke;
-          ctx.lineWidth = Math.max(0.6, style.strokeWidth * camera.scale * 0.3);
-          this._shapePath(ctx, nodeShape(node), point.x, point.y, radius, lod);
-          ctx.stroke();
-        }
-      }
-    }
-
-    this._drawAccents(ctx, visible);
+    });
   }
 
-  _drawAccents(ctx, visible) {
+  /**
+   * Highlight rings for the selected node, the hovered node, search hits and the
+   * previewed path. These are a handful of ids, so they are looked up directly
+   * instead of scanning everything in the viewport.
+   */
+  _drawAccents(ctx) {
     const camera = this.camera;
-    const preview = new Set(this.previewPath);
+    const scale = camera.scale;
+    const offsetX = camera.viewportWidth / 2 - camera.x * scale;
+    const offsetY = camera.viewportHeight / 2 - camera.y * scale;
 
-    for (const node of visible) {
-      const isHover = node.id === this.hoverId;
-      const isSearch = this.searchHits.has(node.id);
-      const isPreview = preview.has(node.id);
-      if (!isHover && !isSearch && !isPreview) continue;
+    /** @type {Map<string, string>} id -> accent kind, strongest wins */
+    const marks = new Map();
+    for (const id of this.searchHits) marks.set(id, 'search');
+    for (const id of this.previewPath) marks.set(id, 'preview');
+    if (this.hoverId) marks.set(this.hoverId, 'hover');
+    if (this.selectedId) marks.set(this.selectedId, 'selected');
+    if (!marks.size) return;
 
-      const point = camera.worldToScreen(node.position_x, node.position_y);
-      const radius = Math.max(1.1, nodeRadius(node) * camera.scale * 0.36);
+    for (const [id, kind] of marks) {
+      const node = this.index.byId.get(id);
+      if (!node) continue;
+      const x = node.position_x * scale + offsetX;
+      const y = node.position_y * scale + offsetY;
+      if (x < -40 || y < -40 || x > this.canvas.width + 40 || y > this.canvas.height + 40) {
+        continue;
+      }
+      const radius = this.radiusOf(node);
+
+      if (kind === 'selected') {
+        ctx.beginPath();
+        ctx.arc(x, y, radius + 9, 0, Math.PI * 2);
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.28)';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(x, y, radius + 5, 0, Math.PI * 2);
+        ctx.strokeStyle = ACCENT.hover;
+        ctx.lineWidth = 3;
+        ctx.stroke();
+        continue;
+      }
+
       ctx.beginPath();
-      ctx.arc(point.x, point.y, radius + 3.5, 0, Math.PI * 2);
-      ctx.strokeStyle = isHover ? ACCENT.hover : isPreview ? ACCENT.preview : ACCENT.search;
-      ctx.lineWidth = isHover ? 2.2 : 1.6;
+      ctx.arc(x, y, radius + 3.5, 0, Math.PI * 2);
+      ctx.strokeStyle =
+        kind === 'hover' ? ACCENT.hover : kind === 'preview' ? ACCENT.preview : ACCENT.search;
+      ctx.lineWidth = kind === 'hover' ? 2.2 : 1.6;
       ctx.stroke();
     }
   }
 
+  /** Draw straight onto a context (used by the legend). */
   _shapePath(ctx, shape, x, y, radius, lod) {
     ctx.beginPath();
-    if (lod === 'far' || shape === 'dot' || radius < 2.4) {
+    this._addShape(ctx, shape, x, y, radius, lod);
+  }
+
+  /**
+   * Append one node's outline to a path. Works with both Path2D and a canvas
+   * context, since the sub-path API is identical.
+   * @param {Path2D|CanvasRenderingContext2D} ctx
+   */
+  _addShape(ctx, shape, x, y, radius, lod) {
+    if (lod === 'far' || shape === 'dot') {
+      ctx.moveTo(x + radius, y);
       ctx.arc(x, y, radius, 0, Math.PI * 2);
       return;
     }
     switch (shape) {
       case 'circle':
+        ctx.moveTo(x + radius, y);
         ctx.arc(x, y, radius, 0, Math.PI * 2);
         break;
       case 'square':
@@ -346,6 +472,7 @@ export class Renderer {
         ctx.closePath();
         break;
       default:
+        ctx.moveTo(x + radius, y);
         ctx.arc(x, y, radius, 0, Math.PI * 2);
     }
   }
@@ -361,7 +488,9 @@ export class Renderer {
     const camera = this.camera;
     if (camera.scale < 11) return;
 
-    const size = Math.round(Math.min(14, Math.max(10, camera.scale * 0.62)));
+    // Task 5: scale with zoom but never below the legibility floor, which is
+    // raised on small screens where the device pixel ratio shrinks everything.
+    const size = Math.round(Math.min(16, Math.max(this.minFontPx, camera.scale * 0.62)));
     ctx.save();
     ctx.font = `${size}px system-ui, sans-serif`;
     ctx.textAlign = 'center';
@@ -430,7 +559,7 @@ export class Renderer {
         width = ctx.measureText(text).width;
         this._textWidths.set(cacheKey, width);
       }
-      const radius = Math.max(1.1, nodeRadius(node) * camera.scale * 0.36);
+      const radius = this.radiusOf(node);
       const x0 = point.x - width / 2 - 3;
       const y0 = point.y + radius + 2;
       const x1 = point.x + width / 2 + 3;
@@ -457,7 +586,9 @@ export class Renderer {
 
     ctx.save();
     ctx.globalAlpha = fade;
-    const size = Math.round(Math.max(13, Math.min(24, camera.scale * 1.6)));
+    const size = Math.round(
+      Math.max(this.minFontPx + 2, Math.min(24, camera.scale * 1.6)),
+    );
     ctx.font = `600 ${size}px system-ui, sans-serif`;
     const measure = (text) => {
       const cacheKey = `z${size}:${text}`;
@@ -469,13 +600,17 @@ export class Renderer {
       return width;
     };
 
-    // keep labels clear of the side panels and the top/bottom bars
+    // Keep labels clear of the chrome. On desktop that means the two side
+    // panels; on a phone there are none (they are bottom sheets), and reserving
+    // 300px a side would invert the rectangle on a 412px screen.
     const dpr = this.dpr || 1;
+    const sideMargin = (this.isCompact ? 10 : 300) * dpr;
+    const bottomMargin = (this.isCompact ? 58 : 40) * dpr;
     const safeRect = {
-      minX: 300 * dpr,
+      minX: Math.min(sideMargin, this.canvas.width * 0.35),
       minY: 64 * dpr,
-      maxX: this.canvas.width - 300 * dpr,
-      maxY: this.canvas.height - 40 * dpr,
+      maxX: Math.max(this.canvas.width - sideMargin, this.canvas.width * 0.65),
+      maxY: this.canvas.height - bottomMargin,
     };
     const labels = placeLabels(this.anchors, camera, measure, size, safeRect);
 

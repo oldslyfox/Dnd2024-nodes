@@ -37,14 +37,29 @@ const result = await build({
 const js = result.outputFiles[0].text;
 const css = readFileSync(join(root, 'src/styles.css'), 'utf8');
 
+// NOTE: the replacements pass *functions*, not strings. A string replacement
+// interprets $&, $', $` and $1 inside the replacement, and minified JS is full
+// of `$'` - which silently splices the rest of the file in and truncates the
+// bundle at the first match. Functions disable that entirely.
 const html = readFileSync(join(root, 'index.html'), 'utf8')
-  .replace('<link rel="stylesheet" href="./src/styles.css" />', `<style>\n${css}\n</style>`)
+  .replace('<link rel="stylesheet" href="./src/styles.css" />', () => `<style>\n${css}\n</style>`)
   .replace(
     '<script type="module" src="./src/app/main.js"></script>',
-    `<script id="graph-data" type="application/json">${graph}</script>\n` +
+    () =>
+      `<script id="graph-data" type="application/json">${graph}</script>\n` +
       '<script>globalThis.__GRAPH_DATA__ = JSON.parse(document.getElementById("graph-data").textContent);</script>\n' +
       `<script>${js}</script>`,
   );
+
+// Guard the above: if the inlined bundle is ever cut short again, fail the build
+// rather than shipping a page that dies on load.
+const inlined = html.slice(html.lastIndexOf('<script>') + 8);
+if (inlined.slice(0, inlined.indexOf('</script>')).length !== js.length) {
+  throw new Error('inlined bundle was truncated - check the HTML replacements');
+}
+if (!html.includes(graph.slice(0, 64))) {
+  throw new Error('inlined graph data was mangled - check the HTML replacements');
+}
 
 // One file, deliberately: the data is inlined, so there is nothing beside it to
 // serve, copy or lose.

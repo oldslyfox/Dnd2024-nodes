@@ -2,14 +2,17 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta name="color-scheme" content="dark" />
+    <meta name="mobile-web-app-capable" content="yes" />
     <title>D&amp;D 2024 Skill Tree</title>
     <link rel="stylesheet" href="./src/styles.css" />
   </head>
   <body>
     <canvas id="tree"></canvas>
-
-    <div id="tooltip" class="tooltip" hidden></div>
 
     <header class="topbar">
       <div class="brand">
@@ -17,8 +20,10 @@
         <span class="muted" id="graph-stats">loading…</span>
       </div>
       <div class="tools">
-        <input id="search" type="search" placeholder="Search nodes…" autocomplete="off" />
-        <span id="search-count" class="muted"></span>
+        <div class="search-wrap">
+          <input id="search" type="search" placeholder="Search nodes…" autocomplete="off" />
+          <span id="search-count" class="muted"></span>
+        </div>
         <label class="toggle">
           <input type="checkbox" id="toggle-references" />
           <span>“See also” edges</span>
@@ -26,9 +31,15 @@
         <button id="btn-fit" type="button">Fit</button>
         <button id="btn-respec" type="button">Respec</button>
       </div>
+      <div class="points-pill" id="points-pill" hidden>
+        <b id="points-pill-value">—</b><span class="muted"> pts</span>
+      </div>
     </header>
 
-    <aside class="panel panel-left" id="chassis-panel">
+    <!-- Panels. Fixed sidebars on desktop; bottom sheets below the phone
+         breakpoint, driven by the tab bar. Same markup either way. -->
+    <section class="panel panel-left" id="panel-character" data-sheet="character">
+      <div class="sheet-grip" aria-hidden="true"></div>
       <h2>Character</h2>
       <div id="chassis-body" class="panel-body"></div>
 
@@ -43,28 +54,67 @@
         <button id="btn-load" type="button">Load selected</button>
         <p class="muted small" id="build-status"></p>
       </div>
-    </aside>
 
-    <aside class="panel panel-right" id="legend-panel">
-      <h2>Legend</h2>
+      <div class="sheet-only">
+        <h2>View</h2>
+        <div class="panel-body">
+          <label class="toggle">
+            <input type="checkbox" id="toggle-references-mobile" />
+            <span>Show “see also” edges</span>
+          </label>
+          <div class="row">
+            <button id="btn-fit-mobile" type="button">Fit whole tree</button>
+            <button id="btn-respec-mobile" type="button" class="ghost">Respec</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel panel-right" id="panel-detail" data-sheet="detail">
+      <div class="sheet-grip" aria-hidden="true"></div>
+      <h2>Selected node</h2>
+      <div class="panel-body" id="detail-body">
+        <p class="muted small">Tap or click a node to select it.</p>
+      </div>
+      <div class="panel-body detail-actions" id="detail-actions" hidden>
+        <button id="btn-allocate" type="button" class="primary">Allocate</button>
+        <button id="btn-deallocate" type="button" class="ghost">Deallocate</button>
+      </div>
+
+      <div class="desktop-only">
+        <h2>Legend</h2>
+        <div class="panel-body">
+          <canvas id="legend-canvas" width="240" height="196"></canvas>
+          <ul class="states">
+            <li><i class="swatch owned"></i> owned</li>
+            <li><i class="swatch affordable"></i> affordable now</li>
+            <li><i class="swatch reachable"></i> reachable, too expensive</li>
+            <li><i class="swatch unreachable"></i> prerequisites unmet</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel panel-search sheet-only" id="panel-search" data-sheet="search">
+      <div class="sheet-grip" aria-hidden="true"></div>
+      <h2>Search</h2>
       <div class="panel-body">
-        <canvas id="legend-canvas" width="240" height="196"></canvas>
-        <ul class="states">
-          <li><i class="swatch owned"></i> owned</li>
-          <li><i class="swatch affordable"></i> affordable now</li>
-          <li><i class="swatch reachable"></i> reachable, too expensive</li>
-          <li><i class="swatch unreachable"></i> prerequisites unmet</li>
-        </ul>
-        <p class="muted small">
-          Click a node to allocate it and everything on the cheapest path.
-          Alt-click an owned node to refund it, if nothing depends on it.
-        </p>
+        <input id="search-mobile" type="search" placeholder="Name, zone or type…" autocomplete="off" />
+        <p class="muted small" id="search-count-mobile"></p>
+        <ul class="result-list" id="search-results"></ul>
       </div>
-      <h2>Selection</h2>
-      <div class="panel-body" id="selection-body">
-        <p class="muted small">Hover a node to preview its path.</p>
-      </div>
-    </aside>
+    </section>
+
+    <nav class="tabbar sheet-only" id="tabbar" aria-label="Panels">
+      <button type="button" data-tab="character">
+        <span class="tab-glyph">◉</span><span>Character</span>
+      </button>
+      <button type="button" data-tab="search"><span class="tab-glyph">⌕</span><span>Search</span></button>
+      <button type="button" data-tab="detail"><span class="tab-glyph">▣</span><span>Node</span></button>
+      <button type="button" data-tab="none" id="tab-close">
+        <span class="tab-glyph">▾</span><span>Hide</span>
+      </button>
+    </nav>
 
     <div class="onboarding" id="onboarding">
       <div class="onboarding-card">

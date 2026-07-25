@@ -2,16 +2,34 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta name="color-scheme" content="dark" />
+    <meta name="mobile-web-app-capable" content="yes" />
     <title>D&amp;D 2024 Skill Tree</title>
     <style>
+/**
+ * One stylesheet, one breakpoint (Work Order 4, decision 1).
+ *
+ * Desktop keeps the Work Order 3 layout: fixed side panels either side of a
+ * full-bleed canvas. Below --phone-breakpoint the same panels become bottom
+ * sheets driven by a tab bar, so the canvas keeps the entire screen and panels
+ * only overlay it on demand.
+ */
+
 :root {
   --bg: #0d0f15;
-  --panel: rgba(19, 22, 30, 0.92);
+  --panel: rgba(19, 22, 30, 0.94);
   --border: rgba(255, 255, 255, 0.09);
   --text: #e6e9f0;
   --muted: #949cad;
   --accent: #ffd166;
+  --danger: #ff9a8b;
+  --tap: 44px; /* minimum comfortable touch target */
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
   color-scheme: dark;
 }
 
@@ -26,7 +44,9 @@ body {
   overflow: hidden;
   background: var(--bg);
   color: var(--text);
-  font: 14px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif;
+  font: 15px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif;
+  -webkit-text-size-adjust: 100%;
+  overscroll-behavior: none;
 }
 
 #tree {
@@ -36,22 +56,28 @@ body {
   height: 100%;
   display: block;
   cursor: grab;
+  /* the canvas owns every gesture over it - no browser pan/zoom stealing them */
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 #tree.dragging {
   cursor: grabbing;
 }
 
+/* -- chrome ------------------------------------------------------------- */
+
 .topbar {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
+  padding: calc(10px + var(--safe-top)) 16px 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: 10px 16px;
   background: linear-gradient(180deg, rgba(13, 15, 21, 0.95), rgba(13, 15, 21, 0));
   pointer-events: none;
   z-index: 5;
@@ -65,6 +91,11 @@ body {
   display: flex;
   align-items: baseline;
   gap: 12px;
+  min-width: 0;
+}
+
+.brand strong {
+  white-space: nowrap;
 }
 
 .tools {
@@ -73,12 +104,27 @@ body {
   gap: 10px;
 }
 
+.search-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.points-pill {
+  display: none;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border);
+  font-size: 15px;
+}
+
 .muted {
   color: var(--muted);
 }
 
 .small {
-  font-size: 12px;
+  font-size: 13px;
 }
 
 input,
@@ -88,8 +134,9 @@ select {
   color: var(--text);
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid var(--border);
-  border-radius: 7px;
-  padding: 6px 10px;
+  border-radius: 8px;
+  padding: 7px 11px;
+  min-height: 36px;
 }
 
 input:focus,
@@ -101,6 +148,7 @@ button:focus-visible {
 
 button {
   cursor: pointer;
+  touch-action: manipulation;
 }
 
 button:hover {
@@ -111,19 +159,42 @@ button.ghost {
   background: transparent;
 }
 
+button.primary {
+  background: rgba(255, 209, 102, 0.18);
+  border-color: rgba(255, 209, 102, 0.5);
+  color: #ffe6ab;
+}
+
+button.primary:hover {
+  background: rgba(255, 209, 102, 0.28);
+}
+
+button[disabled] {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
 .toggle {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   color: var(--muted);
   white-space: nowrap;
 }
 
+.toggle input {
+  min-height: 0;
+  width: 18px;
+  height: 18px;
+}
+
+/* -- panels (desktop) --------------------------------------------------- */
+
 .panel {
   position: fixed;
-  top: 58px;
-  width: 268px;
-  max-height: calc(100vh - 96px);
+  top: calc(58px + var(--safe-top));
+  width: 280px;
+  max-height: calc(100vh - 110px);
   overflow: auto;
   padding: 4px 14px 14px;
   background: var(--panel);
@@ -154,6 +225,12 @@ button.ghost {
   gap: 8px;
 }
 
+.sheet-grip,
+.sheet-only,
+.tabbar {
+  display: none;
+}
+
 .stat {
   display: flex;
   justify-content: space-between;
@@ -167,18 +244,30 @@ button.ghost {
 }
 
 .points {
-  font-size: 26px;
+  font-size: 27px;
   font-weight: 600;
   line-height: 1.1;
 }
 
-.build-controls .row {
+.build-controls .row,
+.detail-actions {
   display: flex;
   gap: 8px;
 }
 
-.build-controls .row button {
+.build-controls .row button,
+.detail-actions button {
   flex: 1;
+}
+
+.detail-actions {
+  margin-top: 10px;
+}
+
+/* `display: flex` above would otherwise beat the UA rule for [hidden] */
+.detail-actions[hidden],
+.panel[hidden] {
+  display: none;
 }
 
 #build-list {
@@ -191,8 +280,8 @@ button.ghost {
   margin: 4px 0 0;
   padding: 0;
   display: grid;
-  gap: 4px;
-  font-size: 12px;
+  gap: 5px;
+  font-size: 13px;
   color: var(--muted);
 }
 
@@ -227,48 +316,66 @@ button.ghost {
   height: auto;
 }
 
-.tooltip {
-  position: fixed;
-  z-index: 9;
-  max-width: 340px;
-  padding: 10px 12px;
-  background: rgba(16, 19, 26, 0.97);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  pointer-events: none;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
+.result-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 2px;
+  max-height: 40vh;
+  overflow: auto;
 }
 
-.tooltip h3 {
-  margin: 0 0 2px;
-  font-size: 14px;
+.result-list button {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 0;
+  min-height: var(--tap);
+  display: grid;
+  gap: 1px;
 }
 
-.tooltip .meta {
+.result-list .result-meta {
   color: var(--muted);
   font-size: 12px;
-  margin-bottom: 6px;
 }
 
-.tooltip .summary {
-  font-size: 12.5px;
-  max-height: 160px;
-  overflow: hidden;
+.detail-name {
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.25;
 }
 
-.tooltip .cost {
-  margin-top: 8px;
-  padding-top: 7px;
+.detail-summary {
+  font-size: 13.5px;
+  max-height: 34vh;
+  overflow: auto;
+}
+
+.cost {
+  padding-top: 8px;
   border-top: 1px solid var(--border);
-  font-size: 12.5px;
+  font-size: 13.5px;
 }
 
-.tooltip .cost.ok {
+.cost.ok {
   color: var(--accent);
 }
 
-.tooltip .cost.blocked {
-  color: #ff9a8b;
+.cost.blocked {
+  color: var(--danger);
+}
+
+.path-list {
+  margin: 6px 0 0;
+  padding-left: 18px;
+  font-size: 13px;
+  color: var(--muted);
+  max-height: 22vh;
+  overflow: auto;
 }
 
 .statusbar {
@@ -279,21 +386,24 @@ button.ghost {
   display: flex;
   justify-content: space-between;
   gap: 12px;
-  padding: 6px 16px;
+  padding: 6px 16px calc(6px + var(--safe-bottom));
   font-size: 12px;
   background: linear-gradient(0deg, rgba(13, 15, 21, 0.95), rgba(13, 15, 21, 0));
   pointer-events: none;
   z-index: 5;
 }
 
+/* -- onboarding --------------------------------------------------------- */
+
 .onboarding {
   position: fixed;
   inset: 0;
   display: grid;
   place-items: center;
-  background: rgba(8, 9, 13, 0.82);
+  background: rgba(8, 9, 13, 0.85);
   backdrop-filter: blur(3px);
   z-index: 20;
+  padding: 12px;
 }
 
 .onboarding[hidden] {
@@ -301,10 +411,10 @@ button.ghost {
 }
 
 .onboarding-card {
-  width: min(760px, calc(100vw - 40px));
-  max-height: calc(100vh - 60px);
+  width: min(760px, 100%);
+  max-height: calc(100vh - 32px);
   overflow: auto;
-  padding: 26px 28px;
+  padding: 24px 26px calc(24px + var(--safe-bottom));
   background: var(--panel);
   border: 1px solid var(--border);
   border-radius: 16px;
@@ -329,10 +439,11 @@ button.ghost {
 
 .zone-card {
   text-align: left;
-  padding: 9px 11px;
+  padding: 10px 12px;
   border-left: 4px solid currentColor;
   display: grid;
   gap: 2px;
+  min-height: var(--tap);
 }
 
 .zone-card strong {
@@ -351,13 +462,223 @@ button.ghost {
   font-size: 11px;
 }
 
-.path-list {
-  margin: 6px 0 0;
-  padding-left: 16px;
-  font-size: 12px;
-  color: var(--muted);
-  max-height: 190px;
-  overflow: auto;
+/* -- phone: panels become bottom sheets --------------------------------- */
+
+@media (max-width: 760px), (max-height: 560px) {
+  body {
+    font-size: 16px;
+  }
+
+  .topbar {
+    padding: calc(8px + var(--safe-top)) 12px 8px;
+    gap: 8px;
+  }
+
+  .brand strong {
+    font-size: 15px;
+  }
+
+  .brand .muted,
+  .tools,
+  .statusbar #status-right {
+    display: none;
+  }
+
+  .points-pill {
+    display: block;
+  }
+
+  .desktop-only {
+    display: none;
+  }
+
+  .sheet-only {
+    display: block;
+  }
+
+  .panel {
+    position: fixed;
+    inset: auto 0 0 0;
+    top: auto;
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-height: min(62vh, 520px);
+    padding: 6px 16px calc(14px + var(--safe-bottom) + var(--tap));
+    border-radius: 18px 18px 0 0;
+    border-bottom: none;
+    transform: translateY(102%);
+    transition: transform 0.22s ease;
+    z-index: 8;
+    box-shadow: 0 -14px 40px rgba(0, 0, 0, 0.5);
+  }
+
+  .panel[data-open="true"] {
+    transform: translateY(0);
+  }
+
+  .sheet-grip {
+    display: block;
+    width: 42px;
+    height: 4px;
+    margin: 6px auto 2px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.22);
+  }
+
+  .panel h2 {
+    margin: 12px 0 6px;
+  }
+
+  .tabbar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    gap: 2px;
+    padding: 4px 6px calc(4px + var(--safe-bottom));
+    background: rgba(14, 16, 22, 0.96);
+    border-top: 1px solid var(--border);
+    z-index: 9;
+  }
+
+  .tabbar button {
+    background: transparent;
+    border: none;
+    border-radius: 10px;
+    min-height: var(--tap);
+    display: grid;
+    justify-items: center;
+    gap: 1px;
+    font-size: 11px;
+    color: var(--muted);
+    padding: 4px 2px;
+  }
+
+  .tabbar button[aria-pressed="true"] {
+    background: rgba(255, 255, 255, 0.09);
+    color: var(--text);
+  }
+
+  .tab-glyph {
+    font-size: 17px;
+    line-height: 1;
+  }
+
+  .statusbar {
+    bottom: calc(var(--tap) + var(--safe-bottom) + 4px);
+    font-size: 11px;
+    padding-bottom: 2px;
+  }
+
+  /* touch targets: every control in a sheet is at least 44px tall */
+  .panel input,
+  .panel button,
+  .panel select {
+    min-height: var(--tap);
+    font-size: 15px;
+  }
+
+  .points {
+    font-size: 30px;
+  }
+
+  /* The detail sheet is a flex column: the body scrolls, the action row is a
+     fixed footer. Sticky positioning let content scroll *under* the buttons,
+     which on a phone reads as a rendering fault. */
+  #panel-detail {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  #panel-detail #detail-body {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow: auto;
+  }
+
+  #panel-detail .detail-summary,
+  #panel-detail .path-list {
+    max-height: none;
+    overflow: visible;
+  }
+
+  .detail-actions {
+    flex: 0 0 auto;
+    margin-top: 0;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+  }
+
+  .zone-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+
+  .onboarding-card {
+    padding: 18px 16px calc(18px + var(--safe-bottom));
+  }
+
+  .onboarding-card h1 {
+    font-size: 19px;
+  }
+
+  .onboarding-card p {
+    font-size: 14px;
+  }
+}
+
+/* Landscape phones: wide but very short. The sheet has to stay usable without
+   swallowing the canvas, and the onboarding card has to scroll. */
+@media (max-height: 560px) {
+  .panel {
+    max-height: 66vh;
+    padding-bottom: calc(10px + var(--safe-bottom) + var(--tap));
+  }
+
+  .panel h2 {
+    margin: 8px 0 4px;
+  }
+
+  .points {
+    font-size: 24px;
+  }
+
+  .detail-summary {
+    max-height: 20vh;
+  }
+
+  .path-list {
+    max-height: 14vh;
+  }
+
+  .onboarding-card {
+    max-height: calc(100vh - 16px);
+    padding: 14px 16px calc(14px + var(--safe-bottom));
+  }
+
+  .onboarding-card h1 {
+    font-size: 17px;
+    margin-bottom: 4px;
+  }
+
+  .onboarding-card p {
+    font-size: 13px;
+    margin-bottom: 10px;
+  }
+
+  .zone-grid {
+    grid-template-columns: repeat(auto-fill, minmax(128px, 1fr));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel {
+    transition: none;
+  }
 }
 
 </style>
@@ -365,16 +686,16 @@ button.ghost {
   <body>
     <canvas id="tree"></canvas>
 
-    <div id="tooltip" class="tooltip" hidden></div>
-
     <header class="topbar">
       <div class="brand">
         <strong>D&amp;D 2024 Skill Tree</strong>
         <span class="muted" id="graph-stats">loading…</span>
       </div>
       <div class="tools">
-        <input id="search" type="search" placeholder="Search nodes…" autocomplete="off" />
-        <span id="search-count" class="muted"></span>
+        <div class="search-wrap">
+          <input id="search" type="search" placeholder="Search nodes…" autocomplete="off" />
+          <span id="search-count" class="muted"></span>
+        </div>
         <label class="toggle">
           <input type="checkbox" id="toggle-references" />
           <span>“See also” edges</span>
@@ -382,9 +703,15 @@ button.ghost {
         <button id="btn-fit" type="button">Fit</button>
         <button id="btn-respec" type="button">Respec</button>
       </div>
+      <div class="points-pill" id="points-pill" hidden>
+        <b id="points-pill-value">—</b><span class="muted"> pts</span>
+      </div>
     </header>
 
-    <aside class="panel panel-left" id="chassis-panel">
+    <!-- Panels. Fixed sidebars on desktop; bottom sheets below the phone
+         breakpoint, driven by the tab bar. Same markup either way. -->
+    <section class="panel panel-left" id="panel-character" data-sheet="character">
+      <div class="sheet-grip" aria-hidden="true"></div>
       <h2>Character</h2>
       <div id="chassis-body" class="panel-body"></div>
 
@@ -399,28 +726,67 @@ button.ghost {
         <button id="btn-load" type="button">Load selected</button>
         <p class="muted small" id="build-status"></p>
       </div>
-    </aside>
 
-    <aside class="panel panel-right" id="legend-panel">
-      <h2>Legend</h2>
+      <div class="sheet-only">
+        <h2>View</h2>
+        <div class="panel-body">
+          <label class="toggle">
+            <input type="checkbox" id="toggle-references-mobile" />
+            <span>Show “see also” edges</span>
+          </label>
+          <div class="row">
+            <button id="btn-fit-mobile" type="button">Fit whole tree</button>
+            <button id="btn-respec-mobile" type="button" class="ghost">Respec</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel panel-right" id="panel-detail" data-sheet="detail">
+      <div class="sheet-grip" aria-hidden="true"></div>
+      <h2>Selected node</h2>
+      <div class="panel-body" id="detail-body">
+        <p class="muted small">Tap or click a node to select it.</p>
+      </div>
+      <div class="panel-body detail-actions" id="detail-actions" hidden>
+        <button id="btn-allocate" type="button" class="primary">Allocate</button>
+        <button id="btn-deallocate" type="button" class="ghost">Deallocate</button>
+      </div>
+
+      <div class="desktop-only">
+        <h2>Legend</h2>
+        <div class="panel-body">
+          <canvas id="legend-canvas" width="240" height="196"></canvas>
+          <ul class="states">
+            <li><i class="swatch owned"></i> owned</li>
+            <li><i class="swatch affordable"></i> affordable now</li>
+            <li><i class="swatch reachable"></i> reachable, too expensive</li>
+            <li><i class="swatch unreachable"></i> prerequisites unmet</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel panel-search sheet-only" id="panel-search" data-sheet="search">
+      <div class="sheet-grip" aria-hidden="true"></div>
+      <h2>Search</h2>
       <div class="panel-body">
-        <canvas id="legend-canvas" width="240" height="196"></canvas>
-        <ul class="states">
-          <li><i class="swatch owned"></i> owned</li>
-          <li><i class="swatch affordable"></i> affordable now</li>
-          <li><i class="swatch reachable"></i> reachable, too expensive</li>
-          <li><i class="swatch unreachable"></i> prerequisites unmet</li>
-        </ul>
-        <p class="muted small">
-          Click a node to allocate it and everything on the cheapest path.
-          Alt-click an owned node to refund it, if nothing depends on it.
-        </p>
+        <input id="search-mobile" type="search" placeholder="Name, zone or type…" autocomplete="off" />
+        <p class="muted small" id="search-count-mobile"></p>
+        <ul class="result-list" id="search-results"></ul>
       </div>
-      <h2>Selection</h2>
-      <div class="panel-body" id="selection-body">
-        <p class="muted small">Hover a node to preview its path.</p>
-      </div>
-    </aside>
+    </section>
+
+    <nav class="tabbar sheet-only" id="tabbar" aria-label="Panels">
+      <button type="button" data-tab="character">
+        <span class="tab-glyph">◉</span><span>Character</span>
+      </button>
+      <button type="button" data-tab="search"><span class="tab-glyph">⌕</span><span>Search</span></button>
+      <button type="button" data-tab="detail"><span class="tab-glyph">▣</span><span>Node</span></button>
+      <button type="button" data-tab="none" id="tab-close">
+        <span class="tab-glyph">▾</span><span>Hide</span>
+      </button>
+    </nav>
 
     <div class="onboarding" id="onboarding">
       <div class="onboarding-card">
@@ -61702,26 +62068,23 @@ button.ghost {
   ]
 }</script>
 <script>globalThis.__GRAPH_DATA__ = JSON.parse(document.getElementById("graph-data").textContent);</script>
-<script>(()=>{var B={logic:"AND",nodes:[],threshold_count:null,groups:[]};function E(a,e,t){if(!a)return!0;if(a.threshold_count!==null&&a.threshold_count!==void 0&&t<a.threshold_count)return!1;let n=a.groups;if(n&&n.length){for(let o of n){let i=o.nodes||[];if(i.length){if(o.logic==="OR"){if(!i.some(r=>e.has(r)))return!1}else if(!i.every(r=>e.has(r)))return!1}}return!0}let s=a.nodes||[];return s.length?a.logic==="OR"?s.some(o=>e.has(o)):s.every(o=>e.has(o)):!0}function Y(a,e,t){let n=a.prereqs||B;if(E(n,e,t))return[];let s=[],o=n.threshold_count;o!=null&&t<o&&s.push(`needs ${o} points spent (has ${t})`);let i=n.groups;(!i||!i.length)&&(i=(n.nodes||[]).length?[{logic:n.logic||"AND",nodes:n.nodes}]:[]);for(let r of i){let d=r.nodes||[];if(d.length)if(r.logic==="OR")d.some(l=>e.has(l))||s.push("needs one of: "+d.join(", "));else{let l=d.filter(h=>!e.has(h));l.length&&s.push("needs: "+l.join(", "))}}return s}var $="conn_core_hub",j=class a{constructor(){this.items=[]}get size(){return this.items.length}static before(e,t){return e.cost!==t.cost?e.cost<t.cost:e.id<t.id}push(e,t){let n=this.items;n.push({cost:e,id:t});let s=n.length-1;for(;s>0;){let o=s-1>>1;if(a.before(n[s],n[o]))[n[s],n[o]]=[n[o],n[s]],s=o;else break}}pop(){let e=this.items,t=e[0],n=e.pop();if(e.length){e[0]=n;let s=0;for(;;){let o=s*2+1,i=o+1,r=s;if(o<e.length&&a.before(e[o],e[r])&&(r=o),i<e.length&&a.before(e[i],e[r])&&(r=i),r===s)break;[e[s],e[r]]=[e[r],e[s]],s=r}}return t}},P=class a{constructor({homeZone:e,pointsTotal:t,owned:n=[$],pointsSpent:s=0}){this.homeZone=e,this.pointsTotal=t,this.owned=new Set(n),this.pointsSpent=s,this.version=0}get pointsRemaining(){return this.pointsTotal-this.pointsSpent}touch(){this.version+=1}clone(){return new a({homeZone:this.homeZone,pointsTotal:this.pointsTotal,owned:this.owned,pointsSpent:this.pointsSpent})}toJSON(){return{homeZone:this.homeZone,pointsTotal:this.pointsTotal,owned:[...this.owned].sort(),pointsSpent:this.pointsSpent}}static fromJSON(e){return new a({homeZone:e.homeZone,pointsTotal:e.pointsTotal,owned:e.owned,pointsSpent:e.pointsSpent})}},L=class{constructor(e){this.graph=e,this.nodes=new Map;for(let t of e.nodes)this.nodes.set(t.id,t);this.adjacency=new Map;for(let t of e.nodes)this.adjacency.set(t.id,[]);for(let t of e.edges){if(t.traversable===!1)continue;let n=this.adjacency.get(t.from),s=this.adjacency.get(t.to);n&&s&&(n.includes(t.to)||n.push(t.to),s.includes(t.from)||s.push(t.from))}this.chassisByZone=e.meta&&e.meta.chassis_by_zone||{},this.budget=e.meta&&e.meta.point_economy&&e.meta.point_economy.total_points_at_level_20||0,this._cacheKey=null,this._dist=new Map,this._prev=new Map,this._blocked=new Map}node(e){return this.nodes.get(e)}nodeCost(e,t){if(t.owned.has(e))return 0;let n=this.nodes.get(e);return!n||n.type==="connector"&&n.is_spine&&n.zone===t.homeZone||n.is_gate&&n.zone===t.homeZone?0:n.point_cost||0}chassis(e){return this.chassisByZone[e.homeZone]||null}hitDie(e){let t=this.chassisByZone[e.homeZone];return t?t.hit_die:null}savingThrowProficiencies(e){let t=this.chassisByZone[e.homeZone];return t?[...t.saving_throw_proficiencies||[]]:[]}weaponProficiencies(e){let t=this.chassisByZone[e.homeZone];return t?{...t.weapon_proficiencies||{}}:{}}_fingerprint(e){return`${e.homeZone}|${e.pointsSpent}|${e.owned.size}|${e.version}`}_pathTo(e){let t=[],n=e;for(;n!=null;)t.push(n),n=this._prev.get(n)??null;return t.reverse()}_ensureSearch(e){let t=this._fingerprint(e);if(t===this._cacheKey)return;let n=new Map,s=new Map,o=new Map,i=new j,r=[...e.owned].filter(d=>this.nodes.has(d));r.length||(r=[$]);for(let d of r)n.set(d,0),s.set(d,null),i.push(0,d);for(;i.size;){let{cost:d,id:l}=i.pop(),h=n.has(l)?n.get(l):1/0;if(!(d>h))for(let u of this.adjacency.get(l)||[]){let _=this.nodeCost(u,e),p=d+_,g=n.has(u)?n.get(u):1/0;if(!(p>=g)){if(!e.owned.has(u)){let w=new Set,m=l;for(;m!=null;)w.add(m),m=s.get(m)??null;let y=new Set(e.owned);for(let C of w)y.add(C);let S=e.pointsSpent+p,T=this.nodes.get(u),M=T&&T.prereqs||B;if(!E(M,y,S)){o.has(u)||o.set(u,Y(T,y,S));continue}o.delete(u)}n.set(u,p),s.set(u,l),i.push(p,u)}}}this._cacheKey=t,this._dist=n,this._prev=s,this._blocked=o}canAfford(e,t){if(!this.nodes.has(t))return{affordable:!1,path:[],total_cost:null,reason:"unknown_node",blocking_prereqs:[]};if(e.owned.has(t))return{affordable:!0,path:[t],total_cost:0,reason:"already_owned",blocking_prereqs:[],new_nodes:[]};if(this._ensureSearch(e),!this._dist.has(t)){let r=this._blocked.get(t)||[];return{affordable:!1,path:[],total_cost:null,reason:r.length?"unmet_prerequisites":"unreachable",blocking_prereqs:r}}let n=this._dist.get(t),s=this._pathTo(t),o=e.pointsTotal-e.pointsSpent,i=s.filter(r=>!e.owned.has(r));return{affordable:n<=o,path:s,total_cost:n,reason:n<=o?"ok":"insufficient_points",blocking_prereqs:[],new_nodes:i,points_remaining_after:o-n}}allocate(e,t){let n=this.canAfford(e,t);if(!n.affordable)return n;for(let s of n.path)e.owned.has(s)||(e.pointsSpent+=this.nodeCost(s,e),e.owned.add(s));return e.touch(),n}startState(e,t=this.budget){let n=new P({homeZone:e,pointsTotal:t}),s=`gate_${e.toLowerCase()}`;return this.nodes.has(s)&&n.owned.add(s),n}reachability(e){return this._ensureSearch(e),{dist:this._dist,blocked:this._blocked}}};var z=class a{constructor(e){this.graph=e,this.nodes=e.nodes,this.byId=new Map(this.nodes.map(t=>[t.id,t])),this.bounds=this._bounds(),this.zones=e.meta.zones||[],this.zoneStatus=e.meta.zone_status||{},this.chassisByZone=e.meta.chassis_by_zone||{},this.budget=e.meta.point_economy.total_points_at_level_20,this.structuralEdges=e.edges.filter(t=>t.traversable!==!1),this.referenceEdges=e.edges.filter(t=>t.traversable===!1),this.buckets=this._buckets(),this._searchCorpus=this.nodes.map(t=>({id:t.id,haystack:[t.name,t.zone,t.subregion||"",(t.tags||[]).join(" "),(t.feature_type_labels||[]).join(" "),t.type,t.role||""].join(" ").replace(/_/g," ").toLowerCase()}))}_bounds(){let e=1/0,t=1/0,n=-1/0,s=-1/0;for(let o of this.nodes)o.position_x<e&&(e=o.position_x),o.position_y<t&&(t=o.position_y),o.position_x>n&&(n=o.position_x),o.position_y>s&&(s=o.position_y);return{minX:e,minY:t,maxX:n,maxY:s,width:n-e,height:s-t}}_buckets(){let e=new Map;for(let t of this.nodes){let n=a.bucketKey(t.position_x,t.position_y),s=e.get(n);s?s.push(t):e.set(n,[t])}return e}static bucketKey(e,t){return`${Math.floor(e/12)}:${Math.floor(t/12)}`}nodesInRect(e,t,n,s){let o=[],i=Math.floor(e/12),r=Math.floor(t/12),d=Math.floor(n/12),l=Math.floor(s/12);for(let h=i;h<=d;h+=1)for(let u=r;u<=l;u+=1){let _=this.buckets.get(`${h}:${u}`);if(_)for(let p of _)p.position_x>=e&&p.position_x<=n&&p.position_y>=t&&p.position_y<=s&&o.push(p)}return o}nodeAt(e,t,n=2.2){let s=this.nodesInRect(e-n,t-n,e+n,t+n),o=null,i=n*n;for(let r of s){let d=r.position_x-e,l=r.position_y-t,h=d*d+l*l;h<=i&&(i=h,o=r)}return o}search(e,t=60){let n=e.trim().toLowerCase();if(!n)return[];let s=[];for(let o of this._searchCorpus){let i=o.haystack.indexOf(n);i!==-1&&s.push({node:this.byId.get(o.id),score:i})}return s.sort((o,i)=>o.score-i.score||o.node.name.localeCompare(i.node.name)),s.slice(0,t).map(o=>o.node)}classZones(){return this.zones.filter(e=>e!=="core"&&e!=="commons")}zoneCentroid(e){let t=0,n=0,s=0;for(let o of this.nodes)o.zone===e&&(t+=o.position_x,n+=o.position_y,s+=1);return s?{x:t/s,y:n/s,count:s}:null}};function V(a,e,t){let n=e.owned.has(t);n&&e.owned.delete(t);let s=a.nodeCost(t,e);return n&&e.owned.add(t),s}function Q(a,e,t){if(!e.owned.has(t))return{ok:!1,reason:"not owned",refund:0};if(t===$)return{ok:!1,reason:"the hub is where you stand",refund:0};let n=a.node(t);if(n&&n.is_gate&&n.zone===e.homeZone)return{ok:!1,reason:"your starting zone gate is part of your chassis",refund:0};let s=V(a,e,t),o=new Set(e.owned);o.delete(t);let i=e.pointsSpent-s,r=new Set,d=[$];for(o.has($)&&r.add($);d.length;){let l=d.pop();for(let h of a.adjacency.get(l)||[])o.has(h)&&!r.has(h)&&(r.add(h),d.push(h))}for(let l of o)if(!r.has(l))return{ok:!1,reason:`${a.node(l)?.name||l} would be cut off from the hub`,refund:s};for(let l of o){let h=a.node(l);if(!(!h||!h.prereqs)&&!E(h.prereqs,o,i))return{ok:!1,reason:`${h.name} needs it`,refund:s}}return{ok:!0,reason:"",refund:s}}function X(a,e,t){let n=Q(a,e,t);return n.ok&&(e.owned.delete(t),e.pointsSpent-=n.refund,e.touch()),n}function U(a,e){let t=a.chassis(e),n=[...e.owned].map(o=>a.node(o)).filter(Boolean),s=n.filter(o=>o.type!=="connector"&&o.id!==$);return{homeZone:e.homeZone,hitDie:a.hitDie(e),savingThrows:a.savingThrowProficiencies(e),weapons:a.weaponProficiencies(e),pointsSpent:e.pointsSpent,pointsTotal:e.pointsTotal,pointsRemaining:e.pointsRemaining,ownedCount:n.length,notableCount:s.length,chassisNote:t?t.note:""}}var H="dnd2024.tree.builds.v1",N=class{constructor(){this.map=new Map}getItem(e){return this.map.has(e)?this.map.get(e):null}setItem(e,t){this.map.set(e,String(t))}removeItem(e){this.map.delete(e)}},R=class{constructor(e){this.backend=e||new N}list(){try{let e=this.backend.getItem(H);if(!e)return[];let t=JSON.parse(e);return Array.isArray(t)?t:[]}catch{return[]}}save(e,t){let n=this.list().filter(s=>s.name!==e);return n.push({name:e,saved_at:new Date().toISOString(),state:t}),n.sort((s,o)=>s.name.localeCompare(o.name)),this.backend.setItem(H,JSON.stringify(n)),n}load(e){let t=this.list().find(n=>n.name===e);return t?t.state:null}remove(e){let t=this.list().filter(n=>n.name!==e);return this.backend.setItem(H,JSON.stringify(t)),t}clear(){this.backend.removeItem(H)}};var A=class{constructor(){this.x=0,this.y=0,this.scale=6,this.minScale=2.2,this.maxScale=40,this.viewportWidth=1,this.viewportHeight=1}resize(e,t){this.viewportWidth=e,this.viewportHeight=t}fit(e,t=1.08){let n=Math.max(e.width,1)*t,s=Math.max(e.height,1)*t;this.scale=Math.min(this.viewportWidth/n,this.viewportHeight/s),this.minScale=this.scale*.7,this.x=(e.minX+e.maxX)/2,this.y=(e.minY+e.maxY)/2}worldToScreen(e,t){return{x:(e-this.x)*this.scale+this.viewportWidth/2,y:(t-this.y)*this.scale+this.viewportHeight/2}}screenToWorld(e,t){return{x:(e-this.viewportWidth/2)/this.scale+this.x,y:(t-this.viewportHeight/2)/this.scale+this.y}}panBy(e,t){this.x-=e/this.scale,this.y-=t/this.scale}zoomAt(e,t,n){let s=this.screenToWorld(e,t);this.scale=Math.min(this.maxScale,Math.max(this.minScale,this.scale*n));let o=this.screenToWorld(e,t);this.x+=s.x-o.x,this.y+=s.y-o.y}centreOn(e,t,n){this.x=e,this.y=t,n&&(this.scale=Math.min(this.maxScale,Math.max(this.minScale,n)))}visibleRect(e=4){let t=this.viewportWidth/2/this.scale+e,n=this.viewportHeight/2/this.scale+e;return{minX:this.x-t,minY:this.y-n,maxX:this.x+t,maxY:this.y+n}}lod(){return this.scale<4.2?"far":this.scale<9?"mid":"near"}};var he={Barbarian:"#c2453c",Fighter:"#d4703a",Paladin:"#d8a33c",Cleric:"#c9c15a",Druid:"#77b544",Ranger:"#3fa564",Rogue:"#37a08c",Artificer:"#3c93b0",Wizard:"#4478c8",Sorcerer:"#6a5fd0",Warlock:"#9250c8",Bard:"#c04fa8",Monk:"#c9486f",core:"#9aa3b2",commons:"#7e8796"},de="#8d93a0";function k(a){return he[a]||de}function I(a){if(a.is_gate)return"octagon";switch(a.type){case"class_feature":return"circle";case"subclass_feature":return"diamond";case"feat":return"hexagon";case"optional_feature":return"triangle";case"spell_slot":return"square";case"weapon_mastery":return"star";case"connector":default:return"dot"}}function Z(a){if(a.is_gate)return 1.9;switch(a.type){case"connector":return .75;case"class_feature":return 1.6;case"subclass_feature":return 1.45;case"feat":return 1.7;case"optional_feature":return 1.35;case"spell_slot":return 1.5;case"weapon_mastery":return 1.7;default:return 1.3}}var te={owned:{alpha:1,stroke:"#ffffff",strokeWidth:.42,dim:0},affordable:{alpha:.95,stroke:"#f2f5ff",strokeWidth:.22,dim:.15},reachable:{alpha:.6,stroke:"rgba(255,255,255,0.35)",strokeWidth:.14,dim:.45},unreachable:{alpha:.28,stroke:"rgba(255,255,255,0.12)",strokeWidth:0,dim:.72}},x={preview:"#ffd166",previewEdge:"rgba(255, 209, 102, 0.9)",search:"#7ef2c8",hover:"#ffffff",reference:"rgba(255, 107, 107, 0.55)",edge:"rgba(150, 162, 185, 0.30)",edgeOwned:"rgba(255, 255, 255, 0.55)",background:"#0d0f15"},ee=new Map;function D(a,e){let t=`${a}:${e.toFixed(2)}`,n=ee.get(t);if(n)return n;let s=a.replace("#",""),o=parseInt(s.slice(0,2),16),i=parseInt(s.slice(2,4),16),r=parseInt(s.slice(4,6),16),d={r:13,g:15,b:21},l=(u,_)=>Math.round(u+(_-u)*e),h=`rgb(${l(o,d.r)}, ${l(i,d.g)}, ${l(r,d.b)})`;return ee.set(t,h),h}function K(a){return a.is_gate?"Zone gate":{class_feature:"Class feature",subclass_feature:"Subclass feature",feat:"Feat",optional_feature:"Optional feature",spell_slot:"Spell slots",weapon_mastery:"Weapon mastery",connector:"Connector"}[a.type]||a.type}function ne(a){let e=new Map;for(let n of a.nodes){if(n.zone==="core"||n.zone==="commons")continue;let s=e.get(n.zone)||{sin:0,cos:0,maxRadius:0,count:0},o=Math.atan2(n.position_y,n.position_x),i=Math.hypot(n.position_x,n.position_y);s.sin+=Math.sin(o),s.cos+=Math.cos(o),s.maxRadius=Math.max(s.maxRadius,i),s.count+=1,e.set(n.zone,s)}let t=[];for(let[n,s]of e){let o=(a.zoneStatus[n]||{}).extracted_nodes;t.push({zone:n,angle:Math.atan2(s.sin/s.count,s.cos/s.count),radius:s.maxRadius+6,empty:o===0})}return t.sort((n,s)=>n.angle-s.angle),t}function se(a,e,t,n,s){let o=a.map(i=>{let r={x:Math.cos(i.angle)*i.radius,y:Math.sin(i.angle)*i.radius},d=e.worldToScreen(r.x,r.y),l=t(i.zone)/2+6,h=n/2+3,{x:u,y:_}=d;return s&&(u=Math.min(Math.max(u,s.minX+l),s.maxX-l),_=Math.min(Math.max(_,s.minY+h),s.maxY-h)),{zone:i.zone,empty:i.empty,angle:i.angle,radius:i.radius,x:u,y:_,halfWidth:l,halfHeight:h,safeRect:s}});for(let i=0;i<24;i+=1){let r=!1;for(let d=0;d<o.length;d+=1)for(let l=d+1;l<o.length;l+=1){let h=o[d],u=o[l],_=h.halfWidth+u.halfWidth-Math.abs(h.x-u.x),p=h.halfHeight+u.halfHeight-Math.abs(h.y-u.y);if(_<=0||p<=0)continue;r=!0;let g=h.angle<=u.angle?-1:1,w=.012+_/8e3;h.angle+=g*w,u.angle-=g*w,_>h.halfWidth&&(h.radius+=1.2,u.radius-=1.2);for(let m of[h,u]){let y=e.worldToScreen(Math.cos(m.angle)*m.radius,Math.sin(m.angle)*m.radius);m.x=y.x,m.y=y.y,m.safeRect&&(m.x=Math.min(Math.max(m.x,m.safeRect.minX+m.halfWidth),m.safeRect.maxX-m.halfWidth),m.y=Math.min(Math.max(m.y,m.safeRect.minY+m.halfHeight),m.safeRect.maxY-m.halfHeight))}}if(!r)break}return o}var W=class{constructor(e,t,n,s){this.canvas=e,this.ctx=e.getContext("2d",{alpha:!1}),this.index=t,this.engine=n,this.camera=s,this.state=null,this.showReferences=!1,this.hoverId=null,this.previewPath=[],this.searchHits=new Set,this.anchors=ne(t),this._reach={dist:new Map,blocked:new Map},this._reachVersion=-1,this._batches=new Map,this.lastFrameMs=0,this.lastDrawnNodes=0,this._textWidths=new Map}setState(e){this.state=e,this._reachVersion=-1}_reachability(){if(!this.state)return this._reach;let e=`${this.state.homeZone}:${this.state.version}:${this.state.pointsSpent}`;return e!==this._reachVersion&&(this._reach=this.engine.reachability(this.state),this._reachVersion=e),this._reach}nodeState(e){if(!this.state)return"unreachable";if(this.state.owned.has(e.id))return"owned";let{dist:t}=this._reachability();return t.has(e.id)?t.get(e.id)<=this.state.pointsRemaining?"affordable":"reachable":"unreachable"}resize(){let e=Math.min(globalThis.devicePixelRatio||1,2),t=this.canvas.getBoundingClientRect();this.canvas.width=Math.max(1,Math.round(t.width*e)),this.canvas.height=Math.max(1,Math.round(t.height*e)),this.dpr=e,this.camera.resize(this.canvas.width,this.canvas.height)}draw(){let e=performance.now(),t=this.ctx,n=this.camera,s=n.lod();t.fillStyle=x.background,t.fillRect(0,0,this.canvas.width,this.canvas.height),this._reachability();let o=n.visibleRect(6),i=this.index.nodesInRect(o.minX,o.minY,o.maxX,o.maxY),r=new Set(i.map(d=>d.id));s==="far"&&this._drawZoneShapes(t),this._drawEdges(t,r,s),this.showReferences&&this._drawReferenceEdges(t,r),this._drawPreviewPath(t),this._drawNodes(t,i,s),s==="near"&&this._drawNodeLabels(t,i),this._drawZoneLabels(t),this.lastFrameMs=performance.now()-e,this.lastDrawnNodes=i.length}_drawZoneShapes(e){let t=this.camera;for(let n of this.anchors){let s=t.worldToScreen(0,0),o=t.worldToScreen(Math.cos(n.angle)*n.radius,Math.sin(n.angle)*n.radius),i=e.createLinearGradient(s.x,s.y,o.x,o.y),r=k(n.zone);i.addColorStop(0,"rgba(0,0,0,0)"),i.addColorStop(1,D(r,.55)),e.strokeStyle=i,e.lineWidth=Math.max(6,26*t.scale*.02),e.globalAlpha=.32,e.beginPath(),e.moveTo(s.x,s.y),e.lineTo(o.x,o.y),e.stroke()}e.globalAlpha=1}_drawEdges(e,t,n){if(n==="far")return;let s=this.camera,o=this.state?this.state.owned:new Set;e.lineWidth=Math.max(.5,.09*s.scale),e.strokeStyle=x.edge,e.beginPath();for(let i of this.index.structuralEdges){if(!t.has(i.from)&&!t.has(i.to)||o.has(i.from)&&o.has(i.to))continue;let r=this.index.byId.get(i.from),d=this.index.byId.get(i.to),l=s.worldToScreen(r.position_x,r.position_y),h=s.worldToScreen(d.position_x,d.position_y);e.moveTo(l.x,l.y),e.lineTo(h.x,h.y)}e.stroke(),e.strokeStyle=x.edgeOwned,e.lineWidth=Math.max(.8,.13*s.scale),e.beginPath();for(let i of this.index.structuralEdges){if(!o.has(i.from)||!o.has(i.to)||!t.has(i.from)&&!t.has(i.to))continue;let r=this.index.byId.get(i.from),d=this.index.byId.get(i.to),l=s.worldToScreen(r.position_x,r.position_y),h=s.worldToScreen(d.position_x,d.position_y);e.moveTo(l.x,l.y),e.lineTo(h.x,h.y)}e.stroke()}_drawReferenceEdges(e,t){let n=this.camera;e.save(),e.setLineDash([4,4]),e.strokeStyle=x.reference,e.lineWidth=Math.max(.5,.07*n.scale),e.beginPath();for(let s of this.index.referenceEdges){if(!t.has(s.from)&&!t.has(s.to))continue;let o=this.index.byId.get(s.from),i=this.index.byId.get(s.to),r=n.worldToScreen(o.position_x,o.position_y),d=n.worldToScreen(i.position_x,i.position_y);e.moveTo(r.x,r.y),e.lineTo(d.x,d.y)}e.stroke(),e.restore()}_drawPreviewPath(e){if(this.previewPath.length<2)return;let t=this.camera;e.save(),e.strokeStyle=x.previewEdge,e.lineWidth=Math.max(1.5,.22*t.scale),e.lineJoin="round",e.beginPath();for(let n=0;n<this.previewPath.length;n+=1){let s=this.index.byId.get(this.previewPath[n]);if(!s)continue;let o=t.worldToScreen(s.position_x,s.position_y);n===0?e.moveTo(o.x,o.y):e.lineTo(o.x,o.y)}e.stroke(),e.restore()}_drawNodes(e,t,n){let s=this.camera,o=this._batches;o.clear();for(let i of t){if(n==="far"&&!(this.state&&this.state.owned.has(i.id))&&i.type==="connector")continue;let r=this.nodeState(i),d=te[r],l=D(k(i.zone),d.dim),h=o.get(l);h||(h=[],o.set(l,h)),h.push({node:i,state:r,style:d})}for(let[i,r]of o){e.fillStyle=i;for(let d of r){let{node:l,style:h}=d,u=s.worldToScreen(l.position_x,l.position_y),_=Math.max(1.1,Z(l)*s.scale*.36);e.globalAlpha=h.alpha,this._shapePath(e,I(l),u.x,u.y,_,n),e.fill()}}if(e.globalAlpha=1,n!=="far")for(let i of o.values())for(let r of i){let{node:d,style:l}=r;if(!l.strokeWidth)continue;let h=s.worldToScreen(d.position_x,d.position_y),u=Math.max(1.1,Z(d)*s.scale*.36);e.strokeStyle=l.stroke,e.lineWidth=Math.max(.6,l.strokeWidth*s.scale*.3),this._shapePath(e,I(d),h.x,h.y,u,n),e.stroke()}this._drawAccents(e,t)}_drawAccents(e,t){let n=this.camera,s=new Set(this.previewPath);for(let o of t){let i=o.id===this.hoverId,r=this.searchHits.has(o.id),d=s.has(o.id);if(!i&&!r&&!d)continue;let l=n.worldToScreen(o.position_x,o.position_y),h=Math.max(1.1,Z(o)*n.scale*.36);e.beginPath(),e.arc(l.x,l.y,h+3.5,0,Math.PI*2),e.strokeStyle=i?x.hover:d?x.preview:x.search,e.lineWidth=i?2.2:1.6,e.stroke()}}_shapePath(e,t,n,s,o,i){if(e.beginPath(),i==="far"||t==="dot"||o<2.4){e.arc(n,s,o,0,Math.PI*2);return}switch(t){case"circle":e.arc(n,s,o,0,Math.PI*2);break;case"square":e.rect(n-o*.85,s-o*.85,o*1.7,o*1.7);break;case"diamond":e.moveTo(n,s-o),e.lineTo(n+o,s),e.lineTo(n,s+o),e.lineTo(n-o,s),e.closePath();break;case"triangle":e.moveTo(n,s-o),e.lineTo(n+o*.92,s+o*.72),e.lineTo(n-o*.92,s+o*.72),e.closePath();break;case"hexagon":for(let r=0;r<6;r+=1){let d=Math.PI/3*r-Math.PI/6,l=n+Math.cos(d)*o,h=s+Math.sin(d)*o;r===0?e.moveTo(l,h):e.lineTo(l,h)}e.closePath();break;case"octagon":for(let r=0;r<8;r+=1){let d=Math.PI/4*r+Math.PI/8,l=n+Math.cos(d)*o,h=s+Math.sin(d)*o;r===0?e.moveTo(l,h):e.lineTo(l,h)}e.closePath();break;case"star":for(let r=0;r<8;r+=1){let d=Math.PI/4*r-Math.PI/2,l=r%2===0?o:o*.45,h=n+Math.cos(d)*l,u=s+Math.sin(d)*l;r===0?e.moveTo(h,u):e.lineTo(h,u)}e.closePath();break;default:e.arc(n,s,o,0,Math.PI*2)}}_drawNodeLabels(e,t){let n=this.camera;if(n.scale<11)return;let s=Math.round(Math.min(14,Math.max(10,n.scale*.62)));e.save(),e.font=`${s}px system-ui, sans-serif`,e.textAlign="center",e.textBaseline="top",e.shadowColor="rgba(0,0,0,0.95)",e.shadowBlur=5;let o=this.canvas.width/2,i=this.canvas.height/2,r=p=>p.id===this.hoverId?0:this.searchHits.has(p.id)?1:this.state&&this.state.owned.has(p.id)?2:p.is_gate?3:p.type==="connector"?6:4,d=t.filter(p=>p.type!=="connector"||p.is_gate||n.scale>=22).map(p=>{let g=n.worldToScreen(p.position_x,p.position_y);return{node:p,point:g,rank:r(p)*1e6+Math.hypot(g.x-o,g.y-i)}}).sort((p,g)=>p.rank-g.rank).slice(0,140),l=new Map,h=64,u=(p,g,w,m)=>{for(let y=Math.floor(p/h);y<=Math.floor(w/h);y+=1)for(let S=Math.floor(g/h);S<=Math.floor(m/h);S+=1){let T=l.get(`${y}:${S}`);if(T){for(let M of T)if(p<M.x1&&w>M.x0&&g<M.y1&&m>M.y0)return!1}}return!0},_=p=>{for(let g=Math.floor(p.x0/h);g<=Math.floor(p.x1/h);g+=1)for(let w=Math.floor(p.y0/h);w<=Math.floor(p.y1/h);w+=1){let m=`${g}:${w}`,y=l.get(m);y?y.push(p):l.set(m,[p])}};for(let p of d){let{node:g,point:w}=p,m=g.name.length>30?`${g.name.slice(0,28)}\u2026`:g.name,y=`${s}:${m}`,S=this._textWidths.get(y);S===void 0&&(S=e.measureText(m).width,this._textWidths.set(y,S));let T=Math.max(1.1,Z(g)*n.scale*.36),M=w.x-S/2-3,C=w.y+T+2,F=w.x+S/2+3,J=C+s+3;if(!u(M,C,F,J))continue;_({x0:M,y0:C,x1:F,y1:J});let le=this.state&&this.state.owned.has(g.id);e.fillStyle=le?"rgba(255,255,255,0.95)":"rgba(226, 231, 241, 0.82)",e.fillText(m,w.x,C)}e.restore()}_drawZoneLabels(e){let t=this.camera;if(t.scale>13)return;let n=t.scale>10?Math.max(0,(13-t.scale)/3):1;e.save(),e.globalAlpha=n;let s=Math.round(Math.max(13,Math.min(24,t.scale*1.6)));e.font=`600 ${s}px system-ui, sans-serif`;let o=l=>{let h=`z${s}:${l}`,u=this._textWidths.get(h);return u===void 0&&(u=e.measureText(l).width,this._textWidths.set(h,u)),u},i=this.dpr||1,r={minX:300*i,minY:64*i,maxX:this.canvas.width-300*i,maxY:this.canvas.height-40*i},d=se(this.anchors,t,o,s,r);e.textAlign="center",e.textBaseline="middle";for(let l of d)e.shadowColor="rgba(0,0,0,0.95)",e.shadowBlur=8,e.fillStyle=D(k(l.zone),l.empty?.45:.05),e.fillText(l.zone,l.x,l.y),l.empty&&(e.font=`500 ${Math.round(s*.52)}px system-ui, sans-serif`,e.fillStyle="rgba(200, 205, 215, 0.55)",e.fillText("pending 2024 content",l.x,l.y+s*.85),e.font=`600 ${s}px system-ui, sans-serif`);e.restore()}};var fe={};function G(){if(globalThis.__GRAPH_DATA__)return"inline";try{return new URL("../../public/data/graph.v2.json",fe.url).href}catch{return"./data/graph.v2.json"}}async function oe(){if(globalThis.__GRAPH_DATA__)return globalThis.__GRAPH_DATA__;let a=G(),e=await fetch(a);if(!e.ok)throw new Error(`could not load graph.v2.json from ${a} (${e.status})`);return e.json()}var b=a=>document.getElementById(a),f={canvas:b("tree"),tooltip:b("tooltip"),stats:b("graph-stats"),search:b("search"),searchCount:b("search-count"),references:b("toggle-references"),fit:b("btn-fit"),respec:b("btn-respec"),chassis:b("chassis-body"),buildName:b("build-name"),buildList:b("build-list"),buildStatus:b("build-status"),save:b("btn-save"),load:b("btn-load"),del:b("btn-delete"),selection:b("selection-body"),onboarding:b("onboarding"),zoneGrid:b("zone-grid"),zoneDetail:b("zone-detail"),statusLeft:b("status-left"),statusRight:b("status-right"),legend:b("legend-canvas")},c={index:null,engine:null,renderer:null,camera:new A,state:null,store:new R(globalThis.localStorage),hover:null,preview:null,dirty:!0,frameTimes:[]};async function ue(){let a=await oe();c.index=new z(a),c.engine=new L(a),c.renderer=new W(f.canvas,c.index,c.engine,c.camera),f.stats.textContent=`${a.nodes.length} nodes \xB7 ${c.index.structuralEdges.length} edges \xB7 ${c.index.budget} points at level 20`,c.renderer.resize(),c.camera.fit(c.index.bounds),be(),pe(),q(),we(),ae()}function pe(){f.zoneGrid.innerHTML="";for(let a of c.index.classZones()){let e=c.index.chassisByZone[a]||{},t=c.index.zoneStatus[a]||{},n=document.createElement("button");n.className=`zone-card${t.extracted_nodes===0?" empty":""}`,n.style.color=k(a),n.innerHTML=`<strong>${a}</strong><span>d${e.hit_die?e.hit_die.faces:"?"} \xB7 ${(e.saving_throw_proficiencies||[]).join(", ").toUpperCase()}</span>`,n.addEventListener("mouseenter",()=>{f.zoneDetail.textContent=`${a}: d${e.hit_die.faces} hit die, ${(e.saving_throw_proficiencies||[]).join(" and ").toUpperCase()} saves, ${e.weapon_proficiencies.summary}.`}),n.addEventListener("click",()=>me(a)),f.zoneGrid.appendChild(n)}}function me(a){c.state=c.engine.startState(a,c.index.budget),c.renderer.setState(c.state),f.onboarding.hidden=!0,ge(a),O(),v()}function ge(a){let e=c.index.byId.get(`gate_${a.toLowerCase()}`);if(!e)return;let t=Math.atan2(e.position_y,e.position_x);c.camera.centreOn(Math.cos(t)*24,Math.sin(t)*24,9)}function O(){if(!c.state)return;let a=U(c.engine,c.state),e=a.weapons.summary||"\u2014";f.chassis.innerHTML=`
-    <div class="points">${a.pointsRemaining}<span class="muted" style="font-size:14px"> / ${a.pointsTotal} points left</span></div>
-    <div class="stat"><span>Starting zone</span><b style="color:${k(a.homeZone)}">${a.homeZone}</b></div>
-    <div class="stat"><span>Hit die</span><b>d${a.hitDie.faces}</b></div>
-    <div class="stat"><span>Saving throws</span><b>${a.savingThrows.join(", ").toUpperCase()}</b></div>
+<script>(()=>{var O={logic:"AND",nodes:[],threshold_count:null,groups:[]};function P(i,e,n){if(!i)return!0;if(i.threshold_count!==null&&i.threshold_count!==void 0&&n<i.threshold_count)return!1;let t=i.groups;if(t&&t.length){for(let o of t){let r=o.nodes||[];if(r.length){if(o.logic==="OR"){if(!r.some(c=>e.has(c)))return!1}else if(!r.every(c=>e.has(c)))return!1}}return!0}let s=i.nodes||[];return s.length?i.logic==="OR"?s.some(o=>e.has(o)):s.every(o=>e.has(o)):!0}function K(i,e,n){let t=i.prereqs||O;if(P(t,e,n))return[];let s=[],o=t.threshold_count;o!=null&&n<o&&s.push(`needs ${o} points spent (has ${n})`);let r=t.groups;(!r||!r.length)&&(r=(t.nodes||[]).length?[{logic:t.logic||"AND",nodes:t.nodes}]:[]);for(let c of r){let f=c.nodes||[];if(f.length)if(c.logic==="OR")f.some(u=>e.has(u))||s.push("needs one of: "+f.join(", "));else{let u=f.filter(d=>!e.has(d));u.length&&s.push("needs: "+u.join(", "))}}return s}var k="conn_core_hub",G=class i{constructor(){this.items=[]}get size(){return this.items.length}static before(e,n){return e.cost!==n.cost?e.cost<n.cost:e.id<n.id}push(e,n){let t=this.items;t.push({cost:e,id:n});let s=t.length-1;for(;s>0;){let o=s-1>>1;if(i.before(t[s],t[o]))[t[s],t[o]]=[t[o],t[s]],s=o;else break}}pop(){let e=this.items,n=e[0],t=e.pop();if(e.length){e[0]=t;let s=0;for(;;){let o=s*2+1,r=o+1,c=s;if(o<e.length&&i.before(e[o],e[c])&&(c=o),r<e.length&&i.before(e[r],e[c])&&(c=r),c===s)break;[e[s],e[c]]=[e[c],e[s]],s=c}}return n}},L=class i{constructor({homeZone:e,pointsTotal:n,owned:t=[k],pointsSpent:s=0}){this.homeZone=e,this.pointsTotal=n,this.owned=new Set(t),this.pointsSpent=s,this.version=0}get pointsRemaining(){return this.pointsTotal-this.pointsSpent}touch(){this.version+=1}clone(){return new i({homeZone:this.homeZone,pointsTotal:this.pointsTotal,owned:this.owned,pointsSpent:this.pointsSpent})}toJSON(){return{homeZone:this.homeZone,pointsTotal:this.pointsTotal,owned:[...this.owned].sort(),pointsSpent:this.pointsSpent}}static fromJSON(e){return new i({homeZone:e.homeZone,pointsTotal:e.pointsTotal,owned:e.owned,pointsSpent:e.pointsSpent})}},z=class{constructor(e){this.graph=e,this.nodes=new Map;for(let n of e.nodes)this.nodes.set(n.id,n);this.adjacency=new Map;for(let n of e.nodes)this.adjacency.set(n.id,[]);for(let n of e.edges){if(n.traversable===!1)continue;let t=this.adjacency.get(n.from),s=this.adjacency.get(n.to);t&&s&&(t.includes(n.to)||t.push(n.to),s.includes(n.from)||s.push(n.from))}this.chassisByZone=e.meta&&e.meta.chassis_by_zone||{},this.budget=e.meta&&e.meta.point_economy&&e.meta.point_economy.total_points_at_level_20||0,this._cacheKey=null,this._dist=new Map,this._prev=new Map,this._blocked=new Map}node(e){return this.nodes.get(e)}nodeCost(e,n){if(n.owned.has(e))return 0;let t=this.nodes.get(e);return!t||t.type==="connector"&&t.is_spine&&t.zone===n.homeZone||t.is_gate&&t.zone===n.homeZone?0:t.point_cost||0}chassis(e){return this.chassisByZone[e.homeZone]||null}hitDie(e){let n=this.chassisByZone[e.homeZone];return n?n.hit_die:null}savingThrowProficiencies(e){let n=this.chassisByZone[e.homeZone];return n?[...n.saving_throw_proficiencies||[]]:[]}weaponProficiencies(e){let n=this.chassisByZone[e.homeZone];return n?{...n.weapon_proficiencies||{}}:{}}_fingerprint(e){return`${e.homeZone}|${e.pointsSpent}|${e.owned.size}|${e.version}`}_pathTo(e){let n=[],t=e;for(;t!=null;)n.push(t),t=this._prev.get(t)??null;return n.reverse()}_ensureSearch(e){let n=this._fingerprint(e);if(n===this._cacheKey)return;let t=new Map,s=new Map,o=new Map,r=new G,c=[...e.owned].filter(f=>this.nodes.has(f));c.length||(c=[k]);for(let f of c)t.set(f,0),s.set(f,null),r.push(0,f);for(;r.size;){let{cost:f,id:u}=r.pop(),d=t.has(u)?t.get(u):1/0;if(!(f>d))for(let l of this.adjacency.get(u)||[]){let b=this.nodeCost(l,e),p=f+b,_=t.has(l)?t.get(l):1/0;if(!(p>=_)){if(!e.owned.has(l)){let y=new Set,m=u;for(;m!=null;)y.add(m),m=s.get(m)??null;let w=new Set(e.owned);for(let E of y)w.add(E);let v=e.pointsSpent+p,$=this.nodes.get(l),x=$&&$.prereqs||O;if(!P(x,w,v)){o.has(l)||o.set(l,K($,w,v));continue}o.delete(l)}t.set(l,p),s.set(l,u),r.push(p,l)}}}this._cacheKey=n,this._dist=t,this._prev=s,this._blocked=o}canAfford(e,n){if(!this.nodes.has(n))return{affordable:!1,path:[],total_cost:null,reason:"unknown_node",blocking_prereqs:[]};if(e.owned.has(n))return{affordable:!0,path:[n],total_cost:0,reason:"already_owned",blocking_prereqs:[],new_nodes:[]};if(this._ensureSearch(e),!this._dist.has(n)){let c=this._blocked.get(n)||[];return{affordable:!1,path:[],total_cost:null,reason:c.length?"unmet_prerequisites":"unreachable",blocking_prereqs:c}}let t=this._dist.get(n),s=this._pathTo(n),o=e.pointsTotal-e.pointsSpent,r=s.filter(c=>!e.owned.has(c));return{affordable:t<=o,path:s,total_cost:t,reason:t<=o?"ok":"insufficient_points",blocking_prereqs:[],new_nodes:r,points_remaining_after:o-t}}allocate(e,n){let t=this.canAfford(e,n);if(!t.affordable)return t;for(let s of t.path)e.owned.has(s)||(e.pointsSpent+=this.nodeCost(s,e),e.owned.add(s));return e.touch(),t}startState(e,n=this.budget){let t=new L({homeZone:e,pointsTotal:n}),s=`gate_${e.toLowerCase()}`;return this.nodes.has(s)&&t.owned.add(s),t}reachability(e){return this._ensureSearch(e),{dist:this._dist,blocked:this._blocked}}};var A=class i{constructor(e){this.graph=e,this.nodes=e.nodes,this.byId=new Map(this.nodes.map(n=>[n.id,n])),this.bounds=this._bounds(),this.zones=e.meta.zones||[],this.zoneStatus=e.meta.zone_status||{},this.chassisByZone=e.meta.chassis_by_zone||{},this.budget=e.meta.point_economy.total_points_at_level_20,this.structuralEdges=e.edges.filter(n=>n.traversable!==!1),this.referenceEdges=e.edges.filter(n=>n.traversable===!1),this.structuralEdgeGeometry=this._edgeGeometry(this.structuralEdges),this.referenceEdgeGeometry=this._edgeGeometry(this.referenceEdges),this.buckets=this._buckets(),this._searchCorpus=this.nodes.map(n=>({id:n.id,haystack:[n.name,n.zone,n.subregion||"",(n.tags||[]).join(" "),(n.feature_type_labels||[]).join(" "),n.type,n.role||""].join(" ").replace(/_/g," ").toLowerCase()}))}_edgeGeometry(e){return e.map(n=>{let t=this.byId.get(n.from),s=this.byId.get(n.to);return{from:n.from,to:n.to,ax:t?t.position_x:0,ay:t?t.position_y:0,bx:s?s.position_x:0,by:s?s.position_y:0}})}_bounds(){let e=1/0,n=1/0,t=-1/0,s=-1/0;for(let o of this.nodes)o.position_x<e&&(e=o.position_x),o.position_y<n&&(n=o.position_y),o.position_x>t&&(t=o.position_x),o.position_y>s&&(s=o.position_y);return{minX:e,minY:n,maxX:t,maxY:s,width:t-e,height:s-n}}_buckets(){let e=new Map;for(let n of this.nodes){let t=i.bucketKey(n.position_x,n.position_y),s=e.get(t);s?s.push(n):e.set(t,[n])}return e}static bucketKey(e,n){return`${Math.floor(e/12)}:${Math.floor(n/12)}`}nodesInRect(e,n,t,s){let o=[],r=Math.floor(e/12),c=Math.floor(n/12),f=Math.floor(t/12),u=Math.floor(s/12);for(let d=r;d<=f;d+=1)for(let l=c;l<=u;l+=1){let b=this.buckets.get(`${d}:${l}`);if(b)for(let p of b)p.position_x>=e&&p.position_x<=t&&p.position_y>=n&&p.position_y<=s&&o.push(p)}return o}nodeAt(e,n,t=2.2,{preferNotable:s=!1}={}){let o=this.nodesInRect(e-t,n-t,e+t,n+t),r=null,c=t*t;for(let f of o){let u=f.position_x-e,d=f.position_y-n,l=u*u+d*d;if(l>t*t)continue;let b=f.type==="connector"&&!f.is_gate,p=s&&b?l*2.4:l;p<=c&&(c=p,r=f)}return r}search(e,n=60){let t=e.trim().toLowerCase();if(!t)return[];let s=[];for(let o of this._searchCorpus){let r=o.haystack.indexOf(t);r!==-1&&s.push({node:this.byId.get(o.id),score:r})}return s.sort((o,r)=>o.score-r.score||o.node.name.localeCompare(r.node.name)),s.slice(0,n).map(o=>o.node)}classZones(){return this.zones.filter(e=>e!=="core"&&e!=="commons")}zoneCentroid(e){let n=0,t=0,s=0;for(let o of this.nodes)o.zone===e&&(n+=o.position_x,t+=o.position_y,s+=1);return s?{x:n/s,y:t/s,count:s}:null}};function oe(i,e,n){let t=e.owned.has(n);t&&e.owned.delete(n);let s=i.nodeCost(n,e);return t&&e.owned.add(n),s}function D(i,e,n){if(!e.owned.has(n))return{ok:!1,reason:"not owned",refund:0};if(n===k)return{ok:!1,reason:"the hub is where you stand",refund:0};let t=i.node(n);if(t&&t.is_gate&&t.zone===e.homeZone)return{ok:!1,reason:"your starting zone gate is part of your chassis",refund:0};let s=oe(i,e,n),o=new Set(e.owned);o.delete(n);let r=e.pointsSpent-s,c=new Set,f=[k];for(o.has(k)&&c.add(k);f.length;){let u=f.pop();for(let d of i.adjacency.get(u)||[])o.has(d)&&!c.has(d)&&(c.add(d),f.push(d))}for(let u of o)if(!c.has(u))return{ok:!1,reason:`${i.node(u)?.name||u} would be cut off from the hub`,refund:s};for(let u of o){let d=i.node(u);if(!(!d||!d.prereqs)&&!P(d.prereqs,o,r))return{ok:!1,reason:`${d.name} needs it`,refund:s}}return{ok:!0,reason:"",refund:s}}function U(i,e,n){let t=D(i,e,n);return t.ok&&(e.owned.delete(n),e.pointsSpent-=t.refund,e.touch()),t}function F(i,e){let n=i.chassis(e),t=[...e.owned].map(o=>i.node(o)).filter(Boolean),s=t.filter(o=>o.type!=="connector"&&o.id!==k);return{homeZone:e.homeZone,hitDie:i.hitDie(e),savingThrows:i.savingThrowProficiencies(e),weapons:i.weaponProficiencies(e),pointsSpent:e.pointsSpent,pointsTotal:e.pointsTotal,pointsRemaining:e.pointsRemaining,ownedCount:t.length,notableCount:s.length,chassisNote:n?n.note:""}}var H="dnd2024.tree.builds.v1",N=class{constructor(){this.map=new Map}getItem(e){return this.map.has(e)?this.map.get(e):null}setItem(e,n){this.map.set(e,String(n))}removeItem(e){this.map.delete(e)}},R=class{constructor(e){this.backend=e||new N}list(){try{let e=this.backend.getItem(H);if(!e)return[];let n=JSON.parse(e);return Array.isArray(n)?n:[]}catch{return[]}}save(e,n){let t=this.list().filter(s=>s.name!==e);return t.push({name:e,saved_at:new Date().toISOString(),state:n}),t.sort((s,o)=>s.name.localeCompare(o.name)),this.backend.setItem(H,JSON.stringify(t)),t}load(e){let n=this.list().find(t=>t.name===e);return n?n.state:null}remove(e){let n=this.list().filter(t=>t.name!==e);return this.backend.setItem(H,JSON.stringify(n)),n}clear(){this.backend.removeItem(H)}};var I=class{constructor(){this.x=0,this.y=0,this.scale=6,this.minScale=2.2,this.maxScale=40,this.viewportWidth=1,this.viewportHeight=1}resize(e,n){this.viewportWidth=e,this.viewportHeight=n}fit(e,n=1.08){let t=Math.max(e.width,1)*n,s=Math.max(e.height,1)*n;this.scale=Math.min(this.viewportWidth/t,this.viewportHeight/s),this.minScale=this.scale*.7,this.x=(e.minX+e.maxX)/2,this.y=(e.minY+e.maxY)/2}worldToScreen(e,n){return{x:(e-this.x)*this.scale+this.viewportWidth/2,y:(n-this.y)*this.scale+this.viewportHeight/2}}screenToWorld(e,n){return{x:(e-this.viewportWidth/2)/this.scale+this.x,y:(n-this.viewportHeight/2)/this.scale+this.y}}panBy(e,n){this.x-=e/this.scale,this.y-=n/this.scale}zoomAt(e,n,t){let s=this.screenToWorld(e,n);this.scale=Math.min(this.maxScale,Math.max(this.minScale,this.scale*t));let o=this.screenToWorld(e,n);this.x+=s.x-o.x,this.y+=s.y-o.y}centreOn(e,n,t){this.x=e,this.y=n,t&&(this.scale=Math.min(this.maxScale,Math.max(this.minScale,t)))}visibleRect(e=4){let n=this.viewportWidth/2/this.scale+e,t=this.viewportHeight/2/this.scale+e;return{minX:this.x-n,minY:this.y-t,maxX:this.x+n,maxY:this.y+t}}lod(){return this.scale<4.2?"far":this.scale<9?"mid":"near"}};var pe={Barbarian:"#c2453c",Fighter:"#d4703a",Paladin:"#d8a33c",Cleric:"#c9c15a",Druid:"#77b544",Ranger:"#3fa564",Rogue:"#37a08c",Artificer:"#3c93b0",Wizard:"#4478c8",Sorcerer:"#6a5fd0",Warlock:"#9250c8",Bard:"#c04fa8",Monk:"#c9486f",core:"#9aa3b2",commons:"#7e8796"},me="#8d93a0";function C(i){return pe[i]||me}function Y(i){if(i.is_gate)return"octagon";switch(i.type){case"class_feature":return"circle";case"subclass_feature":return"diamond";case"feat":return"hexagon";case"optional_feature":return"triangle";case"spell_slot":return"square";case"weapon_mastery":return"star";case"connector":default:return"dot"}}function ae(i){if(i.is_gate)return 1.9;switch(i.type){case"connector":return .75;case"class_feature":return 1.6;case"subclass_feature":return 1.45;case"feat":return 1.7;case"optional_feature":return 1.35;case"spell_slot":return 1.5;case"weapon_mastery":return 1.7;default:return 1.3}}var re={owned:{alpha:1,stroke:"#ffffff",strokeWidth:.42,dim:0},affordable:{alpha:.95,stroke:"#f2f5ff",strokeWidth:.22,dim:.15},reachable:{alpha:.6,stroke:"rgba(255,255,255,0.35)",strokeWidth:.14,dim:.45},unreachable:{alpha:.28,stroke:"rgba(255,255,255,0.12)",strokeWidth:0,dim:.72}},M={preview:"#ffd166",previewEdge:"rgba(255, 209, 102, 0.9)",search:"#7ef2c8",hover:"#ffffff",reference:"rgba(255, 107, 107, 0.55)",edge:"rgba(150, 162, 185, 0.30)",edgeOwned:"rgba(255, 255, 255, 0.55)",background:"#0d0f15"},ie=new Map;function X(i,e){let n=`${i}:${e.toFixed(2)}`,t=ie.get(n);if(t)return t;let s=i.replace("#",""),o=parseInt(s.slice(0,2),16),r=parseInt(s.slice(2,4),16),c=parseInt(s.slice(4,6),16),f={r:13,g:15,b:21},u=(l,b)=>Math.round(l+(b-l)*e),d=`rgb(${u(o,f.r)}, ${u(r,f.g)}, ${u(c,f.b)})`;return ie.set(n,d),d}function q(i){return i.is_gate?"Zone gate":{class_feature:"Class feature",subclass_feature:"Subclass feature",feat:"Feat",optional_feature:"Optional feature",spell_slot:"Spell slots",weapon_mastery:"Weapon mastery",connector:"Connector"}[i.type]||i.type}function ce(i){let e=new Map;for(let t of i.nodes){if(t.zone==="core"||t.zone==="commons")continue;let s=e.get(t.zone)||{sin:0,cos:0,maxRadius:0,count:0},o=Math.atan2(t.position_y,t.position_x),r=Math.hypot(t.position_x,t.position_y);s.sin+=Math.sin(o),s.cos+=Math.cos(o),s.maxRadius=Math.max(s.maxRadius,r),s.count+=1,e.set(t.zone,s)}let n=[];for(let[t,s]of e){let o=(i.zoneStatus[t]||{}).extracted_nodes;n.push({zone:t,angle:Math.atan2(s.sin/s.count,s.cos/s.count),radius:s.maxRadius+6,empty:o===0})}return n.sort((t,s)=>t.angle-s.angle),n}function le(i,e,n,t,s){let o=i.map(r=>{let c={x:Math.cos(r.angle)*r.radius,y:Math.sin(r.angle)*r.radius},f=e.worldToScreen(c.x,c.y),u=n(r.zone)/2+6,d=t/2+3,{x:l,y:b}=f;return s&&(l=Math.min(Math.max(l,s.minX+u),s.maxX-u),b=Math.min(Math.max(b,s.minY+d),s.maxY-d)),{zone:r.zone,empty:r.empty,angle:r.angle,radius:r.radius,x:l,y:b,halfWidth:u,halfHeight:d,safeRect:s}});for(let r=0;r<24;r+=1){let c=!1;for(let f=0;f<o.length;f+=1)for(let u=f+1;u<o.length;u+=1){let d=o[f],l=o[u],b=d.halfWidth+l.halfWidth-Math.abs(d.x-l.x),p=d.halfHeight+l.halfHeight-Math.abs(d.y-l.y);if(b<=0||p<=0)continue;c=!0;let _=d.angle<=l.angle?-1:1,y=.012+b/8e3;d.angle+=_*y,l.angle-=_*y,b>d.halfWidth&&(d.radius+=1.2,l.radius-=1.2);for(let m of[d,l]){let w=e.worldToScreen(Math.cos(m.angle)*m.radius,Math.sin(m.angle)*m.radius);m.x=w.x,m.y=w.y,m.safeRect&&(m.x=Math.min(Math.max(m.x,m.safeRect.minX+m.halfWidth),m.safeRect.maxX-m.halfWidth),m.y=Math.min(Math.max(m.y,m.safeRect.minY+m.halfHeight),m.safeRect.maxY-m.halfHeight))}}if(!c)break}return o}var W=class{constructor(e,n,t,s){this.canvas=e,this.ctx=e.getContext("2d",{alpha:!1}),this.index=n,this.engine=t,this.camera=s,this.state=null,this.showReferences=!1,this.hoverId=null,this.selectedId=null,this.minFontPx=12,this.previewPath=[],this.searchHits=new Set,this.anchors=ce(n),this._reach={dist:new Map,blocked:new Map},this._reachVersion=-1,this._batches=new Map,this.lastFrameMs=0,this.lastDrawnNodes=0,this._textWidths=new Map,this._stateCache=new Map,this._worldCacheKey=null,this._worldCache=null}setState(e){this.state=e,this._reachVersion=-1,this._worldCacheKey=null}_reachability(){if(!this.state)return this._reach;let e=`${this.state.homeZone}:${this.state.version}:${this.state.pointsSpent}`;return e!==this._reachVersion&&(this._reach=this.engine.reachability(this.state),this._reachVersion=e,this._stateCache.clear()),this._reach}nodeState(e){if(!this.state)return"unreachable";let n=this._stateCache.get(e.id);if(n!==void 0)return n;let t;if(this.state.owned.has(e.id))t="owned";else{let{dist:s}=this._reachability();s.has(e.id)?t=s.get(e.id)<=this.state.pointsRemaining?"affordable":"reachable":t="unreachable"}return this._stateCache.set(e.id,t),t}resize(){let e=this.canvas.getBoundingClientRect(),n=(e.width||1)<=760||(e.height||1)<=560,t=Math.min(globalThis.devicePixelRatio||1,n?1.5:2);this.canvas.width=Math.max(1,Math.round(e.width*t)),this.canvas.height=Math.max(1,Math.round(e.height*t)),this.dpr=t,this.camera.resize(this.canvas.width,this.canvas.height),this.isCompact=n,this._worldCacheKey=null,this.minFontPx=Math.round((this.isCompact?13:11)*t),this._textWidths.clear()}draw(){let e=performance.now(),n=this.ctx,t=this.camera,s=t.lod();n.fillStyle=M.background,n.fillRect(0,0,this.canvas.width,this.canvas.height),this._reachability();let o=this._worldPaths(s);if(s==="far"&&this._drawZoneShapes(n),this._drawEdges(n,o,s),this.showReferences&&this._drawReferenceEdges(n,o),this._drawPreviewPath(n),this._drawNodes(n,o),this._drawAccents(n),s==="near"){let r=t.visibleRect(6);this._drawNodeLabels(n,this.index.nodesInRect(r.minX,r.minY,r.maxX,r.maxY))}this._drawZoneLabels(n),this.lastFrameMs=performance.now()-e,this.lastDrawnNodes=o.count}radiusWorld(e,n){let t=ae(e)*.36;return n==="far"?t*2.4:n==="mid"?t*(this.isCompact?1.7:1.25):t}radiusOf(e,n=this.camera.lod()){return this.radiusWorld(e,n)*this.camera.scale}_drawZoneShapes(e){let n=this.camera;for(let t of this.anchors){let s=n.worldToScreen(0,0),o=n.worldToScreen(Math.cos(t.angle)*t.radius,Math.sin(t.angle)*t.radius),r=e.createLinearGradient(s.x,s.y,o.x,o.y),c=C(t.zone);r.addColorStop(0,"rgba(0,0,0,0)"),r.addColorStop(1,X(c,.55)),e.strokeStyle=r,e.lineWidth=Math.max(6,26*n.scale*.02),e.globalAlpha=.32,e.beginPath(),e.moveTo(s.x,s.y),e.lineTo(o.x,o.y),e.stroke()}e.globalAlpha=1}_worldPaths(e){let n=this._reachVersion,t=`${e}|${n}|${this.isCompact}|${this.showReferences}`;if(this._worldCacheKey===t)return this._worldCache;let s=this.state?this.state.owned:null,o=new Path2D,r=new Path2D,c=!1;if(e!=="far")for(let l of this.index.structuralEdgeGeometry){let b=s!==null&&s.has(l.from)&&s.has(l.to),p=b?r:o;b&&(c=!0),p.moveTo(l.ax,l.ay),p.lineTo(l.bx,l.by)}let f=null;if(this.showReferences){f=new Path2D;for(let l of this.index.referenceEdgeGeometry)f.moveTo(l.ax,l.ay),f.lineTo(l.bx,l.by)}let u=new Map,d=0;for(let l of this.index.nodes){if(e==="far"&&l.type==="connector"&&(!s||!s.has(l.id)))continue;let b=this.nodeState(l),p=re[b],_=X(C(l.zone),p.dim),y=`${_}|${b}`,m=u.get(y);m||(m={colour:_,style:p,fill:new Path2D,stroke:null},u.set(y,m)),d+=1;let w=this.radiusWorld(l,e),v=Y(l);this._addShape(m.fill,v,l.position_x,l.position_y,w,e),p.strokeWidth&&(e==="near"||b==="owned")&&(m.stroke||(m.stroke=new Path2D),this._addShape(m.stroke,v,l.position_x,l.position_y,w,e))}return this._worldCacheKey=t,this._worldCache={plain:o,bright:r,hasBright:c,references:f,batches:u,count:d},this._worldCache}_withWorldTransform(e,n){let t=this.camera,s=t.scale;e.save(),e.setTransform(s,0,0,s,t.viewportWidth/2-t.x*s,t.viewportHeight/2-t.y*s),n(s),e.restore()}_drawEdges(e,n,t){t!=="far"&&this._withWorldTransform(e,s=>{e.strokeStyle=M.edge,e.lineWidth=Math.max(.5,.09*s)/s,e.stroke(n.plain),n.hasBright&&(e.strokeStyle=M.edgeOwned,e.lineWidth=Math.max(.8,.13*s)/s,e.stroke(n.bright))})}_drawReferenceEdges(e,n){n.references&&this._withWorldTransform(e,t=>{e.setLineDash([4/t,4/t]),e.strokeStyle=M.reference,e.lineWidth=Math.max(.5,.07*t)/t,e.stroke(n.references)})}_drawPreviewPath(e){if(this.previewPath.length<2)return;let n=this.camera;e.save(),e.strokeStyle=M.previewEdge,e.lineWidth=Math.max(1.5,.22*n.scale),e.lineJoin="round",e.beginPath();for(let t=0;t<this.previewPath.length;t+=1){let s=this.index.byId.get(this.previewPath[t]);if(!s)continue;let o=n.worldToScreen(s.position_x,s.position_y);t===0?e.moveTo(o.x,o.y):e.lineTo(o.x,o.y)}e.stroke(),e.restore()}_drawNodes(e,n){this._withWorldTransform(e,t=>{for(let s of n.batches.values())e.globalAlpha=s.style.alpha,e.fillStyle=s.colour,e.fill(s.fill);e.globalAlpha=1;for(let s of n.batches.values())s.stroke&&(e.strokeStyle=s.style.stroke,e.lineWidth=Math.max(.6,s.style.strokeWidth*t*.3)/t,e.stroke(s.stroke))})}_drawAccents(e){let n=this.camera,t=n.scale,s=n.viewportWidth/2-n.x*t,o=n.viewportHeight/2-n.y*t,r=new Map;for(let c of this.searchHits)r.set(c,"search");for(let c of this.previewPath)r.set(c,"preview");if(this.hoverId&&r.set(this.hoverId,"hover"),this.selectedId&&r.set(this.selectedId,"selected"),!!r.size)for(let[c,f]of r){let u=this.index.byId.get(c);if(!u)continue;let d=u.position_x*t+s,l=u.position_y*t+o;if(d<-40||l<-40||d>this.canvas.width+40||l>this.canvas.height+40)continue;let b=this.radiusOf(u);if(f==="selected"){e.beginPath(),e.arc(d,l,b+9,0,Math.PI*2),e.strokeStyle="rgba(255, 255, 255, 0.28)",e.lineWidth=2,e.stroke(),e.beginPath(),e.arc(d,l,b+5,0,Math.PI*2),e.strokeStyle=M.hover,e.lineWidth=3,e.stroke();continue}e.beginPath(),e.arc(d,l,b+3.5,0,Math.PI*2),e.strokeStyle=f==="hover"?M.hover:f==="preview"?M.preview:M.search,e.lineWidth=f==="hover"?2.2:1.6,e.stroke()}}_shapePath(e,n,t,s,o,r){e.beginPath(),this._addShape(e,n,t,s,o,r)}_addShape(e,n,t,s,o,r){if(r==="far"||n==="dot"){e.moveTo(t+o,s),e.arc(t,s,o,0,Math.PI*2);return}switch(n){case"circle":e.moveTo(t+o,s),e.arc(t,s,o,0,Math.PI*2);break;case"square":e.rect(t-o*.85,s-o*.85,o*1.7,o*1.7);break;case"diamond":e.moveTo(t,s-o),e.lineTo(t+o,s),e.lineTo(t,s+o),e.lineTo(t-o,s),e.closePath();break;case"triangle":e.moveTo(t,s-o),e.lineTo(t+o*.92,s+o*.72),e.lineTo(t-o*.92,s+o*.72),e.closePath();break;case"hexagon":for(let c=0;c<6;c+=1){let f=Math.PI/3*c-Math.PI/6,u=t+Math.cos(f)*o,d=s+Math.sin(f)*o;c===0?e.moveTo(u,d):e.lineTo(u,d)}e.closePath();break;case"octagon":for(let c=0;c<8;c+=1){let f=Math.PI/4*c+Math.PI/8,u=t+Math.cos(f)*o,d=s+Math.sin(f)*o;c===0?e.moveTo(u,d):e.lineTo(u,d)}e.closePath();break;case"star":for(let c=0;c<8;c+=1){let f=Math.PI/4*c-Math.PI/2,u=c%2===0?o:o*.45,d=t+Math.cos(f)*u,l=s+Math.sin(f)*u;c===0?e.moveTo(d,l):e.lineTo(d,l)}e.closePath();break;default:e.moveTo(t+o,s),e.arc(t,s,o,0,Math.PI*2)}}_drawNodeLabels(e,n){let t=this.camera;if(t.scale<11)return;let s=Math.round(Math.min(16,Math.max(this.minFontPx,t.scale*.62)));e.save(),e.font=`${s}px system-ui, sans-serif`,e.textAlign="center",e.textBaseline="top",e.shadowColor="rgba(0,0,0,0.95)",e.shadowBlur=5;let o=this.canvas.width/2,r=this.canvas.height/2,c=p=>p.id===this.hoverId?0:this.searchHits.has(p.id)?1:this.state&&this.state.owned.has(p.id)?2:p.is_gate?3:p.type==="connector"?6:4,f=n.filter(p=>p.type!=="connector"||p.is_gate||t.scale>=22).map(p=>{let _=t.worldToScreen(p.position_x,p.position_y);return{node:p,point:_,rank:c(p)*1e6+Math.hypot(_.x-o,_.y-r)}}).sort((p,_)=>p.rank-_.rank).slice(0,140),u=new Map,d=64,l=(p,_,y,m)=>{for(let w=Math.floor(p/d);w<=Math.floor(y/d);w+=1)for(let v=Math.floor(_/d);v<=Math.floor(m/d);v+=1){let $=u.get(`${w}:${v}`);if($){for(let x of $)if(p<x.x1&&y>x.x0&&_<x.y1&&m>x.y0)return!1}}return!0},b=p=>{for(let _=Math.floor(p.x0/d);_<=Math.floor(p.x1/d);_+=1)for(let y=Math.floor(p.y0/d);y<=Math.floor(p.y1/d);y+=1){let m=`${_}:${y}`,w=u.get(m);w?w.push(p):u.set(m,[p])}};for(let p of f){let{node:_,point:y}=p,m=_.name.length>30?`${_.name.slice(0,28)}\u2026`:_.name,w=`${s}:${m}`,v=this._textWidths.get(w);v===void 0&&(v=e.measureText(m).width,this._textWidths.set(w,v));let $=this.radiusOf(_),x=y.x-v/2-3,E=y.y+$+2,ne=y.x+v/2+3,se=E+s+3;if(!l(x,E,ne,se))continue;b({x0:x,y0:E,x1:ne,y1:se});let ue=this.state&&this.state.owned.has(_.id);e.fillStyle=ue?"rgba(255,255,255,0.95)":"rgba(226, 231, 241, 0.82)",e.fillText(m,y.x,E)}e.restore()}_drawZoneLabels(e){let n=this.camera;if(n.scale>13)return;let t=n.scale>10?Math.max(0,(13-n.scale)/3):1;e.save(),e.globalAlpha=t;let s=Math.round(Math.max(this.minFontPx+2,Math.min(24,n.scale*1.6)));e.font=`600 ${s}px system-ui, sans-serif`;let o=l=>{let b=`z${s}:${l}`,p=this._textWidths.get(b);return p===void 0&&(p=e.measureText(l).width,this._textWidths.set(b,p)),p},r=this.dpr||1,c=(this.isCompact?10:300)*r,f=(this.isCompact?58:40)*r,u={minX:Math.min(c,this.canvas.width*.35),minY:64*r,maxX:Math.max(this.canvas.width-c,this.canvas.width*.65),maxY:this.canvas.height-f},d=le(this.anchors,n,o,s,u);e.textAlign="center",e.textBaseline="middle";for(let l of d)e.shadowColor="rgba(0,0,0,0.95)",e.shadowBlur=8,e.fillStyle=X(C(l.zone),l.empty?.45:.05),e.fillText(l.zone,l.x,l.y),l.empty&&(e.font=`500 ${Math.round(s*.52)}px system-ui, sans-serif`,e.fillStyle="rgba(200, 205, 215, 0.55)",e.fillText("pending 2024 content",l.x,l.y+s*.85),e.font=`600 ${s}px system-ui, sans-serif`);e.restore()}};var j=class{constructor(e,n,t){this.canvas=e,this.camera=n,this.handlers=t,this.pointers=new Map,this.pinch=null,this.attach()}toDevice(e,n){let t=this.canvas.getBoundingClientRect(),s=this.handlers.getDpr();return{x:(e-t.left)*s,y:(n-t.top)*s}}attach(){let e=this.canvas;e.addEventListener("pointerdown",t=>{e.setPointerCapture(t.pointerId),this.pointers.set(t.pointerId,{x:t.clientX,y:t.clientY,startX:t.clientX,startY:t.clientY,time:performance.now(),moved:!1}),this.pointers.size===2&&this.beginPinch(),e.classList.add("dragging")}),e.addEventListener("pointermove",t=>{let s=this.pointers.get(t.pointerId);if(!s){t.pointerType==="mouse"&&this.handlers.onHover(t.clientX,t.clientY);return}let o=t.clientX-s.x,r=t.clientY-s.y;if(s.x=t.clientX,s.y=t.clientY,Math.hypot(t.clientX-s.startX,t.clientY-s.startY)>12&&(s.moved=!0),this.pointers.size>=2){this.updatePinch();return}let c=this.handlers.getDpr();this.camera.panBy(o*c,r*c),this.handlers.onChange()});let n=t=>{let s=this.pointers.get(t.pointerId);if(this.pointers.delete(t.pointerId),this.pointers.size<2&&(this.pinch=null),this.pointers.size||e.classList.remove("dragging"),e.hasPointerCapture?.(t.pointerId)&&e.releasePointerCapture(t.pointerId),!s)return;let o=performance.now()-s.time,r=Math.hypot(t.clientX-s.startX,t.clientY-s.startY);!s.moved&&r<=12&&o<=700&&!this.pinchHappened&&this.handlers.onTap(t.clientX,t.clientY,t.pointerType||"mouse"),this.pointers.size||(this.pinchHappened=!1)};e.addEventListener("pointerup",n),e.addEventListener("pointercancel",n),e.addEventListener("pointerleave",t=>{t.pointerType==="mouse"&&!this.pointers.size&&this.handlers.onHover(null,null)}),e.addEventListener("wheel",t=>{t.preventDefault();let s=this.toDevice(t.clientX,t.clientY);this.camera.zoomAt(s.x,s.y,Math.exp(-t.deltaY*.0016)),this.handlers.onChange()},{passive:!1}),e.addEventListener("gesturestart",t=>t.preventDefault())}beginPinch(){let[e,n]=[...this.pointers.values()];this.pinch={distance:Math.hypot(e.x-n.x,e.y-n.y)||1,midX:(e.x+n.x)/2,midY:(e.y+n.y)/2},this.pinchHappened=!0}updatePinch(){let[e,n]=[...this.pointers.values()];if(!e||!n)return;if(!this.pinch){this.beginPinch();return}let t=Math.hypot(e.x-n.x,e.y-n.y)||1,s=(e.x+n.x)/2,o=(e.y+n.y)/2,r=this.handlers.getDpr();this.camera.panBy((s-this.pinch.midX)*r,(o-this.pinch.midY)*r);let c=this.toDevice(s,o);this.camera.zoomAt(c.x,c.y,t/this.pinch.distance),this.pinch={distance:t,midX:s,midY:o},this.handlers.onChange()}};var ge={};function J(){if(globalThis.__GRAPH_DATA__)return"inline";try{return new URL("../../public/data/graph.v2.json",ge.url).href}catch{return"./data/graph.v2.json"}}async function he(){if(globalThis.__GRAPH_DATA__)return globalThis.__GRAPH_DATA__;let i=J(),e=await fetch(i);if(!e.ok)throw new Error(`could not load graph.v2.json from ${i} (${e.status})`);return e.json()}var g=i=>document.getElementById(i),be=760,_e=560,h={canvas:g("tree"),stats:g("graph-stats"),search:g("search"),searchCount:g("search-count"),searchMobile:g("search-mobile"),searchCountMobile:g("search-count-mobile"),searchResults:g("search-results"),references:g("toggle-references"),referencesMobile:g("toggle-references-mobile"),fit:g("btn-fit"),fitMobile:g("btn-fit-mobile"),respec:g("btn-respec"),respecMobile:g("btn-respec-mobile"),chassis:g("chassis-body"),buildName:g("build-name"),buildList:g("build-list"),buildStatus:g("build-status"),save:g("btn-save"),load:g("btn-load"),del:g("btn-delete"),detailBody:g("detail-body"),detailActions:g("detail-actions"),allocate:g("btn-allocate"),deallocate:g("btn-deallocate"),onboarding:g("onboarding"),zoneGrid:g("zone-grid"),zoneDetail:g("zone-detail"),statusLeft:g("status-left"),statusRight:g("status-right"),legend:g("legend-canvas"),tabbar:g("tabbar"),pointsPill:g("points-pill"),pointsPillValue:g("points-pill-value"),panels:{character:g("panel-character"),detail:g("panel-detail"),search:g("panel-search")}},a={index:null,engine:null,renderer:null,camera:new I,state:null,input:null,store:new R(globalThis.localStorage),selected:null,selectionResult:null,openSheet:"none",dirty:!0},te=()=>window.innerWidth<=be||window.innerHeight<=_e;async function ye(){let i=await he();a.index=new A(i),a.engine=new z(i),a.renderer=new W(h.canvas,a.index,a.engine,a.camera),h.stats.textContent=`${i.nodes.length} nodes \xB7 ${a.index.structuralEdges.length} edges \xB7 ${a.index.budget} points at level 20`,a.renderer.resize(),a.camera.fit(a.index.bounds),xe(),we(),Q(),ke(),fe()}function we(){h.zoneGrid.innerHTML="";for(let i of a.index.classZones()){let e=a.index.chassisByZone[i]||{},n=a.index.zoneStatus[i]||{},t=document.createElement("button");t.className=`zone-card${n.extracted_nodes===0?" empty":""}`,t.style.color=C(i),t.innerHTML=`<strong>${i}</strong><span>d${e.hit_die?e.hit_die.faces:"?"} \xB7 ${(e.saving_throw_proficiencies||[]).join(", ").toUpperCase()}</span>`;let s=()=>{h.zoneDetail.textContent=`${i}: d${e.hit_die.faces} hit die, ${(e.saving_throw_proficiencies||[]).join(" and ").toUpperCase()} saves, ${e.weapon_proficiencies.summary}.`};t.addEventListener("mouseenter",s),t.addEventListener("focus",s),t.addEventListener("click",()=>ve(i)),h.zoneGrid.appendChild(t)}}function ve(i){a.state=a.engine.startState(i,a.index.budget),a.renderer.setState(a.state),h.onboarding.hidden=!0,Se(i),T(null),B(),S()}function Se(i){let e=a.index.byId.get(`gate_${i.toLowerCase()}`);if(!e)return;let n=Math.atan2(e.position_y,e.position_x);a.camera.centreOn(Math.cos(n)*24,Math.sin(n)*24,te()?7:9)}function T(i,{openSheet:e=!1}={}){if(a.selected=i,a.renderer.selectedId=i?i.id:null,!i||!a.state){a.selectionResult=null,a.renderer.previewPath=[],h.detailBody.innerHTML='<p class="muted small">Tap or click a node to select it.</p>',h.detailActions.hidden=!0,S();return}let n=a.engine.canAfford(a.state,i.id);a.selectionResult=n,a.renderer.previewPath=n.path||[];let t=a.state.owned.has(i.id),s=t?D(a.engine,a.state,i.id):null,o=(n.new_nodes||[]).filter(f=>f!==i.id),r=t?`<div class="cost ok">Owned${s&&!s.ok?` \xB7 cannot refund: ${s.reason}`:""}</div>`:n.affordable?`<div class="cost ok">${n.total_cost} point${n.total_cost===1?"":"s"} \xB7 allocates ${o.length} node${o.length===1?"":"s"} on the way \xB7 ${n.points_remaining_after} left after</div>`:`<div class="cost blocked">${n.reason==="insufficient_points"?`needs ${n.total_cost} points, you have ${a.state.pointsRemaining}`:(n.blocking_prereqs||[]).join("<br />")||"no path from what you own"}</div>`,c=o.length?`<ol class="path-list">${o.map(f=>`<li>${a.index.byId.get(f).name}</li>`).join("")}</ol>`:"";h.detailBody.innerHTML=`
+    <div class="detail-name">${i.name}</div>
+    <div class="stat"><span>${q(i)}</span><b style="color:${C(i.zone)}">${i.zone}${i.subregion?` \xB7 ${i.subregion}`:""}</b></div>
+    <div class="detail-summary small">${i.effect_summary||""}</div>
+    ${r}
+    ${c}
+  `,h.detailActions.hidden=!1,h.allocate.disabled=t||!n.affordable,h.allocate.textContent=t?"Allocated":"Allocate",h.deallocate.disabled=!t||!(s&&s.ok),e&&te()&&Z("detail"),S()}function de(){if(!a.state||!a.selected)return;let i=a.selected,e=a.engine.allocate(a.state,i.id);h.buildStatus.textContent=e.affordable?`Allocated ${i.name} (${e.total_cost} point${e.total_cost===1?"":"s"}).`:`${i.name}: ${(e.blocking_prereqs||[]).join("; ")||"not affordable"}.`,a.renderer.setState(a.state),B(),T(i)}function Me(){if(!a.state||!a.selected)return;let i=a.selected,e=U(a.engine,a.state,i.id);h.buildStatus.textContent=e.ok?`Refunded ${i.name} (+${e.refund}).`:`Cannot refund ${i.name}: ${e.reason}.`,a.renderer.setState(a.state),B(),T(i)}function B(){if(!a.state)return;let i=F(a.engine,a.state),e=i.weapons.summary||"\u2014";h.chassis.innerHTML=`
+    <div class="points">${i.pointsRemaining}<span class="muted" style="font-size:14px"> / ${i.pointsTotal} points left</span></div>
+    <div class="stat"><span>Starting zone</span><b style="color:${C(i.homeZone)}">${i.homeZone}</b></div>
+    <div class="stat"><span>Hit die</span><b>d${i.hitDie.faces}</b></div>
+    <div class="stat"><span>Saving throws</span><b>${i.savingThrows.join(", ").toUpperCase()}</b></div>
     <div class="stat"><span>Weapons</span><b>${e}</b></div>
-    <div class="stat"><span>Points spent</span><b>${a.pointsSpent}</b></div>
-    <div class="stat"><span>Nodes owned</span><b>${a.ownedCount} <span class="muted">(${a.notableCount} notable)</span></b></div>
-  `,f.statusLeft.textContent=`${a.homeZone} \xB7 ${a.pointsSpent}/${a.pointsTotal} points spent`}function q(a){let e=c.store.list();f.buildList.innerHTML="";for(let t of e){let n=document.createElement("option");n.value=t.name,n.textContent=`${t.name} \u2014 ${t.state.homeZone}, ${t.state.pointsSpent}pt`,t.name===a&&(n.selected=!0),f.buildList.appendChild(n)}if(!e.length){let t=document.createElement("option");t.disabled=!0,t.textContent="no saved builds",f.buildList.appendChild(t)}}function ie(a,e){if(!a){f.selection.innerHTML='<p class="muted small">Hover a node to preview its path.</p>';return}let t=(e.new_nodes||[]).filter(o=>o!==a.id),n=t.map(o=>`<li>${c.index.byId.get(o).name}</li>`).join(""),s=e.affordable?`<b style="color:${x.preview}">${e.total_cost} point${e.total_cost===1?"":"s"}</b> \u2014 allocates ${t.length} node${t.length===1?"":"s"} on the way`:`<b style="color:#ff9a8b">${e.reason==="insufficient_points"?`costs ${e.total_cost}, you have ${c.state.pointsRemaining}`:(e.blocking_prereqs||[]).join("; ")||"unreachable"}</b>`;f.selection.innerHTML=`
-    <div class="stat"><span>${K(a)}</span><b style="color:${k(a.zone)}">${a.zone}</b></div>
-    <p class="small">${s}</p>
-    ${n?`<ol class="path-list">${n}</ol>`:""}
-  `}function be(){let a=f.legend.getContext("2d"),e=[{label:"Class feature",node:{type:"class_feature"}},{label:"Subclass feature",node:{type:"subclass_feature"}},{label:"Feat",node:{type:"feat"}},{label:"Optional feature",node:{type:"optional_feature"}},{label:"Spell slots",node:{type:"spell_slot"}},{label:"Weapon mastery",node:{type:"weapon_mastery"}},{label:"Zone gate",node:{type:"connector",is_gate:!0}},{label:"Connector",node:{type:"connector"}}];a.clearRect(0,0,f.legend.width,f.legend.height),a.font="12px system-ui, sans-serif",a.textBaseline="middle";let t=new W(f.legend,c.index,c.engine,new A);e.forEach((n,s)=>{let o=14+s*23;a.fillStyle="#8fa2c8",t._shapePath(a,I(n.node),16,o,n.node.is_gate?8:7,"near"),a.fill(),a.fillStyle="#c9cfdb",a.fillText(n.label,34,o)})}function v(){c.dirty=!0}function ae(){c.dirty&&(c.dirty=!1,c.renderer.draw(),c.frameTimes.push(c.renderer.lastFrameMs),c.frameTimes.length>120&&c.frameTimes.shift(),f.statusRight.textContent=`${c.renderer.lastDrawnNodes} nodes drawn \xB7 ${c.renderer.lastFrameMs.toFixed(1)} ms/frame \xB7 ${c.camera.lod()} detail`),requestAnimationFrame(ae)}function _e(a){let e=f.canvas.getBoundingClientRect(),t=c.renderer.dpr||1;return c.camera.screenToWorld((a.clientX-e.left)*t,(a.clientY-e.top)*t)}function re(a){let e=_e(a),t=Math.max(1.4,14/c.camera.scale);return c.index.nodeAt(e.x,e.y,t)}function ce(a,e){if(!e||!c.state){f.tooltip.hidden=!0;return}let t=c.engine.canAfford(c.state,e.id);c.preview=t,c.renderer.previewPath=t.path||[];let s=c.state.owned.has(e.id)?'<span class="cost">owned</span>':t.affordable?`<div class="cost ok">${t.total_cost} point${t.total_cost===1?"":"s"} \xB7 ${(t.new_nodes||[]).length} node${(t.new_nodes||[]).length===1?"":"s"} allocated \xB7 ${t.points_remaining_after} left after</div>`:`<div class="cost blocked">${t.reason==="insufficient_points"?`needs ${t.total_cost} points, you have ${c.state.pointsRemaining}`:(t.blocking_prereqs||[]).join("<br />")||"no path from what you own"}</div>`;f.tooltip.innerHTML=`
-    <h3>${e.name}</h3>
-    <div class="meta">${K(e)} \xB7 ${e.zone}${e.subregion?` \xB7 ${e.subregion}`:""} \xB7 depth ${e.depth}</div>
-    <div class="summary">${e.effect_summary||""}</div>
-    ${s}
-  `,f.tooltip.hidden=!1;let o=f.tooltip.getBoundingClientRect(),i=Math.min(a.clientX+16,window.innerWidth-o.width-12),r=Math.min(a.clientY+16,window.innerHeight-o.height-12);f.tooltip.style.left=`${i}px`,f.tooltip.style.top=`${r}px`,ie(e,t)}function we(){let a=f.canvas,e=!1,t=!1,n=0,s=0;window.addEventListener("resize",()=>{c.renderer.resize(),v()}),a.addEventListener("pointerdown",i=>{e=!0,t=!1,n=i.clientX,s=i.clientY,a.setPointerCapture(i.pointerId),a.classList.add("dragging")}),a.addEventListener("pointermove",i=>{if(e){let l=c.renderer.dpr||1,h=(i.clientX-n)*l,u=(i.clientY-s)*l;Math.abs(h)+Math.abs(u)>2&&(t=!0),c.camera.panBy(h,u),n=i.clientX,s=i.clientY,v();return}let r=re(i),d=r?r.id:null;d!==c.renderer.hoverId&&(c.renderer.hoverId=d,r||(c.renderer.previewPath=[],ie(null,null)),v()),ce(i,r)});let o=i=>{e&&(e=!1,a.classList.remove("dragging"),a.hasPointerCapture?.(i.pointerId)&&a.releasePointerCapture(i.pointerId))};a.addEventListener("pointerup",i=>{let r=t;o(i),!r&&ye(i)}),a.addEventListener("pointercancel",o),a.addEventListener("pointerleave",()=>{f.tooltip.hidden=!0,c.renderer.hoverId=null,c.renderer.previewPath=[],v()}),a.addEventListener("wheel",i=>{i.preventDefault();let r=a.getBoundingClientRect(),d=c.renderer.dpr||1,l=Math.exp(-i.deltaY*.0016);c.camera.zoomAt((i.clientX-r.left)*d,(i.clientY-r.top)*d,l),v()},{passive:!1}),f.fit.addEventListener("click",()=>{c.camera.fit(c.index.bounds),v()}),f.respec.addEventListener("click",()=>{c.state&&(c.state=c.engine.startState(c.state.homeZone,c.index.budget),c.renderer.setState(c.state),O(),f.buildStatus.textContent="Respecced to a fresh character.",v())}),f.references.addEventListener("change",()=>{c.renderer.showReferences=f.references.checked,v()}),f.search.addEventListener("input",()=>{let i=c.index.search(f.search.value);if(c.renderer.searchHits=new Set(i.map(r=>r.id)),f.searchCount.textContent=f.search.value.trim()?`${i.length} match${i.length===1?"":"es"}`:"",i.length){let r=i[0];c.camera.centreOn(r.position_x,r.position_y,Math.max(c.camera.scale,11))}v()}),f.save.addEventListener("click",()=>{if(!c.state)return;let i=(f.buildName.value||"").trim();if(!i){f.buildStatus.textContent="Give the build a name first.";return}c.store.save(i,c.state.toJSON()),q(i),f.buildStatus.textContent=`Saved \u201C${i}\u201D.`}),f.load.addEventListener("click",()=>{let i=f.buildList.value;if(!i)return;let r=c.store.load(i);r&&(c.state=P.fromJSON(r),c.renderer.setState(c.state),f.onboarding.hidden=!0,f.buildName.value=i,O(),f.buildStatus.textContent=`Loaded \u201C${i}\u201D.`,v())}),f.del.addEventListener("click",()=>{let i=f.buildList.value;i&&(c.store.remove(i),q(),f.buildStatus.textContent=`Deleted \u201C${i}\u201D.`)}),window.addEventListener("keydown",i=>{i.key==="/"&&document.activeElement!==f.search&&(i.preventDefault(),f.search.focus()),i.key==="Escape"&&(f.search.value="",c.renderer.searchHits=new Set,f.searchCount.textContent="",v())})}function ye(a){if(!c.state)return;let e=re(a);if(e){if(a.altKey&&c.state.owned.has(e.id)){let t=X(c.engine,c.state,e.id);f.buildStatus.textContent=t.ok?`Refunded ${e.name} (+${t.refund}).`:`Cannot refund ${e.name}: ${t.reason}.`}else{let t=c.engine.allocate(c.state,e.id);t.affordable?f.buildStatus.textContent=`Allocated ${e.name} (${t.total_cost} point${t.total_cost===1?"":"s"}).`:f.buildStatus.textContent=t.reason==="insufficient_points"?`${e.name} costs ${t.total_cost}; you have ${c.state.pointsRemaining}.`:`${e.name}: ${(t.blocking_prereqs||[]).join("; ")||"no path yet"}.`}c.renderer.setState(c.state),O(),ce(a,e),v()}}globalThis.__tree={app:c,markDirty:v,drawOnce:()=>c.renderer.draw(),setZoom:a=>{c.camera.scale=a,v()},panBy:(a,e)=>{c.camera.panBy(a,e),v()},ready:()=>!!c.renderer,graphUrl:G()};ue().catch(a=>{document.body.innerHTML=`<pre style="padding:24px">Failed to start: ${a.message}
+    <div class="stat"><span>Points spent</span><b>${i.pointsSpent}</b></div>
+    <div class="stat"><span>Nodes owned</span><b>${i.ownedCount} <span class="muted">(${i.notableCount} notable)</span></b></div>
+  `,h.statusLeft.textContent=`${i.homeZone} \xB7 ${i.pointsSpent}/${i.pointsTotal} points spent`,h.pointsPill.hidden=!1,h.pointsPillValue.textContent=String(i.pointsRemaining)}function Q(i){let e=a.store.list();h.buildList.innerHTML="";for(let n of e){let t=document.createElement("option");t.value=n.name,t.textContent=`${n.name} \u2014 ${n.state.homeZone}, ${n.state.pointsSpent}pt`,n.name===i&&(t.selected=!0),h.buildList.appendChild(t)}if(!e.length){let n=document.createElement("option");n.disabled=!0,n.textContent="no saved builds",h.buildList.appendChild(n)}}function xe(){let i=h.legend.getContext("2d"),e=[{label:"Class feature",node:{type:"class_feature"}},{label:"Subclass feature",node:{type:"subclass_feature"}},{label:"Feat",node:{type:"feat"}},{label:"Optional feature",node:{type:"optional_feature"}},{label:"Spell slots",node:{type:"spell_slot"}},{label:"Weapon mastery",node:{type:"weapon_mastery"}},{label:"Zone gate",node:{type:"connector",is_gate:!0}},{label:"Connector",node:{type:"connector"}}];i.clearRect(0,0,h.legend.width,h.legend.height),i.font="12px system-ui, sans-serif",i.textBaseline="middle";let n=new W(h.legend,a.index,a.engine,new I);e.forEach((t,s)=>{let o=14+s*23;i.fillStyle="#8fa2c8",n._shapePath(i,Y(t.node),16,o,t.node.is_gate?8:7,"near"),i.fill(),i.fillStyle="#c9cfdb",i.fillText(t.label,34,o)})}function Z(i){a.openSheet=a.openSheet===i?"none":i;for(let[e,n]of Object.entries(h.panels))n.dataset.open=String(a.openSheet===e);for(let e of h.tabbar.querySelectorAll("button"))e.setAttribute("aria-pressed",String(e.dataset.tab===a.openSheet))}function V(i,{list:e=!1}={}){let n=a.index.search(i);a.renderer.searchHits=new Set(n.map(s=>s.id));let t=i.trim()?`${n.length} match${n.length===1?"":"es"}`:"";if(h.searchCount.textContent=t,h.searchCountMobile.textContent=t,e){h.searchResults.innerHTML="";for(let s of n.slice(0,40)){let o=document.createElement("li"),r=document.createElement("button");r.type="button",r.innerHTML=`<span>${s.name}</span><span class="result-meta">${q(s)} \xB7 ${s.zone}</span>`,r.addEventListener("click",()=>{a.camera.centreOn(s.position_x,s.position_y,Math.max(a.camera.scale,12)),T(s,{openSheet:!0})}),o.appendChild(r),h.searchResults.appendChild(o)}}else if(n.length){let s=n[0];a.camera.centreOn(s.position_x,s.position_y,Math.max(a.camera.scale,11))}S()}function S(){a.dirty=!0}function fe(){a.dirty&&(a.dirty=!1,a.renderer.draw(),h.statusRight.textContent=`${a.renderer.lastDrawnNodes} nodes drawn \xB7 ${a.renderer.lastFrameMs.toFixed(1)} ms/frame \xB7 ${a.camera.lod()} detail`),requestAnimationFrame(fe)}function ee(i,e,n="mouse"){let t=h.canvas.getBoundingClientRect(),s=a.renderer.dpr||1,o=a.camera.screenToWorld((i-t.left)*s,(e-t.top)*s),c=Math.max(1.6,(n==="mouse"?14:26)*s/a.camera.scale);return a.index.nodeAt(o.x,o.y,c,{preferNotable:!0})}function ke(){a.input=new j(h.canvas,a.camera,{getDpr:()=>a.renderer.dpr||1,onChange:S,onTap:(t,s,o)=>{if(!a.state)return;let r=ee(t,s,o);T(r,{openSheet:!!r})},onHover:(t,s)=>{let o=t===null?null:ee(t,s,"mouse"),r=o?o.id:null;r!==a.renderer.hoverId&&(a.renderer.hoverId=r,h.canvas.style.cursor=o?"pointer":"",S())}}),window.addEventListener("resize",()=>{a.renderer.resize(),S()}),window.addEventListener("orientationchange",()=>{setTimeout(()=>{a.renderer.resize(),S()},120)}),h.allocate.addEventListener("click",de),h.deallocate.addEventListener("click",Me);for(let t of h.tabbar.querySelectorAll("button"))t.addEventListener("click",()=>Z(t.dataset.tab));for(let t of Object.values(h.panels)){let s=t.querySelector(".sheet-grip");s&&s.addEventListener("click",()=>Z("none"))}let i=()=>{a.camera.fit(a.index.bounds),S()};h.fit.addEventListener("click",i),h.fitMobile.addEventListener("click",i);let e=()=>{a.state&&(a.state=a.engine.startState(a.state.homeZone,a.index.budget),a.renderer.setState(a.state),B(),T(a.selected),h.buildStatus.textContent="Respecced to a fresh character.",S())};h.respec.addEventListener("click",e),h.respecMobile.addEventListener("click",e);let n=t=>{a.renderer.showReferences=t,h.references.checked=t,h.referencesMobile.checked=t,S()};h.references.addEventListener("change",()=>n(h.references.checked)),h.referencesMobile.addEventListener("change",()=>n(h.referencesMobile.checked)),h.search.addEventListener("input",()=>V(h.search.value)),h.searchMobile.addEventListener("input",()=>V(h.searchMobile.value,{list:!0})),h.save.addEventListener("click",()=>{if(!a.state)return;let t=(h.buildName.value||"").trim();if(!t){h.buildStatus.textContent="Give the build a name first.";return}a.store.save(t,a.state.toJSON()),Q(t),h.buildStatus.textContent=`Saved \u201C${t}\u201D.`}),h.load.addEventListener("click",()=>{let t=h.buildList.value;if(!t)return;let s=a.store.load(t);s&&(a.state=L.fromJSON(s),a.renderer.setState(a.state),h.onboarding.hidden=!0,h.buildName.value=t,B(),T(a.selected),h.buildStatus.textContent=`Loaded \u201C${t}\u201D.`,S())}),h.del.addEventListener("click",()=>{let t=h.buildList.value;t&&(a.store.remove(t),Q(),h.buildStatus.textContent=`Deleted \u201C${t}\u201D.`)}),window.addEventListener("keydown",t=>{if(t.key==="/"&&document.activeElement!==h.search&&(t.preventDefault(),h.search.focus()),t.key==="Escape"&&(h.search.value="",h.searchMobile.value="",V("",{list:!0}),a.openSheet!=="none"?Z("none"):T(null)),(t.key==="Enter"||t.key==="a")&&a.selected&&!h.allocate.disabled){if(document.activeElement&&document.activeElement.tagName==="INPUT")return;de()}})}globalThis.__tree={app:a,markDirty:S,drawOnce:()=>a.renderer.draw(),setZoom:i=>{a.camera.scale=i,S()},panBy:(i,e)=>{a.camera.panBy(i,e),S()},select:T,openTab:Z,isPhone:te,pickNodeAt:ee,ready:()=>!!a.renderer,graphUrl:J()};ye().catch(i=>{document.body.innerHTML=`<pre style="padding:24px">Failed to start: ${i.message}
 
-${a.stack}</pre>`});})();
+${i.stack}</pre>`});})();
 </script>
   </body>
 </html>

@@ -9,6 +9,8 @@
     "build": "node scripts/build.mjs",
     "test": "node --test tests/*.test.mjs",
     "bench": "node bench/bench.mjs",
+    "bench:mobile": "node bench/bench-mobile.mjs",
+    "shots": "node bench/screenshot.mjs && node bench/screenshot-mobile.mjs",
     "serve": "python3 -m http.server 8123"
   },
   "devDependencies": {

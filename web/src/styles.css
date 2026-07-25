@@ -1,10 +1,23 @@
+/**
+ * One stylesheet, one breakpoint (Work Order 4, decision 1).
+ *
+ * Desktop keeps the Work Order 3 layout: fixed side panels either side of a
+ * full-bleed canvas. Below --phone-breakpoint the same panels become bottom
+ * sheets driven by a tab bar, so the canvas keeps the entire screen and panels
+ * only overlay it on demand.
+ */
+
 :root {
   --bg: #0d0f15;
-  --panel: rgba(19, 22, 30, 0.92);
+  --panel: rgba(19, 22, 30, 0.94);
   --border: rgba(255, 255, 255, 0.09);
   --text: #e6e9f0;
   --muted: #949cad;
   --accent: #ffd166;
+  --danger: #ff9a8b;
+  --tap: 44px; /* minimum comfortable touch target */
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
   color-scheme: dark;
 }
 
@@ -19,7 +32,9 @@ body {
   overflow: hidden;
   background: var(--bg);
   color: var(--text);
-  font: 14px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif;
+  font: 15px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif;
+  -webkit-text-size-adjust: 100%;
+  overscroll-behavior: none;
 }
 
 #tree {
@@ -29,22 +44,28 @@ body {
   height: 100%;
   display: block;
   cursor: grab;
+  /* the canvas owns every gesture over it - no browser pan/zoom stealing them */
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 #tree.dragging {
   cursor: grabbing;
 }
 
+/* -- chrome ------------------------------------------------------------- */
+
 .topbar {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
+  padding: calc(10px + var(--safe-top)) 16px 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: 10px 16px;
   background: linear-gradient(180deg, rgba(13, 15, 21, 0.95), rgba(13, 15, 21, 0));
   pointer-events: none;
   z-index: 5;
@@ -58,6 +79,11 @@ body {
   display: flex;
   align-items: baseline;
   gap: 12px;
+  min-width: 0;
+}
+
+.brand strong {
+  white-space: nowrap;
 }
 
 .tools {
@@ -66,12 +92,27 @@ body {
   gap: 10px;
 }
 
+.search-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.points-pill {
+  display: none;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border);
+  font-size: 15px;
+}
+
 .muted {
   color: var(--muted);
 }
 
 .small {
-  font-size: 12px;
+  font-size: 13px;
 }
 
 input,
@@ -81,8 +122,9 @@ select {
   color: var(--text);
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid var(--border);
-  border-radius: 7px;
-  padding: 6px 10px;
+  border-radius: 8px;
+  padding: 7px 11px;
+  min-height: 36px;
 }
 
 input:focus,
@@ -94,6 +136,7 @@ button:focus-visible {
 
 button {
   cursor: pointer;
+  touch-action: manipulation;
 }
 
 button:hover {
@@ -104,19 +147,42 @@ button.ghost {
   background: transparent;
 }
 
+button.primary {
+  background: rgba(255, 209, 102, 0.18);
+  border-color: rgba(255, 209, 102, 0.5);
+  color: #ffe6ab;
+}
+
+button.primary:hover {
+  background: rgba(255, 209, 102, 0.28);
+}
+
+button[disabled] {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
 .toggle {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   color: var(--muted);
   white-space: nowrap;
 }
 
+.toggle input {
+  min-height: 0;
+  width: 18px;
+  height: 18px;
+}
+
+/* -- panels (desktop) --------------------------------------------------- */
+
 .panel {
   position: fixed;
-  top: 58px;
-  width: 268px;
-  max-height: calc(100vh - 96px);
+  top: calc(58px + var(--safe-top));
+  width: 280px;
+  max-height: calc(100vh - 110px);
   overflow: auto;
   padding: 4px 14px 14px;
   background: var(--panel);
@@ -147,6 +213,12 @@ button.ghost {
   gap: 8px;
 }
 
+.sheet-grip,
+.sheet-only,
+.tabbar {
+  display: none;
+}
+
 .stat {
   display: flex;
   justify-content: space-between;
@@ -160,18 +232,30 @@ button.ghost {
 }
 
 .points {
-  font-size: 26px;
+  font-size: 27px;
   font-weight: 600;
   line-height: 1.1;
 }
 
-.build-controls .row {
+.build-controls .row,
+.detail-actions {
   display: flex;
   gap: 8px;
 }
 
-.build-controls .row button {
+.build-controls .row button,
+.detail-actions button {
   flex: 1;
+}
+
+.detail-actions {
+  margin-top: 10px;
+}
+
+/* `display: flex` above would otherwise beat the UA rule for [hidden] */
+.detail-actions[hidden],
+.panel[hidden] {
+  display: none;
 }
 
 #build-list {
@@ -184,8 +268,8 @@ button.ghost {
   margin: 4px 0 0;
   padding: 0;
   display: grid;
-  gap: 4px;
-  font-size: 12px;
+  gap: 5px;
+  font-size: 13px;
   color: var(--muted);
 }
 
@@ -220,48 +304,66 @@ button.ghost {
   height: auto;
 }
 
-.tooltip {
-  position: fixed;
-  z-index: 9;
-  max-width: 340px;
-  padding: 10px 12px;
-  background: rgba(16, 19, 26, 0.97);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  pointer-events: none;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
+.result-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 2px;
+  max-height: 40vh;
+  overflow: auto;
 }
 
-.tooltip h3 {
-  margin: 0 0 2px;
-  font-size: 14px;
+.result-list button {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 0;
+  min-height: var(--tap);
+  display: grid;
+  gap: 1px;
 }
 
-.tooltip .meta {
+.result-list .result-meta {
   color: var(--muted);
   font-size: 12px;
-  margin-bottom: 6px;
 }
 
-.tooltip .summary {
-  font-size: 12.5px;
-  max-height: 160px;
-  overflow: hidden;
+.detail-name {
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.25;
 }
 
-.tooltip .cost {
-  margin-top: 8px;
-  padding-top: 7px;
+.detail-summary {
+  font-size: 13.5px;
+  max-height: 34vh;
+  overflow: auto;
+}
+
+.cost {
+  padding-top: 8px;
   border-top: 1px solid var(--border);
-  font-size: 12.5px;
+  font-size: 13.5px;
 }
 
-.tooltip .cost.ok {
+.cost.ok {
   color: var(--accent);
 }
 
-.tooltip .cost.blocked {
-  color: #ff9a8b;
+.cost.blocked {
+  color: var(--danger);
+}
+
+.path-list {
+  margin: 6px 0 0;
+  padding-left: 18px;
+  font-size: 13px;
+  color: var(--muted);
+  max-height: 22vh;
+  overflow: auto;
 }
 
 .statusbar {
@@ -272,21 +374,24 @@ button.ghost {
   display: flex;
   justify-content: space-between;
   gap: 12px;
-  padding: 6px 16px;
+  padding: 6px 16px calc(6px + var(--safe-bottom));
   font-size: 12px;
   background: linear-gradient(0deg, rgba(13, 15, 21, 0.95), rgba(13, 15, 21, 0));
   pointer-events: none;
   z-index: 5;
 }
 
+/* -- onboarding --------------------------------------------------------- */
+
 .onboarding {
   position: fixed;
   inset: 0;
   display: grid;
   place-items: center;
-  background: rgba(8, 9, 13, 0.82);
+  background: rgba(8, 9, 13, 0.85);
   backdrop-filter: blur(3px);
   z-index: 20;
+  padding: 12px;
 }
 
 .onboarding[hidden] {
@@ -294,10 +399,10 @@ button.ghost {
 }
 
 .onboarding-card {
-  width: min(760px, calc(100vw - 40px));
-  max-height: calc(100vh - 60px);
+  width: min(760px, 100%);
+  max-height: calc(100vh - 32px);
   overflow: auto;
-  padding: 26px 28px;
+  padding: 24px 26px calc(24px + var(--safe-bottom));
   background: var(--panel);
   border: 1px solid var(--border);
   border-radius: 16px;
@@ -322,10 +427,11 @@ button.ghost {
 
 .zone-card {
   text-align: left;
-  padding: 9px 11px;
+  padding: 10px 12px;
   border-left: 4px solid currentColor;
   display: grid;
   gap: 2px;
+  min-height: var(--tap);
 }
 
 .zone-card strong {
@@ -344,11 +450,221 @@ button.ghost {
   font-size: 11px;
 }
 
-.path-list {
-  margin: 6px 0 0;
-  padding-left: 16px;
-  font-size: 12px;
-  color: var(--muted);
-  max-height: 190px;
-  overflow: auto;
+/* -- phone: panels become bottom sheets --------------------------------- */
+
+@media (max-width: 760px), (max-height: 560px) {
+  body {
+    font-size: 16px;
+  }
+
+  .topbar {
+    padding: calc(8px + var(--safe-top)) 12px 8px;
+    gap: 8px;
+  }
+
+  .brand strong {
+    font-size: 15px;
+  }
+
+  .brand .muted,
+  .tools,
+  .statusbar #status-right {
+    display: none;
+  }
+
+  .points-pill {
+    display: block;
+  }
+
+  .desktop-only {
+    display: none;
+  }
+
+  .sheet-only {
+    display: block;
+  }
+
+  .panel {
+    position: fixed;
+    inset: auto 0 0 0;
+    top: auto;
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-height: min(62vh, 520px);
+    padding: 6px 16px calc(14px + var(--safe-bottom) + var(--tap));
+    border-radius: 18px 18px 0 0;
+    border-bottom: none;
+    transform: translateY(102%);
+    transition: transform 0.22s ease;
+    z-index: 8;
+    box-shadow: 0 -14px 40px rgba(0, 0, 0, 0.5);
+  }
+
+  .panel[data-open="true"] {
+    transform: translateY(0);
+  }
+
+  .sheet-grip {
+    display: block;
+    width: 42px;
+    height: 4px;
+    margin: 6px auto 2px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.22);
+  }
+
+  .panel h2 {
+    margin: 12px 0 6px;
+  }
+
+  .tabbar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    gap: 2px;
+    padding: 4px 6px calc(4px + var(--safe-bottom));
+    background: rgba(14, 16, 22, 0.96);
+    border-top: 1px solid var(--border);
+    z-index: 9;
+  }
+
+  .tabbar button {
+    background: transparent;
+    border: none;
+    border-radius: 10px;
+    min-height: var(--tap);
+    display: grid;
+    justify-items: center;
+    gap: 1px;
+    font-size: 11px;
+    color: var(--muted);
+    padding: 4px 2px;
+  }
+
+  .tabbar button[aria-pressed="true"] {
+    background: rgba(255, 255, 255, 0.09);
+    color: var(--text);
+  }
+
+  .tab-glyph {
+    font-size: 17px;
+    line-height: 1;
+  }
+
+  .statusbar {
+    bottom: calc(var(--tap) + var(--safe-bottom) + 4px);
+    font-size: 11px;
+    padding-bottom: 2px;
+  }
+
+  /* touch targets: every control in a sheet is at least 44px tall */
+  .panel input,
+  .panel button,
+  .panel select {
+    min-height: var(--tap);
+    font-size: 15px;
+  }
+
+  .points {
+    font-size: 30px;
+  }
+
+  /* The detail sheet is a flex column: the body scrolls, the action row is a
+     fixed footer. Sticky positioning let content scroll *under* the buttons,
+     which on a phone reads as a rendering fault. */
+  #panel-detail {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  #panel-detail #detail-body {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow: auto;
+  }
+
+  #panel-detail .detail-summary,
+  #panel-detail .path-list {
+    max-height: none;
+    overflow: visible;
+  }
+
+  .detail-actions {
+    flex: 0 0 auto;
+    margin-top: 0;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+  }
+
+  .zone-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+
+  .onboarding-card {
+    padding: 18px 16px calc(18px + var(--safe-bottom));
+  }
+
+  .onboarding-card h1 {
+    font-size: 19px;
+  }
+
+  .onboarding-card p {
+    font-size: 14px;
+  }
+}
+
+/* Landscape phones: wide but very short. The sheet has to stay usable without
+   swallowing the canvas, and the onboarding card has to scroll. */
+@media (max-height: 560px) {
+  .panel {
+    max-height: 66vh;
+    padding-bottom: calc(10px + var(--safe-bottom) + var(--tap));
+  }
+
+  .panel h2 {
+    margin: 8px 0 4px;
+  }
+
+  .points {
+    font-size: 24px;
+  }
+
+  .detail-summary {
+    max-height: 20vh;
+  }
+
+  .path-list {
+    max-height: 14vh;
+  }
+
+  .onboarding-card {
+    max-height: calc(100vh - 16px);
+    padding: 14px 16px calc(14px + var(--safe-bottom));
+  }
+
+  .onboarding-card h1 {
+    font-size: 17px;
+    margin-bottom: 4px;
+  }
+
+  .onboarding-card p {
+    font-size: 13px;
+    margin-bottom: 10px;
+  }
+
+  .zone-grid {
+    grid-template-columns: repeat(auto-fill, minmax(128px, 1fr));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel {
+    transition: none;
+  }
 }

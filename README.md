@@ -1,8 +1,8 @@
 # D&D 2024 skill-tree
 
 Point economy, prerequisite normalization, zone layout and the pathing cost
-engine (Work Order 2), plus a static web renderer for the whole tree
-(Work Order 3). Scope is D&D 2024 (XPHB/XDMG) only; there is no 2014 content
+engine (Work Order 2), plus a static web renderer for the whole tree, desktop and
+mobile (Work Orders 3 & 4). Scope is D&D 2024 (XPHB/XDMG) only; there is no 2014 content
 anywhere in the output, and a test asserts it.
 
 - **`web/`** — the renderer. Static, client-side, no backend; `web/dist/index.html`
@@ -44,7 +44,7 @@ validation: PASS
 | `docs/schema_v2.md` | node/edge schema |
 | `docs/work_order_02.md` | the work order this implements |
 | `src/dnd2024/` | the generator, the pathing engine, the validator |
-| `web/` | the visual tree renderer (Work Order 3) — its own README |
+| `web/` | the visual tree renderer, desktop and mobile (Work Orders 3 & 4) — its own README |
 | `scripts/export_engine_fixtures.py` | records the Python engine's answers for the JS port to match |
 
 ## The model in one page
@@ -149,15 +149,17 @@ broken extraction. A test holds that label.
 
 ## The renderer
 
-`web/` is a standalone static app: pan/zoom Canvas 2D over all 1,133 nodes,
-colour by zone and shape by type, four allocation states, hover path preview,
-click to allocate, search, respec, and named builds in localStorage.
+`web/` is a standalone static app, responsive from desktop to phone: pan/zoom
+Canvas 2D over all 1,133 nodes, colour by zone and shape by type, four allocation
+states, select-then-confirm allocation with a live path preview, search, respec,
+and named builds in localStorage. On a phone the side panels become bottom
+sheets, one-finger drag pans and pinch zooms.
 
 Its pathing engine is a port of `src/dnd2024/pathing.py`, cross-validated against
 2,340 queries generated from the Python engine plus the ten hand-traced cases —
-identical results, down to the order of nodes in each path. Measured at 2–3 ms
-per frame in headless Chromium, roughly 5× inside the 60 fps budget even with
-every node on screen.
+identical results, down to the order of nodes in each path. Measured at under
+2 ms per frame on desktop, and holding 60fps on a 4×-throttled phone profile in
+both orientations.
 
 ```bash
 cd web && npm install && npm run sync-data && npm run build

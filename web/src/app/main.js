@@ -5,6 +5,11 @@
  * state, storage). This file only decides what is on screen. That boundary is
  * the point of Work Order 3's decision 4 - a Foundry wrapper replaces this file
  * and keeps the rest.
+ *
+ * Work Order 4 changed the interaction primitive: selecting a node and then
+ * confirming, rather than hover-preview plus click-to-allocate. One model on
+ * both touch and desktop - a tap on a phone and a click on a laptop do the same
+ * thing, and neither of them spends points by accident.
  */
 
 import {
@@ -18,20 +23,28 @@ import {
 } from '../core/index.js';
 import { Camera } from './camera.js';
 import { Renderer } from './renderer.js';
-import { ACCENT, nodeRadius, nodeShape, typeLabel, zoneColour } from './style.js';
+import { PointerInput } from './input.js';
+import { ACCENT, nodeShape, typeLabel, zoneColour } from './style.js';
 import { graphDataUrl, loadGraph } from './data.js';
 
 const el = (id) => document.getElementById(id);
+const PHONE_BREAKPOINT = 760;
+const SHORT_BREAKPOINT = 560;
 
 const dom = {
   canvas: el('tree'),
-  tooltip: el('tooltip'),
   stats: el('graph-stats'),
   search: el('search'),
   searchCount: el('search-count'),
+  searchMobile: el('search-mobile'),
+  searchCountMobile: el('search-count-mobile'),
+  searchResults: el('search-results'),
   references: el('toggle-references'),
+  referencesMobile: el('toggle-references-mobile'),
   fit: el('btn-fit'),
+  fitMobile: el('btn-fit-mobile'),
   respec: el('btn-respec'),
+  respecMobile: el('btn-respec-mobile'),
   chassis: el('chassis-body'),
   buildName: el('build-name'),
   buildList: el('build-list'),
@@ -39,13 +52,24 @@ const dom = {
   save: el('btn-save'),
   load: el('btn-load'),
   del: el('btn-delete'),
-  selection: el('selection-body'),
+  detailBody: el('detail-body'),
+  detailActions: el('detail-actions'),
+  allocate: el('btn-allocate'),
+  deallocate: el('btn-deallocate'),
   onboarding: el('onboarding'),
   zoneGrid: el('zone-grid'),
   zoneDetail: el('zone-detail'),
   statusLeft: el('status-left'),
   statusRight: el('status-right'),
   legend: el('legend-canvas'),
+  tabbar: el('tabbar'),
+  pointsPill: el('points-pill'),
+  pointsPillValue: el('points-pill-value'),
+  panels: {
+    character: el('panel-character'),
+    detail: el('panel-detail'),
+    search: el('panel-search'),
+  },
 };
 
 const app = {
@@ -54,12 +78,22 @@ const app = {
   /** @type {Renderer} */ renderer: null,
   /** @type {Camera} */ camera: new Camera(),
   /** @type {PlayerState} */ state: null,
+  /** @type {PointerInput} */ input: null,
   store: new BuildStore(globalThis.localStorage),
-  hover: null,
-  preview: null,
+  /** @type {any} the selected node - the whole interaction hangs off this */
+  selected: null,
+  /** @type {any} */ selectionResult: null,
+  openSheet: 'none',
   dirty: true,
-  frameTimes: [],
 };
+
+/**
+ * Compact layout: panels are bottom sheets, not sidebars. Height matters as
+ * much as width - a phone in landscape is 915x412, wider than any width-only
+ * breakpoint would catch but with no room for side panels at all.
+ */
+const isPhone = () =>
+  window.innerWidth <= PHONE_BREAKPOINT || window.innerHeight <= SHORT_BREAKPOINT;
 
 // -- boot -----------------------------------------------------------------
 
@@ -80,7 +114,7 @@ async function boot() {
   loop();
 }
 
-// -- starting zone (Task 7) ----------------------------------------------
+// -- starting zone --------------------------------------------------------
 
 function buildZonePicker() {
   dom.zoneGrid.innerHTML = '';
@@ -93,13 +127,15 @@ function buildZonePicker() {
     button.innerHTML = `<strong>${zone}</strong><span>d${
       chassis.hit_die ? chassis.hit_die.faces : '?'
     } · ${(chassis.saving_throw_proficiencies || []).join(', ').toUpperCase()}</span>`;
-    button.addEventListener('mouseenter', () => {
+    const describe = () => {
       dom.zoneDetail.textContent = `${zone}: d${chassis.hit_die.faces} hit die, ${(
         chassis.saving_throw_proficiencies || []
       )
         .join(' and ')
         .toUpperCase()} saves, ${chassis.weapon_proficiencies.summary}.`;
-    });
+    };
+    button.addEventListener('mouseenter', describe);
+    button.addEventListener('focus', describe);
     button.addEventListener('click', () => startIn(zone));
     dom.zoneGrid.appendChild(button);
   }
@@ -111,6 +147,7 @@ function startIn(zone) {
   app.renderer.setState(app.state);
   dom.onboarding.hidden = true;
   focusZone(zone);
+  select(null);
   refreshChassis();
   markDirty();
 }
@@ -119,7 +156,103 @@ function focusZone(zone) {
   const gate = app.index.byId.get(`gate_${zone.toLowerCase()}`);
   if (!gate) return;
   const angle = Math.atan2(gate.position_y, gate.position_x);
-  app.camera.centreOn(Math.cos(angle) * 24, Math.sin(angle) * 24, 9);
+  app.camera.centreOn(Math.cos(angle) * 24, Math.sin(angle) * 24, isPhone() ? 7 : 9);
+}
+
+// -- selection: the one interaction primitive -----------------------------
+
+/**
+ * Select a node (or clear with null). Selecting never spends points - it fills
+ * the detail panel and highlights the path the Allocate button would buy.
+ * @param {any} node
+ * @param {{openSheet?: boolean}} [options]
+ */
+function select(node, { openSheet = false } = {}) {
+  app.selected = node;
+  app.renderer.selectedId = node ? node.id : null;
+
+  if (!node || !app.state) {
+    app.selectionResult = null;
+    app.renderer.previewPath = [];
+    dom.detailBody.innerHTML = '<p class="muted small">Tap or click a node to select it.</p>';
+    dom.detailActions.hidden = true;
+    markDirty();
+    return;
+  }
+
+  const result = app.engine.canAfford(app.state, node.id);
+  app.selectionResult = result;
+  app.renderer.previewPath = result.path || [];
+
+  const owned = app.state.owned.has(node.id);
+  const refund = owned ? canDeallocate(app.engine, app.state, node.id) : null;
+  const newNodes = (result.new_nodes || []).filter((id) => id !== node.id);
+
+  const costLine = owned
+    ? `<div class="cost ok">Owned${
+        refund && !refund.ok ? ` · cannot refund: ${refund.reason}` : ''
+      }</div>`
+    : result.affordable
+      ? `<div class="cost ok">${result.total_cost} point${
+          result.total_cost === 1 ? '' : 's'
+        } · allocates ${newNodes.length} node${
+          newNodes.length === 1 ? '' : 's'
+        } on the way · ${result.points_remaining_after} left after</div>`
+      : `<div class="cost blocked">${
+          result.reason === 'insufficient_points'
+            ? `needs ${result.total_cost} points, you have ${app.state.pointsRemaining}`
+            : (result.blocking_prereqs || []).join('<br />') || 'no path from what you own'
+        }</div>`;
+
+  const pathList = newNodes.length
+    ? `<ol class="path-list">${newNodes
+        .map((id) => `<li>${app.index.byId.get(id).name}</li>`)
+        .join('')}</ol>`
+    : '';
+
+  dom.detailBody.innerHTML = `
+    <div class="detail-name">${node.name}</div>
+    <div class="stat"><span>${typeLabel(node)}</span><b style="color:${zoneColour(
+      node.zone,
+    )}">${node.zone}${node.subregion ? ` · ${node.subregion}` : ''}</b></div>
+    <div class="detail-summary small">${node.effect_summary || ''}</div>
+    ${costLine}
+    ${pathList}
+  `;
+
+  dom.detailActions.hidden = false;
+  dom.allocate.disabled = owned || !result.affordable;
+  dom.allocate.textContent = owned ? 'Allocated' : 'Allocate';
+  dom.deallocate.disabled = !owned || !(refund && refund.ok);
+
+  if (openSheet && isPhone()) openTab('detail');
+  markDirty();
+}
+
+function allocateSelected() {
+  if (!app.state || !app.selected) return;
+  const node = app.selected;
+  const result = app.engine.allocate(app.state, node.id);
+  dom.buildStatus.textContent = result.affordable
+    ? `Allocated ${node.name} (${result.total_cost} point${
+        result.total_cost === 1 ? '' : 's'
+      }).`
+    : `${node.name}: ${(result.blocking_prereqs || []).join('; ') || 'not affordable'}.`;
+  app.renderer.setState(app.state);
+  refreshChassis();
+  select(node);
+}
+
+function deallocateSelected() {
+  if (!app.state || !app.selected) return;
+  const node = app.selected;
+  const check = deallocate(app.engine, app.state, node.id);
+  dom.buildStatus.textContent = check.ok
+    ? `Refunded ${node.name} (+${check.refund}).`
+    : `Cannot refund ${node.name}: ${check.reason}.`;
+  app.renderer.setState(app.state);
+  refreshChassis();
+  select(node);
 }
 
 // -- panels ---------------------------------------------------------------
@@ -146,6 +279,8 @@ function refreshChassis() {
     } notable)</span></b></div>
   `;
   dom.statusLeft.textContent = `${summary.homeZone} · ${summary.pointsSpent}/${summary.pointsTotal} points spent`;
+  dom.pointsPill.hidden = false;
+  dom.pointsPillValue.textContent = String(summary.pointsRemaining);
 }
 
 function refreshBuildList(selected) {
@@ -164,37 +299,6 @@ function refreshBuildList(selected) {
     option.textContent = 'no saved builds';
     dom.buildList.appendChild(option);
   }
-}
-
-/** @param {any} node @param {any} result */
-function describeSelection(node, result) {
-  if (!node) {
-    dom.selection.innerHTML = '<p class="muted small">Hover a node to preview its path.</p>';
-    return;
-  }
-  const newNodes = (result.new_nodes || []).filter((id) => id !== node.id);
-  const list = newNodes
-    .map((id) => {
-      const other = app.index.byId.get(id);
-      return `<li>${other.name}</li>`;
-    })
-    .join('');
-  const status = result.affordable
-    ? `<b style="color:${ACCENT.preview}">${result.total_cost} point${
-        result.total_cost === 1 ? '' : 's'
-      }</b> — allocates ${newNodes.length} node${newNodes.length === 1 ? '' : 's'} on the way`
-    : `<b style="color:#ff9a8b">${
-        result.reason === 'insufficient_points'
-          ? `costs ${result.total_cost}, you have ${app.state.pointsRemaining}`
-          : (result.blocking_prereqs || []).join('; ') || 'unreachable'
-      }</b>`;
-  dom.selection.innerHTML = `
-    <div class="stat"><span>${typeLabel(node)}</span><b style="color:${zoneColour(
-      node.zone,
-    )}">${node.zone}</b></div>
-    <p class="small">${status}</p>
-    ${list ? `<ol class="path-list">${list}</ol>` : ''}
-  `;
 }
 
 function drawLegend() {
@@ -223,7 +327,52 @@ function drawLegend() {
   });
 }
 
-// -- interaction (Task 5) -------------------------------------------------
+// -- bottom sheets (phone) ------------------------------------------------
+
+/** @param {'character'|'detail'|'search'|'none'} name */
+function openTab(name) {
+  app.openSheet = app.openSheet === name ? 'none' : name;
+  for (const [key, panel] of Object.entries(dom.panels)) {
+    panel.dataset.open = String(app.openSheet === key);
+  }
+  for (const button of dom.tabbar.querySelectorAll('button')) {
+    button.setAttribute('aria-pressed', String(button.dataset.tab === app.openSheet));
+  }
+}
+
+// -- search ---------------------------------------------------------------
+
+function runSearch(query, { list = false } = {}) {
+  const hits = app.index.search(query);
+  app.renderer.searchHits = new Set(hits.map((node) => node.id));
+  const label = query.trim() ? `${hits.length} match${hits.length === 1 ? '' : 'es'}` : '';
+  dom.searchCount.textContent = label;
+  dom.searchCountMobile.textContent = label;
+
+  if (list) {
+    dom.searchResults.innerHTML = '';
+    for (const node of hits.slice(0, 40)) {
+      const item = document.createElement('li');
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.innerHTML = `<span>${node.name}</span><span class="result-meta">${typeLabel(
+        node,
+      )} · ${node.zone}</span>`;
+      button.addEventListener('click', () => {
+        app.camera.centreOn(node.position_x, node.position_y, Math.max(app.camera.scale, 12));
+        select(node, { openSheet: true });
+      });
+      item.appendChild(button);
+      dom.searchResults.appendChild(item);
+    }
+  } else if (hits.length) {
+    const first = hits[0];
+    app.camera.centreOn(first.position_x, first.position_y, Math.max(app.camera.scale, 11));
+  }
+  markDirty();
+}
+
+// -- frame loop -----------------------------------------------------------
 
 function markDirty() {
   app.dirty = true;
@@ -233,8 +382,6 @@ function loop() {
   if (app.dirty) {
     app.dirty = false;
     app.renderer.draw();
-    app.frameTimes.push(app.renderer.lastFrameMs);
-    if (app.frameTimes.length > 120) app.frameTimes.shift();
     dom.statusRight.textContent = `${app.renderer.lastDrawnNodes} nodes drawn · ${app.renderer.lastFrameMs.toFixed(
       1,
     )} ms/frame · ${app.camera.lod()} detail`;
@@ -242,178 +389,104 @@ function loop() {
   requestAnimationFrame(loop);
 }
 
-function pointerWorld(event) {
+// -- input ----------------------------------------------------------------
+
+/**
+ * Tap targets: a connector is a 2px dot when zoomed out, and a finger is not.
+ * The hit radius is whichever is larger - the node's own drawn radius, or a
+ * fixed screen-space target (44px on touch, 14px for a mouse) converted into
+ * world units. Notable nodes win ties so a fat tap near a feature does not
+ * select the connector next to it.
+ */
+function pickNodeAt(clientX, clientY, pointerType = 'mouse') {
   const rect = dom.canvas.getBoundingClientRect();
   const dpr = app.renderer.dpr || 1;
-  return app.camera.screenToWorld(
-    (event.clientX - rect.left) * dpr,
-    (event.clientY - rect.top) * dpr,
+  const world = app.camera.screenToWorld(
+    (clientX - rect.left) * dpr,
+    (clientY - rect.top) * dpr,
   );
-}
-
-function hitTest(event) {
-  const world = pointerWorld(event);
-  const slack = Math.max(1.4, 14 / app.camera.scale);
-  return app.index.nodeAt(world.x, world.y, slack);
-}
-
-function showTooltip(event, node) {
-  if (!node || !app.state) {
-    dom.tooltip.hidden = true;
-    return;
-  }
-  const result = app.engine.canAfford(app.state, node.id);
-  app.preview = result;
-  app.renderer.previewPath = result.path || [];
-
-  const owned = app.state.owned.has(node.id);
-  const costLine = owned
-    ? '<span class="cost">owned</span>'
-    : result.affordable
-      ? `<div class="cost ok">${result.total_cost} point${
-          result.total_cost === 1 ? '' : 's'
-        } · ${(result.new_nodes || []).length} node${
-          (result.new_nodes || []).length === 1 ? '' : 's'
-        } allocated · ${result.points_remaining_after} left after</div>`
-      : `<div class="cost blocked">${
-          result.reason === 'insufficient_points'
-            ? `needs ${result.total_cost} points, you have ${app.state.pointsRemaining}`
-            : (result.blocking_prereqs || []).join('<br />') || 'no path from what you own'
-        }</div>`;
-
-  dom.tooltip.innerHTML = `
-    <h3>${node.name}</h3>
-    <div class="meta">${typeLabel(node)} · ${node.zone}${
-      node.subregion ? ` · ${node.subregion}` : ''
-    } · depth ${node.depth}</div>
-    <div class="summary">${node.effect_summary || ''}</div>
-    ${costLine}
-  `;
-  dom.tooltip.hidden = false;
-
-  const rect = dom.tooltip.getBoundingClientRect();
-  const x = Math.min(event.clientX + 16, window.innerWidth - rect.width - 12);
-  const y = Math.min(event.clientY + 16, window.innerHeight - rect.height - 12);
-  dom.tooltip.style.left = `${x}px`;
-  dom.tooltip.style.top = `${y}px`;
-
-  describeSelection(node, result);
+  const targetPx = pointerType === 'mouse' ? 14 : 26;
+  const slack = Math.max(1.6, (targetPx * dpr) / app.camera.scale);
+  return app.index.nodeAt(world.x, world.y, slack, { preferNotable: true });
 }
 
 function wireEvents() {
-  const canvas = dom.canvas;
-  let dragging = false;
-  let dragMoved = false;
-  let lastX = 0;
-  let lastY = 0;
+  app.input = new PointerInput(dom.canvas, app.camera, {
+    getDpr: () => app.renderer.dpr || 1,
+    onChange: markDirty,
+    onTap: (clientX, clientY, pointerType) => {
+      if (!app.state) return;
+      const node = pickNodeAt(clientX, clientY, pointerType);
+      select(node, { openSheet: Boolean(node) });
+    },
+    onHover: (clientX, clientY) => {
+      const node = clientX === null ? null : pickNodeAt(clientX, clientY, 'mouse');
+      const id = node ? node.id : null;
+      if (id !== app.renderer.hoverId) {
+        app.renderer.hoverId = id;
+        dom.canvas.style.cursor = node ? 'pointer' : '';
+        markDirty();
+      }
+    },
+  });
 
   window.addEventListener('resize', () => {
     app.renderer.resize();
     markDirty();
   });
-
-  canvas.addEventListener('pointerdown', (event) => {
-    dragging = true;
-    dragMoved = false;
-    lastX = event.clientX;
-    lastY = event.clientY;
-    canvas.setPointerCapture(event.pointerId);
-    canvas.classList.add('dragging');
-  });
-
-  canvas.addEventListener('pointermove', (event) => {
-    if (dragging) {
-      const dpr = app.renderer.dpr || 1;
-      const dx = (event.clientX - lastX) * dpr;
-      const dy = (event.clientY - lastY) * dpr;
-      if (Math.abs(dx) + Math.abs(dy) > 2) dragMoved = true;
-      app.camera.panBy(dx, dy);
-      lastX = event.clientX;
-      lastY = event.clientY;
+  window.addEventListener('orientationchange', () => {
+    // iOS reports the old size synchronously; wait for the layout to settle
+    setTimeout(() => {
+      app.renderer.resize();
       markDirty();
-      return;
-    }
-    const node = hitTest(event);
-    const id = node ? node.id : null;
-    if (id !== app.renderer.hoverId) {
-      app.renderer.hoverId = id;
-      if (!node) {
-        app.renderer.previewPath = [];
-        describeSelection(null, null);
-      }
-      markDirty();
-    }
-    showTooltip(event, node);
+    }, 120);
   });
 
-  const endDrag = (event) => {
-    if (!dragging) return;
-    dragging = false;
-    canvas.classList.remove('dragging');
-    if (canvas.hasPointerCapture?.(event.pointerId)) canvas.releasePointerCapture(event.pointerId);
-  };
-  canvas.addEventListener('pointerup', (event) => {
-    const wasDrag = dragMoved;
-    endDrag(event);
-    if (wasDrag) return;
-    handleClick(event);
-  });
-  canvas.addEventListener('pointercancel', endDrag);
-  canvas.addEventListener('pointerleave', () => {
-    dom.tooltip.hidden = true;
-    app.renderer.hoverId = null;
-    app.renderer.previewPath = [];
-    markDirty();
-  });
+  dom.allocate.addEventListener('click', allocateSelected);
+  dom.deallocate.addEventListener('click', deallocateSelected);
 
-  canvas.addEventListener(
-    'wheel',
-    (event) => {
-      event.preventDefault();
-      const rect = canvas.getBoundingClientRect();
-      const dpr = app.renderer.dpr || 1;
-      const factor = Math.exp(-event.deltaY * 0.0016);
-      app.camera.zoomAt(
-        (event.clientX - rect.left) * dpr,
-        (event.clientY - rect.top) * dpr,
-        factor,
-      );
-      markDirty();
-    },
-    { passive: false },
-  );
+  for (const button of dom.tabbar.querySelectorAll('button')) {
+    button.addEventListener('click', () => openTab(button.dataset.tab));
+  }
+  for (const panel of Object.values(dom.panels)) {
+    const grip = panel.querySelector('.sheet-grip');
+    if (grip) grip.addEventListener('click', () => openTab('none'));
+  }
 
-  dom.fit.addEventListener('click', () => {
+  const fit = () => {
     app.camera.fit(app.index.bounds);
     markDirty();
-  });
+  };
+  dom.fit.addEventListener('click', fit);
+  dom.fitMobile.addEventListener('click', fit);
 
-  dom.respec.addEventListener('click', () => {
+  const respec = () => {
     if (!app.state) return;
     app.state = app.engine.startState(app.state.homeZone, app.index.budget);
     app.renderer.setState(app.state);
     refreshChassis();
+    select(app.selected);
     dom.buildStatus.textContent = 'Respecced to a fresh character.';
     markDirty();
-  });
+  };
+  dom.respec.addEventListener('click', respec);
+  dom.respecMobile.addEventListener('click', respec);
 
-  dom.references.addEventListener('change', () => {
-    app.renderer.showReferences = dom.references.checked;
+  const toggleReferences = (checked) => {
+    app.renderer.showReferences = checked;
+    dom.references.checked = checked;
+    dom.referencesMobile.checked = checked;
     markDirty();
-  });
+  };
+  dom.references.addEventListener('change', () => toggleReferences(dom.references.checked));
+  dom.referencesMobile.addEventListener('change', () =>
+    toggleReferences(dom.referencesMobile.checked),
+  );
 
-  dom.search.addEventListener('input', () => {
-    const hits = app.index.search(dom.search.value);
-    app.renderer.searchHits = new Set(hits.map((node) => node.id));
-    dom.searchCount.textContent = dom.search.value.trim()
-      ? `${hits.length} match${hits.length === 1 ? '' : 'es'}`
-      : '';
-    if (hits.length) {
-      const first = hits[0];
-      app.camera.centreOn(first.position_x, first.position_y, Math.max(app.camera.scale, 11));
-    }
-    markDirty();
-  });
+  dom.search.addEventListener('input', () => runSearch(dom.search.value));
+  dom.searchMobile.addEventListener('input', () =>
+    runSearch(dom.searchMobile.value, { list: true }),
+  );
 
   dom.save.addEventListener('click', () => {
     if (!app.state) return;
@@ -437,6 +510,7 @@ function wireEvents() {
     dom.onboarding.hidden = true;
     dom.buildName.value = name;
     refreshChassis();
+    select(app.selected);
     dom.buildStatus.textContent = `Loaded “${name}”.`;
     markDirty();
   });
@@ -456,45 +530,19 @@ function wireEvents() {
     }
     if (event.key === 'Escape') {
       dom.search.value = '';
-      app.renderer.searchHits = new Set();
-      dom.searchCount.textContent = '';
-      markDirty();
+      dom.searchMobile.value = '';
+      runSearch('', { list: true });
+      if (app.openSheet !== 'none') openTab('none');
+      else select(null);
+    }
+    if ((event.key === 'Enter' || event.key === 'a') && app.selected && !dom.allocate.disabled) {
+      if (document.activeElement && document.activeElement.tagName === 'INPUT') return;
+      allocateSelected();
     }
   });
 }
 
-function handleClick(event) {
-  if (!app.state) return;
-  const node = hitTest(event);
-  if (!node) return;
-
-  if (event.altKey && app.state.owned.has(node.id)) {
-    const check = deallocate(app.engine, app.state, node.id);
-    dom.buildStatus.textContent = check.ok
-      ? `Refunded ${node.name} (+${check.refund}).`
-      : `Cannot refund ${node.name}: ${check.reason}.`;
-  } else {
-    const result = app.engine.allocate(app.state, node.id);
-    if (!result.affordable) {
-      dom.buildStatus.textContent =
-        result.reason === 'insufficient_points'
-          ? `${node.name} costs ${result.total_cost}; you have ${app.state.pointsRemaining}.`
-          : `${node.name}: ${(result.blocking_prereqs || []).join('; ') || 'no path yet'}.`;
-    } else {
-      dom.buildStatus.textContent = `Allocated ${node.name} (${result.total_cost} point${
-        result.total_cost === 1 ? '' : 's'
-      }).`;
-    }
-  }
-  app.renderer.setState(app.state);
-  refreshChassis();
-  showTooltip(event, node);
-  markDirty();
-}
-
-// -- benchmark hooks (Task 8) --------------------------------------------
-// Exposed so bench/bench.mjs can drive real pan/zoom against the real renderer
-// instead of measuring a synthetic scene.
+// -- test and benchmark hooks --------------------------------------------
 globalThis.__tree = {
   app,
   markDirty,
@@ -507,6 +555,10 @@ globalThis.__tree = {
     app.camera.panBy(dx, dy);
     markDirty();
   },
+  select,
+  openTab,
+  isPhone,
+  pickNodeAt,
   ready: () => Boolean(app.renderer),
   graphUrl: graphDataUrl(),
 };

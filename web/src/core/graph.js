@@ -26,6 +26,12 @@ export class GraphIndex {
     this.structuralEdges = graph.edges.filter((edge) => edge.traversable !== false);
     this.referenceEdges = graph.edges.filter((edge) => edge.traversable === false);
 
+    // Node positions are immutable, so resolve every edge's endpoints once here
+    // rather than doing two Map lookups per edge per frame. At 1,433 edges and
+    // 60fps that is 172,000 lookups a second reclaimed.
+    this.structuralEdgeGeometry = this._edgeGeometry(this.structuralEdges);
+    this.referenceEdgeGeometry = this._edgeGeometry(this.referenceEdges);
+
     this.buckets = this._buckets();
     // Structured fields only - name, zone, sub-region, tags, type and role.
     // `role` matters: the ten Metamagic options are named "Careful Spell",
@@ -47,6 +53,22 @@ export class GraphIndex {
         .replace(/_/g, ' ')
         .toLowerCase(),
     }));
+  }
+
+  /** @param {any[]} edges */
+  _edgeGeometry(edges) {
+    return edges.map((edge) => {
+      const a = this.byId.get(edge.from);
+      const b = this.byId.get(edge.to);
+      return {
+        from: edge.from,
+        to: edge.to,
+        ax: a ? a.position_x : 0,
+        ay: a ? a.position_y : 0,
+        bx: b ? b.position_x : 0,
+        by: b ? b.position_y : 0,
+      };
+    });
   }
 
   _bounds() {
@@ -109,17 +131,27 @@ export class GraphIndex {
     return out;
   }
 
-  /** Nearest node to a world-space point, within `radius`. */
-  nodeAt(x, y, radius = 2.2) {
+  /**
+   * Nearest node to a world-space point, within `radius`.
+   *
+   * `preferNotable` biases the pick towards real content: a tap that lands
+   * between a class feature and the connector beside it should select the
+   * feature. Connectors are only chosen when nothing notable is in range, or
+   * when the connector is clearly the closer of the two.
+   */
+  nodeAt(x, y, radius = 2.2, { preferNotable = false } = {}) {
     const candidates = this.nodesInRect(x - radius, y - radius, x + radius, y + radius);
     let best = null;
-    let bestDistance = radius * radius;
+    let bestScore = radius * radius;
     for (const node of candidates) {
       const dx = node.position_x - x;
       const dy = node.position_y - y;
       const distance = dx * dx + dy * dy;
-      if (distance <= bestDistance) {
-        bestDistance = distance;
+      if (distance > radius * radius) continue;
+      const filler = node.type === 'connector' && !node.is_gate;
+      const score = preferNotable && filler ? distance * 2.4 : distance;
+      if (score <= bestScore) {
+        bestScore = score;
         best = node;
       }
     }
