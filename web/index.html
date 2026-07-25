@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>D&amp;D 2024 Skill Tree</title>
+    <link rel="stylesheet" href="./src/styles.css" />
+  </head>
+  <body>
+    <canvas id="tree"></canvas>
+
+    <div id="tooltip" class="tooltip" hidden></div>
+
+    <header class="topbar">
+      <div class="brand">
+        <strong>D&amp;D 2024 Skill Tree</strong>
+        <span class="muted" id="graph-stats">loading…</span>
+      </div>
+      <div class="tools">
+        <input id="search" type="search" placeholder="Search nodes…" autocomplete="off" />
+        <span id="search-count" class="muted"></span>
+        <label class="toggle">
+          <input type="checkbox" id="toggle-references" />
+          <span>“See also” edges</span>
+        </label>
+        <button id="btn-fit" type="button">Fit</button>
+        <button id="btn-respec" type="button">Respec</button>
+      </div>
+    </header>
+
+    <aside class="panel panel-left" id="chassis-panel">
+      <h2>Character</h2>
+      <div id="chassis-body" class="panel-body"></div>
+
+      <h2>Builds</h2>
+      <div class="panel-body build-controls">
+        <input id="build-name" type="text" placeholder="Build name" autocomplete="off" />
+        <div class="row">
+          <button id="btn-save" type="button">Save</button>
+          <button id="btn-delete" type="button" class="ghost">Delete</button>
+        </div>
+        <select id="build-list" size="4" aria-label="Saved builds"></select>
+        <button id="btn-load" type="button">Load selected</button>
+        <p class="muted small" id="build-status"></p>
+      </div>
+    </aside>
+
+    <aside class="panel panel-right" id="legend-panel">
+      <h2>Legend</h2>
+      <div class="panel-body">
+        <canvas id="legend-canvas" width="240" height="196"></canvas>
+        <ul class="states">
+          <li><i class="swatch owned"></i> owned</li>
+          <li><i class="swatch affordable"></i> affordable now</li>
+          <li><i class="swatch reachable"></i> reachable, too expensive</li>
+          <li><i class="swatch unreachable"></i> prerequisites unmet</li>
+        </ul>
+        <p class="muted small">
+          Click a node to allocate it and everything on the cheapest path.
+          Alt-click an owned node to refund it, if nothing depends on it.
+        </p>
+      </div>
+      <h2>Selection</h2>
+      <div class="panel-body" id="selection-body">
+        <p class="muted small">Hover a node to preview its path.</p>
+      </div>
+    </aside>
+
+    <div class="onboarding" id="onboarding">
+      <div class="onboarding-card">
+        <h1>Choose where you start</h1>
+        <p>
+          Your starting zone is the only thing that fixes your chassis: hit die,
+          saving throw proficiencies and starting weapons. It is locked at
+          creation and never changes, however far you path into other zones. Its
+          gate is free, and its connector spine costs nothing to walk.
+        </p>
+        <div class="zone-grid" id="zone-grid"></div>
+        <p class="muted small" id="zone-detail">Pick a zone to see what it locks in.</p>
+      </div>
+    </div>
+
+    <footer class="statusbar">
+      <span id="status-left"></span>
+      <span id="status-right" class="muted"></span>
+    </footer>
+
+    <script type="module" src="./src/app/main.js"></script>
+  </body>
+</html>

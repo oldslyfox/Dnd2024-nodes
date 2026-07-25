@@ -1,11 +1,15 @@
-# D&D 2024 skill-tree — Work Order 2
+# D&D 2024 skill-tree
 
 Point economy, prerequisite normalization, zone layout and the pathing cost
-engine, built on the 735-node Work Order 1 extraction. Scope is D&D 2024
-(XPHB/XDMG) only; there is no 2014 content anywhere in the output, and a test
-asserts it.
+engine (Work Order 2), plus a static web renderer for the whole tree
+(Work Order 3). Scope is D&D 2024 (XPHB/XDMG) only; there is no 2014 content
+anywhere in the output, and a test asserts it.
 
-## Run it
+- **`web/`** — the renderer. Static, client-side, no backend; `web/dist/index.html`
+  opens straight off disk. See [web/README.md](web/README.md).
+- **everything else** — the data pipeline that produces `data/output/graph.v2.json`.
+
+## Run the pipeline
 
 ```bash
 python3 scripts/build_all.py       # build -> validate -> flag, writes data/output
@@ -40,6 +44,8 @@ validation: PASS
 | `docs/schema_v2.md` | node/edge schema |
 | `docs/work_order_02.md` | the work order this implements |
 | `src/dnd2024/` | the generator, the pathing engine, the validator |
+| `web/` | the visual tree renderer (Work Order 3) — its own README |
+| `scripts/export_engine_fixtures.py` | records the Python engine's answers for the JS port to match |
 
 ## The model in one page
 
@@ -136,5 +142,24 @@ broken extraction. A test holds that label.
   58-point career budget: Extra Attack stacking 41%, expertise pile 43%, two
   full-caster spines 34%, two capstones 34%. First item for a balance-tuning
   pass.
-- **`layout_preview.svg` label crowding** around Rogue/Artificer/Wizard.
-  Cosmetic; for whenever the real renderer work order starts.
+- **`layout_preview.svg` label crowding** around Rogue/Artificer/Wizard. Fixed
+  properly in the real renderer (`web/src/app/labels.js`: angular anchors, a
+  safe-rect clamp and a separation pass). The SVG preview script keeps its naive
+  placement — it is a throwaway review aid now that the app exists.
+
+## The renderer
+
+`web/` is a standalone static app: pan/zoom Canvas 2D over all 1,133 nodes,
+colour by zone and shape by type, four allocation states, hover path preview,
+click to allocate, search, respec, and named builds in localStorage.
+
+Its pathing engine is a port of `src/dnd2024/pathing.py`, cross-validated against
+2,340 queries generated from the Python engine plus the ten hand-traced cases —
+identical results, down to the order of nodes in each path. Measured at 2–3 ms
+per frame in headless Chromium, roughly 5× inside the 60 fps budget even with
+every node on screen.
+
+```bash
+cd web && npm install && npm run sync-data && npm run build
+# then open web/dist/index.html - no server needed
+```

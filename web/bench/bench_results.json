@@ -1,0 +1,72 @@
+{
+  "measured_at": "2026-07-25T08:58:30.707Z",
+  "renderer": "Canvas 2D",
+  "viewport": "1600x950",
+  "device_pixel_ratio_cap": 2,
+  "node_count": 1133,
+  "nodes_drawn_in_worst_case": 1076,
+  "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.0.0.0 Safari/537.36",
+  "results": [
+    {
+      "name": "pan at readable zoom (near LOD)",
+      "frames": 120,
+      "mean_ms": 2.66,
+      "p95_ms": 3.2,
+      "worst_ms": 30.6,
+      "mean_fps": 375.9,
+      "p95_fps": 312.5,
+      "holds_60fps": true
+    },
+    {
+      "name": "pan at mid zoom",
+      "frames": 120,
+      "mean_ms": 1.99,
+      "p95_ms": 2.5,
+      "worst_ms": 3.9,
+      "mean_fps": 501.3,
+      "p95_fps": 400,
+      "holds_60fps": true
+    },
+    {
+      "name": "zoom sweep, whole graph to a single zone",
+      "frames": 120,
+      "mean_ms": 1.81,
+      "p95_ms": 3.4,
+      "worst_ms": 5.4,
+      "mean_fps": 552,
+      "p95_fps": 294.1,
+      "holds_60fps": true
+    },
+    {
+      "name": "pan with the “see also” overlay on",
+      "frames": 120,
+      "mean_ms": 1.89,
+      "p95_ms": 2.7,
+      "worst_ms": 3.3,
+      "mean_fps": 528.6,
+      "p95_fps": 370.4,
+      "holds_60fps": true
+    },
+    {
+      "name": "worst case: entire graph in view, every node drawn",
+      "frames": 120,
+      "mean_ms": 2.17,
+      "p95_ms": 2.7,
+      "worst_ms": 11.9,
+      "mean_fps": 460.7,
+      "p95_fps": 370.4,
+      "holds_60fps": true
+    },
+    {
+      "name": "worst case with overlay and labels",
+      "frames": 120,
+      "mean_ms": 2.71,
+      "p95_ms": 3.7,
+      "worst_ms": 8.8,
+      "mean_fps": 368.6,
+      "p95_fps": 270.3,
+      "holds_60fps": true
+    }
+  ],
+  "verdict": "Canvas 2D holds 60fps across every measured motion; no reason to escalate to WebGL."
+}
